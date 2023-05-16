@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_M_App.Pages.LoginPage"
+              xmlns:customControls="clr-namespace:Gameshop_M_App.CustomControls"   
+             Title="LoginPage">
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                <GradientStop Color="Black"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <Grid RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+
+            <Label Margin="0,0,0,0"  FontSize="25" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"
+            Text=" GAME SHOP!" TextColor="#146C94"
+            />
+
+         
+
+                <customControls:OutlineEntryControl Grid.Row="8" Placeholder="First Name" />
+            <customControls:OutlineEntryControl Grid.Row="9" Placeholder="Last Name" />
+
+            <Button Grid.Row="10"
+                x:Name="CounterBtn"
+                Text="Login!"
+                SemanticProperties.Hint="Counts the number of times you click"              
+                HorizontalOptions="Center" />
+            
+        </Grid>
+    </Frame>
+</ContentPage>
