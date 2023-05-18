@@ -60,9 +60,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CustomControls\OutlineEntryControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

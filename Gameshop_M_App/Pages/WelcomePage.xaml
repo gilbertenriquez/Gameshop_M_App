@@ -19,11 +19,11 @@
 
         <Grid >
             <Label FontSize="25"
-            Text="Welcome to GAME SHOP!" TextColor="#146C94"
+            Text="Welcome to GAME SHOP!" TextColor="#4267B2"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand" TextColor="#146C94"
+            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand" TextColor="#4267B2"
                         Clicked="GetStart_Clicked"/>
         </Grid>
 

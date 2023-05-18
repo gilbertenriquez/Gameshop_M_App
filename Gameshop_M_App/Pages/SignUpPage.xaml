@@ -2,11 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_M_App.Pages.SignUpPage"
-             Title="SignUpPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             >
+
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                <GradientStop Color="Black"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="Registering is quick and simple."/>
+            
+            <Entry Placeholder="First Name"
+                   PlaceholderColor="White"
+                   x:Name="FNEntry"
+                   />
+
+            <Entry Placeholder="Last Name"
+                   PlaceholderColor="White"
+                   x:Name="LNEntry"/>
+
+
+            <Entry Placeholder="Email"
+                   PlaceholderColor="White"
+                   x:Name="emailEntry"/>
+
+            <Entry Placeholder="Password"
+                   IsPassword="True"
+                       PlaceholderColor="White"
+                   x:Name="passwordEntry"/>
+            
+            <Label Text="Birthday" FontSize="15" />
+            <DatePicker x:Name="birthdayDatePicker"  Format="yyyy-MM-dd" />
+
+            <Label Text="Gender" FontSize="15" />
+            <Picker x:Name="genderPicker" Title="Select Gender" >
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button Text="Sign Up"
+                   TextColor="#4267B2"/>
+        </VerticalStackLayout>
+    </Frame>
 </ContentPage>

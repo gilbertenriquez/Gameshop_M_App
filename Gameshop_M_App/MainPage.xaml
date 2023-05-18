@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customControls="clr-namespace:Gameshop_M_App.CustomControls"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                        
              x:Class="Gameshop_M_App.MainPage">
 
     <ScrollView>
@@ -16,9 +15,7 @@
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <customControls:OutlineEntryControl Placeholder="First Name"/>
-            <customControls:OutlineEntryControl Placeholder="Last Name"/>
-
+         
             <Button
                 x:Name="CounterBtn"
                 Text="Click me"

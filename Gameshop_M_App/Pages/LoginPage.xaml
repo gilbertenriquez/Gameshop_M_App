@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_M_App.Pages.LoginPage"
-              xmlns:customControls="clr-namespace:Gameshop_M_App.CustomControls"   
-             Title="LoginPage">
+             x:Class="Gameshop_M_App.Pages.LoginPage">
     <Frame
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -17,23 +15,50 @@
             </LinearGradientBrush>
         </Frame.Background>
 
-        <Grid RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
-            <Label Margin="0,0,0,0"  FontSize="25" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"
-            Text=" GAME SHOP!" TextColor="#146C94"
-            />
+        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label FontSize="40"
+            Text="GAMESHOP" TextColor="#4267B2"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
 
-         
+            <Label FontSize="25"
+            Text="Connect with other players and the outside world." TextColor="White"
+            HorizontalTextAlignment="Center"
+                   Margin="0,0,0,30"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+           
 
-                <customControls:OutlineEntryControl Grid.Row="8" Placeholder="First Name" />
-            <customControls:OutlineEntryControl Grid.Row="9" Placeholder="Last Name" />
+            <Entry Placeholder="Email"
+                   PlaceholderColor="White"
+                   x:Name="emailEntry"/>
 
-            <Button Grid.Row="10"
-                x:Name="CounterBtn"
-                Text="Login!"
-                SemanticProperties.Hint="Counts the number of times you click"              
-                HorizontalOptions="Center" />
-            
-        </Grid>
-    </Frame>
+                <Entry Placeholder="Password"
+                   IsPassword="True"
+                       PlaceholderColor="White"
+                   x:Name="passwordEntry"/>
+
+                <Button Text="Log In"
+                   TextColor="#4267B2"/>
+
+            <Label Text="Forgot password?"
+                       TextColor="#4267B2"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Button Text="Create new account"
+                    x:Name="CreateAccountBTN"
+                     TextColor="#4267B2"
+                    Clicked="CreateAccountBTN_Clicked"/>
+                
+            </VerticalStackLayout>
+       
+</Frame>
 </ContentPage>
