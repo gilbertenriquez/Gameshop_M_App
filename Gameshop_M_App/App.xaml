@@ -8,7 +8,31 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+
             </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="Primary">#3E3D32</Color>
+            <Color x:Key="Secondary">#25233f</Color>
+            <Color x:Key="FrameColor">#3E3D32</Color>
+            <Color x:Key="FrameColor_WhiteBG">WHITE</Color>
+
+            <Color x:Key="FrameColorWhite">#faf9f8</Color>
+            <Color x:Key="TextColorWhite">#ffffff</Color>
+            <Color x:Key="TextColorBlack">#0e0e16</Color>
+            <Color x:Key="TextColorAccent">#7cfdd0</Color>
+
+            <Color x:Key="ButtonColor">#5920d5</Color>
+
+            <Color x:Key="TextColorGary">Gray</Color>
+            <Color x:Key="PlaceHolder">Black</Color>
+
+            <Color x:Key="PriceColor">red</Color>
+            <Color x:Key="TextColorGray">Gray</Color>
+            <Color x:Key="PlaceHolderColor">Gray</Color>
+            <Color x:Key="Gradient1">#1E1F1C</Color>
+            <Color x:Key="Gradient2">#5920D5</Color>
+            <Color x:Key="ShadowDark">Black</Color>
+            <Color x:Key="CollectionViewSelectionColor">#292821</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

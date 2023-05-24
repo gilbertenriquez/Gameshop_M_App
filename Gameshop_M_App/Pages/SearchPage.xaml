@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_M_App.Pages.WelcomePage"
-             >
+             x:Class="Gameshop_M_App.Pages.SearchPage"
+    
+             Title="SearchPage">
     <Frame
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -15,18 +16,11 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </Frame.Background>
-
-
-        <Grid >
-            <Label FontSize="25"
-            Text="Welcome to GAME SHOP!" TextColor="#4267B2"
+        <VerticalStackLayout>
+            <Label 
+            Text="Welcome to SearchPage"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
-            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand" TextColor="#4267B2"
-                        Clicked="GetStart_Clicked"/>
-        </Grid>
-
-
+        </VerticalStackLayout>
     </Frame>
 </ContentPage>

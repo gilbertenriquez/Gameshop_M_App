@@ -8,8 +8,5 @@ public partial class HomePage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void GetStart_Clicked(object sender, EventArgs e)
-    {
-		await Navigation.PushAsync(new LoginPage());
-    }
+   
 }

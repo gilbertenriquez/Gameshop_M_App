@@ -16,8 +16,24 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </Frame.Background>
+        
 
         <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            
+            <StackLayout
+            x:Name="progressLoading"
+            IsVisible="False"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="Transparent">
+                <ActivityIndicator
+                x:Name="ai"
+                IsRunning="True" IsVisible="True"
+                HorizontalOptions="CenterAndExpand"
+                Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
+            </StackLayout>
+
             <Label Text="Registering is quick and simple."/>
             
             <Entry Placeholder="First Name"
@@ -40,7 +56,9 @@
                    x:Name="passwordEntry"/>
             
             <Label Text="Birthday" FontSize="15" />
-            <DatePicker x:Name="birthdayDatePicker"  Format="yyyy-MM-dd" />
+            <DatePicker  x:Name="birthdayPicker"
+                    Format="yyyy-MM-dd"
+                    />
 
             <Label Text="Gender" FontSize="15" />
             <Picker x:Name="genderPicker" Title="Select Gender" >
@@ -52,8 +70,8 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <Button Text="Sign Up"
-                   TextColor="#4267B2"/>
+            <Button Text="Sign Up" x:Name="SaveBTN"
+                   TextColor="#4267B2" Clicked="SaveBTN_Clicked" />
         </VerticalStackLayout>
     </Frame>
 </ContentPage>

@@ -3,27 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                        
              x:Class="Gameshop_M_App.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                <GradientStop Color="Black"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <ScrollView>
+            <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
+                <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-         
-            <Button
+
+                <Button
                 x:Name="CounterBtn"
                 Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
-    </ScrollView>
-
+            </VerticalStackLayout>
+        </ScrollView>
+    </Frame>
 </ContentPage>

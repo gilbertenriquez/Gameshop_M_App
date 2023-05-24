@@ -1,5 +1,6 @@
 ﻿using SkiaSharp.Views.Maui.Controls.Hosting;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace Gameshop_M_App;
 
@@ -11,7 +12,8 @@ public static class MauiProgram
 		builder
 			
 			.UseMauiApp<App>()
-			.UseSkiaSharp()
+            .UseMauiCommunityToolkit()
+            .UseSkiaSharp()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

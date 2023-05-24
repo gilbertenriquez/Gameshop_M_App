@@ -1,27 +1,16 @@
-﻿using Gameshop_M_App.Handlers;
+﻿using Firebase.Database;
+using Gameshop_M_App.Handlers;
+using Gameshop_M_App.Pages;
 
 namespace Gameshop_M_App;
 
 public partial class App : Application
 {
-	public App()
+    public static FirebaseClient players = new("https://gameshopdb-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    public App()
 	{
-		InitializeComponent();
+		InitializeComponent();      
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
-        {
-            if (view is BorderlessEntry)
-            {
-#if __ANDROID__
-                handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
-#elif __IOS__
-                handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
-#elif WINDOWS
-                handler.PlatformView.FontWeight = Microsoft.UI.Text.FontWeights.Thin;
-#endif
-            }
-        });
-
-        MainPage = new AppShell();
+        MainPage = new WelcomePage();
 	}
 }

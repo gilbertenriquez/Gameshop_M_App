@@ -17,6 +17,20 @@
 
 
         <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout
+            x:Name="progressLoading"
+            IsVisible="False"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="Transparent">
+                <ActivityIndicator
+                x:Name="ai"
+                IsRunning="True" IsVisible="True"
+                HorizontalOptions="CenterAndExpand"
+                Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
+            </StackLayout>
+
             <Label FontSize="40"
             Text="GAMESHOP" TextColor="#4267B2"
                    FontAttributes="Bold"
@@ -41,7 +55,7 @@
                        PlaceholderColor="White"
                    x:Name="passwordEntry"/>
 
-                <Button Text="Log In"
+                <Button Text="Log In" x:Name="lOGINbtn" Clicked="lOGINbtn_Clicked"
                    TextColor="#4267B2"/>
 
             <Label Text="Forgot password?"
