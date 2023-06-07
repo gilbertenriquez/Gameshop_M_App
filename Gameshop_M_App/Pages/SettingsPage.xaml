@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_M_App.Pages.SettingsPage"
              Title="SettingsPage">
+
     <Frame
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -15,11 +16,16 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </Frame.Background>
-        <VerticalStackLayout>
-            <Label 
-            Text="Welcome to SettingsPage"
+
+
+        <Grid >
+            <Label FontSize="25"
+            Text="Welcome to Settings Page" TextColor="#4267B2"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        </VerticalStackLayout>
+        </Grid>
+
+
     </Frame>
+
 </ContentPage>

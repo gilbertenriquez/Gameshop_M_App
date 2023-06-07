@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_M_App.Pages.SearchPage"
-    
-             Title="SearchPage">
+              x:Class="Gameshop_M_App.Pages.SearchPage"
+               Shell.NavBarHasShadow="False"
+             Shell.NavBarIsVisible="False">
     <Frame
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -17,10 +17,7 @@
             </LinearGradientBrush>
         </Frame.Background>
         <VerticalStackLayout>
-            <Label 
-            Text="Welcome to SearchPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <SearchBar Placeholder="Search items..." />
         </VerticalStackLayout>
     </Frame>
 </ContentPage>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 
+
 namespace Gameshop_M_App;
 
 public static class MauiProgram

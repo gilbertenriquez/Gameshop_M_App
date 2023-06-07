@@ -51,7 +51,8 @@
 
                     <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
                           HorizontalOptions="FillAndExpand">
-                        <Label Grid.Column="0" Text="Home"
+
+                        <Label Grid.Column="0" Text=""
                                TextColor="{StaticResource TextColorBlack}"
                                FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                                FontSize="30" />
@@ -59,10 +60,12 @@
                                                HorizontalOptions="End" Margin="10"
                                                WidthRequest="100">
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="plus.png" x:Name="addproductBTN"
-                                         />
+                                         WidthRequest="25" Source="plus.png" x:Name="AddProdsBTN"
+                                         Clicked="AddProdsBTN_Clicked"/>
+                            
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="request.png" />
+                                         WidthRequest="25" Source="edit.png" />
+                            
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
                                          x:Name="btnchat" 
                                          WidthRequest="25" Source="chat.png" />
@@ -73,7 +76,7 @@
 
                         <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                                 Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                                Stroke="{StaticResource ButtonColor}"
+                                Stroke="White"
                                 HeightRequest="70" WidthRequest="70">
                             <!--<Border.Shadow>
                             <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
@@ -93,7 +96,7 @@
                         <Grid Grid.Column="1"
                               RowDefinitions="Auto, Auto"
                               ColumnDefinitions="100, *">
-                            <Label Text="Company name" Grid.Row="0" x:Name="lblcompanyname"
+                            <Label Text="Buyer Name" Grid.Row="0" x:Name="lblcompanyname"
                                    TextColor="{StaticResource TextColorBlack}"
                                    FontSize="18" LineBreakMode="TailTruncation"
                                    FontFamily="RobotoCondensed" />
@@ -102,5 +105,14 @@
                 </Grid>
             </Grid>
         </Border>
+        <Grid Grid.Row="1">
+            <Label Margin="0,20,0,0" Text="Start Selling on Game Shop" HorizontalOptions="CenterAndExpand"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Text="Add Product" x:Name="AddProductsBTN"  Margin="0,0,0,0" CornerRadius="26" 
+                    WidthRequest="200" HeightRequest="50" Clicked="AddProdsBTN_Clicked"
+                   TextColor="White" BackgroundColor="Black"  />
+        </Grid>
     </Grid>
+   
 </ContentPage>

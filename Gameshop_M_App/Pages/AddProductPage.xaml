@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_M_App.Pages.AddProductPage"
+             Title="AddProductPage">
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                <GradientStop Color="Black"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <AbsoluteLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *,Auto,Auto,Auto,Auto">
+                <Grid Grid.Row="2" Margin="10">
+                    <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" Padding="0"
+                            BackgroundColor="{StaticResource Primary}">
+                        <Border.Shadow>
+                            <Shadow Brush="{StaticResource Primary}"
+                                    Offset="1,10"
+                                    Opacity=".1" />
+                        </Border.Shadow>
+                        <Grid RowDefinitions="Auto, Auto, Auto" Margin="10"
+                              ColumnDefinitions="Auto, *" HorizontalOptions="FillAndExpand">
+                            <Border Grid.Row="0" Grid.Column="0"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource FrameColor}"
+                                    StrokeShape="RoundRectangle 5">
+                                <Grid RowDefinitions="100,Auto">
+                                    <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
+                                                 HeightRequest="30" WidthRequest="30"
+                                                 Source="add.png" x:Name="btnmainimage"
+                                                 />
+                                    <Image Grid.Row="0" x:Name="mainimage"
+                                           HeightRequest="100" WidthRequest="100" />
+                                    <Label Grid.Row="1" Text="Main image" HorizontalOptions="FillAndExpand"
+                                           HorizontalTextAlignment="Center" BackgroundColor="{StaticResource Primary}"
+                                           Opacity="0.9" Margin="0"
+                                           TextColor="{StaticResource TextColorBlack}" />
+                                </Grid>
+                            </Border>
+                            <Grid Grid.Row="0" Grid.Column="1"
+                                  RowDefinitions="Auto, Auto"
+                                  HorizontalOptions="EndAndExpand"
+                                  VerticalOptions="EndAndExpand"
+                                  Margin="20">
+                                <Label Text="This is the main image of your property."
+                                       LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" />
+                                <HorizontalStackLayout Grid.Row="1" HorizontalOptions="EndAndExpand"
+                                                       VerticalOptions="EndAndExpand"
+                                                       Spacing="10" Margin="5">
+                                    <Button Text="Add image" x:Name="addimageBTN" Clicked="addimageBTN_Clicked"
+                                            BackgroundColor="Black"
+                                            TextColor="White" />
+                                    <Button Text="Remove image"
+                                             BackgroundColor="Black"
+                                            TextColor="White" />
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <StackLayout Grid.Row="10" Spacing="20" VerticalOptions="EndAndExpand" >
+
+                    <Entry Placeholder="Prodct Name"/>
+                    <Entry Placeholder="Product Quality"/>
+                    <Entry Placeholder="Product Description"/>
+                    <Entry Placeholder="Product Price"/>
+
+                    <Button Text="Save Product" x:Name="saveproductBTN"   CornerRadius="26" 
+                   Clicked="saveproductBTN_Clicked"
+                   BackgroundColor="Black"
+                     TextColor="White"  />
+
+                    <Button Text="Back" x:Name="backBTN"   CornerRadius="26" 
+                   Clicked="backBTN_Clicked"
+                   BackgroundColor="Black"
+                     TextColor="White" />
+                </StackLayout>
+
+            </Grid>
+        </AbsoluteLayout>
+    </Frame>
+</ContentPage>

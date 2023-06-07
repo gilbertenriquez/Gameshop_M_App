@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_M_App.Pages.WelcomePage"
+             xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              >
     <Frame
        HasShadow="True"
@@ -16,17 +17,28 @@
             </LinearGradientBrush>
         </Frame.Background>
 
+        
 
-        <Grid >
-            <Label FontSize="25"
+        <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="30" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Skia:SKLottieView Source="games.json"
+                               Grid.Row="0"
+                               RepeatCount="-1"                               
+                               HorizontalOptions="Center"
+                               Margin="0, 10, 0, 10"
+                               HeightRequest="400" WidthRequest="500"/>
+
+            <Label FontSize="25" Grid.Row="1"
             Text="Welcome to GAME SHOP!" TextColor="#4267B2"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand" TextColor="#4267B2"
+            <Button Grid.Row="2" x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand"  BackgroundColor="Black"
+                                            TextColor="White"
+                    CornerRadius="26" 
                         Clicked="GetStart_Clicked"/>
         </Grid>
 
 
     </Frame>
+
 </ContentPage>

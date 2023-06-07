@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_M_App.Pages.SellerBuyerPage"
+             Title="SellerBuyerPage">
+
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                <GradientStop Color="Black"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <VerticalStackLayout Spacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label 
+            Text="Sell your Skin Now!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Button Text="Start on Selling" x:Name="sellerBTN"  Margin="0,0,0,0" CornerRadius="26" 
+                    WidthRequest="200" HeightRequest="50" Clicked="sellerBTN_Clicked"
+                   BackgroundColor="Black" TextColor="White"  />
+
+            <Label 
+            Text="Market Now!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Button Text="Start Buying" x:Name="BuyerBTN"  Margin="0,0,0,0" CornerRadius="26" 
+                    WidthRequest="200" HeightRequest="50"
+                    BackgroundColor="Black" TextColor="White"  />
+        </VerticalStackLayout>
+    </Frame>
+</ContentPage>

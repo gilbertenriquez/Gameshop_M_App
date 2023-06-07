@@ -70,8 +70,9 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <Button Text="Sign Up" x:Name="SaveBTN"
-                   TextColor="#4267B2" Clicked="SaveBTN_Clicked" />
+            <Button Text="Sign Up" x:Name="SaveBTN"  CornerRadius="26"
+                   BackgroundColor="Black"
+                     TextColor="White" Clicked="SaveBTN_Clicked" />
         </VerticalStackLayout>
     </Frame>
 </ContentPage>

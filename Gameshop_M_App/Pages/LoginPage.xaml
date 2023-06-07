@@ -55,8 +55,9 @@
                        PlaceholderColor="White"
                    x:Name="passwordEntry"/>
 
-                <Button Text="Log In" x:Name="lOGINbtn" Clicked="lOGINbtn_Clicked"
-                   TextColor="#4267B2"/>
+            <Button Text="Log In" x:Name="lOGINbtn" Clicked="lOGINbtn_Clicked"  CornerRadius="26"
+                 BackgroundColor="Black"
+                     TextColor="White"/>
 
             <Label Text="Forgot password?"
                        TextColor="#4267B2"
@@ -68,8 +69,10 @@
             </Label>
 
             <Button Text="Create new account"
+                     CornerRadius="26"
                     x:Name="CreateAccountBTN"
-                     TextColor="#4267B2"
+                     BackgroundColor="Black"
+                     TextColor="White"
                     Clicked="CreateAccountBTN_Clicked"/>
                 
             </VerticalStackLayout>
