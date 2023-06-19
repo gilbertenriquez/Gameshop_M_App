@@ -56,8 +56,8 @@
                                TextColor="{StaticResource TextColorBlack}"
                                FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                                FontSize="30" />
-                        <HorizontalStackLayout Grid.Column="1" Spacing="15"
-                                               HorizontalOptions="End" Margin="10"
+                        <HorizontalStackLayout Grid.Column="1" Spacing="10"
+                                               HorizontalOptions="End" Margin="0,40,60,0"
                                                WidthRequest="100">
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
                                          WidthRequest="25" Source="plus.png" x:Name="AddProdsBTN"

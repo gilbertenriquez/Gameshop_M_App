@@ -33,7 +33,7 @@
             HorizontalOptions="Center" />
 
             <Button Text="Start Buying" x:Name="BuyerBTN"  Margin="0,0,0,0" CornerRadius="26" 
-                    WidthRequest="200" HeightRequest="50"
+                    WidthRequest="200" HeightRequest="50" Clicked="BuyerBTN_Clicked"
                     BackgroundColor="Black" TextColor="White"  />
         </VerticalStackLayout>
     </Frame>

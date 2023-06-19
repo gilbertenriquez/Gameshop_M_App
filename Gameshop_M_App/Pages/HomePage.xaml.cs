@@ -12,4 +12,7 @@ public partial class HomePage : ContentPage
     {
 		await Navigation.PushModalAsync(new AddProductPage());
     }
+
+  
+    
 }
