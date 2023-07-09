@@ -75,7 +75,7 @@
                     x:Name="CreateAccountBTN"
                      BackgroundColor="Black"
                      TextColor="White"
-                   />
+                   Clicked="CreateAccountBTN_Clicked"/>
 
         </VerticalStackLayout>
 

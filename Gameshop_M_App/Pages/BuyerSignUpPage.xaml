@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_M_App.Pages.BuyerSignUpPage"
+             Title="BuyerSignUpPage">
+    <Frame
+       HasShadow="True"
+        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Frame.Background>
+                    <!-- StartPoint defaults to (0,0) -->
+                    <LinearGradientBrush EndPoint="1,1">
+                        <GradientStop Color="#0C134F"
+                          Offset="0.1" />
+                        <GradientStop Color="Black"
+                          Offset="1.0" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+
+
+                <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                    <StackLayout
+            x:Name="progressLoading"
+            IsVisible="False"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="Transparent">
+                        <ActivityIndicator
+                x:Name="ai"
+                IsRunning="True" IsVisible="True"
+                HorizontalOptions="CenterAndExpand"
+                Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                        <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
+                    </StackLayout>
+
+                    <Label Text="Registering is quick and simple."/>
+
+                    <Entry Placeholder="First Name"
+                   PlaceholderColor="White"
+                   x:Name="FNEntry"
+                   />
+
+                    <Entry Placeholder="Last Name"
+                   PlaceholderColor="White"
+                   x:Name="LNEntry"/>
+
+
+                    <Entry Placeholder="Email"
+                   PlaceholderColor="White"
+                   x:Name="emailEntry"/>
+
+                    <Entry Placeholder="Password"
+                   IsPassword="True"
+                       PlaceholderColor="White"
+                   x:Name="passwordEntry"/>
+
+                    <Label Text="Birthday" FontSize="15" />
+                    <DatePicker  x:Name="birthdayPicker"
+                    Format="yyyy-MM-dd"
+                    />
+
+                    <Label Text="Gender" FontSize="15" />
+                    <Picker x:Name="genderPicker" Title="Select Gender" >
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Button Text="Sign Up" x:Name="SaveBTN"  CornerRadius="26"
+                   BackgroundColor="Black"
+                     TextColor="White" Clicked="SaveBTN_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
+        </ContentPage>

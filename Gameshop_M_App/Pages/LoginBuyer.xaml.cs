@@ -11,4 +11,9 @@ public partial class LoginBuyer : ContentPage
     {
 		await Navigation.PushModalAsync(new BuyerHomePage());
     }
+
+    private async void CreateAccountBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new BuyerSignUpPage());    
+    }
 }

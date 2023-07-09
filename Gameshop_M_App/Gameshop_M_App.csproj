@@ -71,6 +71,9 @@
 	  <MauiXaml Update="Pages\BuyerHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\BuyerSignUpPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ChatPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
