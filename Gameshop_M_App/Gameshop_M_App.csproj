@@ -50,7 +50,9 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\chat.png" />
+	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\Messages.png" />
 	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
@@ -74,7 +76,10 @@
 	  <MauiXaml Update="Pages\BuyerSignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ChatPage.xaml">
+	  <MauiXaml Update="Pages\ChatPageBuyer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ContactsBuyer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
@@ -84,6 +89,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MessengerForBuyer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchPage.xaml">

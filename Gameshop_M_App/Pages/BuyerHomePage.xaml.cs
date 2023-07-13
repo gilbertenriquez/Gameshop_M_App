@@ -6,4 +6,9 @@ public partial class BuyerHomePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void btnchat_Clicked(object sender, EventArgs e)
+    {
+		await Navigation.PushModalAsync(new ChatPageBuyer());
+    }
 }

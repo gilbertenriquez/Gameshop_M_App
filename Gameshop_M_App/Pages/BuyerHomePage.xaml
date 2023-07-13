@@ -68,7 +68,7 @@
 
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
                                          x:Name="btnchat" 
-                                         WidthRequest="25" Source="chat.png" />
+                                         WidthRequest="25" Source="chat.png" Clicked="btnchat_Clicked" />
                         </HorizontalStackLayout>
                     </Grid>
 
