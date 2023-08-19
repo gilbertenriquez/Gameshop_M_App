@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_App_Seller.Pages.WelcomePage"
+             xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="WelcomePage">
+    <Frame
+   HasShadow="True"
+    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Frame.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="1,1">
+                <GradientStop Color="#0C134F"
+                      Offset="0.1" />
+                <GradientStop Color="Black"
+                      Offset="1.0" />
+            </LinearGradientBrush>
+        </Frame.Background>
+
+        <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="80" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Skia:SKLottieView Source="games.json"
+                           Grid.Row="0"
+                           RepeatCount="-1"                               
+                           HorizontalOptions="Center"
+                           Margin="0, 10, 0, 10"
+                           HeightRequest="300" WidthRequest="300"/>
+
+            <Label FontSize="25" Grid.Row="1"
+        Text="Welcome to GAME SHOP!" TextColor="#4267B2"
+        VerticalOptions="CenterAndExpand" 
+        HorizontalOptions="CenterAndExpand" />
+
+            <Button Grid.Row="2" x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand"  BackgroundColor="Black"
+                                        TextColor="White"
+                CornerRadius="26" 
+                    Clicked="GetStart_Clicked"/>
+        </Grid>
+
+
+    </Frame>
+</ContentPage>

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_M_App.Pages.SettingsPage"
              Title="SettingsPage">
-
-    <Frame
+    <ContentPage.Content>
+        <Frame
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Frame.Background>
@@ -18,14 +18,25 @@
         </Frame.Background>
 
 
-        <Grid >
-            <Label FontSize="25"
-            Text="Welcome to Settings Page" TextColor="#4267B2"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        </Grid>
-
-
-    </Frame>
-
+            <TableView Intent="Settings" BackgroundColor="Transparent">
+                <TableView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness"  />
+                </TableView.Margin>
+                <TableSection Title="Configure Judopay">
+                    <SwitchCell x:Name="avsSwitch" AutomationId="avsSwitch" Text="Address Verification Service (AVS)" />
+                    <SwitchCell x:Name="maestroSwitch" AutomationId="maestroSwitch" Text="Maestro" />
+                    <SwitchCell x:Name="amexSwitch" AutomationId="amexSwitch" Text="American Express" />
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="16,0">
+                                <Label Text="Currency" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                                <Picker x:Name="currencyPicker" Title="Currency" VerticalOptions="Center" HorizontalOptions="End" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </TableSection>
+            </TableView>
+        
+        </Frame>
+    </ContentPage.Content>
 </ContentPage>
