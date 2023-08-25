@@ -1,4 +1,9 @@
-﻿namespace Gameshop_App_Seller
+﻿using Gameshop_App_Seller.Pages;
+using Firebase.Database;
+
+
+
+namespace Gameshop_App_Seller
 {
     public partial class App : Application
     {
@@ -6,7 +11,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new WelcomePage();
         }
     }
 }

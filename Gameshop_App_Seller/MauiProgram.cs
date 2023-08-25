@@ -1,6 +1,7 @@
 ﻿using SkiaSharp.Extended.UI;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using CommunityToolkit.Maui;
 
 namespace Gameshop_App_Seller
 {
@@ -11,6 +12,7 @@ namespace Gameshop_App_Seller
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseSkiaSharp()
+                .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {

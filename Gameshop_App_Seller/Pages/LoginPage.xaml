@@ -58,7 +58,7 @@
 
             <Button Text="Log In" x:Name="lOGINbtn"   CornerRadius="26"
                  BackgroundColor="Black"
-                     TextColor="White"/>
+                     TextColor="White" Clicked="lOGINbtn_Clicked"/>
 
             <Label Text="Forgot password?"
                        TextColor="#4267B2"

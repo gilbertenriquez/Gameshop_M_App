@@ -49,6 +49,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\chat.png" />
+	  <None Remove="Resources\Images\contacts.png" />
+	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\messages.png" />
+	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
 
@@ -71,6 +76,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUpPage.xaml">

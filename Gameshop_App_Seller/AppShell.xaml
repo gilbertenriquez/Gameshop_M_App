@@ -10,10 +10,17 @@
     Shell.TabBarBackgroundColor="{StaticResource Gradient1}"
     Shell.TabBarTitleColor="{StaticResource TextColorWhite}"
     Shell.TabBarUnselectedColor="{StaticResource TextColorGary}">
-    
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:WelcomePage}"
-        Route="WelcomePage" />
 
+
+    <TabBar>
+        <ShellContent Title="Dashboard"
+                      
+                      ContentTemplate="{DataTemplate local:HomePage}"/>
+        <ShellContent Title="Search"
+                      
+                      ContentTemplate="{DataTemplate local:SearchPage}"/>
+        <ShellContent Title="Settings"
+                     
+                      ContentTemplate="{DataTemplate local:SettingsPage}"/>
+    </TabBar>
 </Shell>
