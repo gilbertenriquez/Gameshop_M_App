@@ -53,6 +53,7 @@
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
 	  <None Remove="Resources\Images\messages.png" />
+	  <None Remove="Resources\Images\naah.jpg" />
 	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
