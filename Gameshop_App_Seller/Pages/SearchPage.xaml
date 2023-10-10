@@ -4,20 +4,14 @@
              x:Class="Gameshop_App_Seller.Pages.SearchPage"
                       Shell.NavBarHasShadow="False"
              Shell.NavBarIsVisible="False">
-    <Frame
-       HasShadow="True"
-        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Frame.Background>
-            <!-- StartPoint defaults to (0,0) -->
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#0C134F"
-                          Offset="0.1" />
-                <GradientStop Color="Black"
-                          Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
-        <VerticalStackLayout>
-            <SearchBar Placeholder="Search items..." />
-        </VerticalStackLayout>
-    </Frame>
+ 
+      
+        <VerticalStackLayout BackgroundColor="White">
+        <Frame Margin="10" BorderColor="Black" BackgroundColor="Transparent"
+       CornerRadius="10">
+            <SearchBar Placeholder="Search items..."
+                       PlaceholderColor="#007AFF"
+                       TextColor="#007AFF"/>
+        </Frame>
+    </VerticalStackLayout>
 </ContentPage>

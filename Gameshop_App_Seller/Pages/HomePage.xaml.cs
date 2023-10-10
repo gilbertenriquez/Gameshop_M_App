@@ -6,4 +6,14 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void AddProdsBTN_Clicked(object sender, EventArgs e)
+    {
+		await Navigation.PushModalAsync(new addproductPage());
+    }
+
+    private async void EditProdsBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new EditProductPage());
+    }
 }

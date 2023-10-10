@@ -4,7 +4,8 @@
              x:Class="Gameshop_App_Seller.Pages.SettingsPage"
              Title="SettingsPage" BackgroundColor="#F1F0E8">
     <ScrollView Margin="20">
-        <Grid RowSpacing="10" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid RowSpacing="10" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" 
+              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
         <Grid>
             <Image Aspect="AspectFill" Opacity="0.5"
@@ -42,23 +43,38 @@
             </Grid>
            
         </Grid>
-            <Label Grid.Row="1" Text="Jaymar Monil Tampos" HorizontalOptions="CenterAndExpand" TextColor="#0013de"/>
-        <Grid Grid.Row="5" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" ColumnDefinitions="AUTO,AUTO" RowSpacing="20">
-                <Label Grid.Row="0" Text="Account Settings" TextColor="#0013de" FontSize="20"/>
-                <Label Text=" Profile details" Grid.Row="1" TextColor="#445069"/>
-                <Label Text=" Account management" Grid.Row="2" TextColor="#445069"/>
-                <Label Text=" Security Settings" Grid.Row="3" TextColor="#445069"/>
-                <Label Grid.Row="4" Text="Privacy" FontAttributes="Bold" FontSize="20" TextColor="#0013de"/>
-                <Label Text=" Privacy dashboard" Grid.Row="5" TextColor="#445069"/>
-                <Label Text=" Privacy policy" Grid.Row="6" TextColor="#445069"/>
-                <Label Text=" Terms and conditions" Grid.Row="7" TextColor="#445069"/>
+            <Label Grid.Row="1" Text="Jaymar Monil Tampos" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="#007AFF"/>
+            <Grid Grid.Row="5" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" ColumnDefinitions="AUTO,AUTO" 
+                  RowSpacing="30" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+                <Label Grid.Row="0" Text="Account Settings" TextColor="#007AFF" FontSize="20"/>
 
-                <Label Text="Logout" Grid.Row="9" Margin="20,-5" TextColor="#0013de">
+                <Label Text=" Profile details" Grid.Row="1" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="0" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+              
+                <Label Text=" Account management" Grid.Row="2" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="1" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+                
+                <Label Text=" Security Settings" Grid.Row="3" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="2" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+
+                <Label Grid.Row="4" Text="Privacy" FontAttributes="Bold" FontSize="20" TextColor="#007AFF"/>
+               
+                
+                <Label Text=" Privacy dashboard" Grid.Row="5" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="4" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+                
+                <Label Text=" Privacy policy" Grid.Row="6" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="5" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+                
+                <Label Text=" Terms and conditions" Grid.Row="7" TextColor="#445069"/>
+                <ImageButton Source="nextblue.png" HeightRequest="1" Grid.Row="6" Grid.Column="10" Margin="330,10,10,-60" HorizontalOptions="End" VerticalOptions="End" />
+
+                <Label Text="Logout" Grid.Row="9" Margin="20,-5" TextColor="#007AFF">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                 </Label.GestureRecognizers>
             </Label>
-                <Label Text="Delete Account" Grid.Row="10" Margin="20,-5" TextColor="#0013de">
+                <Label Text="Delete Account" Grid.Row="10" Margin="20,-5" TextColor="#007AFF">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
                 </Label.GestureRecognizers>

@@ -49,12 +49,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
 	  <None Remove="Resources\Images\messages.png" />
 	  <None Remove="Resources\Images\naah.jpg" />
-	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
 
@@ -73,6 +74,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AddproductinfoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\addproductPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\editInfoPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\EditProductPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

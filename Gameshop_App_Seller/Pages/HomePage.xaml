@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.HomePage"
              xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"    
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#0C134F">
+             BackgroundColor="White">
     
     
     <Page.Behaviors >
@@ -16,11 +16,11 @@
     <Grid RowDefinitions="150,150,*">
         <Border Grid.Row="0"
                 Padding="0"
-                Margin="-5,-40,-5,0" BackgroundColor="{StaticResource Gradient1}"
+                Margin="-5,-40,-5,0" BackgroundColor="#272829"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 40">
             <Border.Shadow>
-                <Shadow Brush="{StaticResource ShadowDark}"
+                <Shadow Brush="#007AFF"
                         Offset="20,30"
                         Radius="20"
                         Opacity=".5" />
@@ -53,18 +53,19 @@
                           HorizontalOptions="FillAndExpand">
 
                         <Label Grid.Column="0" Text=""
-                               TextColor="{StaticResource TextColorBlack}"
+                               TextColor="#007AFF"
                                FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                                FontSize="30" />
                         <HorizontalStackLayout Grid.Column="1" Spacing="10"
                                                HorizontalOptions="End" Margin="0,40,60,0"
                                                WidthRequest="100">
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="plus.png" x:Name="AddProdsBTN"
+                                         WidthRequest="25" Source="add.png" x:Name="AddProdsBTN"
+                                         Clicked="AddProdsBTN_Clicked"
                                          />
 
-                            <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="edit.png" />
+                            <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="EditProdsBTN"
+                                         WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
 
                             <ImageButton HeightRequest="25" HorizontalOptions="End"
                                          x:Name="btnchat" 
@@ -76,7 +77,7 @@
 
                         <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                                 Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                                Stroke="White"
+                                Stroke="#007AFF"
                                 HeightRequest="70" WidthRequest="70">
                             <!--<Border.Shadow>
                             <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
@@ -96,8 +97,8 @@
                         <Grid Grid.Column="1"
                               RowDefinitions="Auto, Auto"
                               ColumnDefinitions="100, *">
-                            <Label Text="Buyer Name" Grid.Row="0" x:Name="lblcompanyname"
-                                   TextColor="{StaticResource TextColorBlack}"
+                            <Label Text="Name" Grid.Row="0" x:Name="lblcompanyname"
+                                   TextColor="#007AFF"
                                    FontSize="18" LineBreakMode="TailTruncation"
                                    FontFamily="RobotoCondensed" />
                         </Grid>
@@ -106,12 +107,13 @@
             </Grid>
         </Border>
         <Grid Grid.Row="1">
-            <Label Margin="0,20,0,0" Text="Start Selling on Game Shop" HorizontalOptions="CenterAndExpand"/>
+            <Label Margin="0,20,0,0" Text="Start Selling on Game Shop" HorizontalOptions="CenterAndExpand" TextColor="#007AFF"/>
         </Grid>
         <Grid Grid.Row="1">
             <Button Text="Add Product" x:Name="AddProductsBTN"  Margin="0,0,0,0" CornerRadius="26" 
                     WidthRequest="200" HeightRequest="50"
-                   TextColor="White" BackgroundColor="Black"  />
+                    Clicked="AddProdsBTN_Clicked"
+                   TextColor="#007AFF" BackgroundColor="Black"  />
         </Grid>
     </Grid>
 
