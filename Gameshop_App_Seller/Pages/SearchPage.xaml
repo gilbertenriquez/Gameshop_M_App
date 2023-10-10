@@ -3,15 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.SearchPage"
                       Shell.NavBarHasShadow="False"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False" 
+             BackgroundColor="White">
+
+    <AbsoluteLayout>
+        <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All" BackgroundColor="#272829">
+
+            <Border StrokeThickness="0" HeightRequest="56" BackgroundColor="#1d1d1d"
+                    Stroke="Red">
+                <SearchBar Placeholder="Search items..."  PlaceholderColor="#007AFF" TextColor="#007AFF"/>
+            </Border>
  
-      
-        <VerticalStackLayout BackgroundColor="White">
-        <Frame Margin="10" BorderColor="Black" BackgroundColor="Transparent"
-       CornerRadius="10">
-            <SearchBar Placeholder="Search items..."
-                       PlaceholderColor="#007AFF"
-                       TextColor="#007AFF"/>
-        </Frame>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+        
+    </AbsoluteLayout>
 </ContentPage>

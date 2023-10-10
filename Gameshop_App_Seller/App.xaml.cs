@@ -11,7 +11,7 @@ namespace Gameshop_App_Seller
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new WelcomePage();
         }
     }
 }

@@ -14,6 +14,6 @@ public partial class editInfoPage : ContentPage
 
     private async void Back_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PopModalAsync();
+        await Navigation.PushModalAsync(new HomePage());
     }
 }
