@@ -12,8 +12,10 @@
             StatusBarColor="red"
              StatusBarStyle="LightContent"/>
     </Page.Behaviors>
+    <AbsoluteLayout>
 
-    <Grid RowDefinitions="150,150,*">
+        <Grid RowDefinitions="150,150,*"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Border Grid.Row="0"
                 Padding="0"
                 Margin="-5,-40,-5,0" BackgroundColor="#272829"
@@ -116,5 +118,5 @@
                    TextColor="#007AFF" BackgroundColor="#272829"  />
         </Grid>
     </Grid>
-
+    </AbsoluteLayout>
 </ContentPage>

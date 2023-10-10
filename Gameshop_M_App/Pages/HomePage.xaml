@@ -4,115 +4,106 @@
              x:Class="Gameshop_M_App.Pages.HomePage"
              xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#0C134F">
+                          BackgroundColor="#F1F0E8">
 
 
     <Page.Behaviors >
         <behavior:StatusBarBehavior
             StatusBarColor="red"
              StatusBarStyle="LightContent"/>
-        </Page.Behaviors>
+    </Page.Behaviors>
+     
+    <AbsoluteLayout>
 
-    <Grid RowDefinitions="150,150,*">
-        <Border Grid.Row="0"
+        <Grid RowDefinitions="150,150,*"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Border Grid.Row="0"
                 Padding="0"
-                Margin="-5,-40,-5,0" BackgroundColor="{StaticResource Gradient1}"
+                Margin="-5,-40,-5,0" BackgroundColor="#272829"
                 StrokeThickness="0"
                 StrokeShape="RoundRectangle 40">
-            <Border.Shadow>
-                <Shadow Brush="{StaticResource ShadowDark}"
+                <Border.Shadow>
+                    <Shadow Brush="#007AFF"
                         Offset="20,30"
                         Radius="20"
                         Opacity=".5" />
-            </Border.Shadow>
-            <Grid>
-                <Image Aspect="AspectFill" Opacity="0.5"
+                </Border.Shadow>
+                <Grid>
+                    <Image Aspect="AspectFill" Opacity="0.5"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="FillAndExpand">
-                    <Image.Source>
-                        <UriImageSource x:Name="imgcover"
+                        <Image.Source>
+                            <UriImageSource x:Name="imgcover"
                                         CachingEnabled="True"
                                         CacheValidity="5"/>
-                    </Image.Source>
-                </Image>
-                <!--<Border.Background>
+                        </Image.Source>
+                    </Image>
+                    <!--<Border.Background>
                 <LinearGradientBrush EndPoint="5,5">
                     <GradientStop Color="{StaticResource Gradient1}" Offset="0.01"/>
                     <GradientStop Color="{StaticResource Gradient2}" Offset="0.3"/>
                 </LinearGradientBrush>
             </Border.Background>-->
 
-                <Grid ColumnSpacing="20"
+                    <Grid ColumnSpacing="20"
                       RowDefinitions="Auto, Auto, Auto"
                       VerticalOptions="Start"
                       RowSpacing="1"
                       HorizontalOptions="FillAndExpand"
                       Margin="5" Padding="5">
 
-                    <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *,*,*"
                           HorizontalOptions="FillAndExpand">
 
-                        <Label Grid.Column="0" Text=""
-                               TextColor="{StaticResource TextColorBlack}"
+                            <Label Grid.Column="0" Text=""
+                               TextColor="#007AFF"
                                FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                                FontSize="30" />
-                        <HorizontalStackLayout Grid.Column="1" Spacing="10"
+                            <HorizontalStackLayout Grid.ColumnSpan="4" Spacing="10"
                                                HorizontalOptions="End" Margin="0,40,60,0"
                                                WidthRequest="100">
-                            <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="plus.png" x:Name="AddProdsBTN"
-                                         Clicked="AddProdsBTN_Clicked"/>
-                            
-                            <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                         WidthRequest="25" Source="edit.png" />
-                            
-                            <ImageButton HeightRequest="25" HorizontalOptions="End"
+
+                                <ImageButton Grid.ColumnSpan="4" HeightRequest="25" HorizontalOptions="EndAndExpand"
                                          x:Name="btnchat" 
                                          WidthRequest="25" Source="chat.png" />
-                        </HorizontalStackLayout>
-                    </Grid>
+                            </HorizontalStackLayout>
+                        </Grid>
 
-                    <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
-                        <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
+                            <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                                 Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                                Stroke="White"
+                                Stroke="#007AFF"
                                 HeightRequest="70" WidthRequest="70">
-                            <!--<Border.Shadow>
+                                <!--<Border.Shadow>
                             <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
                                     Offset="20,20"
                                     Opacity=".7" />
                         </Border.Shadow>-->
-                            <Image HorizontalOptions="Fill"
-                                   Aspect="AspectFill">
-                                <Image.Source>
-                                    <UriImageSource x:Name="imglogo"
+                                <Image HorizontalOptions="Fill"
+                                   Aspect="AspectFill" Source="naah.jpg">
+                                    <!--<Image.Source>
+                                        <UriImageSource x:Name="imglogo"
                                                     CachingEnabled="True"
                                                     CacheValidity="5" />
-                                </Image.Source>
-                            </Image>
-                        </Border>
+                                    </Image.Source>-->
+                                </Image>
+                            </Border>
 
-                        <Grid Grid.Column="1"
+                            <Grid Grid.Column="1"
                               RowDefinitions="Auto, Auto"
                               ColumnDefinitions="100, *">
-                            <Label Text="Buyer Name" Grid.Row="0" x:Name="lblcompanyname"
-                                   TextColor="{StaticResource TextColorBlack}"
+                                <Label Text="Name" Grid.Row="0" x:Name="lblcompanyname"
+                                   TextColor="#007AFF"
                                    FontSize="18" LineBreakMode="TailTruncation"
                                    FontFamily="RobotoCondensed" />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </Border>
-        <Grid Grid.Row="1">
-            <Label Margin="0,20,0,0" Text="Start Selling on Game Shop" HorizontalOptions="CenterAndExpand"/>
+            </Border>
+            
+           
         </Grid>
-        <Grid Grid.Row="1">
-            <Button Text="Add Product" x:Name="AddProductsBTN"  Margin="0,0,0,0" CornerRadius="26" 
-                    WidthRequest="200" HeightRequest="50" Clicked="AddProdsBTN_Clicked"
-                   TextColor="White" BackgroundColor="Black"  />
-        </Grid>
-    </Grid>
-   
+    </AbsoluteLayout>
 </ContentPage>

@@ -3,21 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Class="Gameshop_M_App.Pages.SearchPage"
                Shell.NavBarHasShadow="False"
-             Shell.NavBarIsVisible="False">
-    <Frame
-       HasShadow="True"
-        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Frame.Background>
-            <!-- StartPoint defaults to (0,0) -->
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#0C134F"
-                          Offset="0.1" />
-                <GradientStop Color="Black"
-                          Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
-        <VerticalStackLayout>
-            <SearchBar Placeholder="Search items..." />
-        </VerticalStackLayout>
-    </Frame>
+             Shell.NavBarIsVisible="False"
+    BackgroundColor="#F1F0E8">
+
+<AbsoluteLayout>
+    <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
+      AbsoluteLayout.LayoutFlags="All" BackgroundColor="#272829">
+
+        <Border StrokeThickness="0" HeightRequest="56" BackgroundColor="#1d1d1d"
+                Stroke="Red">
+            <SearchBar Placeholder="Search items..."  PlaceholderColor="#007AFF" TextColor="#007AFF"/>
+        </Border>
+ 
+    </VerticalStackLayout>
+    
+</AbsoluteLayout>
 </ContentPage>

@@ -11,7 +11,7 @@ public partial class WelcomePage : ContentPage
 
     private async void GetStart_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushModalAsync(new SellerBuyerPage());
+		await Navigation.PushModalAsync(new LoginPage());
         
     }
 }

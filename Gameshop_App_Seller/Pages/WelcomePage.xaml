@@ -26,7 +26,7 @@
                            HeightRequest="300" WidthRequest="300"/>
 
             <Label FontSize="25" Grid.Row="1"
-        Text="Welcome to GAME SHOP!" TextColor="#4267B2"
+        Text="Welcome to GAME SHOP!" TextColor="#007AFF"
         VerticalOptions="CenterAndExpand" 
         HorizontalOptions="CenterAndExpand" />
 

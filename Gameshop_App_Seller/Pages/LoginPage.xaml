@@ -3,43 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.LoginPage"
              Title="LoginPage">
-    <Frame
+    <AbsoluteLayout>
+        <Frame   AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All" 
        HasShadow="True"
         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Frame.Background>
-            <!-- StartPoint defaults to (0,0) -->
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#272829"
+            <Frame.Background>
+                <!-- StartPoint defaults to (0,0) -->
+                <LinearGradientBrush EndPoint="1,1">
+                    <GradientStop Color="#272829"
                           Offset="0.1" />
-                <GradientStop Color="Black"
+                    <GradientStop Color="Black"
                           Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
+                </LinearGradientBrush>
+            </Frame.Background>
 
 
-        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <StackLayout
+            <VerticalStackLayout Spacing="25" Margin="20">
+                <StackLayout
             x:Name="progressLoading"
             IsVisible="False"
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             AbsoluteLayout.LayoutFlags="All"
             BackgroundColor="Transparent">
-                <ActivityIndicator
+                    <ActivityIndicator
                 x:Name="ai"
                 IsRunning="True" IsVisible="True"
                 HorizontalOptions="CenterAndExpand"
                 Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
-            </StackLayout>
+                    <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
+                </StackLayout>
 
-            <Label FontSize="40"
-            Text="GAMESHOP" TextColor="#4267B2"
+                <Label FontSize="40"
+            Text="GAMESHOP" TextColor="#007AFF"
                    FontAttributes="Bold"
                    Margin="0,0,0,20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-            <Label FontSize="25"
+                <Label FontSize="25"
             Text="Offer other players your in-game item for sale." TextColor="White"
             HorizontalTextAlignment="Center"
                    Margin="0,0,0,30"
@@ -47,37 +49,37 @@
             HorizontalOptions="Center" />
 
 
-            <Entry Placeholder="Email"
+                <Entry Placeholder="Email"
                    PlaceholderColor="White"
                    x:Name="emailEntry"/>
 
-            <Entry Placeholder="Password"
+                <Entry Placeholder="Password"
                    IsPassword="True"
                        PlaceholderColor="White"
                    x:Name="passwordEntry"/>
 
-            <Button Text="Log In" x:Name="lOGINbtn"   CornerRadius="26"
-                 BackgroundColor="Black"
+                <Button Text="Log In" x:Name="lOGINbtn"   CornerRadius="26"
+                 BackgroundColor="#272829"
                      TextColor="White" Clicked="lOGINbtn_Clicked"/>
 
-            <Label Text="Forgot password?"
-                       TextColor="#4267B2"
+                <Label Text="Forgot password?"
+                       TextColor="#007AFF"
                    HorizontalOptions="Center"
                    Margin="0,10,0,0" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Label.GestureRecognizers>
-            </Label>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Button Text="Create new account"
+                <Button Text="Create new account"
                      CornerRadius="26"
                     x:Name="CreateAccountBTN"
-                     BackgroundColor="Black"
+                     BackgroundColor="#272829"
                      TextColor="White"
                     Clicked="CreateAccountBTN_Clicked"
                     />
 
-        </VerticalStackLayout>
-
-    </Frame>
+            </VerticalStackLayout>
+        </Frame>
+    </AbsoluteLayout>
 </ContentPage>

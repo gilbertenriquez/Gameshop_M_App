@@ -10,7 +10,7 @@ public partial class HomePage : ContentPage
 
     private async void AddProdsBTN_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushModalAsync(new AddProductPage());
+		await Navigation.PushModalAsync(new HomePage());
     }
 
   

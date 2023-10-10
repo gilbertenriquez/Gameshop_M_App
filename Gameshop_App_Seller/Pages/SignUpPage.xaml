@@ -17,7 +17,8 @@
         </Frame.Background>
 
 
-        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All">
 
             <StackLayout
         x:Name="progressLoading"
@@ -70,7 +71,7 @@
             </Picker>
 
             <Button Text="Sign Up" x:Name="SaveBTN"  CornerRadius="26"
-               BackgroundColor="Black"
+               BackgroundColor="#272829"
                  TextColor="White" Clicked="SaveBTN_Clicked" />
         </VerticalStackLayout>
     </Frame>
