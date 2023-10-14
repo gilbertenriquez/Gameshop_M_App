@@ -6,7 +6,7 @@
              BackgroundColor="#272829"
              >
     <AbsoluteLayout>
-        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
+        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
         <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."
                FontSize="20" FontFamily="RobotoLight"  TextColor="White"/>
@@ -15,27 +15,29 @@
             <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="White" TextColor="White"/>
             <Entry Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="White" TextColor="White"/>
             <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="White" TextColor="White"/>
+            <Border Grid.Row="2" Margin="-5,0,-5,-10" VerticalOptions="End"
+StrokeShape="RoundRectangle 15"
+BackgroundColor="#007AFF">
+                <!--<Border.Shadow>
+    <Shadow Brush="{StaticResource Primary}"
+        Offset="0,-10"
+        Opacity=".4" />
+</Border.Shadow>-->
+                <Grid HeightRequest="50"
+  Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="10"
+  Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
 
-        <Border Grid.Row="2" Margin="-5,0,-5,-10" VerticalOptions="End"
-      StrokeShape="RoundRectangle 15"
-      BackgroundColor="#007AFF">
-            <!--<Border.Shadow>
-          <Shadow Brush="{StaticResource Primary}"
-              Offset="0,-10"
-              Opacity=".4" />
-      </Border.Shadow>-->
-            <Grid HeightRequest="50"
-        Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="10"
-        Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                    <Button Text="Exit" Grid.Column="0" x:Name="exit_Button" Clicked="exit_Button_Clicked"
+        BorderColor="White" TextColor="#007AFF" BorderWidth="1"
+        />
 
-                <Button Text="Exit" Grid.Column="0" x:Name="exit_Button" Clicked="exit_Button_Clicked"
-              BorderColor="White" TextColor="#007AFF" BorderWidth="1"
-              />
-
-                <Button Text="Save" Grid.Column="1" x:Name="NEXTBTN"
-                  BorderColor="#007AFF" TextColor="#007AFF"/>
-            </Grid>
-        </Border>
-    </VerticalStackLayout>
+                    <Button Text="Save" Grid.Column="1" x:Name="NEXTBTN"
+            BorderColor="#007AFF" TextColor="#007AFF"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+        <VerticalStackLayout VerticalOptions="End">
+           
+        </VerticalStackLayout>
     </AbsoluteLayout>
 </ContentPage>

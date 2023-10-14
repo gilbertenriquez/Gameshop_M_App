@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.HomePage"
              xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"    
              Shell.NavBarIsVisible="False"
-             BackgroundColor="White">
+             BackgroundColor="#F1F0E8">
     
     
     <Page.Behaviors >

@@ -17,6 +17,8 @@
             </LinearGradientBrush>
         </Frame.Background>
 
+        <VerticalStackLayout> 
+
         <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="80" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Skia:SKLottieView Source="games.json"
                            Grid.Row="0"
@@ -30,12 +32,10 @@
         VerticalOptions="CenterAndExpand" 
         HorizontalOptions="CenterAndExpand" />
 
-            <Button Grid.Row="2" x:Name="GetStart" Text="Get Started!" VerticalOptions="EndAndExpand"  BackgroundColor="Black"
-                                        TextColor="White"
-                CornerRadius="26" 
-                    Clicked="GetStart_Clicked"/>
         </Grid>
 
-
+            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="End"  BackgroundColor="#272829" TextColor="White" CornerRadius="26" 
+                    Clicked="GetStart_Clicked"/>
+        </VerticalStackLayout>
     </Frame>
 </ContentPage>
