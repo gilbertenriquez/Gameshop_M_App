@@ -40,7 +40,7 @@ public partial class LoginPage : ContentPage
         //    await DisplayAlert("Alert!", "Access Granted!", "OK!");
         //    emailEntry.Text = "";
         //    passwordEntry.Text = "";
-            await Navigation.PushModalAsync( new AppShell());
+            await Navigation.PushModalAsync(new AppShell());
         //    progressLoading.IsVisible = false;
         //    return;
 

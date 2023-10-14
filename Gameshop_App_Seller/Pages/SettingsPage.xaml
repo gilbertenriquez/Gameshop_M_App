@@ -45,13 +45,13 @@
             </Grid>
            
         </Grid>
-            <Label Grid.Row="1" Text="Jaymar Monil Tampos" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="#007AFF"/>
+            <Label Grid.Row="1" Text="Jaymar Monil Tampos" FontSize="20" HorizontalOptions="CenterAndExpand" TextColor="#007AFF" Margin="20"/>
             <Grid Grid.Row="5" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" ColumnDefinitions="*,*" 
                   RowSpacing="30" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Label Grid.Row="0" Text="Account Settings" TextColor="#007AFF" FontSize="20"/>
 
                 <Label Text=" Profile details" Grid.Row="1" TextColor="#445069" Margin="0,10,0,0"/>
-                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="1" Grid.Column="1"  HorizontalOptions="End" />
+                <ImageButton Source="nextblue.png" HeightRequest="1"  Grid.Row="1" Grid.Column="0"  HorizontalOptions="End" />
 
                     <Label Text=" Account management" Grid.Row="2" TextColor="#445069" Margin="0,10,0,0"/>
                 <ImageButton Source="nextblue.png" HeightRequest="2"  Grid.Row="2" Grid.Column="1" HorizontalOptions="End"/>

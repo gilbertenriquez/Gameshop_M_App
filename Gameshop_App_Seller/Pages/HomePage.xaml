@@ -87,12 +87,13 @@
                                     Opacity=".7" />
                         </Border.Shadow>-->
                             <Image HorizontalOptions="Fill"
-                                   Aspect="AspectFill">
-                                <Image.Source>
+                                   Aspect="AspectFill" Source="naah.jpg">
+                                    <!-- <Image.Source>
                                     <UriImageSource x:Name="imglogo"
                                                     CachingEnabled="True"
                                                     CacheValidity="5" />
                                 </Image.Source>
+                                --> 
                             </Image>
                         </Border>
 

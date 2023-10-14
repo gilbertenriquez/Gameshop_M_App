@@ -6,9 +6,9 @@ public partial class LoginPage : ContentPage
     {
         InitializeComponent();
     }
-    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new HomePage());
+       Application.Current!.MainPage = new AppShell();
     }
 
     private async void CreateAccountBTN_Clicked(object sender, EventArgs e)
@@ -18,6 +18,6 @@ public partial class LoginPage : ContentPage
 
     private async void lOGINbtn_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new HomePage());
+        await Navigation.PushModalAsync(new AppShell());
     }
 }

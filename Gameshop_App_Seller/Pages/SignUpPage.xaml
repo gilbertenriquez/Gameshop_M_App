@@ -2,23 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.SignUpPage"
-             Title="SignUpPage">
-    <Frame
-   HasShadow="True"
-    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+             Title="SignUpPage" >
+
+    <Frame   AbsoluteLayout.LayoutBounds="0,0,1,1"
+   AbsoluteLayout.LayoutFlags="All" 
+HasShadow="True"
+ VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Frame.Background>
             <!-- StartPoint defaults to (0,0) -->
             <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#272829"
-                      Offset="0.1" />
+                <GradientStop Color="#F1F0E8"
+                   Offset="0.1" />
                 <GradientStop Color="Black"
-                      Offset="1.0" />
+                   Offset="1.0" />
             </LinearGradientBrush>
         </Frame.Background>
 
-
-        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
-          AbsoluteLayout.LayoutFlags="All">
+        <VerticalStackLayout Spacing="30" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All" Margin="10">
 
             <StackLayout
         x:Name="progressLoading"
@@ -34,35 +35,35 @@
                 <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
             </StackLayout>
 
-            <Label Text="Registering is quick and simple."/>
+            <Label Text="Registering is quick and simple."  Margin="30"/>
 
             <Entry Placeholder="First Name"
-               PlaceholderColor="White"
+               PlaceholderColor="Black"
                x:Name="FNEntry"
                />
 
             <Entry Placeholder="Last Name"
-               PlaceholderColor="White"
+               PlaceholderColor="Black"
                x:Name="LNEntry"/>
 
 
             <Entry Placeholder="Email"
-               PlaceholderColor="White"
+               PlaceholderColor="Black"
                x:Name="emailEntry"/>
 
             <Entry Placeholder="Password"
                IsPassword="True"
-                   PlaceholderColor="White"
+                   PlaceholderColor="Black"
                x:Name="passwordEntry"/>
 
-            <Label Text="Birthday" FontSize="15" />
-            <DatePicker  x:Name="birthdayPicker"
+            <Label Text="Birthday" FontSize="15"  TextColor="Black"/>
+            <DatePicker  x:Name="birthdayPicker" TextColor="Black" 
                 Format="yyyy-MM-dd"
                 />
 
-            <Label Text="Gender" FontSize="15" />
-            <Picker x:Name="genderPicker" Title="Select Gender" >
-                <Picker.ItemsSource>
+            <Label Text="Gender" FontSize="15" TextColor="Black"/>
+            <Picker x:Name="genderPicker" TitleColor="White" Title="Select Gender" TextColor="White" >
+                <Picker.ItemsSource  >
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Male</x:String>
                         <x:String>Female</x:String>
