@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.SignUpPage"
              Title="SignUpPage" >
-
-    <Frame   AbsoluteLayout.LayoutBounds="0,0,1,1"
+    <ScrollView>
+        <Frame   AbsoluteLayout.LayoutBounds="0,0,1,1"
    AbsoluteLayout.LayoutFlags="All" 
 HasShadow="True"
- VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Frame.Background>
             <!-- StartPoint defaults to (0,0) -->
             <LinearGradientBrush EndPoint="1,1">
@@ -75,5 +75,6 @@ HasShadow="True"
                BackgroundColor="#272829"
                  TextColor="White" Clicked="SaveBTN_Clicked" />
         </VerticalStackLayout>
-    </Frame>
+        </Frame>
+    </ScrollView>
 </ContentPage>

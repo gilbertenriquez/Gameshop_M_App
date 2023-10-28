@@ -1,8 +1,8 @@
 namespace Gameshop_App_Seller.Pages;
 
-public partial class ChatPage : ContentPage
+public partial class DetailView : ContentPage
 {
-	public ChatPage()
+	public DetailView()
 	{
 		InitializeComponent();
 	}
