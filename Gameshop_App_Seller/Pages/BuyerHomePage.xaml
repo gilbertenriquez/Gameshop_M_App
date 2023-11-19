@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.HomePage"
-             xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"    
+             x:Class="Gameshop_App_Seller.Pages.BuyerHomePage"
+             Title="Home"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#F1F0E8">
-
     <ContentPage.IconImageSource>
-        <FileImageSource File="home.png"/>
+        <FileImageSource File="home.png"  />
     </ContentPage.IconImageSource>
-
-
-    <Page.Behaviors >
-        <behavior:StatusBarBehavior
-        StatusBarColor="red"
-         StatusBarStyle="LightContent"/>
-    </Page.Behaviors>
     <AbsoluteLayout>
 
         <Grid RowDefinitions="150,150,*"  AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -63,26 +55,17 @@
                            FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                            FontSize="30" />
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                           HorizontalOptions="End" Margin="0,40,120,0"
+                                           HorizontalOptions="End" Margin="0,40,60,0"
                                            WidthRequest="100">
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"
-                                     WidthRequest="25" Source="add.png" x:Name="AddProdsBTN"
-                                     Clicked="AddProdsBTN_Clicked"
-                                     />
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="EditProdsBTN"
-                                     WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
-
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="chat.png" x:Name="ChatBTN" Clicked="ChatBTN_Clicked" />
+                                     WidthRequest="25" Source="chat.png" x:Name="ChatBTN" />
                                 
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="notification.png" x:Name="notifyBTN"  />
+                                     WidthRequest="25" Source="notification.png" x:Name="notifyBTN" />
                             </HorizontalStackLayout>
-                            
-
                         </Grid>
 
+                        <Button Grid.Row="0" Grid.Column="0" TextColor="#007AFF" Text="Become A Seller" VerticalOptions="End" WidthRequest="150" x:Name="BecomeSellerBTN" Clicked="BecomeSellerBTN_Clicked"/>
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
@@ -117,15 +100,7 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Grid Grid.Row="1">
-                <Label Margin="0,20,0,0" Text="Start Selling on Game Shop" HorizontalOptions="CenterAndExpand" TextColor="#007AFF"/>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Button Text="Add Product" x:Name="AddProductsBTN" CornerRadius="26" 
-                WidthRequest="200" HeightRequest="50"
-                Clicked="AddProdsBTN_Clicked"
-               TextColor="#007AFF" BackgroundColor="#272829"  />
-            </Grid>
         </Grid>
     </AbsoluteLayout>
+
 </ContentPage>

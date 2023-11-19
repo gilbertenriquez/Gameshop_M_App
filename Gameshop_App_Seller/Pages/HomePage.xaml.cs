@@ -16,4 +16,9 @@ public partial class HomePage : ContentPage
     {
         await Navigation.PushModalAsync(new EditProductPage());
     }
+
+    private async void ChatBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ChatHomepage());
+    }
 }

@@ -6,8 +6,13 @@ public partial class SignUpPage : ContentPage
 	{
 		InitializeComponent();
 	}
-	private async void SaveBTN_Clicked(object sender, EventArgs e)
+	private async void BactBTN_Clicked(object sender, EventArgs e)
 	{ 
 	await Navigation.PopModalAsync();
 	}
+
+    private async void nextBTN_Clicked(object sender, EventArgs e)
+    {
+		await Navigation.PushModalAsync(new Valid_IDpage());
     }
+}

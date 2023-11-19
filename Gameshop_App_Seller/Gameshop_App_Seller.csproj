@@ -69,12 +69,15 @@
 	  <None Remove="Resources\Images\emoji7.png" />
 	  <None Remove="Resources\Images\emoji8.png" />
 	  <None Remove="Resources\Images\emoji9.png" />
+	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\messages.png" />
 	  <None Remove="Resources\Images\naah.jpg" />
 	  <None Remove="Resources\Images\Nextblue.png" />
+	  <None Remove="Resources\Images\notification.png" />
 	  <None Remove="Resources\Images\record.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\send.png" />
+	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
 
@@ -99,6 +102,9 @@
 	  <MauiXaml Update="Pages\addproductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\BuyerHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ChatHomepage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -120,21 +126,28 @@
 	  <MauiXaml Update="Pages\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SellerSearch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SellerSettings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Valid_IDpage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Template\RecentChatItemTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Template\SuggestedItemTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

@@ -9,7 +9,9 @@ namespace Gameshop_App_Seller
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)
             : base(handle, ownership)
         {
+
         }
+        
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }

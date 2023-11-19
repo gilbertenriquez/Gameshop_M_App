@@ -11,9 +11,9 @@ HasShadow="True"
         <Frame.Background>
             <!-- StartPoint defaults to (0,0) -->
             <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#F1F0E8"
-                   Offset="0.1" />
-                <GradientStop Color="Black"
+                <GradientStop Color="DimGray"
+                   Offset="0.5" />
+                    <GradientStop Color="#F1F0E8"
                    Offset="1.0" />
             </LinearGradientBrush>
         </Frame.Background>
@@ -32,10 +32,10 @@ HasShadow="True"
             IsRunning="True" IsVisible="True"
             HorizontalOptions="CenterAndExpand"
             Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="WhiteSmoke"/>
+                    <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
             </StackLayout>
 
-            <Label Text="Registering is quick and simple."  Margin="30"/>
+                <Label Text="Registering is quick and simple."  Margin="30" TextColor="Black"/>
 
             <Entry Placeholder="First Name"
                PlaceholderColor="Black"
@@ -62,8 +62,8 @@ HasShadow="True"
                 />
 
             <Label Text="Gender" FontSize="15" TextColor="Black"/>
-            <Picker x:Name="genderPicker" TitleColor="White" Title="Select Gender" TextColor="White" >
-                <Picker.ItemsSource  >
+                <Picker x:Name="genderPicker" TitleColor="Black" Title="Select Gender" TextColor="Black" >
+                <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Male</x:String>
                         <x:String>Female</x:String>
@@ -71,9 +71,13 @@ HasShadow="True"
                 </Picker.ItemsSource>
             </Picker>
 
-            <Button Text="Sign Up" x:Name="SaveBTN"  CornerRadius="26"
+                <Button Text="Next" x:Name="nextBTN"  CornerRadius="26" 
                BackgroundColor="#272829"
-                 TextColor="White" Clicked="SaveBTN_Clicked" />
+                 TextColor="Black" Clicked="nextBTN_Clicked" />
+
+                <Button Text="Back" x:Name="BackBTN"  CornerRadius="26"
+               BackgroundColor="#272829"
+                 TextColor="Black" Clicked="BactBTN_Clicked" />
         </VerticalStackLayout>
         </Frame>
     </ScrollView>

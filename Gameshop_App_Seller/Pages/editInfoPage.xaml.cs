@@ -7,7 +7,7 @@ public partial class editInfoPage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void SaveBtn_Clicked(object sender, EventArgs e)
+    private void SaveBtn_Clicked(object sender, EventArgs e)
     {
 
     }
