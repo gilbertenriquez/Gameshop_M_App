@@ -15,7 +15,7 @@
             <Color x:Key="FrameColorWhite">#faf9f8</Color>
             <Color x:Key="TextColorWhite">#ffffff</Color>
             <Color x:Key="TextColorBlack">#0e0e16</Color>
-            <Color x:Key="TextColorAccent">#7cfdd0</Color>
+            <Color x:Key="TextColorAccent"></Color>
 
             <Color x:Key="ButtonColor">#5920d5</Color>
 

@@ -3,39 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.WelcomePage"
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             Title="WelcomePage">
-    <Frame
-   HasShadow="True"
-    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Frame.Background>
-            <!-- StartPoint defaults to (0,0) -->
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="#272829"
-                      Offset="0.1" />
-                <GradientStop Color="Black"
-                      Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
+             Title="WelcomePage" BackgroundColor="White">
+
 
         <VerticalStackLayout> 
 
         <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="80" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Skia:SKLottieView Source="games.json"
-                           Grid.Row="0"
-                           RepeatCount="-1"                               
-                           HorizontalOptions="Center"
-                           Margin="0, 10, 0, 10"
-                           HeightRequest="300" WidthRequest="300"/>
+            
+            <Skia:SKLottieView 
+                Source="games.json"
+                Grid.Row="0"
+                RepeatCount="-1"                               
+                HorizontalOptions="Center"
+                Margin="0, 10, 0, 10"
+                HeightRequest="300" WidthRequest="300"/>
 
-            <Label FontSize="25" Grid.Row="1"
-        Text="Welcome to GAME SHOP!" TextColor="#007AFF"
-        VerticalOptions="CenterAndExpand" 
-        HorizontalOptions="CenterAndExpand" />
+            <Label FontSize="25" 
+                   Grid.Row="1" 
+                   Margin="0,-160,0,0"
+                   Text="Welcome to GAME SHOP!" 
+                   TextColor="#007AFF"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" 
+                   />
 
         </Grid>
 
-            <Button x:Name="GetStart" Text="Get Started!" VerticalOptions="End"  BackgroundColor="#272829" TextColor="White" CornerRadius="26" 
-                    Clicked="GetStart_Clicked"/>
+        <Button x:Name="GetStart" Text="Get Started!" 
+                Margin="20" 
+                VerticalOptions="End"  
+                BackgroundColor="#007AFF" 
+                TextColor="White" 
+                Clicked="GetStart_Clicked"
+                />
         </VerticalStackLayout>
-    </Frame>
+
 </ContentPage>

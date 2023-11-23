@@ -22,8 +22,20 @@ HasShadow="True"
 
         <VerticalStackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
           AbsoluteLayout.LayoutFlags="All">
-
-                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" RowSpacing="10">
+                <StackLayout
+x:Name="progressLoading"
+IsVisible="False"
+AbsoluteLayout.LayoutBounds="0,0,1,1"
+AbsoluteLayout.LayoutFlags="All"
+BackgroundColor="Transparent">
+                    <ActivityIndicator
+    x:Name="ai"
+    IsRunning="True" IsVisible="True"
+    HorizontalOptions="CenterAndExpand"
+    Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+                </StackLayout>
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" RowSpacing="10">
                         <Label Grid.Row="0" Text="Valid ID" FontSize="30"
      FontFamily="RobotoCondensed" Margin="20,10,0,0" />
                         <Label Grid.Row="1"

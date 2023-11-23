@@ -16,6 +16,9 @@ public partial class Valid_IDpage : ContentPage
 
     private async void saveBack_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new LoginPage());
+
+        progressLoading.IsVisible = false;
     }
 }

@@ -55,6 +55,7 @@
 	  <None Remove="Resources\Fonts\Metropolis-Medium.otf" />
 	  <None Remove="Resources\Fonts\Metropolis-Regular.otf" />
 	  <None Remove="Resources\Images\add.png" />
+	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\call.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
@@ -83,10 +84,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
+		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+		<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -105,16 +108,19 @@
 	  <MauiXaml Update="Pages\BuyerHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ChatHomepage.xaml">
+	  <MauiXaml Update="Pages\ChangePassword.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\DetailView.xaml">
+	  <MauiXaml Update="Pages\ChatHomepage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\editInfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditProductPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ForgotPassword.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\HomePage.xaml">
@@ -144,10 +150,6 @@
 	  <MauiXaml Update="Pages\WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>
