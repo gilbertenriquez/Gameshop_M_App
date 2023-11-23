@@ -13,7 +13,6 @@ public partial class LoginPage : INotifyPropertyChanged
 
     public string webAPIKey = "AIzaSyD87ruvsmZWekQCPyaChBumV9ma9iaWAkY";
     private Users ulogin = new();
-    public ICommand TapCommand => new Command(async () => await Navigation.PushModalAsync(new SignUpPage()));
     public LoginPage()
     {
         InitializeComponent();
@@ -43,27 +42,26 @@ public partial class LoginPage : INotifyPropertyChanged
         if (String.IsNullOrEmpty(emailEntry.Text))
         {
             await DisplayAlert("Warning", "Please Enter your Email", "OK!");
+            progressLoading.IsVisible = false;
             return;
         }
         if (String.IsNullOrEmpty(passwordEntry.Text))
         {
             await DisplayAlert("Warning", "Please Enter your Password", "OK!");
+            progressLoading.IsVisible = false;
             return;
         }
         var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
         try
-           {           
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(emailEntry.Text, passwordEntry.Text);
-                var content = await auth.GetFreshAuthAsync();
-                var serializedContent = JsonConvert.SerializeObject(content);
-                Preferences.Set("FreshFirebaseToken", serializedContent);
-                await Navigation.PushModalAsync(new BuyerHomePage());
-                progressLoading.IsVisible = true;           
+           {
+            progressLoading.IsVisible = true;
+            var auth = await authProvider.SignInWithEmailAndPasswordAsync(emailEntry.Text, passwordEntry.Text);
+            var content = await auth.GetFreshAuthAsync();
+            var serializedContent = JsonConvert.SerializeObject(content);
+            Preferences.Set("FreshFirebaseToken", serializedContent);
+            await Navigation.PushModalAsync(new BuyerHomePage());          
            
-            }
-
-                
-        
+            }       
         catch (Exception ex)
         {
             progressLoading.IsVisible = false;
