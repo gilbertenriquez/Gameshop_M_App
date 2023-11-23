@@ -56,7 +56,7 @@ public partial class LoginPage : INotifyPropertyChanged
                 progressLoading.IsVisible = false;
                 return;
             }
-            if (String.IsNullOrEmpty(emailEntry.Text) && String.IsNullOrEmpty(passwordEntry.Text));
+            if (String.IsNullOrEmpty(emailEntry.Text) && String.IsNullOrEmpty(passwordEntry.Text))
             {
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(emailEntry.Text, passwordEntry.Text);
                 var content = await auth.GetFreshAuthAsync();
