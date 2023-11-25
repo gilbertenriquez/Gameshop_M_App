@@ -11,7 +11,7 @@ namespace Gameshop_App_Seller.Pages;
 public partial class LoginPage : INotifyPropertyChanged
 {
 
-    public string webAPIKey = "AIzaSyD87ruvsmZWekQCPyaChBumV9ma9iaWAkY";
+    public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
     private Users ulogin = new();
     public LoginPage()
     {
@@ -65,10 +65,16 @@ public partial class LoginPage : INotifyPropertyChanged
         catch (Exception ex)
         {
             progressLoading.IsVisible = false;
-            throw;
+            await DisplayAlert("Warning", "Error", "OK!");
+            return;
         }
         
 
+    }
+
+    private async void btnBackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
     }
 
 

@@ -7,7 +7,7 @@ namespace Gameshop_App_Seller
 {
     public partial class App : Application
     {
-        public static FirebaseClient users = new("https://gameshopdb-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        public static FirebaseClient ClientUsers = new("https://gameshopdb-f4df3-default-rtdb.asia-southeast1.firebasedatabase.app/");
         public App()
         {
             InitializeComponent();

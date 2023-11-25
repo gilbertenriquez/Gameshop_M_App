@@ -14,7 +14,7 @@ namespace Gameshop_App_Seller.Models
 {
     public class Users
     {
-        public string webAPIKey = "AIzaSyD87ruvsmZWekQCPyaChBumV9ma9iaWAkY";
+        public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
         FirebaseAuthProvider authProvider;
         public string FNAME { get; set; }
         public string LNAME { get; set; }
@@ -68,7 +68,7 @@ namespace Gameshop_App_Seller.Models
         {
             try
             {
-                var employeeAddress = (await users.Child("Employee")
+                var employeeAddress = (await ClientUsers.Child("Employee")
                     .OnceAsync<Users>())
                     .FirstOrDefault(a => a.Object.MAIL == email);
 
@@ -85,10 +85,10 @@ namespace Gameshop_App_Seller.Models
                         GENDER = gender
 
                     };
-                    await users
+                    await ClientUsers
                         .Child("Users")
                         .PostAsync(user);
-                    users.Dispose();
+                    ClientUsers.Dispose();
                     return true;
 
                 }

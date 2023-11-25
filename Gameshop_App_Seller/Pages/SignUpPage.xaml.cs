@@ -7,7 +7,7 @@ namespace Gameshop_App_Seller.Pages;
 
 public partial class SignUpPage : INotifyPropertyChanged
 {
-    public string webAPIKey = "AIzaSyD87ruvsmZWekQCPyaChBumV9ma9iaWAkY";
+    public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
     private Users Addusers = new();
 	public SignUpPage()
 	{
