@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.editInfoPage"
              Title="editInfoPage"
              BackgroundColor="#272829">
-    
+    <ScrollView>
     <AbsoluteLayout>
         <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
           AbsoluteLayout.LayoutFlags="All">
@@ -38,4 +38,5 @@
             </Border>
         </VerticalStackLayout>
     </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

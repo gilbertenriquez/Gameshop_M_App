@@ -1,93 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.ChatHomepage"
-            
-             Title="ChatHomepage">
-
-    <ContentPage.Resources >
-    <ResourceDictionary>
-
-        <Style x:Key="TitleTextStyle1" TargetType="Label">
-            <Setter Property="FontSize" Value="26" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontFamily" Value="Metropolis Medium" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="WidthRequest" Value="160" />
-            <Setter Property="Margin" Value="36, 48, 0, 0" />
-        </Style>
-
-        <Style x:Key="SuggestedContainerStyle1" TargetType="Grid">
-            <Setter Property="Margin" Value="36, 24, 0, 24" />
-        </Style>
-
-        <Style x:Key="SearchContainerStyle1" TargetType="Grid">
-            <Setter Property="HeightRequest" Value="52" />
-            <Setter Property="WidthRequest" Value="52" />
-            <Setter Property="Margin" Value="0, 0, 12, 0" />
-        </Style>
-
-        <Color x:Key="SearchBackgroundColor1">#868ACB</Color>
-
-        <Style x:Key="RecentChatCollectionStyle1" TargetType="CollectionView">
-            <Setter Property="Margin" Value="12, 24, 12, 0" />
-        </Style>
-
-        <Style x:Key="RecentChatAdornerStyle1" TargetType="BoxView">
-            <Setter Property="Color" Value="White" />
-            <Setter Property="CornerRadius" Value="18, 18, 0, 0" />
-        </Style>
-
-    </ResourceDictionary>
-    </ContentPage.Resources>
+             x:Class="Gameshop_App_Seller.Pages.ChatHomepage"           
+             Title="ChatHomepage" BackgroundColor="White">
 
     
-    <VerticalStackLayout>
-        <Grid  
-            BackgroundColor="{StaticResource Primary}"
-            RowDefinitions="220, *" >
-            <Grid
-                RowDefinitions="Auto, *">
-                <Label 
-                    Text="Chat with your friends"
-                    Style="{StaticResource TitleTextStyle1}" />
-                <Grid      
-                    Grid.Row="1"
-                    ColumnDefinitions="Auto, *"
-                    Style="{StaticResource SuggestedContainerStyle1}">
-                    <!-- SEARCH -->
-                    <Grid     
-                        Style="{StaticResource SearchContainerStyle1}">
-                        <Ellipse   
-                            Fill="{StaticResource SearchBackgroundColor1}"/>
-                        <Image   
-                            Source="search.png" HeightRequest="30"/>
-                    </Grid>
-                    <!-- SUGGESTED CONTACTS -->
-                    <ScrollView
-                        Grid.Column="1">
-                        <StackLayout
-                            Orientation="Horizontal"
-                            BindableLayout.ItemsSource="{Binding Users}">
-                            <BindableLayout.ItemTemplate>
-                                
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-                    </ScrollView>
-                </Grid>
-            </Grid>
-            <Grid
-                Grid.Row="1">
-                <BoxView
-                    Style="{StaticResource RecentChatAdornerStyle1}"/>
-                <CollectionView
-                    ItemsSource="{Binding RecentChat}" 
-                    Style="{StaticResource RecentChatCollectionStyle1}">
-                    <CollectionView.ItemTemplate>
-                        
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
+    <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="20" RowSpacing="30">
+
+            <Label Grid.Row="0" Text="hello world" TextColor="Black">
+                <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label Grid.Row="1" Text="hello world" TextColor="Black"/>
+            <Label Grid.Row="2" Text="hello world" TextColor="Black"/>
+            <Label Grid.Row="3" Text="hello world" TextColor="Black"/>
+
+
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

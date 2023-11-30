@@ -1,6 +1,7 @@
 using Firebase.Auth;
 using Gameshop_App_Seller.Models;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Gameshop_App_Seller.Pages;
@@ -22,12 +23,15 @@ public partial class SignUpPage : INotifyPropertyChanged
 
     private async void nextBTN_Clicked(object sender, EventArgs e)
     {
+        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        var email = emailEntry.Text;
+
         progressLoading.IsVisible = false;
         try
         {
             string birthdaypicker = birthdayPicker.ToString();
             string genderpicker = genderPicker.ToString();
-           
+
             if (String.IsNullOrEmpty(FNEntry.Text))
             {
                 await DisplayAlert("Warning", "Type First Name", "Ok");
@@ -40,9 +44,9 @@ public partial class SignUpPage : INotifyPropertyChanged
                 progressLoading.IsVisible = false;
                 return;
             }
-            if (String.IsNullOrEmpty(emailEntry.Text))
+            if (String.IsNullOrEmpty(emailEntry.Text) && Regex.IsMatch(email,emailPattern))
             {
-                await DisplayAlert("Warning", "Type email", "Ok");
+                await DisplayAlert("Warning", "Type your email or your email is invalid", "Ok");
                 progressLoading.IsVisible = false;
                 return;
             }
@@ -61,8 +65,8 @@ public partial class SignUpPage : INotifyPropertyChanged
             var genderpick = genderPicker.SelectedItem.ToString();
             var selectBirthdate = birthdayPicker.Date.ToString("yyyy-MM-dd");
             var result = await Addusers.addusers(FNEntry.Text, LNEntry.Text, emailEntry.Text, passwordEntry.Text, locationEntry.Text, selectBirthdate, genderpick);
-            bool isSave = await Addusers.Register(emailEntry.Text, FNEntry.Text, LNEntry.Text,locationEntry.Text, birthdaypicker, genderpicker, passwordEntry.Text);
-            if (isSave)
+            //bool isSave = await Addusers.Register(emailEntry.Text, FNEntry.Text, LNEntry.Text, locationEntry.Text, birthdaypicker, genderpicker, passwordEntry.Text);
+            if (result)
             {
                 await DisplayAlert("Register user", "Registration completed", "Ok");
                 progressLoading.IsVisible = true;

@@ -2,56 +2,63 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.addproductPage"
-             BackgroundColor="#272829"
+             BackgroundColor="WhiteSmoke"
              Title="addproductPage">
 
-    <AbsoluteLayout>
-
-        <Grid RowDefinitions="55, *, Auto" Margin="0" AbsoluteLayout.LayoutBounds="0,0,1,1"
+    <ScrollView>
+        <AbsoluteLayout >
+        <ImageButton Source="back.png" Grid.Column="0" Grid.Row="0"
+                Margin="20,0" 
+                HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked"/>
+        
+        <Grid RowDefinitions="55, *, Auto,Auto,Auto" Margin="0" AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
-            <!--<Border.Shadow>
-                    <Shadow Brush="{StaticResource Primary}"
-                        Offset="1,10"
-                        Opacity=".1" />
-                </Border.Shadow>-->
-            <Grid ColumnDefinitions="Auto, *"
-                  ColumnSpacing="20" 
-                  HorizontalOptions="FillAndExpand">
-            </Grid>
-            
+
+
+            <StackLayout
+            x:Name="progressLoading"
+            IsVisible="False"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All" Opacity="0.9"
+            BackgroundColor="Black">
+                <ActivityIndicator
+                x:Name="ai"
+                IsRunning="True" IsVisible="True"
+                HorizontalOptions="CenterAndExpand"
+                Color="{StaticResource ButtonColor}" Margin="0,300,0,0" />
+                <Label Text="Loading images, please wait..." 
+                   Margin="0" HorizontalOptions="CenterAndExpand" 
+                   TextColor="WhiteSmoke"/>
+            </StackLayout>
+
 
             <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *,auto,auto,auto,auto,auto">
                     <Label Grid.Row="0" Text="Product images" FontSize="30"
-                       FontFamily="RobotoCondensed" Margin="20,10,0,0" />
+                       FontFamily="RobotoCondensed" Margin="20,10,0,0"  TextColor="DimGray"/>
                     <Label Grid.Row="1"
                        Text="Note: Please make your product photos presentable as possible. These images will appear on the renter's app. Presentable images can attract customers"
-                       Margin="20" TextColor="White" />
+                       Margin="20" TextColor="{StaticResource TextColorGray}" />
                     <Grid Grid.Row="2" Margin="10">
                         <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" Padding="0"
                             BackgroundColor="#007AFF">
-                            <Border.Shadow>
-                                <Shadow Brush="White"
-                                    Offset="1,10"
-                                    Opacity=".1" />
-                            </Border.Shadow>
+                           
                             <Grid RowDefinitions="Auto, Auto, Auto" Margin="10"
                               ColumnDefinitions="Auto, *" HorizontalOptions="FillAndExpand">
                                 <Border Grid.Row="0" Grid.Column="0"
                                     StrokeThickness="0"
-                                    BackgroundColor="White"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="100,Auto">
                                         <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
                                                  HeightRequest="30" WidthRequest="30"
                                                  Source="add.png" x:Name="btnmainimage"
-                                                 />
+                                                  Clicked="addimageBTN_Clicked"/>
                                         <Image Grid.Row="0" x:Name="mainimage"
                                            HeightRequest="100" WidthRequest="100" />
-                                        <Label Grid.Row="1" Text="Main image" HorizontalOptions="FillAndExpand" TextColor="#007AFF"
-                                           HorizontalTextAlignment="Center" BackgroundColor="White"
-                                           Opacity="0.9" Margin="0"
-                                           />
+                                       
                                     </Grid>
                                 </Border>
                                 <Grid Grid.Row="0" Grid.Column="1"
@@ -64,21 +71,22 @@
                                     <HorizontalStackLayout Grid.Row="1" HorizontalOptions="EndAndExpand"
                                                        VerticalOptions="EndAndExpand"
                                                        Spacing="10" Margin="5">
-                                        <Button Text="Add image" x:Name="addimageBTN" 
+                                        <Button BorderColor="Black" Text="Add image" x:Name="addimageBTN" Clicked="addimageBTN_Clicked"
+                                            BackgroundColor="{StaticResource TextColorBlack}"
+                                            TextColor="White" />
+                                        <Button Text="Remove image" BorderColor="Black"
                                             BackgroundColor="White"
-                                            TextColor="#007AFF" />
-                                        <Button Text="Remove image"
-                                           BackgroundColor="White" TextColor="#007AFF" />
+                                            TextColor="Black" />
                                     </HorizontalStackLayout>
                                 </Grid>
                             </Grid>
                         </Border>
                     </Grid>
-                    <Label Grid.Row="3" Text="Additional images" FontFamily="RobotoLight"
+                    <Label Grid.Row="3" Text="Additional images" TextColor="Black" FontFamily="RobotoLight"
                        Margin="20,30,0,0" FontSize="20" />
                     <Label Grid.Row="4" Margin="30,10,0,0"
                        TextColor="{StaticResource TextColorGray}"
-                       Text="Add 6 supporting images. These images will be used to show more what your product is all about." />
+                       Text="Add 6 supporting images. These images will be used to show more what your property is all about." />
                     <Grid Grid.Row="5" Margin="10">
                         <Border StrokeShape="RoundRectangle 0" Margin="20,0"
                                 StrokeThickness="0" Padding="10"
@@ -92,14 +100,13 @@
                               RowSpacing="5"
                               Margin="10" ColumnSpacing="10"
                               ColumnDefinitions="100, 100, 100" HorizontalOptions="Center">
-                                <Button Text="Add supporting images" x:Name="addsupportimgBTN" 
-                                        BackgroundColor="#007AFF" TextColor="White"
-                                         Grid.Row="0" 
+                                <Button Text="Add supporting images" x:Name="addsupportimgBTN"  TextColor="White"
+                                        Clicked="addsupportimgBTN_Clicked" BackgroundColor="#007AFF" Grid.Row="0" 
                                     Grid.Column="0" Grid.ColumnSpan="3" BorderColor="{StaticResource FrameColor}"
                                     BorderWidth="1"/>
                                 <Border Grid.Row="1" Grid.Column="0"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img1" />
@@ -112,7 +119,7 @@
 
                                 <Border Grid.Row="1" Grid.Column="1"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img2" WidthRequest="100" />
@@ -125,7 +132,7 @@
 
                                 <Border Grid.Row="1" Grid.Column="2"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img3" WidthRequest="100" />
@@ -138,7 +145,7 @@
 
                                 <Border Grid.Row="2" Grid.Column="0"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img4"
@@ -152,7 +159,7 @@
 
                                 <Border Grid.Row="2" Grid.Column="1"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img5"
@@ -166,7 +173,7 @@
 
                                 <Border Grid.Row="2" Grid.Column="2"
                                     StrokeThickness="0"
-                                    BackgroundColor="#007AFF"
+                                    BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 5">
                                     <Grid RowDefinitions="*,Auto">
                                         <Image Grid.Row="0" x:Name="img6"
@@ -184,25 +191,23 @@
                 </Grid>
             </ScrollView>
             <Border Grid.Row="2" Margin="-5,0,-5,-10"
-                StrokeShape="RoundRectangle 20"
-                BackgroundColor="#007AFF">
+               
+                BackgroundColor="{StaticResource Gradient1}">
                 <!--<Border.Shadow>
                     <Shadow Brush="{StaticResource Primary}"
                         Offset="0,-10"
                         Opacity=".4" />
                 </Border.Shadow>-->
                 <Grid HeightRequest="50"
-                  Grid.Column="1" ColumnDefinitions="*,*" ColumnSpacing="10"
-                  Margin="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-                    
-                    <Button Text="Cancel" Grid.Column="0" x:Name="BTNBACK"
-                        BorderColor="White" TextColor="#007AFF" BorderWidth="1"
-                         Clicked="backBTN_Clicked"/>
-                    
-                    <Button Text="Next" Grid.Column="1" x:Name="NEXTBTN" Clicked="NEXTBTN_Clicked"
-                            BorderColor="#007AFF" TextColor="#007AFF"/>
+                  WidthRequest="300"
+                  Margin="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Next" Grid.Column="1" x:Name="NEXTBTN" BorderColor="Black"
+                            Clicked="NEXTBTN_Clicked" TextColor="{StaticResource TextColorBlack}"
+                        BackgroundColor="White"/>
                 </Grid>
             </Border>
         </Grid>
+       
     </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

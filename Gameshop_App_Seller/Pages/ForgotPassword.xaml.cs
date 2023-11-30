@@ -28,9 +28,9 @@ public partial class ForgotPassword : ContentPage
         {
             await DisplayAlert("Reset Password", "Link send failed.", "Ok");
         }
-    
 
-}
+
+    }
 
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)

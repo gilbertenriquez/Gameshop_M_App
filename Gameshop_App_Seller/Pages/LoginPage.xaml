@@ -5,7 +5,7 @@
              Title="LoginPage" BackgroundColor="White">
 
 
-
+    <ScrollView>
     <VerticalStackLayout Spacing="25" Margin="20" VerticalOptions="FillAndExpand">
         <ImageButton Grid.Row="0" Source="back.png" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
         
@@ -61,10 +61,10 @@
         
 
         <Button Text="Log In" 
-                x:Name="lOGINbtn"   
+                x:Name="btnLOGIN"   
                 BackgroundColor="#007AFF"
                 TextColor="White" 
-                Clicked="lOGINbtn_Clicked"/>
+                Clicked="btnLOGIN_Clicked"/>
 
         <Label Text="Forgot password?"
                        TextColor="#007AFF"
@@ -83,4 +83,5 @@
                     />
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

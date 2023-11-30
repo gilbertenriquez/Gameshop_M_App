@@ -5,12 +5,7 @@
                       Shell.NavBarHasShadow="False"
              Shell.NavBarIsVisible="False" 
              BackgroundColor="#F1F0E8">
-
-    <ContentPage.IconImageSource>
-        <FileImageSource File="search.png"/>
-    </ContentPage.IconImageSource>
-
-    <AbsoluteLayout>
+    <ScrollView>
         <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
           AbsoluteLayout.LayoutFlags="All" BackgroundColor="#272829">
 
@@ -18,8 +13,7 @@
                     Stroke="Red">
                 <SearchBar Placeholder="Search items..."  PlaceholderColor="#007AFF" TextColor="#007AFF"/>
             </Border>
- 
+
         </VerticalStackLayout>
-        
-    </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

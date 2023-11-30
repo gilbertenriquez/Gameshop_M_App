@@ -5,15 +5,12 @@
              Title="Search"
              Shell.NavBarIsVisible="False">
 
-    <ContentPage.IconImageSource>
-        <FileImageSource File="search.png"/>
-    </ContentPage.IconImageSource>
-
-
+    <ScrollView>
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

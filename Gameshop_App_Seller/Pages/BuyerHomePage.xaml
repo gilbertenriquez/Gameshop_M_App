@@ -5,22 +5,18 @@
              Title="Home"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#F1F0E8">
-    <ContentPage.IconImageSource>
-        <FileImageSource File="home.png"  />
-    </ContentPage.IconImageSource>
-    <AbsoluteLayout>
 
-        <Grid RowDefinitions="150,150,*"  AbsoluteLayout.LayoutBounds="0,0,1,1"
-      AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <ScrollView>
+        <Grid RowDefinitions="150,150,*"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-40,-5,0" BackgroundColor="#272829"
+            Margin="-5,-60,-5,20" BackgroundColor="#272829"
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
                 <Border.Shadow>
                     <Shadow Brush="#007AFF"
                     Offset="20,30"
-                    Radius="20"
+                    Radius="30"
                     Opacity=".5" />
                 </Border.Shadow>
                 <Grid>
@@ -40,7 +36,7 @@
             </LinearGradientBrush>
         </Border.Background>-->
 
-                    <Grid ColumnSpacing="20"
+                    <Grid ColumnSpacing="50"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
                   RowSpacing="1"
@@ -58,14 +54,21 @@
                                            HorizontalOptions="End" Margin="0,40,60,0"
                                            WidthRequest="100">
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="chat.png" x:Name="ChatBTN" />
-                                
+                                     WidthRequest="25"  x:Name="ChatBTN" />
+
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="notification.png" x:Name="notifyBTN" />
+                                     WidthRequest="25" x:Name="notifyBTN" />
                             </HorizontalStackLayout>
                         </Grid>
 
-                        <Button Grid.Row="0" Grid.Column="0" TextColor="#007AFF" Text="Become A Seller" VerticalOptions="End" WidthRequest="150" x:Name="BecomeSellerBTN" Clicked="BecomeSellerBTN_Clicked"/>
+                        <Button Grid.Row="0" Grid.Column="0"
+                                TextColor="#007AFF"
+                                Text="Become A Seller" 
+                                VerticalOptions="End"
+                                WidthRequest="140" 
+                                x:Name="BecomeSellerBTN"
+                                Clicked="BecomeSellerBTN_Clicked"
+                                BackgroundColor="White"/>
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
@@ -78,7 +81,7 @@
                                 Opacity=".7" />
                     </Border.Shadow>-->
                                 <Image HorizontalOptions="Fill"
-                               Aspect="AspectFill" Source="naah.jpg">
+                               Aspect="AspectFill" >
                                     <!-- <Image.Source>
                                 <UriImageSource x:Name="imglogo"
                                                 CachingEnabled="True"
@@ -101,6 +104,5 @@
                 </Grid>
             </Border>
         </Grid>
-    </AbsoluteLayout>
-
+    </ScrollView>
 </ContentPage>

@@ -9,4 +9,9 @@ public partial class ChatHomepage : ContentPage
 		NavigationPage.SetHasNavigationBar(this, false);
 			
 	}
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+		await Navigation.PushModalAsync(new MessagePage());
+    }
 }

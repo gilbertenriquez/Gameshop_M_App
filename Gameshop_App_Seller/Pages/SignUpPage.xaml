@@ -79,11 +79,11 @@ BackgroundColor="Transparent">
                        FontSize="15"  
                        TextColor="Black"/>
 
-                <DatePicker Grid.Row="11"  
+                <DatePicker Grid.Row="11"   
+                        BackgroundColor="White"
                         x:Name="birthdayPicker" 
-                        TextColor="White" 
-                            BackgroundColor="DimGray"
-                        Format="yyyy-MM-dd"
+                        TextColor="Black"   
+                        Format="MM-dd-yyyy"
                 />
 
                 <Label Grid.Row="12" 
@@ -91,14 +91,15 @@ BackgroundColor="Transparent">
                    FontSize="15" 
                    TextColor="Black"/>
 
-                <Picker Grid.Row="13" 
-                        BackgroundColor="DimGray"
+                
+                <Picker Grid.Row="13"  
+                        BackgroundColor="White"
                         x:Name="genderPicker" 
                         TitleColor="Black" 
-                        Title="Select Gender" 
-                        TextColor="White" >
+                        Title="Select Gender"                       
+                        TextColor="Black" >
 
-                    <Picker.ItemsSource >
+                    <Picker.ItemsSource  >
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Male</x:String>
                             <x:String>Female</x:String>

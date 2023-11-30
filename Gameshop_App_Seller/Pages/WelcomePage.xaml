@@ -5,8 +5,8 @@
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="WelcomePage" BackgroundColor="White">
 
-
-        <VerticalStackLayout> 
+    <ScrollView>
+    <VerticalStackLayout> 
 
         <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="80" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             
@@ -38,5 +38,5 @@
                 Clicked="GetStart_Clicked"
                 />
         </VerticalStackLayout>
-
+    </ScrollView>
 </ContentPage>
