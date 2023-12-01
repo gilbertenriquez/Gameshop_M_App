@@ -6,7 +6,7 @@
              Title="addproductPage">
 
     <ScrollView>
-        <AbsoluteLayout >
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
         <ImageButton Source="back.png" Grid.Column="0" Grid.Row="0"
                 Margin="20,0" 
                 HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked"/>

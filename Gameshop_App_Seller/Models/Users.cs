@@ -40,7 +40,12 @@ namespace Gameshop_App_Seller.Models
         public string ProductName { get; set; }
         public string ProductDesc { get; set; }
         public string ProductPrice { get; set; }
+        public string ProductPath { get; set; }
         public string ProductQuantity { get; set; }
+
+        public string Message { get; set; }
+
+
 
 
 
@@ -73,7 +78,7 @@ namespace Gameshop_App_Seller.Models
              .FirstOrDefault
              (a => a.Object.MAIL == email && a.Object.PASSWORD == Pass);
 
-            return user != null;
+                return user != null;
             }
             catch
             {
@@ -195,54 +200,55 @@ namespace Gameshop_App_Seller.Models
                                  string ProdName,
                                  string ProdDesc,
                                  string ProdPrice,
-                                 string ProdQuan){
-
-            
-           try
-              {
-        // Construct the path to the user's account node
-        var userAccountPath = $"Users/{App.key}";
-
-        var evaluateEmail = (await ClientUsers
-            .Child($"{userAccountPath}/Product")
-            .OnceAsync<Users>())
-            .FirstOrDefault(a => a.Object.Imagae_1_link == imglink);
-
-        if (evaluateEmail == null)
+                                 string ProdQuan)
         {
-            // Product does not exist, add it
-            var admin = new Users()
+
+
+            try
             {
-                image1 = img1,
-                image2 = img2,
-                image3 = img3,
-                image4 = img4,
-                image5 = img5,
-                image6 = img6,
-                Imagae_1_link = imglink,
-                ProductName = ProdName,
-                ProductDesc = ProdDesc,
-                ProductPrice = ProdPrice,
-                ProductQuantity = ProdQuan
-            };
+                // Construct the path to the user's account node
+                var userAccountPath = $"Users/Account/{App.key}";
 
-            // Use the user's account path as the child node
-            await ClientUsers
-                .Child($"{userAccountPath}/Product")
-                .PostAsync(admin);
+                var evaluateEmail = (await ClientUsers
+                    .Child($"{userAccountPath}/Product")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.Imagae_1_link == imglink);
 
-            return true;
-                }
-               else
+                if (evaluateEmail == null)
                 {
-            return false;
-               }
-              }
-          catch
-              {
-        return false;
-             }
-           }
+                    // Product does not exist, add it
+                    var admin = new Users()
+                    {
+                        image1 = img1,
+                        image2 = img2,
+                        image3 = img3,
+                        image4 = img4,
+                        image5 = img5,
+                        image6 = img6,
+                        Imagae_1_link = imglink,
+                        ProductName = ProdName,
+                        ProductDesc = ProdDesc,
+                        ProductPrice = ProdPrice,
+                        ProductQuantity = ProdQuan
+                    };
+
+                    // Use the user's account path as the child node
+                    await ClientUsers
+                        .Child($"{userAccountPath}/Product")
+                        .PostAsync(admin);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public async Task<string> GetUserKey(string mail)
         {
@@ -279,28 +285,24 @@ namespace Gameshop_App_Seller.Models
 
 
 
-        public async Task<List<Users>> GetAllUsers()
+        public async Task<List<Users>> GetAllUsers(string userKey)
         {
             try
             {
                 return (await ClientUsers
-                                .Child("Products")
-                                .OnceAsync<Users>()).Select(item => new Users
-                                {
-                                    Imagae_1_link = item.Object.Imagae_1_link,
-                                    image1 = item.Object.image1,
-                                    ProductName = item.Object.ProductName,
-                                    ProductDesc = item.Object.ProductDesc,
-                                    ProductPrice = item.Object.ProductPrice,
-                                    ProductQuantity = item.Object.ProductQuantity,
-
-                                }).ToList();
+                    .Child($"Users/Account/{userKey}")
+                    .OnceAsync<Users>()).Select(item => new Users
+                    {
+                        FNAME = item.Object.FNAME,
+                        LNAME = item.Object.LNAME,
+                    }).ToList();
             }
-            catch
+            catch (Exception ex)
             {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Firebase Exception: {ex}");
                 return null;
             }
-
         }
 
         public async Task<ObservableCollection<Users>> GetUserProducts(string userKey)
@@ -308,10 +310,16 @@ namespace Gameshop_App_Seller.Models
             try
             {
                 var products = await ClientUsers
-                    .Child($"Users/{userKey}/Product")
+                    .Child($"Users/Account/{userKey}/Product")
                     .OnceAsync<Users>();
 
-                var productList = products.Select(p => p.Object).ToList();
+                var productList = products.Select(p =>
+                {
+                    var user = p.Object;
+                    user.ProductPath = $"Users/Account/{userKey}/Product/{p.Key}";
+                    return user;
+                }).ToList();
+
                 return new ObservableCollection<Users>(productList);
             }
             catch (Exception ex)
@@ -320,6 +328,7 @@ namespace Gameshop_App_Seller.Models
                 return new ObservableCollection<Users>();
             }
         }
+
 
 
 
@@ -372,6 +381,65 @@ namespace Gameshop_App_Seller.Models
 
             return true;
         }
+
+
+        public async Task<bool> SendMessage(string senderEmail, string receiverEmail, string message)
+        {
+            try
+            {
+                // Assuming your structure is like this: Users/Messages
+                var user = (await ClientUsers
+                    .Child($"Users/Messages")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == senderEmail && a.Object.MAIL == receiverEmail);
+
+                // Check if the user exists and the message is sent successfully
+                if (user != null)
+                {
+                    // Assuming the Users class has properties like SenderEmail, ReceiverEmail, Message, etc.
+                    user.Object.Message = message;
+
+                    // Update the message in the database
+                    await ClientUsers
+                        .Child($"Users/Messages/{user.Key}")
+                        .PutAsync(user.Object);
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<string> ReceiveMessage(string receiverEmail)
+        {
+            try
+            {
+                // Assuming your structure is like this: Users/Messages
+                var user = (await ClientUsers
+                    .Child($"Users/Messages")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
+
+                // Check if the user exists and has a message
+                if (user != null && !string.IsNullOrEmpty(user.Object.Message))
+                {
+                    return user.Object.Message;
+                }
+
+                return "No messages"; // Return a default message if there are no messages
+            }
+            catch
+            {
+                return "Error fetching messages"; // Handle errors appropriately
+            }
+        }
+
+
 
     }
 }

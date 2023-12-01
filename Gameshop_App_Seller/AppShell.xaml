@@ -13,8 +13,7 @@
 
 
     <TabBar>
-        <ShellContent Title="Dashboard"
-                      
+        <ShellContent                      
                       ContentTemplate="{DataTemplate local:HomePage}"/>
         <ShellContent Title="Search"
                       

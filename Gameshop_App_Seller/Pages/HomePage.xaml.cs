@@ -10,12 +10,41 @@ public partial class HomePage : ContentPage
 {
    private Users dusers = new Users();
     public HomePage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         OnAppearing();
 
-        
-	}
+
+    }
+
+
+    public HomePage(string userkey) : this()
+    {
+        InitializeComponent();
+        InitializeAsync(userkey);
+        OnAppearing();
+
+
+    }
+
+    private async void InitializeAsync(string userKey)
+    {
+        try
+        {
+            string userEmail = App.email;
+
+            // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
+            string obtainedUserKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+
+            UserKey = obtainedUserKey;
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception appropriately (log, display, etc.)
+            Console.WriteLine($"Error in App initialization: {ex.Message}");
+        }
+    }
+
     protected override async void OnAppearing()
     {
         try
@@ -70,7 +99,27 @@ public partial class HomePage : ContentPage
     }
     private async void ChatBTN_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new ChatHomepage());
+        // Obtain the user email from your source; replace this with your actual logic
+        string userEmail = App.email;
+
+        // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
+        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+
+        if (!string.IsNullOrEmpty(userKey))
+        {
+            bool user = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
+            if (user)
+            {
+                App.key = userKey;
+                // You might want to use userKey here as needed
+                await Navigation.PushModalAsync(new ChatHomepage(userKey));
+            }
+        }
+        else
+        {
+            await DisplayAlert("Warning", "No user key found", "OK");
+        }
+       
     }
 
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
