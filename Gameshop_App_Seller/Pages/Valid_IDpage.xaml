@@ -3,112 +3,132 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.Valid_IDpage"
              Title="Valid_IDpage"
-              BackgroundColor="SlateGrey">
+              BackgroundColor="WhiteSmoke">
+    
     <ScrollView>
-    <Frame
-        AbsoluteLayout.LayoutBounds="0,0,1,1"
-   AbsoluteLayout.LayoutFlags="All" 
-HasShadow="True"
-    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Frame.Background>
-            <!-- StartPoint defaults to (0,0) -->
-            <LinearGradientBrush EndPoint="1,1">
-                <GradientStop Color="DimGray"
-                   Offset="0.5" />
-                <GradientStop Color="#F1F0E8"
-                   Offset="1.0" />
-            </LinearGradientBrush>
-        </Frame.Background>
+        <VerticalStackLayout Margin="20">
 
-        <VerticalStackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
-          AbsoluteLayout.LayoutFlags="All">
-                <StackLayout
-x:Name="progressLoading"
-IsVisible="False"
-AbsoluteLayout.LayoutBounds="0,0,1,1"
-AbsoluteLayout.LayoutFlags="All"
-BackgroundColor="Transparent">
-                    <ActivityIndicator
-    x:Name="ai"
-    IsRunning="True" IsVisible="True"
-    HorizontalOptions="CenterAndExpand"
-    Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                    <Label x:Name="lblorderstate" FontSize="20" FontFamily="facompa" Text="We're processing your request, please wait..." Margin="20" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+            <ImageButton Grid.Row="0" Source="back.png" 
+                         HeightRequest="30" 
+                         HorizontalOptions="Start" 
+                         VerticalOptions="Start" 
+                         x:Name="btnBackImg"/>
+
+
+            <StackLayout
+                 x:Name="progressLoading"
+                 IsVisible="False"
+                 AbsoluteLayout.LayoutBounds="0,0,1,1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 BackgroundColor="Transparent">
+                 <ActivityIndicator
+                 x:Name="ai"
+                 IsRunning="True" IsVisible="True"
+                 HorizontalOptions="CenterAndExpand"
+                 Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                <Label x:Name="lblorderstate" FontSize="20" 
+                       FontFamily="facompa" 
+                       Text="We're processing your request, please wait..." 
+                       Margin="20" 
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="Black"/>
                 </StackLayout>
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" RowSpacing="10">
-                        <Label Grid.Row="0" Text="Valid ID" FontSize="30"
-     FontFamily="RobotoCondensed" Margin="20,10,0,0" />
-                        <Label Grid.Row="1"
-     Text="Note: Please make your valid id photos presentable as possible. These images will appear on the Gameshop app."
-     Margin="20" TextColor="White" />
-                        <Grid Grid.Row="2" Margin="10" WidthRequest="400">
+            
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" 
+                  RowSpacing="10">
+                
+                <Label Grid.Row="0"
+                       TextColor="Black" 
+                       Text="Valid ID"
+                       FontSize="30"
+                       FontFamily="RobotoCondensed"
+                       Margin="20,10,0,0" />
+                
+                <Label Grid.Row="1"
+                       Text="Note: Please make your valid id photos presentable as possible. These images will verify if you are eligable for to become seller."
+                       Margin="20" 
+                       TextColor="Black" />
+                
+                <Grid Grid.Row="2" Margin="10" WidthRequest="400">
 
-                            <Grid RowDefinitions="Auto, Auto, Auto" 
-            ColumnDefinitions="Auto, *" HorizontalOptions="CenterAndExpand">
-                                <Border Grid.Row="0" Grid.Column="0"
-                  StrokeThickness="0"
-                  BackgroundColor="#272829"
-                  StrokeShape="RoundRectangle 5" WidthRequest="300" HeightRequest="200">
-                                    <Grid RowDefinitions="100,Auto">
-                                        <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
-                               HeightRequest="30" WidthRequest="30"
-                               Source="add.png" x:Name="btnFrontimage"
-                               />
-                                        <Image Grid.Row="0" x:Name="Frontimage"
-                         HeightRequest="100" WidthRequest="100" />
-                                        <Label Grid.Row="1" Text="Front image" HorizontalOptions="FillAndExpand" TextColor="#007AFF"
-                         HorizontalTextAlignment="Center" BackgroundColor="#272829"
-                         Opacity="0.9" Margin="0"
-                         />
-                                    </Grid>
-                                </Border>
+                    <Grid RowDefinitions="Auto, Auto, Auto" 
+                          ColumnDefinitions="Auto, *" 
+                          HorizontalOptions="CenterAndExpand">
+
+                        <Border Grid.Row="0" Grid.Column="0"
+                               StrokeThickness="0"
+                               BackgroundColor="#272829"
+                               StrokeShape="RoundRectangle 5"
+                               WidthRequest="300" 
+                               HeightRequest="200">
+
+                            <Grid RowDefinitions="100,Auto">
+                                <ImageButton Grid.Row="0" 
+                                         HorizontalOptions="CenterAndExpand"
+                                         HeightRequest="30" 
+                                         WidthRequest="30"
+                                         Source="add.png" 
+                                         x:Name="btnFrontimage"/>
+                                <Image Grid.Row="0" 
+                                       x:Name="Frontimage"
+                                       HeightRequest="100" 
+                                       WidthRequest="100" />
+
+                                <Label Grid.Row="1" 
+                                       Text="Front image" 
+                                       HorizontalOptions="FillAndExpand"
+                                       TextColor="#007AFF"
+                                       HorizontalTextAlignment="Center"
+                                       BackgroundColor="#272829"
+                                       Opacity="0.9" Margin="0"/>
                             </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                
+                <Label Grid.Row="3" TextColor="Black"
+                       Text="PLEASE UPLOAD THR FRONT OF YOUR VALID ID FRONT"
+                       HorizontalOptions="CenterAndExpand"/>
 
-                        </Grid>
-                        <Label Grid.Row="3" Text="PLEASE UPLOAD THR FRONT OF YOUR VALID ID FRONT" HorizontalOptions="CenterAndExpand"/>
+                <Grid Grid.Row="4" Margin="10" WidthRequest="400">
 
-                        <Grid Grid.Row="4" Margin="10" WidthRequest="400">
-
-                            <Grid RowDefinitions="Auto, Auto, Auto" 
+                    <Grid RowDefinitions="Auto, Auto, Auto" 
             ColumnDefinitions="Auto, *" HorizontalOptions="CenterAndExpand">
-                                <Border Grid.Row="2" Grid.Column="0"
+                        <Border Grid.Row="2" Grid.Column="0"
                   StrokeThickness="0"
                   BackgroundColor="#272829"
                   StrokeShape="RoundRectangle 5" WidthRequest="300" HeightRequest="200">
-                                    <Grid RowDefinitions="100,Auto">
-                                        <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
+                            <Grid RowDefinitions="100,Auto">
+                                <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
                                HeightRequest="30" WidthRequest="30"
                                Source="add.png" x:Name="btnBackimage"
                                />
-                                        <Image Grid.Row="0" x:Name="backimage"
+                                <Image Grid.Row="0" x:Name="backimage"
                          HeightRequest="100" WidthRequest="100" />
-                                        <Label Grid.Row="1" Text="Back image" HorizontalOptions="FillAndExpand" TextColor="#007AFF"
+                                <Label Grid.Row="1" Text="Back image" HorizontalOptions="FillAndExpand" TextColor="#007AFF"
                          HorizontalTextAlignment="Center" BackgroundColor="#272829"
                          Opacity="0.9" Margin="0"
                          />
-                                    </Grid>
-                                </Border>
                             </Grid>
-                        </Grid>
-                        <Label Grid.Row="6" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID " HorizontalOptions="CenterAndExpand"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Label Grid.Row="6" TextColor="Black" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID " HorizontalOptions="CenterAndExpand"/>
 
-                        <Button Grid.Row="7" 
+                <Button Grid.Row="7" 
                             Text="SAVE"                               
-                            CornerRadius="26"
                             BackgroundColor="#272829"
-                            TextColor="Black" 
+                            TextColor="White" 
                             Margin="0,20,0,0" 
                             x:Name="saveBack" 
                             Clicked="saveBack_Clicked"/>
 
-                        <Button Grid.Row="8" 
+                <Button Grid.Row="8" 
                             Text="BACK"                               
-                            CornerRadius="26"
                             BackgroundColor="#272829"
-                             TextColor="Black" 
+                            TextColor="White" 
                             x:Name="btnBack" Clicked="btnBack_Clicked"/>
-                    </Grid>
-            </VerticalStackLayout>
-    </Frame>
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

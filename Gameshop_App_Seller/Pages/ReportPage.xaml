@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_App_Seller.Pages.ReportPage"
+             BackgroundColor="WhiteSmoke"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <ScrollView> 
+    <VerticalStackLayout VerticalOptions="FillAndExpand" Spacing="20" Margin="20">
+
+            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" VerticalOptions="FillAndExpand"
+                  HorizontalOptions="Center" Margin="20" RowSpacing="40"> 
+            <ImageButton Grid.Row="0" Source="back.png"
+                         HeightRequest="30" 
+                         HorizontalOptions="Start" 
+                         x:Name="btnBackImg" 
+                         Clicked="btnBackImg_Clicked"
+                         />
+
+
+
+            <Label Grid.Row="1" 
+                   Text="Submit Your Report" 
+                   FontSize="30" 
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+                
+                <Frame  Grid.Row="4" 
+                        VerticalOptions="Center" 
+                        BackgroundColor="White" 
+                        Padding="0"
+                        HeightRequest="100" 
+                        WidthRequest="400"
+                        CornerRadius="10">
+                    
+            <Editor x:Name="reporttxt"
+                    Placeholder="Type your comment here..." 
+                    PlaceholderColor="DimGray"  
+                    BackgroundColor="Transparent"
+                    TextColor="Black"/>
+        </Frame>
+                <Button  Grid.Row="6" 
+                         Text="Submit"
+                         x:Name="btnSubmit"
+                         BackgroundColor="Black"
+                         TextColor="White"
+                         Clicked="btnSubmit_Clicked"
+                         VerticalOptions="End"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

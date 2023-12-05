@@ -65,6 +65,7 @@
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
 	  <None Remove="Resources\Images\record.png" />
+	  <None Remove="Resources\Images\report.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\settings.png" />
@@ -121,6 +122,9 @@
 	  <MauiXaml Update="Pages\MessagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\ReportPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -137,6 +141,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Valid_IDpage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\VerifyingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\WelcomePage.xaml">

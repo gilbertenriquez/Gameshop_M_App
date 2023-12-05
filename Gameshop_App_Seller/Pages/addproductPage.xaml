@@ -6,13 +6,17 @@
              Title="addproductPage">
 
     <ScrollView>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-        <ImageButton Source="back.png" Grid.Column="0" Grid.Row="0"
-                Margin="20,0" 
-                HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked"/>
+        <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" >
+        <ImageButton Source="back.png" 
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     HorizontalOptions="Start"
+                     Margin="20,0" 
+                     HeightRequest="30" 
+                     WidthRequest="30" 
+                     Clicked="ImageButton_Clicked"/>
         
-        <Grid RowDefinitions="55, *, Auto,Auto,Auto" Margin="0" AbsoluteLayout.LayoutBounds="0,0,1,1"
-              AbsoluteLayout.LayoutFlags="All">
+        <Grid RowDefinitions="55, *, Auto,Auto,Auto" Margin="0">
 
 
             <StackLayout
@@ -208,6 +212,6 @@
             </Border>
         </Grid>
        
-    </AbsoluteLayout>
+    </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

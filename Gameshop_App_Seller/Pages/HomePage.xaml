@@ -122,15 +122,25 @@
             </Grid>
             <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand">
                 <CollectionView x:Name="listViewProducts" SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <!-- Your item template here -->
                             <!-- For example, you can display product name and description -->
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="10">
+                            <StackLayout VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand" Spacing="10">
                                 <ScrollView Margin="20">
-                                    <Frame VerticalOptions="Start" BackgroundColor="WhiteSmoke" BorderColor="Gray" CornerRadius="5" Padding="10" Margin="10" >
-                                        <Grid ColumnSpacing="20">
+                                    <Frame VerticalOptions="Start" BackgroundColor="WhiteSmoke" 
+                                           BorderColor="Gray" 
+                                           CornerRadius="5" 
+                                           Padding="8" 
+                                           Margin="10" >
+                                        <Grid ColumnSpacing="20" RowSpacing="10">
                                             <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
@@ -148,9 +158,21 @@
 
                                                 <ColumnDefinition Width="*" />
 
+                                                <ColumnDefinition Width="100" />
+
                                             </Grid.ColumnDefinitions>
                                             <Image HorizontalOptions="Start" Grid.Row="0" Grid.Column="0" Source="{Binding Imagae_1_link}" HeightRequest="160" Aspect="AspectFit" />
                                             <Image HorizontalOptions="Start" Grid.Row="0" Grid.Column="1" Source="{Binding image1}" HeightRequest="150" Aspect="AspectFit" />
+                                            <ImageButton  HorizontalOptions="End"
+                                                          BackgroundColor="Transparent"
+                                                         VerticalOptions="Start"
+                                                         x:Name="reportBTN"
+                                                   Grid.Row="0"
+                                                   Grid.Column="2"
+                                                         HeightRequest="2"
+                                                   Source="report.png" 
+                                                   Clicked="reportBTN_Clicked"                                                  
+                                                   Aspect="AspectFit" />
 
                                             <Label Grid.Row="1" Text="Item Name" TextColor="Black"/>
                                             <Label Grid.Row="2" TextColor="Black" FontSize="20" Text="{Binding ProductName}" />
@@ -164,7 +186,9 @@
                                             <Label Grid.Row="7" Text="Qauntity" TextColor="Black"/>
                                             <Label Grid.Row="8" TextColor="Black" FontSize="20" Text="{Binding ProductQuantity}" />
 
-
+                                            <Button Grid.Row="9" HorizontalOptions="Center" Grid.ColumnSpan="2"  x:Name="btnSend" Text="Send a Message"
+                                                    TextColor="White"
+                                                    BackgroundColor="Black"/>
                                         </Grid>
                                     </Frame>
                                 </ScrollView>

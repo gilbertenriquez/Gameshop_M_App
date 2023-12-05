@@ -27,7 +27,7 @@ public partial class addproductPage : ContentPage
             FileTypes = FilePickerFileType.Images
         });
         if (result == null) return;
-
+                    
         FileInfo fi = new(result.FullPath);
         var size = fi.Length;
 

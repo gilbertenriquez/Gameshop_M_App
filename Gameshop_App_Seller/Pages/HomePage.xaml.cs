@@ -128,4 +128,18 @@ public partial class HomePage : ContentPage
         App.key = await dusers.GetUserKey(App.email);
     }
 
+    private async void reportBTN_Clicked(object sender, EventArgs e)
+    {
+        bool userConfirmed = await DisplayAlert("ALERT", "Report This Product", "Yes", "No");
+
+        if (userConfirmed)
+        {
+            await Navigation.PushModalAsync(new ReportPage());
+        }
+        else
+        {
+            return;
+        }
+    }
+
 }
