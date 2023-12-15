@@ -16,7 +16,6 @@
     {
         public class Users
         {
-            public Dictionary<string, Users.Product> Products { get; set; }
             public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
             FirebaseAuthProvider authProvider;
             public string FNAME { get; set; }
@@ -47,30 +46,6 @@
 
             public string Message { get; set; }
 
-
-            public class Product
-            {
-                public string Imagae_1_link { get; set; }
-                public string image1 { get; set; }
-                public string image2 { get; set; }
-                public string image3 { get; set; }
-                public string image4 { get; set; }
-                public string image5 { get; set; }
-                public string image6 { get; set; }
-                public string image7 { get; set; }
-                public string ProductName { get; set; }
-                public string ProductDesc { get; set; }
-                public string ProductPrice { get; set; }
-                public string ProductPath { get; set; }
-                public string Products { get; set; }
-                public string ProductQuantity { get; set; }
-            }
-
-
-
-
-
-
             public Users()
             {
                 authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
@@ -89,6 +64,7 @@
             //    return false;
             //}
 
+        //login code
             public async Task<bool> AdminLogin(string email, string Pass)
             {
                 try
@@ -145,6 +121,7 @@
             //    return "";
             //}
 
+        //not yet
             public async Task<bool> ResetPassword(string email)
             {
                 await authProvider.SendPasswordResetEmailAsync(email);
@@ -157,7 +134,7 @@
             //    return auth.FirebaseToken;
             //}
 
-
+        // add user
             public async Task<bool> addusers(string name, string lname, string email, string password, string address, string birthday, string gender)
             {
                 try
@@ -197,6 +174,8 @@
                 }
             }
 
+
+        //upload photos of product
             public async Task<string> UploadImage(Stream img, string proname, string filename)
             {
                 try
@@ -211,6 +190,9 @@
                     return "false";
                 }
             }
+
+
+        //adding product code
             public async Task<bool> addDesc(string imglink,
                                      string img1,
                                      string img2,
@@ -271,6 +253,7 @@
                 }
             }
 
+        //not yet
             public async Task<string> GetUserKey(string mail)
             {
                 try
@@ -303,10 +286,39 @@
 
 
 
+        //displaying all seller products
+        public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
+        {
+            var userKeys = await GetUserKeysAsync();
+
+            var userProductList = new ObservableCollection<Users>();
+
+            foreach (var userKey in userKeys)
+            {
+                var userData = await ClientUsers
+                    .Child($"Users/Account/{userKey}/Product")
+                    .OnceAsync<Users>();
+
+                foreach (var firebaseObject in userData)
+                {
+                    userProductList.Add(firebaseObject.Object);
+                }
+            }
+
+            return userProductList;
+        }
+        private async Task<List<string>> GetUserKeysAsync()
+        {
+            var userKeysSnapshot = await ClientUsers
+                .Child("Users/Account")
+                .OnceAsync<object>();
+
+            return userKeysSnapshot.Select(u => u.Key).ToList();
+        }
 
 
-
-            public async Task<List<Users>> GetAllUsers(string userKey)
+        //not yet
+        public async Task<List<Users>> GetAllUsers(string userKey)
             {
                 try
                 {
@@ -325,7 +337,8 @@
                     return null;
                 }
             }
-
+                 
+        //when product of seller is added it will display their own product in their seller page or home
             public async Task<ObservableCollection<Users>> GetUserProducts(string userKey)
             {
                 try
@@ -352,7 +365,7 @@
 
 
 
-
+        //upload seller products
             public async Task<bool> Save(FileResult maninimg,
                                      FileResult img1,
                                      FileResult img2,
@@ -401,71 +414,141 @@
                                            productquantity);
 
                 return true;
-            }
+        }
 
-
-            public async Task<bool> SendMessage(string senderEmail, string receiverEmail, string message)
-            {
-                try
-                {
-                    // Assuming your structure is like this: Users/Messages
-                    var user = (await ClientUsers
-                        .Child($"Users/Messages")
-                        .OnceAsync<Users>())
-                        .FirstOrDefault(a => a.Object.MAIL == senderEmail && a.Object.MAIL == receiverEmail);
-
-                    // Check if the user exists and the message is sent successfully
-                    if (user != null)
-                    {
-                        // Assuming the Users class has properties like SenderEmail, ReceiverEmail, Message, etc.
-                        user.Object.Message = message;
-
-                        // Update the message in the database
-                        await ClientUsers
-                            .Child($"Users/Messages/{user.Key}")
-                            .PutAsync(user.Object);
-
-                        return true;
-                    }
-
-                    return false;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-
-        public async Task<List<Users.Product>> GetAllProductList()
+        //not yet
+        public async Task<bool> SendMessage(string senderEmail, string receiverEmail, string message)
         {
             try
             {
-                var userProducts = await ClientUsers
-                    .Child($"Users/Account/{App.key}/Products")  // Adjust the path to match your database structure
-                    .OnceAsync<Dictionary<string, Users.Product>>();
+                // Assuming your structure is like this: Users/Messages
+                var user = (await ClientUsers
+                    .Child($"Users/Messages")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == senderEmail && a.Object.MAIL == receiverEmail);
 
-                if (userProducts == null || userProducts.Count == 0)
+                // Check if the user exists and the message is sent successfully
+                if (user != null)
                 {
-                    return new List<Users.Product>();
+                    // Assuming the Users class has properties like SenderEmail, ReceiverEmail, Message, etc.
+                    user.Object.Message = message;
+
+                    // Update the message in the database
+                    await ClientUsers
+                        .Child($"Users/Messages/{user.Key}")
+                        .PutAsync(user.Object);
+
+                    return true;
                 }
 
-                var allProducts = userProducts
-                   .SelectMany(entry => entry.Object)
-                   .Select(pair => pair.Value)
-                   .ToList();
-                 
-
-                return allProducts;
+                return false;
             }
-            catch (Exception ex)
+            catch
             {
-                // Log the exception for debugging purposes
-                System.Diagnostics.Debug.WriteLine($"Exception during GetAllProductList: {ex}");
-                return new List<Users.Product>();
+                return false;
             }
         }
 
 
+        //path and upload a photo to validate
+        public async Task<string> UploadValid(Stream img, string proname, string filename)
+        {
+            try
+            {
+                var image = await App.firebaseStorage
+                    .Child($"Images/{proname}/{filename}")
+                    .PutAsync(img);
+                return image;
+            }
+            catch (Exception ex)
+            {
+                return "false";
+            }
+        }
+
+        //Valid ID submission
+        public async Task<bool> addValidID(
+                                     string img1,
+                                     string img2,
+                                     string img3,
+                                     string img4,
+                                     string email
+                                     )
+        {
+
+
+            try
+            {
+                // Construct the path to the user's account node
+                var userAccountPath = $"Users/Request/{App.key}";
+
+                var evaluateEmail = (await ClientUsers
+                    .Child($"{userAccountPath}/ValidIDs")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.image1 == img1);
+
+                if (evaluateEmail == null)
+                {
+                    // Product does not exist, add it
+                    var admin = new Users()
+                    {
+                        image1 = img1,
+                        image2 = img2,
+                        image3 = img3,
+                        image4 = img4,
+                        MAIL = email
+                    };
+
+                    // Use the user's account path as the child node
+                    await ClientUsers
+                        .Child($"{userAccountPath}/ValidIDs")
+                        .PostAsync(admin);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //sending the application for becoming a seller
+        public async Task<bool> SaveValid(
+                        FileResult img1,
+                        FileResult img2,
+                        FileResult img3,
+                        FileResult img4,
+                        string email)
+        {
+
+            var ValidImg1 = await UploadImage(await img1.OpenReadAsync(),
+                                                 "ValidImg",
+                                                 img1.FileName);
+
+            var ValidImg2 = await UploadImage(await img2.OpenReadAsync(),
+                                            "ValidImg",
+                                            img2.FileName);
+            var ValidImg3 = await UploadImage(await img3.OpenReadAsync(),
+                                            "ValidImg",
+                                            img3.FileName);
+            var ValidImg4 = await UploadImage(await img4.OpenReadAsync(),
+                                            "ValidImg",
+                                            img4.FileName);
+
+
+            var ValidIDs = await addValidID(ValidImg1,
+                                    ValidImg2,
+                                    ValidImg3,
+                                    ValidImg4,
+                                    email);
+
+            return true;
+        }
 
 
 

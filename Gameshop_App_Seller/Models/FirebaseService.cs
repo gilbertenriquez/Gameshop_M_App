@@ -1,4 +1,5 @@
 ﻿using Firebase.Database;
+using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,5 +33,28 @@ namespace Gameshop_App_Seller.Models
         {
             UserKey = userKey;
         }
+
+
+        // Inside FirebaseService class
+        public async Task<bool> IsUserEmailInValidIDsAsync(string email)
+        {
+            try
+            {
+                var validIDs = await ClientUsers
+                    .Child("ValidIDs")
+                    .OnceAsync<Users>(); // Adjust this according to your database structure
+
+                // Check if any item in ValidIDs has the specified email
+                return validIDs.Any(item => item.Object.MAIL == email);
+            }
+            catch (Exception ex)
+            {
+                // Log or display any exceptions for debugging
+                Console.WriteLine($"Error checking email in ValidIDs: {ex.Message}");
+                return false;
+            }
+        }
+
+
     }
 }

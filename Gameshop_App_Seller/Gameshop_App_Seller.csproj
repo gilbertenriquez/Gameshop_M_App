@@ -54,14 +54,15 @@
 	  <None Remove="Resources\Fonts\Metropolis-Light.otf" />
 	  <None Remove="Resources\Fonts\Metropolis-Medium.otf" />
 	  <None Remove="Resources\Fonts\Metropolis-Regular.otf" />
+	  <None Remove="Resources\Images\account.png" />
 	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\messages.png" />
-	  <None Remove="Resources\Images\naah.jpg" />
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
 	  <None Remove="Resources\Images\record.png" />

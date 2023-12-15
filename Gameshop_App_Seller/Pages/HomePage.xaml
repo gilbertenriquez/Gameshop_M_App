@@ -88,7 +88,7 @@
                                 Offset="20,20"
                                 Opacity=".7" />
                     </Border.Shadow>-->
-                                <Image HorizontalOptions="Fill"
+                                <Image HorizontalOptions="Fill" Source="account.png"
                                Aspect="AspectFill">
                                     <!-- <Image.Source>
                                 <UriImageSource x:Name="imglogo"

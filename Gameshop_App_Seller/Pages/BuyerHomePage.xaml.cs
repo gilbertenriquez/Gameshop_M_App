@@ -7,73 +7,62 @@ namespace Gameshop_App_Seller.Pages;
 public partial class BuyerHomePage : ContentPage
 {
     private Users vans = new Users();
-    public ObservableCollection<Users.Product> ProductList { get; set; }
+   
 
     public BuyerHomePage()
     {
         InitializeComponent();
-        ProductList = new ObservableCollection<Users.Product>();
-        datalist.ItemsSource = ProductList; // Set the ItemsSource here
-        LoadProductList();
+
+        LoadDataAsync();
     }
 
-    private async void LoadProductList()
+    private async void LoadDataAsync()
     {
-        try
-        {
-            var productList = await vans.GetAllProductList();
+        var userProductLists = await vans.GetUserProductListsAsync();
 
-            if (productList != null && productList.Count > 0)
-            {
-                // Clear existing items before adding new ones
-                ProductList.Clear();
-
-                foreach (var product in productList)
-                {
-                    // Add the product to your ObservableCollection
-                    ProductList.Add(product);
-
-                    // Debug information
-                    Console.WriteLine($"Added product: {product.ProductName}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("No products found.");
-            }
-        }
-        catch (Exception ex)
-        {
-            // Log the exception for debugging purposes
-            Console.WriteLine($"Exception during LoadProductList: {ex}");
-        }
+        // Assuming 'datalist' is your ListView in XAML
+        datalist.ItemsSource = userProductLists;
     }
+
 
 
     private async void BecomeSellerBTN_Clicked(object sender, EventArgs e)
     {
-        // Obtain the user email from your source; replace this with your actual logic
         string userEmail = App.email;
 
-        // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
-        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        //Check if the user email is in the "ValidIDs" node
+        bool isUserInValidIDs = await App.FirebaseService.IsUserEmailInValidIDsAsync(userEmail);
 
-        if (!string.IsNullOrEmpty(userKey))
+        if (isUserInValidIDs)
         {
-            bool user = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
-            if (user)
-            {
-                App.key = userKey;
-                // You might want to use userKey here as needed
-                await Navigation.PushModalAsync(new AppShell(userKey));
-            }
+            // Display an alert indicating that the user's email is in the ValidIDs list
+            await DisplayAlert("Information", "Your email is in the ValidIDs list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
         }
         else
         {
-            await DisplayAlert("Warning", "No user key found", "OK");
+            // Display an alert indicating that the user's email is not in the ValidIDs list
+            await DisplayAlert("Information", "Your email is not in the ValidIDs list. Your application for becoming a seller is not in the pending list.", "OK");
+            return;
         }
-    }
 
+        // Display a confirmation dialog
+        bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
 
-  
+            if (userConfirmed)
+            {
+                // Set the user key in App
+                string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+
+                if (!string.IsNullOrEmpty(userKey))
+                {
+                    App.key = userKey;
+                    // You might want to use userKey here as needed
+                    await Navigation.PushModalAsync(new AppShell(userKey));
+                }
+                else
+                {
+                    await DisplayAlert("Warning", "No user key found", "OK");
+                }
+            }
+        }
 }

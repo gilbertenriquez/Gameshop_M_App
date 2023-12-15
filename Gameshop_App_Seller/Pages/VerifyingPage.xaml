@@ -70,7 +70,8 @@
                                       HeightRequest="30" 
                                       WidthRequest="30"
                                       Source="add.png" 
-                                      x:Name="btnFrontimage"/>
+                                      x:Name="btnFrontimage"
+                                             Clicked="btnFrontimage_Clicked"/>
                                 <Image Grid.Row="0" 
                                     x:Name="Frontimage"
                                     HeightRequest="100" 
@@ -89,7 +90,7 @@
                 </Grid>
 
                 <Label Grid.Row="3" TextColor="Black"
-                    Text="PLEASE UPLOAD THE FRONT OF YOUR VALID ID FRONT WITH YOUR FACE"
+                    Text="Please take a selfie with your valid ID facing forward"
                     HorizontalOptions="CenterAndExpand"/>
 
                 <Grid Grid.Row="4" Margin="10" WidthRequest="400">
@@ -103,7 +104,7 @@
                             <Grid RowDefinitions="100,Auto">
                                 <ImageButton Grid.Row="0" HorizontalOptions="CenterAndExpand"
                             HeightRequest="30" WidthRequest="30"
-                            Source="add.png" x:Name="btnBackimage"
+                            Source="add.png" x:Name="btnBackimage" Clicked="btnBackimage_Clicked"
                             />
                                 <Image Grid.Row="0" x:Name="backimage"
                       HeightRequest="100" WidthRequest="100" />
@@ -115,25 +116,20 @@
                         </Border>
                     </Grid>
                 </Grid>
-                
+
                 <Label Grid.Row="6" 
                        TextColor="Black"
-                       Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID WITH YOUR FACE" 
+                       Text="Please take a selfie with your valid ID facing backwards " 
                        HorizontalOptions="CenterAndExpand"/>
 
                 <Button Grid.Row="7" 
-                         Text="SAVE"                               
+                         Text="Submit Your Application for Become A Seller"                               
                          BackgroundColor="#272829"
                          TextColor="White" 
                          Margin="0,20,0,0" 
-                         x:Name="saveBack" 
-                         />
+                         x:Name="saveBtn" 
+                         Clicked="saveBtn_Clicked" />
 
-                <Button Grid.Row="8" 
-                         Text="BACK"                               
-                         BackgroundColor="#272829"
-                         TextColor="White" 
-                         x:Name="btnBack"/>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
