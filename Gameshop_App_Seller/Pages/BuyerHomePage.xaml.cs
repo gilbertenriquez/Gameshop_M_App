@@ -30,18 +30,18 @@ public partial class BuyerHomePage : ContentPage
     {
         string userEmail = App.email;
 
-        //Check if the user email is in the "ValidIDs" node
-        bool isUserInValidIDs = await App.FirebaseService.IsUserEmailInValidIDsAsync(userEmail);
+        // Check if the user email is in the "Request" node
+        bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
 
-        if (isUserInValidIDs)
+        if (isUserInRequest)
         {
-            // Display an alert indicating that the user's email is in the ValidIDs list
-            await DisplayAlert("Information", "Your email is in the ValidIDs list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
+            // Display an alert indicating that the user's email is in the Request list
+            await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
         }
         else
         {
-            // Display an alert indicating that the user's email is not in the ValidIDs list
-            await DisplayAlert("Information", "Your email is not in the ValidIDs list. Your application for becoming a seller is not in the pending list.", "OK");
+            // Display an alert indicating that the user's email is not in the Request list
+            await DisplayAlert("Information", "Your email is not in the Request list. Your application for becoming a seller is not in the pending list.", "OK");
             return;
         }
 
@@ -57,7 +57,7 @@ public partial class BuyerHomePage : ContentPage
                 {
                     App.key = userKey;
                     // You might want to use userKey here as needed
-                    await Navigation.PushModalAsync(new AppShell(userKey));
+                    await Navigation.PushModalAsync(new Valid_IDpage(userKey));
                 }
                 else
                 {

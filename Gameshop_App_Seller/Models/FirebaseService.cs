@@ -36,21 +36,21 @@ namespace Gameshop_App_Seller.Models
 
 
         // Inside FirebaseService class
-        public async Task<bool> IsUserEmailInValidIDsAsync(string email)
+        public async Task<bool> IsUserEmailInRequestAsync(string email)
         {
             try
             {
-                var validIDs = await ClientUsers
-                    .Child("ValidIDs")
+                var request = await ClientUsers
+                    .Child($"Users/Request")
                     .OnceAsync<Users>(); // Adjust this according to your database structure
 
-                // Check if any item in ValidIDs has the specified email
-                return validIDs.Any(item => item.Object.MAIL == email);
+                // Check if any item in Request has the specified email
+                return request.Any(item => item.Object.MAIL == email);
             }
             catch (Exception ex)
             {
                 // Log or display any exceptions for debugging
-                Console.WriteLine($"Error checking email in ValidIDs: {ex.Message}");
+                Console.WriteLine($"Error checking email in Request: {ex.Message}");
                 return false;
             }
         }

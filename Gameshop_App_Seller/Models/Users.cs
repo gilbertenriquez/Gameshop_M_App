@@ -480,10 +480,10 @@
             try
             {
                 // Construct the path to the user's account node
-                var userAccountPath = $"Users/Request/{App.key}";
+                var userAccountPath = $"Users/Request";
 
                 var evaluateEmail = (await ClientUsers
-                    .Child($"{userAccountPath}/ValidIDs")
+                    .Child($"{userAccountPath}")
                     .OnceAsync<Users>())
                     .FirstOrDefault(a => a.Object.image1 == img1);
 
@@ -501,7 +501,7 @@
 
                     // Use the user's account path as the child node
                     await ClientUsers
-                        .Child($"{userAccountPath}/ValidIDs")
+                        .Child($"{userAccountPath}")
                         .PostAsync(admin);
 
                     return true;
