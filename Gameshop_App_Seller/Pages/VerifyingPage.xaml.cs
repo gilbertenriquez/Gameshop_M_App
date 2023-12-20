@@ -14,11 +14,13 @@ public partial class VerifyingPage : ContentPage
     public VerifyingPage()
     {
         InitializeComponent();
+
     }
 
     public VerifyingPage(string userKey) : this()
     {
         InitializeAsync(userKey);
+
     }
 
     private async void InitializeAsync(string userKey)
@@ -120,9 +122,17 @@ public partial class VerifyingPage : ContentPage
     private async void saveBtn_Clicked(object sender, EventArgs e)
     {
         string userEmail = App.email;
-        var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail);
+        
+        var status = statusUser.SelectedItem.ToString();    
+        var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail, status);
         await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted Please wait for 3 days to 7 days for verfication", "OK");
         await Navigation.PushModalAsync(new MainPage());
         return;
+    }
+
+    private async void btnBackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
     }
 }

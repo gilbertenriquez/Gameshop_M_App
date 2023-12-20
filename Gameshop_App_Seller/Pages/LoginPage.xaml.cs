@@ -46,7 +46,8 @@ public partial class LoginPage : INotifyPropertyChanged
     }
 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
-    { 
+    {
+        var result = await ulogin.AdminLogin(emailEntry.Text, passwordEntry.Text);
         if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text)){
 
                await DisplayAlert("Alert!", "Please Fill up your Email and Password!", "Got it!");
@@ -60,10 +61,8 @@ public partial class LoginPage : INotifyPropertyChanged
            {
               App.key = userUid;
               App.email = emailEntry.Text;
-          
-              var result = await ulogin.AdminLogin(emailEntry.Text, passwordEntry.Text);
-          
-              if (result)
+            
+            if (result)
               {
                   await DisplayAlert("Alert!", "Access Granted!", "OK!");
                   emailEntry.Text = "";

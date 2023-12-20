@@ -11,10 +11,12 @@
         <VerticalStackLayout Margin="20">
 
             <ImageButton Grid.Row="0" Source="back.png" 
-                      HeightRequest="30" 
+                      HeightRequest="30"
+                      Margin="20"
                       HorizontalOptions="Start" 
                       VerticalOptions="Start" 
-                      x:Name="btnBackImg"/>
+                      x:Name="btnBackImg"
+                         Clicked="btnBackImg_Clicked"/>
 
 
             <StackLayout
@@ -116,17 +118,41 @@
                         </Border>
                     </Grid>
                 </Grid>
+                
 
-                <Label Grid.Row="6" 
+                <Label Grid.Row="5" 
                        TextColor="Black"
                        Text="Please take a selfie with your valid ID facing backwards " 
                        HorizontalOptions="CenterAndExpand"/>
+
+
+                <Picker Grid.Row="6"  
+                     BackgroundColor="Transparent"
+                     x:Name="statusUser" 
+                     TitleColor="Transparent" 
+                     Title="Status"                       
+                     TextColor="Transparent"
+                     >
+
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>False</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+
+                    <!-- Set the default selected item -->
+                    <Picker.SelectedItem>
+                        <x:String>False</x:String>
+                    </Picker.SelectedItem>
+                </Picker>
+
+
 
                 <Button Grid.Row="7" 
                          Text="Submit Your Application for Become A Seller"                               
                          BackgroundColor="#272829"
                          TextColor="White" 
-                         Margin="0,20,0,0" 
+                          Margin="0,80,0,0"  
                          x:Name="saveBtn" 
                          Clicked="saveBtn_Clicked" />
 

@@ -19,7 +19,7 @@ namespace Gameshop_App_Seller
         {
             InitializeComponent();
 
-            MainPage = new WelcomePage();
+            MainPage = new LoginPage();
         }
 
         public App(string userKey) : this()

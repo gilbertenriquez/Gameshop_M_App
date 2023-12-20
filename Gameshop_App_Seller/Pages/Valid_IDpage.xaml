@@ -9,10 +9,12 @@
         <VerticalStackLayout Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
             <ImageButton Grid.Row="0" Source="back.png" 
+                         Margin="20"
                          HeightRequest="30" 
                          HorizontalOptions="Start" 
                          VerticalOptions="Start" 
-                         x:Name="btnBackImg"/>
+                         x:Name="btnBackImg"
+                         Clicked="btnBack_Clicked"/>
 
 
             <StackLayout
@@ -140,7 +142,7 @@
                             Text="Next"                               
                             BackgroundColor="#272829"
                             TextColor="White" 
-                            Margin="0,20,0,0" 
+                            Margin="0,80,0,0" 
                             x:Name="nextBack" 
                             Clicked="nextBack_Clicked"/>
 

@@ -58,6 +58,10 @@
 
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                      WidthRequest="25" x:Name="notifyBTN" Source="notification.png" />
+
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                                       WidthRequest="25" x:Name="ReportBtn" Source="report.png"
+                                             Clicked="reportBTN_Clicked"/>
                             </HorizontalStackLayout>
                         </Grid>
 
@@ -91,21 +95,32 @@
                                 </Image>
                             </Border>
 
-                            <Grid Grid.Column="1"
-                          RowDefinitions="Auto, Auto"
-                          ColumnDefinitions="100, *">
-                                <Label Text="Name" Grid.Row="0" x:Name="lblcompanyname"
-                               TextColor="#007AFF"
-                               FontSize="18" LineBreakMode="TailTruncation"
-                               FontFamily="RobotoCondensed" />
-                            </Grid>
+                            <CollectionView Grid.Column="1" x:Name="username">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                              RowDefinitions="Auto, Auto"
+                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="10">
+                                            <Label Text="Name" Grid.Row="0" TextColor="White"/>
+                                            <Label Text="{Binding FNAME}" Grid.Row="1"
+                                              TextColor="#007AFF"
+                                              FontSize="18" LineBreakMode="TailTruncation"
+                                              FontFamily="RobotoCondensed" />
+                                            <Label Text="{Binding LNAME}" Grid.Row="1" Grid.Column="1"
+                                              TextColor="#007AFF"
+                                              FontSize="18" LineBreakMode="TailTruncation"
+                                              FontFamily="RobotoCondensed" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
                         </Grid>
                     </Grid>
                 </Grid>
             </Border>
 
             <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
+                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand" SelectionMode="Single" SelectionChanged="datalist_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
@@ -144,15 +159,7 @@
                                                 <ColumnDefinition Width="100" />
 
                                             </Grid.ColumnDefinitions>
-                                            <ImageButton Margin="20" HorizontalOptions="End"
-                                                       BackgroundColor="Transparent"
-                                                       VerticalOptions="Start"
-                                                       x:Name="reportBTN"
-                                                            Grid.Row="0"
-                                                       Grid.Column="2"
-                                                       HeightRequest="2"
-                                                       Source="report.png"                                                                                                               
-                                                       Aspect="AspectFit" />
+                                          
                                             <Image Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="{Binding image1}" HeightRequest="300" WidthRequest="300"/>
 
                                             <Label Grid.Row="1" Text="Item Name" TextColor="Black"/>

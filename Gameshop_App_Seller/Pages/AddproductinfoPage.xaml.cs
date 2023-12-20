@@ -35,7 +35,8 @@ public partial class AddproductinfoPage : ContentPage
                            entryName.Text,
                            entryDescription.Text,
                            entryPrice.Text,
-                           entryQuantity.Text);
+                           entryQuantity.Text,
+                           email);
 
         string userEmail = imgSave.MAIL;
         var userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
@@ -45,7 +46,7 @@ public partial class AddproductinfoPage : ContentPage
         if (string.IsNullOrEmpty(userKey))
         {
             await DisplayAlert("Message", "Product Successfully Added", "OK");
-
+            await Navigation.PushModalAsync(new AppShell());
         }
         else
         {

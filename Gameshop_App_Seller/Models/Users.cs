@@ -16,7 +16,7 @@
     {
         public class Users
         {
-            public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
+        public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
             FirebaseAuthProvider authProvider;
             public string FNAME { get; set; }
             public string LNAME { get; set; }
@@ -44,7 +44,8 @@
             public string ProductPath { get; set; }
             public string ProductQuantity { get; set; }
 
-            public string Message { get; set; }
+        public string isVerified { get; set; }
+        public string Message { get; set; }
 
             public Users()
             {
@@ -53,76 +54,75 @@
 
 
 
-            //public async Task<bool> Register(string email, string fname, string lastname, string address, string birthday, string gender, string password)
-            //{
+        //public async Task<bool> Register(string email, string fname, string lastname, string address, string birthday, string gender, string password)
+        //{
 
-            //    var token = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password, fname);
-            //    if (!string.IsNullOrEmpty(token.FirebaseToken))
-            //    {
-            //        return true;
-            //    }
-            //    return false;
-            //}
+        //    var token = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password, fname);
+        //    if (!string.IsNullOrEmpty(token.FirebaseToken))
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         //login code
-            public async Task<bool> AdminLogin(string email, string Pass)
+        public async Task<bool> AdminLogin(string email, string password)
+        {
+            try
             {
-                try
-                {
-                    var user = (await ClientUsers
-                 .Child($"Users/Account")
-                 .OnceAsync<Users>())
-                 .FirstOrDefault
-                 (a => a.Object.MAIL == email && a.Object.PASSWORD == Pass);
+                var evaluateEmail = (await ClientUsers
+                    .Child("Users/Account")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == email && a.Object.PASSWORD == password);
 
-                    return user != null;
-                }
-                catch
-                {
-                    return false;
-                }
-
+                return evaluateEmail != null;
             }
-
-            //public async Task<bool> Login(string email, string Pass)
-            //{
-            //    try
-            //    {
-            //        var evaluateEmail = (await ClientUsers.Child("Users/Account")
-            //                          .OnceAsync<Users>())
-            //                          .FirstOrDefault
-            //                          (a => a.Object.MAIL == email &&
-            //                           a.Object.PASSWORD == Pass);
-
-            //        if (evaluateEmail != null)
-            //        {                   
-            //            return true;
-            //        }
-            //        else
-            //        {
-            //            return false;
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine($"Exception during login: {ex}");
-            //        return false;
-            //    }
-            //}
+            catch
+            {
+                return false;
+            }
+        }
 
 
-            //public async Task<string> SignIn(string email, string password)
-            //{
-            //    var token = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
-            //    if (!string.IsNullOrEmpty(token.FirebaseToken))
-            //    {
-            //        return token.FirebaseToken;
-            //    }
-            //    return "";
-            //}
+        //public async Task<bool> Login(string email, string Pass)
+        //{
+        //    try
+        //    {
+        //        var evaluateEmail = (await ClientUsers.Child("Users/Account")
+        //                          .OnceAsync<Users>())
+        //                          .FirstOrDefault
+        //                          (a => a.Object.MAIL == email &&
+        //                           a.Object.PASSWORD == Pass);
+
+        //        if (evaluateEmail != null)
+        //        {                   
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Exception during login: {ex}");
+        //        return false;
+        //    }
+        //}
+
+
+        //public async Task<string> SignIn(string email, string password)
+        //{
+        //    var token = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
+        //    if (!string.IsNullOrEmpty(token.FirebaseToken))
+        //    {
+        //        return token.FirebaseToken;
+        //    }
+        //    return "";
+        //}
 
         //not yet
-            public async Task<bool> ResetPassword(string email)
+        public async Task<bool> ResetPassword(string email)
             {
                 await authProvider.SendPasswordResetEmailAsync(email);
                 return true;
@@ -203,7 +203,8 @@
                                      string ProdName,
                                      string ProdDesc,
                                      string ProdPrice,
-                                     string ProdQuan)
+                                     string ProdQuan,
+                                     string email)
             {
 
 
@@ -232,7 +233,8 @@
                             ProductName = ProdName,
                             ProductDesc = ProdDesc,
                             ProductPrice = ProdPrice,
-                            ProductQuantity = ProdQuan
+                            ProductQuantity = ProdQuan,
+                            MAIL = email
                         };
 
                         // Use the user's account path as the child node
@@ -258,24 +260,25 @@
             {
                 try
                 {
-                    var getemploykey = (await ClientUsers.Child("Products").OnceAsync<Users>()).
+                    var getuserkey = (await ClientUsers.Child($"Users/Account/{App.key}/Product").OnceAsync<Users>()).
                         FirstOrDefault(a => a.Object.MAIL == mail);
-                    if (getemploykey == null) return null;
+                    if (getuserkey == null) return null;
 
-                    img1 = getemploykey.Object.image1;
-                    image2 = getemploykey.Object.image2;
-                    image3 = getemploykey.Object.image3;
-                    image4 = getemploykey.Object.image4;
-                    image5 = getemploykey.Object.image5;
-                    image6 = getemploykey.Object.image6;
-                    Imagae_1_link = getemploykey.Object.Imagae_1_link;
-                    ProductName = getemploykey.Object.ProductName;
-                    ProductDesc = getemploykey.Object.ProductDesc;
-                    ProductPrice = getemploykey.Object.ProductPrice;
-                    ProductQuantity = getemploykey.Object.ProductQuantity;
+                    img1 = getuserkey.Object.image1;
+                    image2 = getuserkey.Object.image2;
+                    image3 = getuserkey.Object.image3;
+                    image4 = getuserkey.Object.image4;
+                    image5 = getuserkey.Object.image5;
+                    image6 = getuserkey.Object.image6;
+                    Imagae_1_link = getuserkey.Object.Imagae_1_link;
+                    ProductName = getuserkey.Object.ProductName;
+                    ProductDesc = getuserkey.Object.ProductDesc;
+                    ProductPrice = getuserkey.Object.ProductPrice;
+                    ProductQuantity = getuserkey.Object.ProductQuantity;
+              
 
 
-                    return getemploykey?.Key;
+                    return getuserkey?.Key;
                 }
                 catch (Exception ex)
                 {
@@ -319,27 +322,56 @@
 
         //not yet
         public async Task<List<Users>> GetAllUsers(string userKey)
+        {
+            try
             {
-                try
+                return (await ClientUsers
+                    .Child($"Users/Account/{userKey}")
+                    .OnceAsync<Users>()).Select(item => new Users
+                    {
+                        FNAME = item.Object.FNAME,
+                        LNAME = item.Object.LNAME,
+                    }).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception for debugging purposes
+                Console.WriteLine($"Firebase Exception: {ex}");
+                return null;
+            }
+        }
+
+
+        public async Task<ObservableCollection<Users>> GetUsersinfoAsync(string userKey)
+        {
+            try
+            {
+                var userSnapshot = await ClientUsers
+                    .Child($"Users/Account/{userKey}")
+                    .OnceSingleAsync<Users>();
+
+                if (userSnapshot != null)
                 {
-                    return (await ClientUsers
-                        .Child($"Users/Account/{userKey}")
-                        .OnceAsync<Users>()).Select(item => new Users
-                        {
-                            FNAME = item.Object.FNAME,
-                            LNAME = item.Object.LNAME,
-                        }).ToList();
+                    return new ObservableCollection<Users> { userSnapshot };
                 }
-                catch (Exception ex)
+                else
                 {
-                    // Log the exception for debugging purposes
-                    Console.WriteLine($"Firebase Exception: {ex}");
+                    // User not found
                     return null;
                 }
             }
-                 
+            catch (Exception ex)
+            {
+                // Handle exceptions as needed
+                Console.WriteLine($"Exception in GetUsersinfoAsync: {ex.Message}");
+                return null;
+            }
+        }
+
+
+
         //when product of seller is added it will display their own product in their seller page or home
-            public async Task<ObservableCollection<Users>> GetUserProducts(string userKey)
+        public async Task<ObservableCollection<Users>> GetUserProducts(string userKey)
             {
                 try
                 {
@@ -376,7 +408,8 @@
                                      string productname,
                                      string productDescript,
                                      string productprice,
-                                     string productquantity)
+                                     string productquantity,
+                                     string mail)
             {
                 var _mainimg = await UploadImage(await maninimg.OpenReadAsync(),
                                                  "ProductImg",
@@ -411,7 +444,8 @@
                                            productname,
                                            productDescript,
                                            productprice,
-                                           productquantity);
+                                           productquantity,
+                                           mail);
 
                 return true;
         }
@@ -472,7 +506,8 @@
                                      string img2,
                                      string img3,
                                      string img4,
-                                     string email
+                                     string email,
+                                     string isVerified
                                      )
         {
 
@@ -496,7 +531,8 @@
                         image2 = img2,
                         image3 = img3,
                         image4 = img4,
-                        MAIL = email
+                        MAIL = email,
+                        isVerified = isVerified
                     };
 
                     // Use the user's account path as the child node
@@ -523,7 +559,8 @@
                         FileResult img2,
                         FileResult img3,
                         FileResult img4,
-                        string email)
+                        string email,
+                        string isVerified)
         {
 
             var ValidImg1 = await UploadImage(await img1.OpenReadAsync(),
@@ -545,7 +582,8 @@
                                     ValidImg2,
                                     ValidImg3,
                                     ValidImg4,
-                                    email);
+                                    email,
+                                    isVerified);
 
             return true;
         }

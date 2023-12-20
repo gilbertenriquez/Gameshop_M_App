@@ -25,7 +25,13 @@
                    FontSize="30" 
                    TextColor="Black"
                    FontAttributes="Bold"/>
-                
+
+
+                <Label Text="" Grid.Row="2" x:Name="Productname"/>
+                <Label Text="" Grid.Row="3" x:Name="Productprice"/>
+
+           
+
                 <Frame  Grid.Row="4" 
                         VerticalOptions="Center" 
                         BackgroundColor="White" 

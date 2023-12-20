@@ -1,11 +1,28 @@
+using static Gameshop_App_Seller.App;
+
 namespace Gameshop_App_Seller.Pages;
 
 public partial class ReportPage : ContentPage
 {
-	public ReportPage()
-	{
-		InitializeComponent();
-	}
+    public ReportPage()
+    {
+        InitializeComponent();
+    }
+
+    public ReportPage(string userKey)
+    {
+        InitializeComponent();
+        UserKey = userKey;
+    }
+
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Productname.Text = productname;
+        Productprice.Text = productprice;
+    }
+
 
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
