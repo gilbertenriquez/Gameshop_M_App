@@ -8,7 +8,7 @@ namespace Gameshop_App_Seller.Pages;
 public partial class BuyerHomePage : ContentPage
 {
     private Users vans = new Users();
-   
+
 
     public BuyerHomePage()
     {
@@ -77,35 +77,38 @@ public partial class BuyerHomePage : ContentPage
         // Display a confirmation dialog
         bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
 
-            if (userConfirmed)
-            {
-                // Set the user key in App
-                string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        if (userConfirmed)
+        {
+            // Set the user key in App
+            string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
 
-                if (!string.IsNullOrEmpty(userKey))
-                {
-                    App.key = userKey;
-                    // You might want to use userKey here as needed
-                    await Navigation.PushModalAsync(new Valid_IDpage(userKey));
-                }
-                else
-                {
-                    await DisplayAlert("Warning", "No user key found", "OK");
-                }
+            if (!string.IsNullOrEmpty(userKey))
+            {
+                App.key = userKey;
+                // You might want to use userKey here as needed
+                await Navigation.PushModalAsync(new Valid_IDpage(userKey));
             }
+            else
+            {
+                await DisplayAlert("Warning", "No user key found", "OK");
+            }
+        }
     }
 
     private async void reportBTN_Clicked(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(App.key))
+        if (datalist.SelectedItem != null)
         {
-            await Navigation.PushModalAsync(new ReportPage());
+            // Pass the App.key to ReportPage
+            await Navigation.PushModalAsync(new ReportPage(App.key));
         }
         else
         {
             await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
         }
     }
+
+
 
     private async void datalist_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -117,6 +120,25 @@ public partial class BuyerHomePage : ContentPage
             {
                 App.email = selectedUser.MAIL;
                 App.key = await vans.GetUserKey(App.email);
+
+                // Fetch all user data based on the selected email
+                var allUserData = await vans.GetUserDataByEmailAsync(App.email);
+
+                if (allUserData != null)
+                {
+                    // Process or display the fetched user data as needed
+                    // For example, you might want to update UI elements or navigate to another page
+                    // Pass the data to the next page if needed
+                }
+                else
+                {
+                    // Handle the case where user data is not available
+                }
+            }
+            else
+            {
+                // Reset App.key when selection is cleared
+                App.key = null;
             }
         }
     }

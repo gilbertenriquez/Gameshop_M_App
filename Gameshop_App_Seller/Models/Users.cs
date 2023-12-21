@@ -7,8 +7,8 @@
     using Firebase.Auth;
     using Firebase.Database;
     using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
+
+
 
 
 
@@ -252,42 +252,64 @@
                 catch
                 {
                     return false;
-                }
             }
+        }
 
         //not yet
-            public async Task<string> GetUserKey(string mail)
+        public async Task<string> GetUserKey(string mail)
+        {
+            try
+            {
+                var userSnapshot = (await ClientUsers.Child($"Users/Account/{App.key}/Product").OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == mail);
+
+                if (userSnapshot == null)
+                    return null;
+
+                image1 = userSnapshot.Object.image1;
+                image2 = userSnapshot.Object.image2;
+                image3 = userSnapshot.Object.image3;
+                image4 = userSnapshot.Object.image4;
+                image5 = userSnapshot.Object.image5;
+                image6 = userSnapshot.Object.image6;
+                Imagae_1_link = userSnapshot.Object.Imagae_1_link;
+                ProductName = userSnapshot.Object.ProductName;
+                ProductDesc = userSnapshot.Object.ProductDesc;
+                ProductPrice = userSnapshot.Object.ProductPrice;
+                ProductQuantity = userSnapshot.Object.ProductQuantity;
+
+                return userSnapshot?.Key;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetUserKey: {ex.Message}");
+                return null;
+            }
+        }
+
+
+            public async Task<Users> GetUserDataByEmailAsync(string email)
             {
                 try
                 {
-                    var getuserkey = (await ClientUsers.Child($"Users/Account/{App.key}/Product").OnceAsync<Users>()).
-                        FirstOrDefault(a => a.Object.MAIL == mail);
-                    if (getuserkey == null) return null;
+                    var userSnapshots = await ClientUsers
+                        .Child("Users/Account")
+                        .OnceAsync<Users>(); // Assuming UserData is the class representing your user data
 
-                    img1 = getuserkey.Object.image1;
-                    image2 = getuserkey.Object.image2;
-                    image3 = getuserkey.Object.image3;
-                    image4 = getuserkey.Object.image4;
-                    image5 = getuserkey.Object.image5;
-                    image6 = getuserkey.Object.image6;
-                    Imagae_1_link = getuserkey.Object.Imagae_1_link;
-                    ProductName = getuserkey.Object.ProductName;
-                    ProductDesc = getuserkey.Object.ProductDesc;
-                    ProductPrice = getuserkey.Object.ProductPrice;
-                    ProductQuantity = getuserkey.Object.ProductQuantity;
-              
+                    var userData = userSnapshots
+                        .Select(snapshot => snapshot.Object)
+                        .FirstOrDefault(user => user.MAIL == email);
 
-
-                    return getuserkey?.Key;
+                    return userData;
                 }
                 catch (Exception ex)
                 {
+                    // Log or handle the exception appropriately
+                    Console.WriteLine($"Error in GetUserDataByEmailAsync: {ex.Message}");
                     return null;
                 }
-
             }
-
-
+        
 
         //displaying all seller products
         public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
@@ -502,16 +524,12 @@
 
         //Valid ID submission
         public async Task<bool> addValidID(
-                                     string img1,
-                                     string img2,
-                                     string img3,
-                                     string img4,
-                                     string email,
-                                     string isVerified
-                                     )
-        {
-
-
+                                    string img1,
+                                    string img2,
+                                    string img3,
+                                    string img4,
+                                    string email,
+                                    string isVerified){
             try
             {
                 // Construct the path to the user's account node
@@ -537,8 +555,8 @@
 
                     // Use the user's account path as the child node
                     await ClientUsers
-                        .Child($"{userAccountPath}")
-                        .PostAsync(admin);
+                        .Child($"{userAccountPath}/{App.key}")
+                        .PutAsync(admin);
 
                     return true;
                 }

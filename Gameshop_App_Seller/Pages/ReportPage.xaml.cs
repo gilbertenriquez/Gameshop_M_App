@@ -1,9 +1,12 @@
+using Gameshop_App_Seller.Models;
 using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages;
 
 public partial class ReportPage : ContentPage
 {
+
+    private Users Sickboi = new  Users();
     public ReportPage()
     {
         InitializeComponent();
@@ -21,7 +24,9 @@ public partial class ReportPage : ContentPage
         base.OnAppearing();
         Productname.Text = productname;
         Productprice.Text = productprice;
+        Emailtxt.Text = email;
     }
+
 
 
 
