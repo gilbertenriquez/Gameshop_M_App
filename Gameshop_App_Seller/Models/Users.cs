@@ -71,7 +71,7 @@
             try
             {
                 var evaluateEmail = (await ClientUsers
-                    .Child("Users/Account")
+                    .Child("Account")
                     .OnceAsync<Users>())
                     .FirstOrDefault(a => a.Object.MAIL == email && a.Object.PASSWORD == password);
 
@@ -139,7 +139,7 @@
             {
                 try
                 {
-                    var User = (await ClientUsers.Child("Users/Account")
+                    var User = (await ClientUsers.Child("Account")
                         .OnceAsync<Users>())
                         .FirstOrDefault(a => a.Object.MAIL == email);
 
@@ -157,7 +157,7 @@
 
                         };
                         await ClientUsers
-                            .Child("Users/Account")
+                            .Child("Account")
                             .PostAsync(user);
                         ClientUsers.Dispose();
                         return true;
@@ -211,7 +211,7 @@
                 try
                 {
                     // Construct the path to the user's account node
-                    var userAccountPath = $"Users/Account/{App.key}";
+                    var userAccountPath = $"Account/{App.key}";
 
                     var evaluateEmail = (await ClientUsers
                         .Child($"{userAccountPath}/Product")
@@ -260,7 +260,7 @@
         {
             try
             {
-                var userSnapshot = (await ClientUsers.Child($"Users/Account/{App.key}/Product").OnceAsync<Users>())
+                var userSnapshot = (await ClientUsers.Child($"Account/{App.key}/Product").OnceAsync<Users>())
                     .FirstOrDefault(a => a.Object.MAIL == mail);
 
                 if (userSnapshot == null)
@@ -293,7 +293,7 @@
                 try
                 {
                     var userSnapshots = await ClientUsers
-                        .Child("Users/Account")
+                        .Child("Account")
                         .OnceAsync<Users>(); // Assuming UserData is the class representing your user data
 
                     var userData = userSnapshots
@@ -321,7 +321,7 @@
             foreach (var userKey in userKeys)
             {
                 var userData = await ClientUsers
-                    .Child($"Users/Account/{userKey}/Product")
+                    .Child($"Account/{userKey}/Product")
                     .OnceAsync<Users>();
 
                 foreach (var firebaseObject in userData)
@@ -335,7 +335,7 @@
         private async Task<List<string>> GetUserKeysAsync()
         {
             var userKeysSnapshot = await ClientUsers
-                .Child("Users/Account")
+                .Child("Account")
                 .OnceAsync<object>();
 
             return userKeysSnapshot.Select(u => u.Key).ToList();
@@ -348,7 +348,7 @@
             try
             {
                 return (await ClientUsers
-                    .Child($"Users/Account/{userKey}")
+                    .Child($"Account/{userKey}")
                     .OnceAsync<Users>()).Select(item => new Users
                     {
                         FNAME = item.Object.FNAME,
@@ -369,7 +369,7 @@
             try
             {
                 var userSnapshot = await ClientUsers
-                    .Child($"Users/Account/{userKey}")
+                    .Child($"Account/{userKey}")
                     .OnceSingleAsync<Users>();
 
                 if (userSnapshot != null)
@@ -398,13 +398,13 @@
                 try
                 {
                     var products = await ClientUsers
-                        .Child($"Users/Account/{userKey}/Product")
+                        .Child($"Account/{userKey}/Product")
                         .OnceAsync<Users>();
 
                     var productList = products.Select(p =>
                     {
                         var user = p.Object;
-                        user.ProductPath = $"Users/Account/{userKey}/Product/{p.Key}";
+                        user.ProductPath = $"Account/{userKey}/Product/{p.Key}";
                         return user;
                     }).ToList();
 
@@ -533,7 +533,7 @@
             try
             {
                 // Construct the path to the user's account node
-                var userAccountPath = $"Users/Request";
+                var userAccountPath = $"Account/Request";
 
                 var evaluateEmail = (await ClientUsers
                     .Child($"{userAccountPath}")

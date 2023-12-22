@@ -109,7 +109,7 @@ BackgroundColor="Transparent">
 
             </Grid>
 
-            <Button Text="Next" 
+            <Button Text="Register" 
                     x:Name="nextBTN"   
                     BackgroundColor="#007AFF"
                     TextColor="White" 

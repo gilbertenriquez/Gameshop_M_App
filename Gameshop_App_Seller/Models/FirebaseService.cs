@@ -22,7 +22,7 @@ namespace Gameshop_App_Seller.Models
         public async Task<string> GetUserKeyByEmail(string email)
         {
             var users = await ClientUsers
-                .Child("Users/Account")
+                .Child("Account")
                 .OnceAsync<Users>();
 
             var userWithKey = users.FirstOrDefault(u => u.Object.MAIL == email);
@@ -41,7 +41,26 @@ namespace Gameshop_App_Seller.Models
             try
             {
                 var request = await ClientUsers
-                    .Child($"Users/Request")
+                    .Child($"Request")
+                    .OnceAsync<Users>(); // Adjust this according to your database structure
+
+                // Check if any item in Request has the specified email
+                return request.Any(item => item.Object.MAIL == email);
+            }
+            catch (Exception ex)
+            {
+                // Log or display any exceptions for debugging
+                Console.WriteLine($"Error checking email in Request: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> IsUserEmailInVerifiedAsync(string email)
+        {
+            try
+            {
+                var request = await ClientUsers
+                    .Child($"Verified")
                     .OnceAsync<Users>(); // Adjust this according to your database structure
 
                 // Check if any item in Request has the specified email

@@ -85,7 +85,7 @@ public partial class LoginPage : INotifyPropertyChanged
 private async Task<string> GetUserKeyByEmail(string email)
     {
         var users = await ClientUsers
-            .Child("Users/Account")
+            .Child("Account")
             .OnceAsync<Users>();
 
         var userWithKey = users.FirstOrDefault(u => u.Object.MAIL == email);
