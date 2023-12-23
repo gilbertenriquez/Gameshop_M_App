@@ -125,7 +125,7 @@ public partial class VerifyingPage : ContentPage
         
         var status = statusUser.SelectedItem.ToString();    
         var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail, status);
-        await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted Please wait for 3 days to 7 days for verfication", "OK");
+        await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted Please wait for 3 days to 7 days for verification", "OK");
         await Navigation.PushModalAsync(new MainPage());
         return;
     }

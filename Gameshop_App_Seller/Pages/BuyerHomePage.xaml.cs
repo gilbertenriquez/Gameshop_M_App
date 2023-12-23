@@ -52,6 +52,8 @@ public partial class BuyerHomePage : ContentPage
         }
     }
 
+    
+
 
 
 
@@ -59,20 +61,20 @@ public partial class BuyerHomePage : ContentPage
     {
         string userEmail = App.email;
 
-        //Check if the user email is in the "Request" node
-        bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
+        ////Check if the user email is in the "Request" node
+        //bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
 
-        if (isUserInRequest)
-        {
-            // Display an alert indicating that the user's email is in the Request list
-            await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
-            return;
-        }
-        else
-        {
-            // Display an alert indicating that the user's email is not in the Request list
-            await DisplayAlert("Information", "Your email is not in the Request list. Your application for becoming a seller is not in the pending list.", "OK");
-        }
+        //if (isUserInRequest)
+        //{
+        //    // Display an alert indicating that the user's email is in the Request list
+        //    await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
+        //    return;
+        //}
+        //else
+        //{
+        //    // Display an alert indicating that the user's email is not in the Request list
+        //    await DisplayAlert("Information", "Your email is not in the Request list. Your application for becoming a seller is not in the pending list.", "OK");
+        //}
 
         // Display a confirmation dialog
         bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
@@ -86,7 +88,7 @@ public partial class BuyerHomePage : ContentPage
             {
                 App.key = userKey;
                 // You might want to use userKey here as needed
-                await Navigation.PushModalAsync(new HomePage(userKey));
+                await Navigation.PushModalAsync(new AppShell(userKey));
             }
             else
             {
@@ -99,14 +101,21 @@ public partial class BuyerHomePage : ContentPage
     {
         if (datalist.SelectedItem != null)
         {
-            // Pass the App.key to ReportPage
-            await Navigation.PushModalAsync(new ReportPage(App.key));
+            var selectedUser = datalist.SelectedItem as Users;
+
+            if (selectedUser != null)
+            {
+                // Pass the necessary data to ReportPage, including reporter's email
+                await Navigation.PushModalAsync(new ReportPage(selectedUser.ProductName, selectedUser.ProductPrice, selectedUser.MAIL, selectedUser.image1, selectedUser.ReporterEmail));
+            }
         }
         else
         {
             await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
         }
     }
+
+
 
 
 
@@ -118,22 +127,17 @@ public partial class BuyerHomePage : ContentPage
 
             if (selectedUser != null)
             {
-                App.email = selectedUser.MAIL;
+                // Set App.email based on the selected user's email
+                App.email = selectedUser.MAIL.ToLower();
+
+                // Retrieve the user key based on the email
                 App.key = await vans.GetUserKey(App.email);
 
-                // Fetch all user data based on the selected email
-                var allUserData = await vans.GetUserDataByEmailAsync(App.email);
+                // Fetch additional user data, including ReporterEmail
+                selectedUser = await vans.GetUserDataByEmailAsync(App.email);
 
-                if (allUserData != null)
-                {
-                    // Process or display the fetched user data as needed
-                    // For example, you might want to update UI elements or navigate to another page
-                    // Pass the data to the next page if needed
-                }
-                else
-                {
-                    // Handle the case where user data is not available
-                }
+                // Load user data to update UI
+
             }
             else
             {
@@ -142,5 +146,4 @@ public partial class BuyerHomePage : ContentPage
             }
         }
     }
-
 }

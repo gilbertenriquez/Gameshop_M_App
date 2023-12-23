@@ -7,24 +7,54 @@ public partial class ReportPage : ContentPage
 {
 
     private Users Sickboi = new  Users();
+    public string UserEmail { get; }
+    public string UserKey { get; }
     public ReportPage()
     {
         InitializeComponent();
+        LoadUserData();
     }
 
-    public ReportPage(string userKey)
+    public ReportPage(string productName, string productPrice, string userEmail, string image1, string reportermail)
     {
         InitializeComponent();
-        UserKey = userKey;
+
+
+        LoadUserData();
+        Productname.Text = productName;
+        Productprice.Text = productPrice;
+        Emailtxt.Text = userEmail;
+        MainImage.Source = image1;
+        reporterEmail.Text = reportermail;
+
+        // Rest of your initialization code...
     }
 
 
-    protected override void OnAppearing()
+    private async void LoadUserData()
     {
-        base.OnAppearing();
-        Productname.Text = productname;
-        Productprice.Text = productprice;
-        Emailtxt.Text = email;
+        if (!string.IsNullOrEmpty(App.email))
+        {
+            // Assuming you have a method to get user data by email
+            var allUserData = await Sickboi.GetUserDataByEmailAsync(App.email);
+
+            if (allUserData != null)
+            {
+                // Update UI elements with user data
+
+                Productname.Text = allUserData.ProductName;
+                Productprice.Text = allUserData.ProductPrice;
+                Emailtxt.Text = allUserData.MAIL;
+                MainImage.Source = allUserData.image1;
+                reporterEmail.Text = allUserData.ReporterEmail;
+
+            }
+            else
+            {
+                // Handle the case where user data is not available
+                // Display an error message or take appropriate action
+            }
+        }
     }
 
 
@@ -32,14 +62,24 @@ public partial class ReportPage : ContentPage
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
     {
+        var result = await Sickboi.ReportedProduct(MainImage.Source.ToString(), Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text,reporterEmail.Text);
         if (String.IsNullOrEmpty(reporttxt.Text))
         {
             await DisplayAlert("Message", "Fill up the empty field", "OK");
             return;
         }
-        await DisplayAlert("Message", "Your Report has been Submitted", "OK");
-        reporttxt.Text = "";
-        return;
+        if (result)
+        {
+            await DisplayAlert("Message", "Your Report has been Submitted", "OK");
+            reporttxt.Text = "";
+            return;
+        }
+        else
+        {
+            await DisplayAlert("Message", "Your Report has not been Submitted", "OK");
+            return;
+        }
+       
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)

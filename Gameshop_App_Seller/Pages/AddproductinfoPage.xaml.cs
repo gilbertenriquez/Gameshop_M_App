@@ -46,11 +46,12 @@ public partial class AddproductinfoPage : ContentPage
         if (string.IsNullOrEmpty(userKey))
         {
             await DisplayAlert("Message", "Product Successfully Added", "OK");
-            await Navigation.PushModalAsync(new AppShell());
+            return;
         }
         else
         {
             await DisplayAlert("Message", "Product Not Successfully Added", "OK");
+            return;
         }
     
     }

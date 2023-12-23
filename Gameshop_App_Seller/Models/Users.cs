@@ -46,8 +46,9 @@
 
         public string isVerified { get; set; }
         public string Message { get; set; }
+        public string ReporterEmail { get; set; }
 
-            public Users()
+        public Users()
             {
                 authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
             }
@@ -288,31 +289,37 @@
         }
 
 
-            public async Task<Users> GetUserDataByEmailAsync(string email)
+        public async Task<Users> GetUserDataByEmailAsync(string email)
+        {
+            try
             {
-                try
-                {
-                    var userSnapshots = await ClientUsers
-                        .Child("Account")
-                        .OnceAsync<Users>(); // Assuming UserData is the class representing your user data
+                var userSnapshots = await ClientUsers
+                    .Child("Account")
+                    .Child("Product")
+                    .OnceAsync<Users>();
 
-                    var userData = userSnapshots
-                        .Select(snapshot => snapshot.Object)
-                        .FirstOrDefault(user => user.MAIL == email);
-
-                    return userData;
-                }
-                catch (Exception ex)
+                foreach (var snapshot in userSnapshots)
                 {
-                    // Log or handle the exception appropriately
-                    Console.WriteLine($"Error in GetUserDataByEmailAsync: {ex.Message}");
-                    return null;
+                    Console.WriteLine($"Snapshot Key: {snapshot.Key}, Email: {snapshot.Object.MAIL}");
                 }
+                var userData = userSnapshots
+                    .Select(snapshot => snapshot.Object)
+                    .FirstOrDefault(user => user.MAIL.Equals(email, StringComparison.OrdinalIgnoreCase));
+                return userData;
             }
-        
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetUserDataByEmailAsync: {ex.Message}");
+                return null;
+            }
+        }
 
-        //displaying all seller products
-        public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
+    
+
+
+
+    //displaying all seller products
+    public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
         {
             var userKeys = await GetUserKeysAsync();
 
@@ -529,11 +536,12 @@
                                     string img3,
                                     string img4,
                                     string email,
-                                    string isVerified){
+                                    string isVerified)
+        {
             try
             {
                 // Construct the path to the user's account node
-                var userAccountPath = $"Account/Request";
+                var userAccountPath = $"Request";
 
                 var evaluateEmail = (await ClientUsers
                     .Child($"{userAccountPath}")
@@ -570,6 +578,33 @@
                 return false;
             }
         }
+
+
+
+        public async Task<bool> ReportedProduct(string images, string productName, string productPrice, string email ,string reportedreason,string reporterEmails)
+        {
+            var evaluateEmail = (await ClientUsers
+                   .Child("Reported")
+                   .OnceAsync<Users>())
+                   .FirstOrDefault(a => a.Object.MAIL == email);
+
+            var admin = new Users()
+            {
+                image1 = images,
+                ProductName = productName,
+                ProductPrice = productPrice,
+                Message = reportedreason,
+                MAIL = email,
+                ReporterEmail = reporterEmails
+
+            };
+            await ClientUsers
+                      .Child($"Reported/{App.key}")
+                      .PostAsync(admin);
+            return true;
+        }
+
+
 
         //sending the application for becoming a seller
         public async Task<bool> SaveValid(

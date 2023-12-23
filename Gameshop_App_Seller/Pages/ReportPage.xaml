@@ -9,8 +9,8 @@
     <ScrollView>
         <VerticalStackLayout VerticalOptions="FillAndExpand" Spacing="20" Margin="20">
 
-            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" VerticalOptions="FillAndExpand"
-                  HorizontalOptions="Center" Margin="20" RowSpacing="40">
+            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" VerticalOptions="FillAndExpand"
+                  HorizontalOptions="Center" Margin="0" RowSpacing="20">
                 <ImageButton Grid.Row="0" Source="back.png"
                          HeightRequest="30" 
                          HorizontalOptions="Start" 
@@ -24,16 +24,26 @@
                    Text="Submit Your Report" 
                    FontSize="30" 
                    TextColor="Black"
-                   FontAttributes="Bold"/>
+                   FontAttributes="Bold" Margin="0,20,0,30"/>
+
+                <Label Grid.Row="2" Text="Product Image" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+
+                <Image Grid.Row="3" x:Name="MainImage" HeightRequest="300" WidthRequest="400"/>
+
+                <Label Grid.Row="4" Text="Product Name" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                <Label  Grid.Row="5" x:Name="Productname" TextColor="Black"/>
+                
+                <Label Grid.Row="6" Text="Product Price" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                <Label  Grid.Row="7" x:Name="Productprice" TextColor="Black"/>
+
+                <Label Grid.Row="8" Text="Owner of the Product" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                <Label  Grid.Row="9" x:Name="Emailtxt" TextColor="Black"/>
+                <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Black"/>
 
 
-                <Label  Grid.Row="2" x:Name="Productname" TextColor="Black"/>
-                <Label  Grid.Row="3" x:Name="Productprice" TextColor="Black"/>
-                <Label  Grid.Row="4" x:Name="Emailtxt" TextColor="Black"/>
 
 
-
-                <Frame  Grid.Row="5" 
+                <Frame  Grid.Row="10" 
                         VerticalOptions="Center" 
                         BackgroundColor="White" 
                         Padding="0"
@@ -47,7 +57,7 @@
                     BackgroundColor="Transparent"
                     TextColor="Black"/>
                 </Frame>
-                <Button  Grid.Row="6" 
+                <Button  Grid.Row="11" 
                          Text="Submit"
                          x:Name="btnSubmit"
                          BackgroundColor="Black"
