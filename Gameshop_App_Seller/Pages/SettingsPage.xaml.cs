@@ -46,4 +46,9 @@ public partial class SettingsPage : ContentPage
     {
 
     }
+
+    private async void profileBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ProfileDetail(App.key));
+    }
 }

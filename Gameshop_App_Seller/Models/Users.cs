@@ -7,7 +7,6 @@
     using Firebase.Auth;
     using Firebase.Database;
     using System.Collections.ObjectModel;
-    using Plugin.LocalNotification;
 
 
 
@@ -51,6 +50,7 @@ namespace Gameshop_App_Seller.Models
         public string Message { get; set; }
         public string ReporterEmail { get; set; }
         public string DeniedReason { get; set; }
+        public string ProfilePicture { get; set; }
 
         public Users()
         {
@@ -87,6 +87,111 @@ namespace Gameshop_App_Seller.Models
                 return false;
             }
         }
+
+        public async Task<string> UploadProfilePicture(Stream img, string imgProfile, string filename)
+        {
+            try
+            {
+                var image = await App.firebaseStorage
+                    .Child($"Images/{imgProfile}/{filename}")
+                    .PutAsync(img);
+                return image;
+            }
+            catch (Exception ex)
+            {
+                return "false";
+            }
+        }
+
+        public async Task<bool> UpdateUserData(
+                                string ProfilePic,
+                                string email,
+                                string birthday,
+                                string fName,
+                                string lName,
+                                string gender,
+                                string hAddress,
+                                string password)
+                                    {
+            try
+            {
+                // Construct the path to the user's account node
+                var userAccountPath = "Account";
+
+                var evaluateEmail = (await ClientUsers
+                    .Child($"{userAccountPath}")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == email);
+
+                if (evaluateEmail != null)
+                {
+                    // User exists, update user data
+                    var existingUser = evaluateEmail.Object;
+
+                    // Update only the fields that are provided
+                    if (!string.IsNullOrEmpty(birthday))
+                        existingUser.BIRTHDAY = birthday;
+
+                    if (!string.IsNullOrEmpty(fName))
+                        existingUser.FNAME = fName;
+
+                    if (!string.IsNullOrEmpty(lName))
+                        existingUser.LNAME = lName;
+
+                    if (!string.IsNullOrEmpty(gender))
+                        existingUser.GENDER = gender;
+
+                    if (!string.IsNullOrEmpty(hAddress))
+                        existingUser.Haddress = hAddress;
+
+                    if (!string.IsNullOrEmpty(password))
+                        existingUser.PASSWORD = password;
+
+                    existingUser.ProfilePicture = ProfilePic;
+
+                    // Ensure the Product property remains unchanged
+                    //existingUser.Product = existingUser.Product;
+
+                    // Use the user's account path as the child node
+                    await ClientUsers
+                        .Child($"{userAccountPath}/{App.key}")
+                        .PatchAsync(existingUser);
+
+                    return true;
+                }
+                else
+                {
+                    // User does not exist
+                    return false;
+                }
+            }
+            catch
+            {
+                // An error occurred
+                return false;
+            }
+        }
+
+        public async Task<bool> Update(FileResult ProfilePic,
+                                           string email,
+                                           string birthday,
+                                           string fname,
+                                           string lname,
+                                           string address,
+                                           string gender,
+                                           string password)
+        {
+            var _mainimg = await UploadProfilePicture(await ProfilePic.OpenReadAsync(),
+                                             "ProfilePictureUser",
+                                             ProfilePic.FileName);
+
+
+
+            var _main1 = await UpdateUserData(_mainimg, email, birthday, fname, lname, address, gender, password);
+
+            return true;
+        }
+
 
 
         //public async Task<bool> Login(string email, string Pass)

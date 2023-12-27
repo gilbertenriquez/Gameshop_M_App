@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using CommunityToolkit.Maui;
-using Plugin.LocalNotification;
+
 
 namespace Gameshop_App_Seller
 {
@@ -15,7 +15,6 @@ namespace Gameshop_App_Seller
                 .UseSkiaSharp()
                 .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
-                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

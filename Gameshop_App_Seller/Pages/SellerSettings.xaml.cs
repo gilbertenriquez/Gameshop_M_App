@@ -36,4 +36,9 @@ public partial class SellerSettings : ContentPage
             Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
         }
     }
+
+    private async void profileBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ProfileDetail(App.key));
+    }
 }

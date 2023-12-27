@@ -88,8 +88,19 @@ public partial class BuyerHomePage : ContentPage
         //Check if the user email is in the "Request" node
         bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
 
+        bool isUserInVerified = await App.FirebaseService.IsUserEmailInVerifiedAsync(userEmail);
+
         // Set the user key in App  
         string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        if (isUserInRequest)
+        {
+            // Display an alert indicating that the user's email is in the Request list
+            await DisplayAlert("Information", "You Are Verified", "OK");
+            await Navigation.PushModalAsync(new AppShell(userKey));
+            return;
+        }
+
+
         if (isUserInRequest)
         {
             // Display an alert indicating that the user's email is in the Request list

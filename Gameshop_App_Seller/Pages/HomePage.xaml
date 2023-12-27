@@ -133,10 +133,7 @@
                                          HorizontalOptions="FillAndExpand" Spacing="10">
                                 <ScrollView Margin="20">
                                     <Frame VerticalOptions="Start" BackgroundColor="WhiteSmoke" 
-                                           BorderColor="Gray" 
-                                           CornerRadius="5" 
-                                           Padding="8" 
-                                           Margin="10" >
+                    BorderColor="Gray" CornerRadius="5" Padding="8" Margin="10" HeightRequest="600">
                                         <Grid ColumnSpacing="20" RowSpacing="10">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
