@@ -7,51 +7,55 @@
     using Firebase.Auth;
     using Firebase.Database;
     using System.Collections.ObjectModel;
+    using Plugin.LocalNotification;
 
 
 
 
 
-    namespace Gameshop_App_Seller.Models
+
+namespace Gameshop_App_Seller.Models
+{
+    public class Users
     {
-        public class Users
-        {
+        private static int NotificationIdCounter = 0;
         public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
-            FirebaseAuthProvider authProvider;
-            public string FNAME { get; set; }
-            public string LNAME { get; set; }
-            public string MAIL { get; set; }
-            public string PASSWORD { get; set; }
-            public string BIRTHDAY { get; set; }
-            public string GENDER { get; set; }
-            public string Haddress { get; set; }
+        FirebaseAuthProvider authProvider;
+        public string FNAME { get; set; }
+        public string LNAME { get; set; }
+        public string MAIL { get; set; }
+        public string PASSWORD { get; set; }
+        public string BIRTHDAY { get; set; }
+        public string GENDER { get; set; }
+        public string Haddress { get; set; }
 
 
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public string Imagae_1_link { get; set; }
-            public string image1 { get; set; }
-            public string image2 { get; set; }
-            public string image3 { get; set; }
-            public string image4 { get; set; }
-            public string image5 { get; set; }
-            public string image6 { get; set; }
-            public string image7 { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Imagae_1_link { get; set; }
+        public string image1 { get; set; }
+        public string image2 { get; set; }
+        public string image3 { get; set; }
+        public string image4 { get; set; }
+        public string image5 { get; set; }
+        public string image6 { get; set; }
+        public string image7 { get; set; }
 
-            public string ProductName { get; set; }
-            public string ProductDesc { get; set; }
-            public string ProductPrice { get; set; }
-            public string ProductPath { get; set; }
-            public string ProductQuantity { get; set; }
+        public string ProductName { get; set; }
+        public string ProductDesc { get; set; }
+        public string ProductPrice { get; set; }
+        public string ProductPath { get; set; }
+        public string ProductQuantity { get; set; }
 
         public string isVerified { get; set; }
         public string Message { get; set; }
         public string ReporterEmail { get; set; }
+        public string DeniedReason { get; set; }
 
         public Users()
-            {
-                authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
-            }
+        {
+            authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
+        }
 
 
 
@@ -124,135 +128,135 @@
 
         //not yet
         public async Task<bool> ResetPassword(string email)
-            {
-                await authProvider.SendPasswordResetEmailAsync(email);
-                return true;
-            }
+        {
+            await authProvider.SendPasswordResetEmailAsync(email);
+            return true;
+        }
 
-            //public async Task<string> ChangePassword(string token, string password)
-            //{
-            //    var auth = await authProvider.ChangeUserPassword(token, password);
-            //    return auth.FirebaseToken;
-            //}
+        //public async Task<string> ChangePassword(string token, string password)
+        //{
+        //    var auth = await authProvider.ChangeUserPassword(token, password);
+        //    return auth.FirebaseToken;
+        //}
 
         // add user
-            public async Task<bool> addusers(string name, string lname, string email, string password, string address, string birthday, string gender)
+        public async Task<bool> addusers(string name, string lname, string email, string password, string address, string birthday, string gender)
+        {
+            try
             {
-                try
+                var User = (await ClientUsers.Child("Account")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == email);
+
+                if (User == null)
                 {
-                    var User = (await ClientUsers.Child("Account")
-                        .OnceAsync<Users>())
-                        .FirstOrDefault(a => a.Object.MAIL == email);
-
-                    if (User == null)
+                    var user = new Users()
                     {
-                        var user = new Users()
-                        {
-                            MAIL = email,
-                            FNAME = name,
-                            LNAME = lname,
-                            PASSWORD = password,
-                            Haddress = address,
-                            BIRTHDAY = birthday,
-                            GENDER = gender
+                        MAIL = email,
+                        FNAME = name,
+                        LNAME = lname,
+                        PASSWORD = password,
+                        Haddress = address,
+                        BIRTHDAY = birthday,
+                        GENDER = gender
 
-                        };
-                        await ClientUsers
-                            .Child("Account")
-                            .PostAsync(user);
-                        ClientUsers.Dispose();
-                        return true;
+                    };
+                    await ClientUsers
+                        .Child("Account")
+                        .PostAsync(user);
+                    ClientUsers.Dispose();
+                    return true;
 
-                    }
-                    else
-                    {
-                        return false;
-                    }
                 }
-                catch
+                else
                 {
                     return false;
                 }
             }
+            catch
+            {
+                return false;
+            }
+        }
 
 
         //upload photos of product
-            public async Task<string> UploadImage(Stream img, string proname, string filename)
+        public async Task<string> UploadImage(Stream img, string proname, string filename)
+        {
+            try
             {
-                try
-                {
-                    var image = await App.firebaseStorage
-                        .Child($"Images/{proname}/{filename}")
-                        .PutAsync(img);
-                    return image;
-                }
-                catch (Exception ex)
-                {
-                    return "false";
-                }
+                var image = await App.firebaseStorage
+                    .Child($"Images/{proname}/{filename}")
+                    .PutAsync(img);
+                return image;
             }
+            catch (Exception ex)
+            {
+                return "false";
+            }
+        }
 
 
         //adding product code
-            public async Task<bool> addDesc(string imglink,
-                                     string img1,
-                                     string img2,
-                                     string img3,
-                                     string img4,
-                                     string img5,
-                                     string img6,
-                                     string ProdName,
-                                     string ProdDesc,
-                                     string ProdPrice,
-                                     string ProdQuan,
-                                     string email)
+        public async Task<bool> addDesc(string imglink,
+                                 string img1,
+                                 string img2,
+                                 string img3,
+                                 string img4,
+                                 string img5,
+                                 string img6,
+                                 string ProdName,
+                                 string ProdDesc,
+                                 string ProdPrice,
+                                 string ProdQuan,
+                                 string email)
+        {
+
+
+            try
             {
+                // Construct the path to the user's account node
+                var userAccountPath = $"Account/{App.key}";
 
+                var evaluateEmail = (await ClientUsers
+                    .Child($"{userAccountPath}/Product")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.Imagae_1_link == imglink);
 
-                try
+                if (evaluateEmail == null)
                 {
-                    // Construct the path to the user's account node
-                    var userAccountPath = $"Account/{App.key}";
+                    // Product does not exist, add it
+                    var admin = new Users()
+                    {
+                        image1 = img1,
+                        image2 = img2,
+                        image3 = img3,
+                        image4 = img4,
+                        image5 = img5,
+                        image6 = img6,
+                        Imagae_1_link = imglink,
+                        ProductName = ProdName,
+                        ProductDesc = ProdDesc,
+                        ProductPrice = ProdPrice,
+                        ProductQuantity = ProdQuan,
+                        MAIL = email
+                    };
 
-                    var evaluateEmail = (await ClientUsers
+                    // Use the user's account path as the child node
+                    await ClientUsers
                         .Child($"{userAccountPath}/Product")
-                        .OnceAsync<Users>())
-                        .FirstOrDefault(a => a.Object.Imagae_1_link == imglink);
+                        .PostAsync(admin);
 
-                    if (evaluateEmail == null)
-                    {
-                        // Product does not exist, add it
-                        var admin = new Users()
-                        {
-                            image1 = img1,
-                            image2 = img2,
-                            image3 = img3,
-                            image4 = img4,
-                            image5 = img5,
-                            image6 = img6,
-                            Imagae_1_link = imglink,
-                            ProductName = ProdName,
-                            ProductDesc = ProdDesc,
-                            ProductPrice = ProdPrice,
-                            ProductQuantity = ProdQuan,
-                            MAIL = email
-                        };
-
-                        // Use the user's account path as the child node
-                        await ClientUsers
-                            .Child($"{userAccountPath}/Product")
-                            .PostAsync(admin);
-
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
                 }
-                catch
+                else
                 {
                     return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -314,12 +318,12 @@
             }
         }
 
-    
 
 
 
-    //displaying all seller products
-    public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
+
+        //displaying all seller products
+        public async Task<ObservableCollection<Users>> GetUserProductListsAsync()
         {
             var userKeys = await GetUserKeysAsync();
 
@@ -401,82 +405,82 @@
 
         //when product of seller is added it will display their own product in their seller page or home
         public async Task<ObservableCollection<Users>> GetUserProducts(string userKey)
+        {
+            try
             {
-                try
-                {
-                    var products = await ClientUsers
-                        .Child($"Account/{userKey}/Product")
-                        .OnceAsync<Users>();
+                var products = await ClientUsers
+                    .Child($"Account/{userKey}/Product")
+                    .OnceAsync<Users>();
 
-                    var productList = products.Select(p =>
-                    {
-                        var user = p.Object;
-                        user.ProductPath = $"Account/{userKey}/Product/{p.Key}";
-                        return user;
-                    }).ToList();
-
-                    return new ObservableCollection<Users>(productList);
-                }
-                catch (Exception ex)
+                var productList = products.Select(p =>
                 {
-                    // Handle exceptions as needed
-                    return new ObservableCollection<Users>();
-                }
+                    var user = p.Object;
+                    user.ProductPath = $"Account/{userKey}/Product/{p.Key}";
+                    return user;
+                }).ToList();
+
+                return new ObservableCollection<Users>(productList);
             }
+            catch (Exception ex)
+            {
+                // Handle exceptions as needed
+                return new ObservableCollection<Users>();
+            }
+        }
 
 
 
         //upload seller products
-            public async Task<bool> Save(FileResult maninimg,
-                                     FileResult img1,
-                                     FileResult img2,
-                                     FileResult img3,
-                                     FileResult img4,
-                                     FileResult img5,
-                                     FileResult img6,
-                                     string productname,
-                                     string productDescript,
-                                     string productprice,
-                                     string productquantity,
-                                     string mail)
-            {
-                var _mainimg = await UploadImage(await maninimg.OpenReadAsync(),
-                                                 "ProductImg",
-                                                 maninimg.FileName);
+        public async Task<bool> Save(FileResult maninimg,
+                                 FileResult img1,
+                                 FileResult img2,
+                                 FileResult img3,
+                                 FileResult img4,
+                                 FileResult img5,
+                                 FileResult img6,
+                                 string productname,
+                                 string productDescript,
+                                 string productprice,
+                                 string productquantity,
+                                 string mail)
+        {
+            var _mainimg = await UploadImage(await maninimg.OpenReadAsync(),
+                                             "ProductImg",
+                                             maninimg.FileName);
 
-                var _mainimg1 = await UploadImage(await img1.OpenReadAsync(),
-                                                "ProductImg",
-                                                img1.FileName);
-                var _mainimg2 = await UploadImage(await img2.OpenReadAsync(),
-                                                "ProductImg",
-                                                img2.FileName);
-                var _mainimg3 = await UploadImage(await img3.OpenReadAsync(),
-                                                "ProductImg",
-                                                img3.FileName);
-                var _mainimg4 = await UploadImage(await img4.OpenReadAsync(),
-                                                "ProductImg",
-                                                img4.FileName);
-                var _mainimg5 = await UploadImage(await img5.OpenReadAsync(),
-                                                "ProductImg",
-                                                img5.FileName);
-                var _mainimg6 = await UploadImage(await img6.OpenReadAsync(),
-                                                "ProductImg",
-                                                img6.FileName);
+            var _mainimg1 = await UploadImage(await img1.OpenReadAsync(),
+                                            "ProductImg",
+                                            img1.FileName);
+            var _mainimg2 = await UploadImage(await img2.OpenReadAsync(),
+                                            "ProductImg",
+                                            img2.FileName);
+            var _mainimg3 = await UploadImage(await img3.OpenReadAsync(),
+                                            "ProductImg",
+                                            img3.FileName);
+            var _mainimg4 = await UploadImage(await img4.OpenReadAsync(),
+                                            "ProductImg",
+                                            img4.FileName);
+            var _mainimg5 = await UploadImage(await img5.OpenReadAsync(),
+                                            "ProductImg",
+                                            img5.FileName);
+            var _mainimg6 = await UploadImage(await img6.OpenReadAsync(),
+                                            "ProductImg",
+                                            img6.FileName);
 
-                var _main1 = await addDesc(_mainimg,
-                                           _mainimg1,
-                                           _mainimg2,
-                                           _mainimg3,
-                                           _mainimg4,
-                                           _mainimg5,
-                                           _mainimg6,
-                                           productname,
-                                           productDescript,
-                                           productprice,
-                                           productquantity,
-                                           mail);
+            var _main1 = await addDesc(_mainimg,
+                                       _mainimg1,
+                                       _mainimg2,
+                                       _mainimg3,
+                                       _mainimg4,
+                                       _mainimg5,
+                                       _mainimg6,
+                                       productname,
+                                       productDescript,
+                                       productprice,
+                                       productquantity,
+                                       mail);
 
-                return true;
+            return true;
         }
 
         //not yet
@@ -581,7 +585,7 @@
 
 
 
-        public async Task<bool> ReportedProduct(string images, string productName, string productPrice, string email ,string reportedreason,string reporterEmails)
+        public async Task<bool> ReportedProduct(string images, string productName, string productPrice, string email, string reportedreason, string reporterEmails)
         {
             var evaluateEmail = (await ClientUsers
                    .Child("Reported")
@@ -642,33 +646,57 @@
         }
 
 
+        public ObservableCollection<Users> GetDeniedApplicationsList()
+        {
+            // Assuming DeniedApplication is a class representing denied applications
+            var deniedApplicationsList = ClientUsers
+                .Child("Denied Applications")
+                .AsObservable<Users>()
+                .AsObservableCollection();
+            return deniedApplicationsList;
+        }
+
+
+
 
 
         public async Task<string> ReceiveMessage(string receiverEmail)
+        {
+            try
             {
-                try
-                {
-                    // Assuming your structure is like this: Users/Messages
-                    var user = (await ClientUsers
-                        .Child($"Users/Messages")
-                        .OnceAsync<Users>())
-                        .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
+                // Assuming your structure is like this: Users/Messages
+                var user = (await ClientUsers
+                    .Child($"Users/Messages")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
 
-                    // Check if the user exists and has a message
-                    if (user != null && !string.IsNullOrEmpty(user.Object.Message))
-                    {
-                        return user.Object.Message;
-                    }
-
-                    return "No messages"; // Return a default message if there are no messages
-                }
-                catch
+                // Check if the user exists and has a message
+                if (user != null && !string.IsNullOrEmpty(user.Object.Message))
                 {
-                    return "Error fetching messages"; // Handle errors appropriately
+                    return user.Object.Message;
                 }
+
+                return "No messages"; // Return a default message if there are no messages
             }
-
-
-
+            catch
+            {
+                return "Error fetching messages"; // Handle errors appropriately
+            }
         }
+
+        //private void ShowNotification(string title, string description)
+        //{
+        //    var notification = new NotificationRequest
+        //    {
+        //        NotificationId = NotificationIdCounter,
+        //        Title = title,
+        //        Description = description,
+        //        ReturningData = "optional data",
+        //        Schedule = new NotificationRequestSchedule { NotifyTime = DateTime.Now.AddSeconds(5) } // Adjust timing as needed
+        //    };
+
+        //    NotificationCenter.Current.Show(notification);
+        //}
+
     }
+}

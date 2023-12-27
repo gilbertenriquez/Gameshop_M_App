@@ -10,7 +10,7 @@ public partial class ChangePassword : ContentPage
 		InitializeComponent();
 	}
 
-    private async void BtnChangePassword_Clicked(object sender, EventArgs e)
+    private  void BtnChangePassword_Clicked(object sender, EventArgs e)
     {
 
         //try

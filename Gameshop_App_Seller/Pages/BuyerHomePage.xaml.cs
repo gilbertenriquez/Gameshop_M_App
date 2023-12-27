@@ -15,8 +15,35 @@ public partial class BuyerHomePage : ContentPage
         InitializeComponent();
         LoadDataAsync();
         OnAppearing();
+        //OnAppearingDenied();
 
     }
+
+
+
+    //protected async void OnAppearingDenied()
+    //{
+    //    base.OnAppearing();
+    //    string userEmail = App.email;
+    //    var deniedApplicationsList = vans.GetDeniedApplicationsList();
+    //    // Assuming you have the user's email stored in App.email
+
+    //    // Assuming Users is your class representing denied applications
+    //    var deniedApplication = deniedApplicationsList.FirstOrDefault(app => app.MAIL == userEmail);
+
+    //    if (deniedApplication != null)
+    //    {
+    //        // Display a message with the DeniedReason
+    //        await DisplayAlert("Denied Application", $"Denied Reason: {deniedApplication.DeniedReason}", "OK");
+    //    }
+    //    else
+    //    {
+    //        // Handle the case where the denied application is not found
+    //        await DisplayAlert("Error", "Denied application not found.", "OK");
+    //    }
+    //}
+
+
 
     private async void LoadDataAsync()
     {
@@ -54,36 +81,34 @@ public partial class BuyerHomePage : ContentPage
 
     
 
-
-
-
     private async void BecomeSellerBTN_Clicked(object sender, EventArgs e)
     {
         string userEmail = App.email;
 
-        ////Check if the user email is in the "Request" node
-        //bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
+        //Check if the user email is in the "Request" node
+        bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
 
-        //if (isUserInRequest)
-        //{
-        //    // Display an alert indicating that the user's email is in the Request list
-        //    await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
-        //    return;
-        //}
-        //else
-        //{
-        //    // Display an alert indicating that the user's email is not in the Request list
-        //    await DisplayAlert("Information", "Your email is not in the Request list. Your application for becoming a seller is not in the pending list.", "OK");
-        //}
+        // Set the user key in App  
+        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        if (isUserInRequest)
+        {
+            // Display an alert indicating that the user's email is in the Request list
+            await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
+            return;
+        }
+        else
+        {
+            // Display an alert indicating that the user's email is not in the Request list
+            await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
+            await Navigation.PushModalAsync(new Valid_IDpage(userKey));
+            return;
+        }
 
         // Display a confirmation dialog
         bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
 
         if (userConfirmed)
-        {
-            // Set the user key in App
-            string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-
+        {        
             if (!string.IsNullOrEmpty(userKey))
             {
                 App.key = userKey;
@@ -128,10 +153,10 @@ public partial class BuyerHomePage : ContentPage
             if (selectedUser != null)
             {
                 // Set App.email based on the selected user's email
-                App.email = selectedUser.MAIL.ToLower();
+                App.productname = selectedUser.ProductName.ToLower();
 
                 // Retrieve the user key based on the email
-                App.key = await vans.GetUserKey(App.email);
+                App.key = await vans.GetUserKey(App.productname);
 
                 // Fetch additional user data, including ReporterEmail
                 selectedUser = await vans.GetUserDataByEmailAsync(App.email);

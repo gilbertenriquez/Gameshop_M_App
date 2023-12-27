@@ -60,13 +60,13 @@
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\flag.png" />
 	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\messages.png" />
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
 	  <None Remove="Resources\Images\record.png" />
-	  <None Remove="Resources\Images\report.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\settings.png" />
@@ -79,6 +79,7 @@
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Plugin.LocalNotification" Version="10.1.8" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 		<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
 	</ItemGroup>

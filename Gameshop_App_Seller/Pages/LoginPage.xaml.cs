@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using Firebase.Database;
 using System.Text.RegularExpressions;
+using Plugin.LocalNotification;
 
 namespace Gameshop_App_Seller.Pages;
 
@@ -47,6 +48,8 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
+
+
         var result = await ulogin.AdminLogin(emailEntry.Text, passwordEntry.Text);
         if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text)){
 

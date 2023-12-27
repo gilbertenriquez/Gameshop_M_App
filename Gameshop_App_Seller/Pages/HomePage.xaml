@@ -102,7 +102,7 @@
                             <Grid Grid.Column="1"
                           RowDefinitions="Auto, Auto"
                           ColumnDefinitions="100, *">
-                                <Label Text="Name" Grid.Row="0" x:Name="lblcompanyname"
+                                <Label Text="Shop Name" Grid.Row="0" x:Name="lblcompanyname"
                                TextColor="#007AFF"
                                FontSize="18" LineBreakMode="TailTruncation"
                                FontFamily="RobotoCondensed" />

@@ -34,6 +34,17 @@ namespace Gameshop_App_Seller.Models
             UserKey = userKey;
         }
 
+        public async Task<Users> GetUserByEmail(string email)
+        {
+            var users = await ClientUsers
+                .Child("Account")
+                .OnceAsync<Users>();
+
+            var user = users.FirstOrDefault(u => u.Object.MAIL == email)?.Object;
+
+            return user;
+        }
+
 
         // Inside FirebaseService class
         public async Task<bool> IsUserEmailInRequestAsync(string email)
@@ -73,7 +84,5 @@ namespace Gameshop_App_Seller.Models
                 return false;
             }
         }
-
-
     }
 }

@@ -119,15 +119,35 @@ public partial class VerifyingPage : ContentPage
         progressLoading.IsVisible = false;
     }
 
+    private bool isSaveInProgress = false;
+
     private async void saveBtn_Clicked(object sender, EventArgs e)
     {
-        string userEmail = App.email;
-        
-        var status = statusUser.SelectedItem.ToString();    
-        var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail, status);
-        await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted Please wait for 3 days to 7 days for verification", "OK");
-        await Navigation.PushModalAsync(new MainPage());
-        return;
+        progressLoading.IsVisible = true;
+        // Check if a save operation is already in progress
+        if (isSaveInProgress)
+        {
+            return; // If yes, do nothing
+        }
+
+        try
+        {
+            // Set the flag to indicate that a save operation is in progress
+            isSaveInProgress = true;
+
+            string userEmail = App.email;
+
+            var status = statusUser.SelectedItem.ToString();
+            var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail, status);
+            await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted. Please wait for 3 to 7 days for verification", "OK");
+            await Navigation.PushModalAsync(new MainPage());
+        }
+        finally
+        {
+            // Ensure that the flag is reset even if an exception occurs
+            isSaveInProgress = false;
+            progressLoading.IsVisible = false;
+        }
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)

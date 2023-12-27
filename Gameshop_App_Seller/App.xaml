@@ -17,7 +17,7 @@
             <Color x:Key="TextColorBlack">#0e0e16</Color>
             <Color x:Key="TextColorAccent"></Color>
 
-            <Color x:Key="ButtonColor">#5920d5</Color>
+            <Color x:Key="ButtonColor">#007AFF</Color>
 
             <Color x:Key="TextColorGary">Gray</Color>
             <Color x:Key="PlaceHolder">Black</Color>

@@ -60,7 +60,7 @@
                                      WidthRequest="25" x:Name="notifyBTN" Source="notification.png" />
 
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                       WidthRequest="25" x:Name="ReportBtn" Source="report.png"
+                                       WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
                                              Clicked="reportBTN_Clicked"/>
                             </HorizontalStackLayout>
                         </Grid>
@@ -100,8 +100,8 @@
                                     <DataTemplate>
                                         <Grid
                                               RowDefinitions="Auto, Auto"
-                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="10">
-                                            <Label Text="Name" Grid.Row="0" TextColor="White"/>
+                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="-20">
+                                            <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
                                             <Label Text="{Binding FNAME}" Grid.Row="1"
                                               TextColor="#007AFF"
                                               FontSize="18" LineBreakMode="TailTruncation"
@@ -132,8 +132,8 @@
                                       BackgroundColor="WhiteSmoke" 
                                       BorderColor="Gray" 
                                       CornerRadius="5" 
-                                      Padding="10" 
-                                      Margin="10"
+                                      Padding="0" 
+                                      Margin="20"
                                       VerticalOptions="FillAndExpand" >
                                         <Grid ColumnSpacing="20" RowSpacing="10" Margin="10">
                                             <Grid.RowDefinitions>

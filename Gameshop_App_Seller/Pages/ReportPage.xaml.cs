@@ -7,6 +7,7 @@ public partial class ReportPage : ContentPage
 {
 
     private Users Sickboi = new  Users();
+    
     public string UserEmail { get; }
     public string UserKey { get; }
     public ReportPage()
@@ -62,7 +63,8 @@ public partial class ReportPage : ContentPage
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
     {
-        var result = await Sickboi.ReportedProduct(MainImage.Source.ToString(), Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text,reporterEmail.Text);
+        var ReporteruserEmail = App.email;
+        var result = await Sickboi.ReportedProduct(MainImage.Source.ToString(), Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text, ReporteruserEmail.ToString());
         if (String.IsNullOrEmpty(reporttxt.Text))
         {
             await DisplayAlert("Message", "Fill up the empty field", "OK");

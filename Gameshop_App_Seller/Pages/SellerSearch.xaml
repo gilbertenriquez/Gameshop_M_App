@@ -3,18 +3,116 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.SellerSearch"
              Title="Search"
-          Shell.NavBarHasShadow="False"
          Shell.NavBarIsVisible="False" 
          BackgroundColor="#F1F0E8">
+    
     <ScrollView>
-        <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="40" Margin="20" AbsoluteLayout.LayoutBounds="0,0,1,1"
-      AbsoluteLayout.LayoutFlags="All" BackgroundColor="#272829">
+        <Grid RowDefinitions="AUTO,AUTO,AUTO,Auto"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Border Grid.Row="0"
+     Padding="0"
+     Margin="-5,-60,-5,20" BackgroundColor="#272829"
+     StrokeThickness="0"
+     StrokeShape="RoundRectangle 40">
+                <Border.Shadow>
+                    <Shadow Brush="#007AFF"
+             Offset="20,30"
+             Radius="30"
+             Opacity=".5" />
+                </Border.Shadow>
+                <Grid>
+                    <Image Aspect="AspectFill" Opacity="0.5"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+                        <Image.Source >
+                            <UriImageSource x:Name="imgcover" 
+                             CachingEnabled="True"
+                             CacheValidity="5"/>
+                        </Image.Source>
+                    </Image>
+                    <!--<Border.Background>
+     <LinearGradientBrush EndPoint="5,5">
+         <GradientStop Color="{StaticResource Gradient1}" Offset="0.01"/>
+         <GradientStop Color="{StaticResource Gradient2}" Offset="0.3"/>
+     </LinearGradientBrush>
+ </Border.Background>-->
 
-            <Border StrokeThickness="0" HeightRequest="56" BackgroundColor="#1d1d1d"
-                Stroke="Red">
-                <SearchBar Placeholder="Search items..."  PlaceholderColor="#007AFF" TextColor="#007AFF"/>
+                    <Grid ColumnSpacing="50"
+           RowDefinitions="Auto, Auto, Auto"
+           VerticalOptions="Start"
+           RowSpacing="1"
+           HorizontalOptions="FillAndExpand"
+           Margin="5" Padding="5">
+
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
+               HorizontalOptions="FillAndExpand">
+
+                            <Label Grid.Column="0" Text=""
+                    TextColor="#007AFF"
+                    FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
+                    FontSize="30" />
+                            <HorizontalStackLayout Grid.Column="1" Spacing="10"
+                                    HorizontalOptions="End" Margin="0,40,60,0"
+                                    WidthRequest="100">
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                              WidthRequest="25"  x:Name="ChatBTN" Source="chat.png"/>
+
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                              WidthRequest="25" x:Name="notifyBTN" Source="notification.png" />
+
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                                WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
+                                     />
+                            </HorizontalStackLayout>
+                        </Grid>
+
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+
+                            <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
+                     Grid.Row="1" Margin="10,-5" StrokeThickness="1"
+                     Stroke="#007AFF"
+                     HeightRequest="70" WidthRequest="70">
+                                <!--<Border.Shadow>
+                 <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
+                         Offset="20,20"
+                         Opacity=".7" />
+             </Border.Shadow>-->
+                                <Image HorizontalOptions="Fill"
+                        Aspect="AspectFill" Source="account.png" >
+                                    <!-- <Image.Source>
+                         <UriImageSource x:Name="imglogo"
+                                         CachingEnabled="True"
+                                         CacheValidity="5" />
+                     </Image.Source>
+                     -->
+                                </Image>
+                            </Border>
+
+                            <CollectionView Grid.Column="1" x:Name="username">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                       RowDefinitions="Auto, Auto"
+                                       ColumnDefinitions="Auto,Auto" ColumnSpacing="-20">
+                                            <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
+                                            <Label Text="{Binding FNAME}" Grid.Row="1"
+                                       TextColor="#007AFF"
+                                       FontSize="18" LineBreakMode="TailTruncation"
+                                       FontFamily="RobotoCondensed" />
+                                            <Label Text="{Binding LNAME}" Grid.Row="1" Grid.Column="1"
+                                       TextColor="#007AFF"
+                                       FontSize="18" LineBreakMode="TailTruncation"
+                                       FontFamily="RobotoCondensed" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Border>
-
-        </VerticalStackLayout>
+            <ScrollView Grid.Row="3">
+                <SearchBar  Margin="40" Placeholder="Search....." BackgroundColor="DarkSlateGrey" TextColor="White" PlaceholderColor="White" />
+            </ScrollView>
+        </Grid>
     </ScrollView>
 </ContentPage>
