@@ -10,25 +10,35 @@ public partial class ReportPage : ContentPage
     
     public string UserEmail { get; }
     public string UserKey { get; }
+    private string ImageUri { get; set; }
+    private string MainImageOriginalSource { get; set; }
+
+
     public ReportPage()
     {
         InitializeComponent();
         LoadUserData();
     }
 
-    public ReportPage(string productName, string productPrice, string userEmail, string image1, string reportermail)
+    public ReportPage(string productName, string productPrice, string userEmail, string imageUri, string reporterMail)
     {
         InitializeComponent();
-
 
         LoadUserData();
         Productname.Text = productName;
         Productprice.Text = productPrice;
         Emailtxt.Text = userEmail;
-        MainImage.Source = image1;
-        reporterEmail.Text = reportermail;
 
-        // Rest of your initialization code...
+        // Set MainImage.Source to a placeholder or user-friendly representation
+        MainImage.Source = imageUri; // Replace with your placeholder image
+
+        reporterEmail.Text = reporterMail;
+
+        // Store the actual URI in the ImageUri property for later use
+        ImageUri = imageUri;
+
+        // Set the actual URI in the MainImage.Source property (not displayed)
+        MainImageOriginalSource = imageUri;
     }
 
 
@@ -63,8 +73,9 @@ public partial class ReportPage : ContentPage
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
     {
+       
         var ReporteruserEmail = App.email;
-        var result = await Sickboi.ReportedProduct(MainImage.Source.ToString(), Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text, ReporteruserEmail.ToString());
+        var result = await Sickboi.ReportedProduct(ImageUri, Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text, ReporteruserEmail.ToString());
         if (String.IsNullOrEmpty(reporttxt.Text))
         {
             await DisplayAlert("Message", "Fill up the empty field", "OK");
