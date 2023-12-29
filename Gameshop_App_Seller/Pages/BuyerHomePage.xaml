@@ -100,7 +100,7 @@
                                     <DataTemplate>
                                         <Grid
                                               RowDefinitions="Auto, Auto"
-                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="-20">
+                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="-10">
                                             <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
                                             <Label Text="{Binding FNAME}" Grid.Row="1"
                                               TextColor="#007AFF"
@@ -126,16 +126,18 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="10">
-                                <ScrollView Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
                                     <Frame   
                                       BackgroundColor="WhiteSmoke" 
                                       BorderColor="Gray" 
                                       CornerRadius="5" 
-                                      Padding="0" 
-                                      Margin="20"
-                                      VerticalOptions="FillAndExpand" >
-                                        <Grid ColumnSpacing="20" RowSpacing="10" Margin="10">
+                                      Padding="10" 
+                                        HeightRequest="600"
+                                       Margin="5"
+                                      VerticalOptions="Start" >
+                                        
+                                            <Grid ColumnSpacing="10" Margin="10,-60,10,10" RowSpacing="10">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
@@ -160,25 +162,25 @@
 
                                             </Grid.ColumnDefinitions>
                                           
-                                            <Image Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="{Binding image1}" HeightRequest="300" WidthRequest="300"/>
+                                            <Image Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Source="{Binding image1}" HeightRequest="200" WidthRequest="300" Margin="0,50,0,0"/>
 
-                                            <Label Grid.Row="1" Text="Item Name" TextColor="Black"/>
-                                            <Label Grid.Row="2" TextColor="Black" FontSize="20" Text="{Binding ProductName}" />
+                                            <Label Grid.Row="1" Text="Item Name" Grid.ColumnSpan="3" TextColor="Black"/>
+                                            <Label Grid.Row="2" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductName}" />
 
-                                            <Label Grid.Row="3" Text="Description" TextColor="Black"/>
-                                            <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductDesc}" />
+                                            <Label Grid.Row="3" Text="Description" Grid.ColumnSpan="3" TextColor="Black"/>
+                                            <Label Grid.Row="4" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductDesc}" />
 
-                                            <Label Grid.Row="5" Text="Price" TextColor="Black"/>
-                                            <Label Grid.Row="6" TextColor="Black" FontSize="20" Text="{Binding ProductPrice}" />
+                                            <Label Grid.Row="5" Text="Price" Grid.ColumnSpan="3" TextColor="Black"/>
+                                            <Label Grid.Row="6" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductPrice}" />
 
-                                            <Label Grid.Row="7" Text="Qauntity" TextColor="Black"/>
-                                            <Label Grid.Row="8" TextColor="Black" FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="7" Text="Qauntity" Grid.ColumnSpan="3" TextColor="Black"/>
+                                            <Label Grid.Row="8" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductQuantity}" />
 
                                             <Button Grid.Row="9" 
                                                HorizontalOptions="Center" 
-                                               Grid.ColumnSpan="2" 
+                                               Grid.ColumnSpan="3" 
                                                x:Name="btnSend" 
-                                               Text="Send a Message"
+                                               Text="Message"
                                                TextColor="White"
                                                BackgroundColor="Black"/>
                                         </Grid>

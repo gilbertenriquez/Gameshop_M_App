@@ -15,20 +15,20 @@ namespace Gameshop_App_Seller.Pages;
 public partial class LoginPage : INotifyPropertyChanged
 {
 
-    public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
+    //public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
     private Users ulogin = new();
     public LoginPage()
     {
         InitializeComponent();
         bool hasKey = Preferences.ContainsKey("token");
-        if (hasKey)
-        {
-            string token = Preferences.Get("token", "");
-            if (!string.IsNullOrEmpty(token))
-            {
-                Navigation.PushAsync(new HomePage());
-            }
-        }
+        //if (hasKey)
+        //{
+        //    string token = Preferences.Get("token", "");
+        //    if (!string.IsNullOrEmpty(token))
+        //    {
+        //        Navigation.PushAsync(new HomePage());
+        //    }
+        //}
 
     }
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -70,7 +70,7 @@ public partial class LoginPage : INotifyPropertyChanged
                   await DisplayAlert("Alert!", "Access Granted!", "OK!");
                   emailEntry.Text = "";
                   passwordEntry.Text = "";
-                  await Navigation.PushModalAsync(new MainPage());
+                  await Navigation.PushModalAsync(new MainPage(userUid));
               }
               else
               {
