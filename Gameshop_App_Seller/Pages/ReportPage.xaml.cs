@@ -97,6 +97,12 @@ public partial class ReportPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        Productname.Text = string.Empty;
+        Productprice.Text = string.Empty;
+        Emailtxt.Text = string.Empty;
+        MainImage.Source = null;
+        reporterEmail.Text = string.Empty;
+
         await Navigation.PopModalAsync();
     }
 }

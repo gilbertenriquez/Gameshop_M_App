@@ -11,9 +11,9 @@ public partial class MessagePage : ContentPage
         // ... other initialization code
     }
 
-    private async void ImageButton_Clicked(object sender, EventArgs e)
+    private void ImageButton_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushModalAsync(new ChatHomepage(userKey));
+		//await Navigation.PushModalAsync(new //ChatHomepage(userKey));
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)

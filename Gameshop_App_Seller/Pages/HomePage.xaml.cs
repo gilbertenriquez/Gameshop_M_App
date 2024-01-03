@@ -112,7 +112,7 @@ public partial class HomePage : ContentPage
             {
                 App.key = userKey;
                 // You might want to use userKey here as needed
-                await Navigation.PushModalAsync(new ChatHomepage(userKey));
+                //await Navigation.PushModalAsync(new ChatHomepage(userKey));
             }
         }
         else

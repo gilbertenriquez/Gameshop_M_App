@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.SellerSearch"
              Title="Search"
          Shell.NavBarIsVisible="False" 
-         BackgroundColor="#F1F0E8">
+         BackgroundColor="#EEF5FF">
     
     <ScrollView>
         <Grid RowDefinitions="AUTO,AUTO,AUTO,Auto"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -62,6 +62,8 @@
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                 WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
                                      />
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                                WidthRequest="25" x:Name="ShopBTN" Source="shop.png"/>
                             </HorizontalStackLayout>
                         </Grid>
 
@@ -86,26 +88,20 @@
                      -->
                                 </Image>
                             </Border>
-
-                            <CollectionView Grid.Column="1" x:Name="username">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid
+                            <Label Text="hello" Grid.Column="1"/>
+                            <Grid  Grid.Column="1"
                                        RowDefinitions="Auto, Auto"
                                        ColumnDefinitions="Auto,Auto" ColumnSpacing="-20">
-                                            <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
-                                            <Label Text="{Binding FNAME}" Grid.Row="1"
+                                <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
+                                <Label x:Name="FirstNameUser" Grid.Row="1"
                                        TextColor="#007AFF"
                                        FontSize="18" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
-                                            <Label Text="{Binding LNAME}" Grid.Row="1" Grid.Column="1"
+                                <Label  Grid.Row="1" x:Name="LastNameUser" Grid.Column="1"
                                        TextColor="#007AFF"
                                        FontSize="18" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

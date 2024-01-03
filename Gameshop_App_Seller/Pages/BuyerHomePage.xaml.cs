@@ -19,6 +19,14 @@ public partial class BuyerHomePage : ContentPage
 
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        // Clear the selection in your datalist
+        datalist.SelectedItem = null;
+    }
+
 
 
     //protected async void OnAppearingDenied()
@@ -81,57 +89,7 @@ public partial class BuyerHomePage : ContentPage
 
     
 
-    private async void BecomeSellerBTN_Clicked(object sender, EventArgs e)
-    {
-        string userEmail = App.email;
-
-        //Check if the user email is in the "Request" node
-        bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
-
-        bool isUserInVerified = await App.FirebaseService.IsUserEmailInVerifiedAsync(userEmail);
-
-        // Set the user key in App  
-        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-        if (isUserInRequest)
-        {
-            // Display an alert indicating that the user's email is in the Request list
-            await DisplayAlert("Information", "You Are Verified", "OK");
-            await Navigation.PushModalAsync(new AppShell(userKey));
-            return;
-        }
-
-
-        if (isUserInRequest)
-        {
-            // Display an alert indicating that the user's email is in the Request list
-            await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
-            return;
-        }
-        else
-        {
-            // Display an alert indicating that the user's email is not in the Request list
-            await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
-            await Navigation.PushModalAsync(new Valid_IDpage(userKey));
-            return;
-        }
-
-        // Display a confirmation dialog
-        bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
-
-        if (userConfirmed)
-        {        
-            if (!string.IsNullOrEmpty(userKey))
-            {
-                App.key = userKey;
-                // You might want to use userKey here as needed
-                await Navigation.PushModalAsync(new AppShell(userKey));
-            }
-            else
-            {
-                await DisplayAlert("Warning", "No user key found", "OK");
-            }
-        }
-    }
+   
 
     private async void reportBTN_Clicked(object sender, EventArgs e)
     {
@@ -181,5 +139,63 @@ public partial class BuyerHomePage : ContentPage
                 App.key = null;
             }
         }
+    }
+
+    private async void ShopBTN_Clicked(object sender, EventArgs e)
+    {
+        string userEmail = App.email;
+
+        //Check if the user email is in the "Request" node
+        bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
+
+        bool isUserInVerified = await App.FirebaseService.IsUserEmailInVerifiedAsync(userEmail);
+
+        // Set the user key in App  
+        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        if (isUserInRequest)
+        {
+            // Display an alert indicating that the user's email is in the Request list
+            await DisplayAlert("Information", "You Are Verified", "OK");
+            await Navigation.PushModalAsync(new AppShell(userKey));
+            return;
+        }
+
+
+        if (isUserInRequest)
+        {
+            // Display an alert indicating that the user's email is in the Request list
+            await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
+            return;
+        }
+        else
+        {
+            // Display an alert indicating that the user's email is not in the Request list
+            await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
+            await Navigation.PushModalAsync(new Valid_IDpage(userKey));
+            return;
+        }
+
+        // Display a confirmation dialog
+        bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
+
+        if (userConfirmed)
+        {
+            if (!string.IsNullOrEmpty(userKey))
+            {
+                App.key = userKey;
+                // You might want to use userKey here as needed
+                await Navigation.PushModalAsync(new AppShell(userKey));
+            }
+            else
+            {
+                await DisplayAlert("Warning", "No user key found", "OK");
+            }
+        }
+    }
+
+    private async void ViewProductBTN_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new ViewProductPage());
+
     }
 }

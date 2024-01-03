@@ -1,44 +1,48 @@
 using Gameshop_App_Seller.Models;
+using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages;
 
 public partial class SellerSettings : ContentPage
 {
-    private Users Info = new Users();   
+    private Users Info = new Users();
+    private string userId;
 	public SellerSettings()
 	{
 		InitializeComponent();
 	}
 
-    protected override async void OnAppearing()
+    public SellerSettings(string userId)
     {
-        try
-        {
-            string userKey = App.key;
-            Console.WriteLine($"User key: {userKey}");
+        InitializeComponent();
+        this.userId = userId; // Store the user ID
+    }
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
 
-            var usersInfo = await Info.GetUsersinfoAsync(userKey);
+        var userData = App.key;
 
-            if (usersInfo != null)
-            {
-                username.ItemsSource = usersInfo;
-                Console.WriteLine($"Users info count: {usersInfo.Count}");
-            }
-            else
-            {
-                Console.WriteLine("User information is null. Handle this case if needed.");
-                // Handle the case where user information is not available
-            }
-        }
-        catch (Exception ex)
-        {
-            // Handle exceptions as needed
-            Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
-        }
+        var userAccountPath = $"Account/{userData}";
+
+        // Retrieve the user data from the database
+        var userSnapshot = await ClientUsers
+            .Child(userAccountPath)
+            .OnceSingleAsync<Users>();
+
+
+        FirstNameUser.Text = userSnapshot.FNAME;
+        LastNameUser.Text = userSnapshot.LNAME;
     }
 
-    private async void profileBTN_Clicked(object sender, EventArgs e)
+    private async void ProfileDetailBTN_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new ProfileDetail(App.key));
+        progressLoading.IsVisible = false;
     }
+    //private async void profileBTN_Clicked(object sender, EventArgs e)
+    //{
+    //    await Navigation.PushModalAsync(new ProfileDetail(App.key));
+    //}
 }

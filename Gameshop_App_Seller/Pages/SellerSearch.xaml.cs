@@ -1,10 +1,12 @@
 using Gameshop_App_Seller.Models;
+using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages;
 
 public partial class SellerSearch : ContentPage
 {
     private Users Data = new Users();
+    private string userId;
 	public SellerSearch()
 	{
 		InitializeComponent();
@@ -12,30 +14,29 @@ public partial class SellerSearch : ContentPage
 
     }
 
-    protected override async void OnAppearing()
+
+    public SellerSearch(string userId)
     {
-        try
-        {
-            string userKey = App.key;
-            Console.WriteLine($"User key: {userKey}");
-
-            var usersInfo = await Data.GetUsersinfoAsync(userKey);
-
-            if (usersInfo != null)
-            {
-                username.ItemsSource = usersInfo;
-                Console.WriteLine($"Users info count: {usersInfo.Count}");
-            }
-            else
-            {
-                Console.WriteLine("User information is null. Handle this case if needed.");
-                // Handle the case where user information is not available
-            }
-        }
-        catch (Exception ex)
-        {
-            // Handle exceptions as needed
-            Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
-        }
+        InitializeComponent();
+        this.userId = userId; // Store the user ID
     }
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var userData = App.key;
+
+        var userAccountPath = $"Account/{userData}";
+
+        // Retrieve the user data from the database
+        var userSnapshot = await ClientUsers
+            .Child(userAccountPath)
+            .OnceSingleAsync<Users>();
+
+
+        FirstNameUser.Text = userSnapshot.FNAME;
+        LastNameUser.Text = userSnapshot.LNAME;
+    }
+  
+    
 }

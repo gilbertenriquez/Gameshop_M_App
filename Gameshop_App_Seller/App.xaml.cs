@@ -3,6 +3,7 @@ using Firebase.Database;
 using Gameshop_App_Seller.Models;
 using Firebase.Storage;
 
+
 namespace Gameshop_App_Seller
 {
     public partial class App : Application
@@ -26,6 +27,8 @@ namespace Gameshop_App_Seller
         {
             InitializeAsync(userKey);
         }
+
+
 
         private async void InitializeAsync(string userKey)
         {

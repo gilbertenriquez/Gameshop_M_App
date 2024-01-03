@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.SearchPage"
                       Shell.NavBarHasShadow="False"
              Shell.NavBarIsVisible="False" 
-             BackgroundColor="#F1F0E8">
+             BackgroundColor="#EEF5FF">
     <ScrollView>
 
         <Grid RowDefinitions="150,150,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">

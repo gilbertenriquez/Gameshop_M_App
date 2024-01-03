@@ -9,6 +9,13 @@ public partial class WelcomePage : ContentPage
 
     private async void GetStart_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushModalAsync(new LoginPage());	
+        progressLoading.IsVisible = true;
+        await Navigation.PushModalAsync(new LoginPage());
+        progressLoading.IsVisible = false;
+    }
+
+    private void Exitbtn_Clicked(object sender, EventArgs e)
+    {
+        System.Environment.Exit(0);
     }
 }

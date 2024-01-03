@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.Valid_IDpage"
              Title="Valid_IDpage"
-               BackgroundColor="WhiteSmoke">
+              BackgroundColor="#EEF5FF">
 
     <ScrollView>
         <VerticalStackLayout Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">

@@ -41,14 +41,8 @@ public partial class SettingsPage : ContentPage
         }
     }
 
-
-    private void DeletionAcctBTN_Tapped(object sender, TappedEventArgs e)
+    private void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
     {
 
-    }
-
-    private async void profileBTN_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushModalAsync(new ProfileDetail(App.key));
     }
 }
