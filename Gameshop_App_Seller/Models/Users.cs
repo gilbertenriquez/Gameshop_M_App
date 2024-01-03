@@ -46,6 +46,11 @@ namespace Gameshop_App_Seller.Models
         public string ProductPath { get; set; }
         public string ProductQuantity { get; set; }
 
+        public string ShopProfile { get; set; }
+        public string ShopCoverImg { get; set; }
+        public string ShopName { get; set; }
+        public string ShopContactNumber { get; set; }
+
         public string isVerified { get; set; }
         public string Message { get; set; }
         public string ReporterEmail { get; set; }
@@ -192,7 +197,92 @@ namespace Gameshop_App_Seller.Models
             return true;
         }
 
+        //shop area
 
+
+        public async Task<string> UploadProfilePicShop(Stream img, string imgProfile, string filename)
+        {
+            try
+            {
+                var image = await App.firebaseStorage
+                    .Child($"Images/{imgProfile}/{filename}")
+                    .PutAsync(img);
+                return image;
+            }
+            catch (Exception ex)
+            {
+                return "false";
+            }
+        }
+
+
+        public async Task<bool> UpdateUserShop(
+                                string ShopProfilePicture,
+                                string ShopCoverPicture,
+                                string Shopname,
+                                string Contactnumber)
+        {
+            try
+            {
+                // Construct the path to the user's account node
+                var userAccountPath = "Account";
+
+                var evaluateEmail = (await ClientUsers
+                    .Child($"{userAccountPath}")
+                    .OnceAsync<Users>())
+                    .FirstOrDefault(a => a.Object.MAIL == email);
+
+                if (evaluateEmail != null)
+                {
+
+                    var existingUser = evaluateEmail.Object;
+
+                    existingUser.ShopProfile = ShopProfilePicture;
+                    existingUser.ShopCoverImg = ShopCoverPicture;
+                    existingUser.ShopName = Shopname;
+                    existingUser.ShopContactNumber = Contactnumber;
+                
+                    await ClientUsers
+                        .Child($"{userAccountPath}/{App.key}")
+                        .PatchAsync(existingUser);
+
+                    return true;
+            }
+                else
+            {
+                return false;
+            }
+        }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
+        public async Task<bool> UpdateShop(FileResult ShopProfilePic,
+                                           FileResult ShopCover,
+                                           string Shopname,
+                                           string ShopContactNumber)
+        {
+            var ShopProfile = await UploadProfilePicture(await ShopProfilePic.OpenReadAsync(),
+                                             "ProfilePictureShop",
+                                             ShopProfilePic.FileName);
+
+            var ShopCoverPic = await UploadProfilePicture(await ShopCover.OpenReadAsync(),
+                                            "CoverPictureShop",
+                                            ShopProfilePic.FileName);
+
+
+
+            var ShopUpdates = await UpdateUserShop(ShopProfile, ShopCoverPic, Shopname, ShopContactNumber);
+
+            return true;
+        }
+
+
+        //shop area
 
         //public async Task<bool> Login(string email, string Pass)
         //{

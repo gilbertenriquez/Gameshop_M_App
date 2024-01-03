@@ -41,8 +41,8 @@ public partial class SettingsPage : ContentPage
         }
     }
 
-    private void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
+    private async void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
     {
-
+        await Navigation.PushModalAsync(new ShopDetail(App.key));
     }
 }
