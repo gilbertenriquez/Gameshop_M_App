@@ -87,9 +87,9 @@ public partial class BuyerHomePage : ContentPage
         }
     }
 
-    
 
-   
+
+
 
     private async void reportBTN_Clicked(object sender, EventArgs e)
     {
@@ -152,7 +152,7 @@ public partial class BuyerHomePage : ContentPage
 
         // Set the user key in App  
         string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-        if (isUserInRequest)
+        if (isUserInVerified)
         {
             // Display an alert indicating that the user's email is in the Request list
             await DisplayAlert("Information", "You Are Verified", "OK");
@@ -172,7 +172,7 @@ public partial class BuyerHomePage : ContentPage
             // Display an alert indicating that the user's email is not in the Request list
             await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
             await Navigation.PushModalAsync(new Valid_IDpage(userKey));
-            return;
+
         }
 
         // Display a confirmation dialog
@@ -193,9 +193,30 @@ public partial class BuyerHomePage : ContentPage
         }
     }
 
-    private async void ViewProductBTN_Tapped(object sender, TappedEventArgs e)
+    private async void ViewProductBTN_Tapped_1(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new ViewProductPage());
+        var selectedProduct = e.Parameter as Users; // Replace Users with your actual type
 
+        if (selectedProduct != null)
+        {
+            App.productname = selectedProduct.ProductName?.ToLower();
+            App.key = await vans.GetUserKey(App.productname);
+
+            // Check for null or empty values before passing them to the constructor
+            string productName = selectedProduct.ProductName ?? "Unknown Product";
+            string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
+            string productDescriptions = selectedProduct.ProductDesc ?? "Unknown Description";
+            string productQuantity = selectedProduct.ProductQuantity ?? "Unknown Quantity";
+            string image1 = selectedProduct.image1 ?? string.Empty;
+            string image2 = selectedProduct.image2 ?? string.Empty;
+            string image3 = selectedProduct.image3 ?? string.Empty;
+            string image4 = selectedProduct.image4 ?? string.Empty;
+            string image5 = selectedProduct.image5 ?? string.Empty;
+            string image6 = selectedProduct.image6 ?? string.Empty;
+
+            await Navigation.PushModalAsync(new ViewProductPage(productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+        }
     }
 }
+
+

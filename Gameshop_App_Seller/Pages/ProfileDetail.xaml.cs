@@ -138,4 +138,9 @@ public partial class ProfileDetail : ContentPage
     {
         ProfilePictureUser.Source = null;
     }
+
+    private async void btnBackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+    }
 }

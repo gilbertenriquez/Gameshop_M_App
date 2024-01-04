@@ -12,7 +12,7 @@
      Padding="0"
      Margin="-5,-60,-5,20" BackgroundColor="#272829"
      StrokeThickness="0"
-     StrokeShape="RoundRectangle 40">
+     StrokeShape="RoundRectangle 0">
                 <Border.Shadow>
                     <Shadow Brush="#007AFF"
              Offset="20,30"
