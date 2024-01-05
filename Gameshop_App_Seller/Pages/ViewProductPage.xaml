@@ -2,31 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.ViewProductPage"
-             Title="ViewProductPage">
-    <VerticalStackLayout VerticalOptions="Center">
-        <ImageButton Grid.Row="0" Source="back.png"
-          HeightRequest="30" 
-          HorizontalOptions="Start" 
-          x:Name="btnBackImg" 
-          Clicked="btnBackImg_Clicked"
-          />
-        
-        <Label 
-            TextColor="DarkSlateGray"
-            x:Name="ProductName"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label 
-             TextColor="DarkSlateGray"
-            x:Name="ProductDescription"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="ViewProductPage"  BackgroundColor="#EEF5FF">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
+        <ImageButton Source="back.png"
+                     HeightRequest="30" 
+                     HorizontalOptions="Start" 
+                     x:Name="btnBackImg" 
+                     Clicked="btnBackImg_Clicked"
+                     Margin="0,0,0,20"
+                     />
+        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="20" >
 
-        <Label 
-             TextColor="DarkSlateGray"
-            x:Name="ProductPrice"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
+
+                <VerticalStackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <CarouselView x:Name="PhotoCarousel">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="400">
+                                    <Image Source="{Binding}" Aspect="AspectFit" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </VerticalStackLayout>
+
+                <Label Grid.Row="1" 
+                       TextColor="Black"
+                       Text="ProductName"/>
+
+                <Label Grid.Row="2"
+                       TextColor="DarkSlateGray"
+                       x:Name="ProductName" FontAttributes="Bold"/>
+            
+            
+                <Label  Grid.Row="3"
+                        TextColor="Black"
+                        Text="ProductDescription"/>
+
+                <Label  Grid.Row="4"
+                        TextColor="DarkSlateGray"
+                        x:Name="ProductDescription" FontAttributes="Bold" />
+
+
+                <Label  Grid.Row="5"
+                        TextColor="Black"
+                        Text="ProductPrice"/>
+
+
+                <Label  Grid.Row="6"
+                        TextColor="DarkSlateGray"
+                        x:Name="ProductPrice" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" FontAttributes="Bold"/>
+
+                <Button Text="Chat Now" TextColor="Black" Grid.Row="6" Margin="0,80,0,0" BackgroundColor="#007AFF"/>
+            </Grid>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

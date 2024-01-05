@@ -26,8 +26,8 @@
             <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                 <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="Black" TextColor="Black" x:Name="entryPrice"/>
             </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                <Entry Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="Black" TextColor="Black" x:Name="entryDescription"/>
+            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0" HeightRequest="200">
+                <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="Black" TextColor="Black" x:Name="entryDescription"/>
             </Frame>
             <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                 <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="Black" TextColor="Black" x:Name="entryQuantity"/>

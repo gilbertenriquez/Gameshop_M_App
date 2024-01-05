@@ -55,15 +55,6 @@
                                     HorizontalOptions="End" Margin="0,40,60,0"
                                     WidthRequest="100">
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                              WidthRequest="25"  x:Name="ChatBTN" Source="chat.png"/>
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                              WidthRequest="25" x:Name="notifyBTN" Source="notification.png" />
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
-                                      />
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                       WidthRequest="25" x:Name="ShopBTN" Source="shop.png"/>
                             </HorizontalStackLayout>
                         </Grid>

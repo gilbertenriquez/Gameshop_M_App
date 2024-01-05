@@ -203,6 +203,7 @@ public partial class BuyerHomePage : ContentPage
             App.key = await vans.GetUserKey(App.productname);
 
             // Check for null or empty values before passing them to the constructor
+            string email = selectedProduct.MAIL ?? string.Empty;
             string productName = selectedProduct.ProductName ?? "Unknown Product";
             string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
             string productDescriptions = selectedProduct.ProductDesc ?? "Unknown Description";
@@ -214,7 +215,7 @@ public partial class BuyerHomePage : ContentPage
             string image5 = selectedProduct.image5 ?? string.Empty;
             string image6 = selectedProduct.image6 ?? string.Empty;
 
-            await Navigation.PushModalAsync(new ViewProductPage(productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+            await Navigation.PushModalAsync(new ViewProductPage(email, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
         }
     }
 }

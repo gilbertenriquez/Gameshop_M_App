@@ -53,14 +53,7 @@
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
                                            HorizontalOptions="End" Margin="0,40,0,0"
                                            WidthRequest="100">
-                                <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="EditProdsBTN"
-                                     WidthRequest="25" Source="edit.png"/>
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="chat.png" x:Name="ChatBTN"/>
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="notification.png" x:Name="notifyBTN"  />
+                            
                             </HorizontalStackLayout>
 
 

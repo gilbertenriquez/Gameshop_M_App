@@ -66,12 +66,6 @@
                                            WidthRequest="100">
                                 <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="EditProdsBTN"
                                      WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="chat.png" x:Name="ChatBTN" Clicked="ChatBTN_Clicked" />
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" Source="notification.png" x:Name="notifyBTN"  />
                             </HorizontalStackLayout>
 
 
@@ -129,12 +123,12 @@
                         <DataTemplate>
                             <!-- Your item template here -->
                             <!-- For example, you can display product name and description -->
-                            <StackLayout VerticalOptions="FillAndExpand"
-                                         HorizontalOptions="FillAndExpand" Margin="10">
+                            <VerticalStackLayout VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand" Margin="10" >
                                 <ScrollView>
-                                    <Frame VerticalOptions="Start" BackgroundColor="WhiteSmoke" 
-                    BorderColor="Gray" CornerRadius="5" Padding="10" HeightRequest="400">
-                                        <Grid  RowSpacing="10">
+                                    <Frame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" 
+                    BorderColor="Gray" CornerRadius="5" Padding="5">
+                                        <Grid  RowSpacing="5" Margin="5">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
@@ -145,39 +139,25 @@
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
+                                            <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding Imagae_1_link}"  Aspect="AspectFill"  HeightRequest="150" />
+                                           
+                                            <Label Grid.Row="1" Text="Item Name"  TextColor="Black"/>
+                                            <Label Grid.Row="2" TextColor="Black"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
+                                            <Label Grid.Row="3" Text="Description" TextColor="Black"/>
+                                            <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="AUTO" />
+                                            <Label Grid.Row="5" Text="Price"  TextColor="Black"/>
+                                            <Label Grid.Row="6" TextColor="Black"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" />
 
-                                                <ColumnDefinition Width="AUTO" />
-
-                                                <ColumnDefinition Width="AUTO" />
-
-                                            </Grid.ColumnDefinitions>
-                                            <Image HorizontalOptions="Start" Grid.Row="0"  Source="{Binding Imagae_1_link}" HeightRequest="100" Aspect="AspectFit" />
-                                            <Image HorizontalOptions="Start" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Source="{Binding image1}" HeightRequest="100" Aspect="AspectFit" />
-
-
-                                            <Label Grid.Row="1" Text="Item Name" Grid.ColumnSpan="3" TextColor="Black"/>
-                                            <Label Grid.Row="2" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductName}" />
-
-                                            <Label Grid.Row="3" Text="Description" Grid.ColumnSpan="3" TextColor="Black"/>
-                                            <Label Grid.Row="4" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductDesc}" />
-
-                                            <Label Grid.Row="5" Text="Price" Grid.ColumnSpan="3" TextColor="Black"/>
-                                            <Label Grid.Row="6" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductPrice}" />
-
-                                            <Label Grid.Row="7" Text="Qauntity" Grid.ColumnSpan="3" TextColor="Black"/>
-                                            <Label Grid.Row="8" TextColor="Black" Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="Black"/>
+                                            <Label Grid.Row="8" TextColor="Black"  FontSize="20" Text="{Binding ProductQuantity}" />
 
                                         </Grid>
                                     </Frame>
                                 </ScrollView>
-                            </StackLayout>
+                            </VerticalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

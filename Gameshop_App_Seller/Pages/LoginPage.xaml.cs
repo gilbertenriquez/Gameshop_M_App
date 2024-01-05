@@ -48,44 +48,49 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
+        // Trim leading and trailing white spaces from the entered email
+        string cleanedEmail = emailEntry.Text.Trim();
 
+        // Check if email and password are empty after trimming white spaces
+        if (string.IsNullOrEmpty(cleanedEmail) || string.IsNullOrEmpty(passwordEntry.Text))
+        {
+            await DisplayAlert("Alert!", "Please fill up your Email and Password!", "Got it!");
+            return;
+        }
 
-        var result = await ulogin.AdminLogin(emailEntry.Text, passwordEntry.Text);
-        if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text)){
+        var result = await ulogin.AdminLogin(cleanedEmail, passwordEntry.Text);
+        progressLoading.IsVisible = true;
 
-               await DisplayAlert("Alert!", "Please Fill up your Email and Password!", "Got it!");
-               return;
-             }         
-             progressLoading.IsVisible = true;
-          
-            string userUid = await GetUserKeyByEmail(emailEntry.Text);
-          
-           if (!string.IsNullOrEmpty(userUid))
-           {
-              App.key = userUid;
-              App.email = emailEntry.Text;
-            
+        string userUid = await GetUserKeyByEmail(cleanedEmail);
+
+        if (!string.IsNullOrEmpty(userUid))
+        {
+            App.key = userUid;
+            App.email = cleanedEmail;
+
             if (result)
-              {
-                  await DisplayAlert("Alert!", "Access Granted!", "OK!");
-                  emailEntry.Text = "";
-                  passwordEntry.Text = "";
-                  await Navigation.PushModalAsync(new MainPage(userUid));
-              }
-              else
-              {
-              await DisplayAlert("Alert!", "Access Denied!", "OK!");
-              }
-           }
-          else
-          {
-              await DisplayAlert("Alert!", "Invalid Email or Password", "OK!");
-          }         
-          progressLoading.IsVisible = false;        
+            {
+                await DisplayAlert("Alert!", "Access Granted!", "OK!");
+                emailEntry.Text = "";
+                passwordEntry.Text = "";
+                await Navigation.PushModalAsync(new MainPage(userUid));
+            }
+            else
+            {
+                await DisplayAlert("Alert!", "Access Denied!", "OK!");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Alert!", "Invalid Email or Password", "OK!");
+        }
+
+        progressLoading.IsVisible = false;
     }
 
 
-private async Task<string> GetUserKeyByEmail(string email)
+
+    private async Task<string> GetUserKeyByEmail(string email)
     {
         var users = await ClientUsers
             .Child("Account")
