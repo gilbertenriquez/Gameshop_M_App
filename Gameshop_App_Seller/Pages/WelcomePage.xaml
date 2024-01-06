@@ -6,7 +6,7 @@
              Title="WelcomePage" BackgroundColor="#EEF5FF">
 
     <ScrollView>
-    <VerticalStackLayout Spacing="-20"> 
+    <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"> 
 
         <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             
@@ -49,7 +49,7 @@
             </Grid>
 
         <Button x:Name="GetStart" Text="Get Started!" 
-                Margin="20" 
+                Margin="20,80,20,0"
                 VerticalOptions="End"  
                 BackgroundColor="#007AFF" 
                 TextColor="White" 
@@ -57,12 +57,13 @@
                 />
 
         <Button x:Name="Exitbtn" Text="EXIT" 
-                 Margin="20"
+                 Margin="20,0,20,0"
                 VerticalOptions="End"  
                 BackgroundColor="#007AFF" 
                 TextColor="White" 
                 Clicked="Exitbtn_Clicked"
                 />
         </VerticalStackLayout>
+
     </ScrollView>
 </ContentPage>

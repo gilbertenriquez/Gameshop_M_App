@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_App_Seller.Pages.PrivacyPolicyPage"
+             Title="PrivacyPolicyPage" BackgroundColor="#EEF5FF">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <ImageButton Margin="20"  Source="back.png" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
+        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="40" RowSpacing="20">
+            <Label Grid.Row="0" Text="Privacy Policy for Gameshop" FontSize="30" TextColor="Black"/>
+            <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="Black"/>
+            <Label Grid.Row="3" Text="1. Introduction Welcome to Gameshop! This Privacy Policy describes how we collect, use, and disclose personal information when you use our application. By accessing or using Gameshop, you agree to the terms outlined in this policy.
+" FontSize="15"  TextColor="Black"/>
+                <Label Grid.Row="4" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="2. Information We Collect" />
+                            <Span Text="&#10;&#10;Personal Information: We may collect personal information such as your name, email address, and contact details when you register or use our services." />
+                            <Span Text="&#10;&#10;Transaction Information: If you engage in transactions through Gameshop, we may collect information related to those transactions, including payment information." />
+                            <Span Text="&#10;&#10;Usage Data: We may collect information about how you interact with Gameshop, such as your browsing history, search queries, and device information." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="5" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="3. How We Use Your Information" />
+                            <Span Text="&#10;&#10;We use the collected information for various purposes, including:" />
+                            <Span Text="&#10;&#10;1. Providing and improving Gameshop services." />
+                            <Span Text="&#10;2. Processing transactions and payments." />
+                            <Span Text="&#10;3. Customizing content and recommendations." />
+                            <Span Text="&#10;4. Communicating with you about our services and updates." />
+                            <Span Text="&#10;5. Analyzing usage patterns to enhance user experience." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            
+                <Label Grid.Row="6" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="4. User-Provided Payment Information" />
+                            <Span Text="&#10;&#10;Gameshop allows users to choose their preferred payment methods for transactions. We do not store or process payment information directly. All payment transactions are handled by third-party payment processors, and their terms and policies apply." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="7" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="5. Data Security" />
+                            <Span Text="&#10;&#10;We implement security measures to protect your personal information. However, no method of transmission over the internet or electronic storage is entirely secure. We encourage you to take steps to protect your information, such as using strong passwords." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="8" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="6. Third-Party Links and Services" />
+                            <Span Text="&#10;&#10;Gameshop may contain links to third-party websites or services. These third-party sites have their privacy policies, and we are not responsible for their practices. We encourage you to review the privacy policies of these third parties." />
+                            <Span Text="&#10;&#10;7. Changes to Privacy Policy" />
+                            <Span Text="&#10;&#10; We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page. We recommend reviewing this Privacy Policy periodically for any updates." />
+                            <Span Text="&#10;&#10;8. Contact Us" />
+                            <Span Text="&#10;&#10;If you have any questions or concerns about this Privacy Policy, please contact us at GAMESHOP@GMAIL.COM." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+
+            </Grid>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

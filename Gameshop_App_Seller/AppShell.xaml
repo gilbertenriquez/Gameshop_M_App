@@ -15,9 +15,9 @@
     <TabBar>
         <ShellContent Title="Home"                     
                       ContentTemplate="{DataTemplate local:HomePage}"/>
-        <ShellContent Title="Search"
+        <ShellContent Title="Reviews"
                       
-                      ContentTemplate="{DataTemplate local:SearchPage}"/>
+                      ContentTemplate="{DataTemplate local:ReviewsOnSellerPage}"/>
         <ShellContent Title="Settings"
                      
                       ContentTemplate="{DataTemplate local:SettingsPage}"/>

@@ -43,12 +43,20 @@ public partial class ProfileDetail : ContentPage
             if (userSnapshot != null)
             {
                 // Update the UI with the retrieved user data
-                //profilePictureuser.Source = userSnapshot.image1; // Assuming image1 is the property in Users class for profile picture
-                fnameEntry.Text = userSnapshot.FNAME; 
-                lnameEntry.Text=userSnapshot.LNAME;
+                ProfilePictureUser.Source = !string.IsNullOrEmpty(userSnapshot.ProfilePicture)
+                    ? new UriImageSource
+                    {
+                        Uri = new Uri(userSnapshot.ProfilePicture),
+                        CachingEnabled = true,
+                        CacheValidity = TimeSpan.FromDays(1)
+                    }
+                    : "account.png";
+
+                fnameEntry.Text = userSnapshot.FNAME;
+                lnameEntry.Text = userSnapshot.LNAME;
                 Emailentry.Text = userSnapshot.MAIL;
                 Passwordentry.Text = userSnapshot.PASSWORD;
-            Addressentry.Text = userSnapshot.Haddress;
+                Addressentry.Text = userSnapshot.Haddress;
                 birthdayPicker.Date = DateTime.Parse(userSnapshot.BIRTHDAY);
 
                 // Set the value for Picker (assuming GENDER is a string property)
@@ -66,6 +74,7 @@ public partial class ProfileDetail : ContentPage
             Console.WriteLine($"Error: {ex.Message}");
         }
     }
+
 
     private async void UploadProfileImage_Clicked(object sender, EventArgs e)
     {

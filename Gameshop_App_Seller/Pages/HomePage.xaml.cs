@@ -12,7 +12,6 @@ public partial class HomePage : ContentPage
     public HomePage()
     {
         InitializeComponent();
-        OnAppearing();
 
 
     }
@@ -23,6 +22,7 @@ public partial class HomePage : ContentPage
         InitializeComponent();
         InitializeAsync(userkey);
         OnAppearing();
+        LoadUserDataAsync();
 
 
     }
@@ -44,6 +44,44 @@ public partial class HomePage : ContentPage
             Console.WriteLine($"Error in App initialization: {ex.Message}");
         }
     }
+
+
+    private async Task LoadUserDataAsync()
+    {
+        try
+        {
+            var userData = App.key;
+            var userAccountPath = $"Account/{userData}";
+
+            // Retrieve the user data from the database
+            var userSnapshot = await ClientUsers
+                .Child(userAccountPath)
+                .OnceSingleAsync<Users>();
+
+            // Check if the user data exists
+            if (userSnapshot != null)
+            {
+                // Update the UI with the retrieved user data
+                imglogo.Source = !string.IsNullOrEmpty(userSnapshot.ShopProfile)
+                    ? new UriImageSource
+                    {
+                        Uri = new Uri(userSnapshot.ShopProfile),
+                        CachingEnabled = true,
+                        CacheValidity = TimeSpan.FromDays(1)
+                    }
+                    : "account.png";
+
+                lblcompanyname.Text = userSnapshot.ShopName;
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions that might occur during data retrieval
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+
 
     protected override async void OnAppearing()
     {

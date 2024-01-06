@@ -73,7 +73,7 @@ public partial class LoginPage : INotifyPropertyChanged
                 await DisplayAlert("Alert!", "Access Granted!", "OK!");
                 emailEntry.Text = "";
                 passwordEntry.Text = "";
-                await Navigation.PushModalAsync(new MainPage(userUid));
+                await Navigation.PushModalAsync(new BuyerHomePage(userUid));
             }
             else
             {

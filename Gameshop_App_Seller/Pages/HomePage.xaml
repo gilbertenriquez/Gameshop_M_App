@@ -40,12 +40,6 @@
                                     CacheValidity="5"/>
                         </Image.Source>
                     </Image>
-                    <!--<Border.Background>
-            <LinearGradientBrush EndPoint="5,5">
-                <GradientStop Color="{StaticResource Gradient1}" Offset="0.01"/>
-                <GradientStop Color="{StaticResource Gradient2}" Offset="0.3"/>
-            </LinearGradientBrush>
-        </Border.Background>-->
 
                     <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
@@ -64,7 +58,7 @@
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
                                            HorizontalOptions="End" Margin="0,40,0,0"
                                            WidthRequest="100">
-                                <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="EditProdsBTN"
+                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="EditProdsBTN"
                                      WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
                             </HorizontalStackLayout>
 
@@ -77,20 +71,8 @@
                             Grid.Row="1" Margin="10,-5" StrokeThickness="1"
                             Stroke="#007AFF"
                             HeightRequest="70" WidthRequest="70">
-                                <!--<Border.Shadow>
-                        <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
-                                Offset="20,20"
-                                Opacity=".7" />
-                    </Border.Shadow>-->
-                                <Image HorizontalOptions="Fill" Source="account.png"
-                               Aspect="AspectFill">
-                                    <!-- <Image.Source>
-                                <UriImageSource x:Name="imglogo"
-                                                CachingEnabled="True"
-                                                CacheValidity="5" />
-                            </Image.Source>
-                            -->
-                                </Image>
+
+                                <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
                             <Grid Grid.Column="1"

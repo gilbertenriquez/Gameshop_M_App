@@ -6,13 +6,12 @@
     <ScrollView>
         <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
         <ImageButton Source="back.png"
-                     HeightRequest="30" 
                      HorizontalOptions="Start" 
                      x:Name="btnBackImg" 
                      Clicked="btnBackImg_Clicked"
-                     Margin="0,0,0,20"
+                     Margin="0,0,0,40"
                      />
-        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="20" >
+        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="20" Background="White" Padding="10" >
 
 
                 <VerticalStackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -27,30 +26,16 @@
                     </CarouselView>
                 </VerticalStackLayout>
 
-                <Label Grid.Row="1" 
-                       TextColor="Black"
-                       Text="ProductName"/>
-
-                <Label Grid.Row="2"
+                <Label Grid.Row="1"
                        TextColor="DarkSlateGray"
                        x:Name="ProductName" FontAttributes="Bold"/>
             
-            
-                <Label  Grid.Row="3"
-                        TextColor="Black"
-                        Text="ProductDescription"/>
 
-                <Label  Grid.Row="4"
+                <Label  Grid.Row="2"
                         TextColor="DarkSlateGray"
                         x:Name="ProductDescription" FontAttributes="Bold" />
 
-
-                <Label  Grid.Row="5"
-                        TextColor="Black"
-                        Text="ProductPrice"/>
-
-
-                <Label  Grid.Row="6"
+                <Label  Grid.Row="3"
                         TextColor="DarkSlateGray"
                         x:Name="ProductPrice" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" FontAttributes="Bold"/>
 

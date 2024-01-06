@@ -29,12 +29,7 @@
                                     CacheValidity="5"/>
                         </Image.Source>
                     </Image>
-                    <!--<Border.Background>
-            <LinearGradientBrush EndPoint="5,5">
-                <GradientStop Color="{StaticResource Gradient1}" Offset="0.01"/>
-                <GradientStop Color="{StaticResource Gradient2}" Offset="0.3"/>
-            </LinearGradientBrush>
-        </Border.Background>-->
+                  
 
                     <Grid ColumnSpacing="50"
                   RowDefinitions="Auto, Auto, Auto"
@@ -50,13 +45,11 @@
                            TextColor="#007AFF"
                            FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
                            FontSize="30" />
-                            <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                           HorizontalOptions="End" Margin="0,40,60,0"
+                            <HorizontalStackLayout Grid.Column="1" Spacing="20"
+                                           HorizontalOptions="End" Margin="0,40,40,0"
                                            WidthRequest="100">
-                               
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                     WidthRequest="25" x:Name="notifyBTN" Source="notification.png" />
-
+                                
+                                
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                        WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
                                              Clicked="reportBTN_Clicked"/>
@@ -64,6 +57,10 @@
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                       WidthRequest="25" x:Name="ShopBTN" Source="shop.png"
                                             Clicked="ShopBTN_Clicked"/>
+                                
+                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
+                                    WidthRequest="25" x:Name="SettingsBTN" Source="settings.png"
+                                           Clicked="SettingsBTN_Clicked"/>
 
                             </HorizontalStackLayout>
                         </Grid>
@@ -72,23 +69,11 @@
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="10,-5" StrokeThickness="1"
+                            Grid.Row="1" Margin="20" StrokeThickness="3"
                             Stroke="#007AFF"
-                            HeightRequest="70" WidthRequest="70">
-                                <!--<Border.Shadow>
-                        <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
-                                Offset="20,20"
-                                Opacity=".7" />
-                    </Border.Shadow>-->
-                                <Image HorizontalOptions="Fill"
-                               Aspect="AspectFill" Source="account.png" >
-                                    <!-- <Image.Source>
-                                <UriImageSource x:Name="imglogo"
-                                                CachingEnabled="True"
-                                                CacheValidity="5" />
-                            </Image.Source>
-                            -->
-                                </Image>
+                            HeightRequest="140" WidthRequest="140">
+
+                                <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
                           
@@ -97,13 +82,12 @@
                                     <DataTemplate>
                                         <Grid
                                               RowDefinitions="Auto, Auto"
-                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="-15">
-                                            <Label Text="Seller Name" Grid.Row="0" TextColor="White"/>
-                                            <Label Text="{Binding FNAME}" Grid.Row="1"
+                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
+                                            <Label Text="{Binding FNAME}" Margin="0,15,0,0" Grid.Row="1"
                                               TextColor="#007AFF"
                                               FontSize="18" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                            <Label Text="{Binding LNAME}" Grid.Row="1" Grid.Column="1"
+                                            <Label Text="{Binding LNAME}" Margin="0,15,0,0" Grid.Row="1" Grid.Column="1"
                                               TextColor="#007AFF"
                                               FontSize="18" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
@@ -117,7 +101,7 @@
             </Border>
 
             <SearchBar Grid.Row="1" 
-                       Margin="20" 
+                       Margin="20"                        
                        Placeholder="Search....." 
                        BackgroundColor="#007AFF" 
                        TextColor="White"
@@ -133,23 +117,19 @@
                         <DataTemplate>
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
-                                    <Frame   
-                                      BackgroundColor="WhiteSmoke" 
-                                      BorderColor="Gray" 
-                                      CornerRadius="5" 
-                                      Padding="5" 
-                                       Margin="5"
-                                       HeightRequest="350"
-                                      VerticalOptions="Start" >
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1"
-                                      CommandParameter="{Binding .}"/>
-                                        </Frame.GestureRecognizers>
+                                    <ContentView
+                                       BackgroundColor="White" 
+                                       Padding="10"
+                                       VerticalOptions="Start">
                                         
-                                        <Grid   RowSpacing="10">
+
+                                        <ContentView.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
+                                        </ContentView.GestureRecognizers>
+
+
+                                        <Grid RowSpacing="20">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
@@ -158,8 +138,7 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
 
-
-                                            <Image Grid.Row="0"  Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
+                                            <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
                                                 <Image.Scale>
                                                     <OnIdiom x:TypeArguments="x:Double">
                                                         <OnIdiom.Phone>2.5</OnIdiom.Phone>
@@ -167,14 +146,11 @@
                                                     </OnIdiom>
                                                 </Image.Scale>
                                             </Image>
-                                            <Label Grid.Row="1" Text="Item Name" TextColor="Black" Margin="0,70,0,0"/>
-                                            <Label Grid.Row="2" TextColor="Black"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
-                                            <Label Grid.Row="3" Text="Price" TextColor="Black"/>
-                                            <Label Grid.Row="4"  Grid.ColumnSpan="3" FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="{StaticResource ButtonColor}" />
 
-                                          
+                                            <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="{StaticResource ButtonColor}" />
                                         </Grid>
-                                    </Frame>
+                                    </ContentView>
                                 </ScrollView>
                             </StackLayout>
                         </DataTemplate>

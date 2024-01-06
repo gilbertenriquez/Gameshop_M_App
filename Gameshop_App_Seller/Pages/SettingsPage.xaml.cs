@@ -45,4 +45,14 @@ public partial class SettingsPage : ContentPage
     {
         await Navigation.PushModalAsync(new ShopDetail(App.key));
     }
+
+    private async void TandCBTN_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new TermsAndConditionPage());
+    }
+
+    private async void PrivacyPoliBTN_Tapped(object sender, TappedEventArgs e)
+    {
+      await Navigation.PushModalAsync(new PrivacyPolicyPage());
+    }
 }

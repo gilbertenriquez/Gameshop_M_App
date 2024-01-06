@@ -18,6 +18,10 @@ public partial class BuyerHomePage : ContentPage
         //OnAppearingDenied();
 
     }
+    public BuyerHomePage(string userKey) : this()
+    {
+        InitializeAsync(userKey);
+    }
 
     protected override void OnDisappearing()
     {
@@ -25,6 +29,7 @@ public partial class BuyerHomePage : ContentPage
 
         // Clear the selection in your datalist
         datalist.SelectedItem = null;
+
     }
 
 
@@ -72,7 +77,9 @@ public partial class BuyerHomePage : ContentPage
             if (usersInfo != null)
             {
                 username.ItemsSource = usersInfo;
-                Console.WriteLine($"Users info count: {usersInfo.Count}");
+                string profilePictureUrl = usersInfo[0].ProfilePicture;
+                // Set the image source
+                SetImageSource(profilePictureUrl);
             }
             else
             {
@@ -106,6 +113,25 @@ public partial class BuyerHomePage : ContentPage
         else
         {
             await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
+        }
+    }
+
+
+    private void SetImageSource(string imageUrl)
+    {
+        if (!string.IsNullOrEmpty(imageUrl))
+        {
+            imglogo.Source = new UriImageSource
+            {
+                Uri = new Uri(imageUrl),
+                CachingEnabled = true,
+                CacheValidity = TimeSpan.FromDays(1) // Set an appropriate cache validity period
+            };
+        }
+        else
+        {
+            // Set a default image URL or file path if needed
+            imglogo.Source = "account.png";
         }
     }
 
@@ -216,6 +242,29 @@ public partial class BuyerHomePage : ContentPage
             string image6 = selectedProduct.image6 ?? string.Empty;
 
             await Navigation.PushModalAsync(new ViewProductPage(email, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+        }
+    }
+
+    private async void SettingsBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new SellerSettings(App.key));
+    }
+
+    private async void InitializeAsync(string userKey)
+    {
+        try
+        {
+            string userEmail = App.email;
+
+            // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
+            string obtainedUserKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+
+            UserKey = obtainedUserKey;
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception appropriately (log, display, etc.)
+            Console.WriteLine($"Error in AppShell initialization: {ex.Message}");
         }
     }
 }
