@@ -270,26 +270,26 @@ public partial class BuyerHomePage : ContentPage
 }
 
 
-protected override void OnAppearing()
-{
-    base.OnAppearing();
+//protected override void OnAppearing()
+//{
+//    base.OnAppearing();
 
-    // Check for internet connectivity
-    if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-    {
-        DisplayNoInternetAlert();
-        return;
-    }
+//    // Check for internet connectivity
+//    if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+//    {
+//        DisplayNoInternetAlert();
+//        return;
+//    }
 
-    try
-    {
-        // Your existing code for OnAppearing...
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
-    }
-}
+//    try
+//    {
+//        // Your existing code for OnAppearing...
+//    }
+//    catch (Exception ex)
+//    {
+//        Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
+//    }
+//}
 
 //private async void DisplayNoInternetAlert()
 //{
