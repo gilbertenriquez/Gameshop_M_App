@@ -191,13 +191,14 @@ public partial class BuyerHomePage : ContentPage
         {
             // Display an alert indicating that the user's email is in the Request list
             await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
-            return;
+
         }
         else
         {
             // Display an alert indicating that the user's email is not in the Request list
             await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
             await Navigation.PushModalAsync(new Valid_IDpage(userKey));
+            return;
 
         }
 

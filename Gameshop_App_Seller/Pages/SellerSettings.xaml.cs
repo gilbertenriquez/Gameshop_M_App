@@ -73,4 +73,9 @@ public partial class SellerSettings : ContentPage
     {
         await Navigation.PushModalAsync(new TermsAndConditionPage());
     }
+
+    private async void btnBackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+    }
 }

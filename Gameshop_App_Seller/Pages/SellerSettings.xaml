@@ -10,8 +10,7 @@
     <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         
         <Grid RowDefinitions="AUTO,AUTO,AUTO,Auto"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ImageButton Grid.Row="0" Source="back.png" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"/>
-            <Border Grid.Row="1"
+                        <Border Grid.Row="1"
      Padding="0"
      Margin="-5,-60,-5,20" BackgroundColor="#272829"
      StrokeThickness="0"
@@ -35,13 +34,19 @@
 
                         <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
                HorizontalOptions="FillAndExpand">
-                            <Label Grid.Column="0" Text=""
-                    TextColor="#007AFF"
-                    FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
-                    FontSize="30" />
+                            <HorizontalStackLayout Grid.Column="0">
+                                <ImageButton Grid.Row="0" Source="back.png"  
+                                             HeightRequest="40"
+                                             Margin="0,40,0,0"
+                                             HorizontalOptions="Start"
+                                             Clicked="btnBackImg_Clicked"                                          
+                                             x:Name="btnBackImg"/>
+                            </HorizontalStackLayout>
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
                                    HorizontalOptions="End" Margin="0,40,-50,0"
                                     WidthRequest="100">
+                                
+
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                       WidthRequest="25" x:Name="ShopBTN" Source="shop.png"/>
                             </HorizontalStackLayout>
