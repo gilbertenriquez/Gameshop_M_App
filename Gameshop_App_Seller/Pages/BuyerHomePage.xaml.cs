@@ -270,3 +270,55 @@ public partial class BuyerHomePage : ContentPage
 }
 
 
+protected override void OnAppearing()
+{
+    base.OnAppearing();
+
+    // Check for internet connectivity
+    if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+    {
+        DisplayNoInternetAlert();
+        return;
+    }
+
+    try
+    {
+        // Your existing code for OnAppearing...
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
+    }
+}
+
+//private async void DisplayNoInternetAlert()
+//{
+//    await DisplayAlert("No Internet Connection", "Please check your internet connection and try again.", "OK");
+//}
+
+//// Other existing methods...
+
+//// Ensure to handle connectivity changes
+//protected override void OnDisappearing()
+//{
+//    base.OnDisappearing();
+
+//    // Clear the selection in your datalist
+//    datalist.SelectedItem = null;
+
+//    // Unsubscribe from connectivity changes
+//    Connectivity.ConnectivityChanged -= Connectivity_ConnectivityChanged;
+//}
+
+//private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+//{
+//    if (e.NetworkAccess == NetworkAccess.Internet)
+//    {
+//        // Handle the case where internet connection is re-established
+//    }
+//    else
+//    {
+//        // Handle the case where there is no internet connection
+//        DisplayNoInternetAlert();
+//    }
+//}
