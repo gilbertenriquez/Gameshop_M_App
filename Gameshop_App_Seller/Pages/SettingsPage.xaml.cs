@@ -20,8 +20,6 @@ public partial class SettingsPage : ContentPage
                 App.email = null;
                 App.key = null;
                 App.UserKey = null;
-                
-
 
                 // Simulate a delay for demonstration purposes
                 await Task.Delay(3000);
@@ -40,6 +38,7 @@ public partial class SettingsPage : ContentPage
             }
         }
     }
+
 
     private async void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
     {

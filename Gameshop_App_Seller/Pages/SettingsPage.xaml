@@ -143,9 +143,9 @@
 
                 <Frame Grid.Row="9"  HorizontalOptions="FillAndExpand" BorderColor="#EEF5FF" BackgroundColor="#EEF5FF">
                     <Label Text="Logout"  Margin="20,-5" TextColor="#007AFF">
-                        <!--<Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-            </Label.GestureRecognizers>-->
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LogoutBTN_Tapped"/>
+                        </Label.GestureRecognizers>
                     </Label>
                 </Frame>
 

@@ -15,7 +15,7 @@ public partial class BuyerHomePage : ContentPage
         InitializeComponent();
         LoadDataAsync();
         OnAppearing();
-        //OnAppearingDenied();
+        OnAppearingDenied();
 
     }
     public BuyerHomePage(string userKey) : this()
@@ -34,27 +34,29 @@ public partial class BuyerHomePage : ContentPage
 
 
 
-    //protected async void OnAppearingDenied()
-    //{
-    //    base.OnAppearing();
-    //    string userEmail = App.email;
-    //    var deniedApplicationsList = vans.GetDeniedApplicationsList();
-    //    // Assuming you have the user's email stored in App.email
+    protected async void OnAppearingDenied()
+    {
+        try
+        {
+            base.OnAppearing();
 
-    //    // Assuming Users is your class representing denied applications
-    //    var deniedApplication = deniedApplicationsList.FirstOrDefault(app => app.MAIL == userEmail);
+            string userEmail = App.email.ToLower(); 
 
-    //    if (deniedApplication != null)
-    //    {
-    //        // Display a message with the DeniedReason
-    //        await DisplayAlert("Denied Application", $"Denied Reason: {deniedApplication.DeniedReason}", "OK");
-    //    }
-    //    else
-    //    {
-    //        // Handle the case where the denied application is not found
-    //        await DisplayAlert("Error", "Denied application not found.", "OK");
-    //    }
-    //}
+            var deniedApplicationsList = await vans.GetDeniedApplicationsListAsync();
+            var deniedApplication = deniedApplicationsList.FirstOrDefault(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase));
+
+            if (deniedApplication != null)
+            {
+                await DisplayAlert("Denied Application", $"Denied Reason: {deniedApplication.DeniedReason}", "OK");
+            }          
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
+        }
+    }
+
+
 
 
 
@@ -169,54 +171,61 @@ public partial class BuyerHomePage : ContentPage
 
     private async void ShopBTN_Clicked(object sender, EventArgs e)
     {
+        // Check if the user is logged in
+        if (string.IsNullOrEmpty(App.email) || string.IsNullOrEmpty(App.key))
+        {
+            // Handle the case where user is not logged in
+            await DisplayAlert("Error", "User is not logged in.", "OK");
+            return;
+        }
+
+        // Get user email
         string userEmail = App.email;
 
-        //Check if the user email is in the "Request" node
+        // Check if the user email is in the "Request" node
         bool isUserInRequest = await App.FirebaseService.IsUserEmailInRequestAsync(userEmail);
 
         bool isUserInVerified = await App.FirebaseService.IsUserEmailInVerifiedAsync(userEmail);
 
         // Set the user key in App  
         string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-        if (isUserInVerified)
+
+        // Check if userKey is null or empty
+        if (string.IsNullOrEmpty(userKey))
         {
-            // Display an alert indicating that the user's email is in the Request list
-            await DisplayAlert("Information", "You Are Verified", "OK");
-            await Navigation.PushModalAsync(new AppShell(userKey));
+            // Handle the case where userKey is null or empty
+            await DisplayAlert("Error", "User key is null or empty.", "OK");
             return;
         }
 
+        if (isUserInVerified)
+        {
+            // Display an alert indicating that the user is verified
+            progressLoading.IsVisible = true;
+            await DisplayAlert("Information", "You Are Verified", "OK");
+
+            // Add debug statement
+           
+
+            await Navigation.PushModalAsync(new AppShell(userKey));
+            return;
+        }
 
         if (isUserInRequest)
         {
             // Display an alert indicating that the user's email is in the Request list
             await DisplayAlert("Information", "Your email is in the Request list. Your application for becoming a seller is still in process. Please wait for approval.", "OK");
-
         }
         else
         {
             // Display an alert indicating that the user's email is not in the Request list
             await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
+
+            // Add debug statement
+          
+
             await Navigation.PushModalAsync(new Valid_IDpage(userKey));
             return;
-
-        }
-
-        // Display a confirmation dialog
-        bool userConfirmed = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
-
-        if (userConfirmed)
-        {
-            if (!string.IsNullOrEmpty(userKey))
-            {
-                App.key = userKey;
-                // You might want to use userKey here as needed
-                await Navigation.PushModalAsync(new AppShell(userKey));
-            }
-            else
-            {
-                await DisplayAlert("Warning", "No user key found", "OK");
-            }
         }
     }
 

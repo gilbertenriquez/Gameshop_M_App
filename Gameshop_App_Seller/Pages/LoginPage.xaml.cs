@@ -48,15 +48,15 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
-        // Trim leading and trailing white spaces from the entered email
-        string cleanedEmail = emailEntry.Text.Trim();
-
         // Check if email and password are empty after trimming white spaces
-        if (string.IsNullOrEmpty(cleanedEmail) || string.IsNullOrEmpty(passwordEntry.Text))
+        if (emailEntry == null || string.IsNullOrEmpty(emailEntry.Text?.Trim()) || string.IsNullOrEmpty(passwordEntry.Text))
         {
             await DisplayAlert("Alert!", "Please fill up your Email and Password!", "Got it!");
             return;
         }
+
+
+        string cleanedEmail = emailEntry.Text.Trim();
 
         var result = await ulogin.AdminLogin(cleanedEmail, passwordEntry.Text);
         progressLoading.IsVisible = true;

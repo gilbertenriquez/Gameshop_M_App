@@ -3,13 +3,14 @@ using Gameshop_App_Seller.Models;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using static Gameshop_App_Seller.Models.Users;
 
 namespace Gameshop_App_Seller.Pages;
 
 public partial class SignUpPage : INotifyPropertyChanged
 {
     public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
-    private Users Addusers = new();
+    private Users Regis = new();
 	public SignUpPage()
 	{
 		InitializeComponent();
@@ -19,80 +20,94 @@ public partial class SignUpPage : INotifyPropertyChanged
     {
         await Navigation.PopModalAsync();
     }
-   
+
 
     private async void nextBTN_Clicked(object sender, EventArgs e)
     {
         string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-        var email = emailEntry.Text;
-
         progressLoading.IsVisible = false;
+
         try
         {
-            string birthdaypicker = birthdayPicker.ToString();
-            string genderpicker = genderPicker.ToString();
+            string birthdaypicker = birthdayPicker.Date.ToString("yyyy-MM-dd");
+            string genderpicker = genderPicker.SelectedItem?.ToString(); // Handle potential null
 
             if (String.IsNullOrEmpty(FNEntry.Text))
             {
                 await DisplayAlert("Warning", "Type First Name", "Ok");
-                progressLoading.IsVisible = false;
                 return;
             }
+
             if (String.IsNullOrEmpty(LNEntry.Text))
             {
-                await DisplayAlert("Warning", "Type name", "Ok");
-                progressLoading.IsVisible = false;
+                await DisplayAlert("Warning", "Type Last Name", "Ok");
                 return;
             }
-            if (String.IsNullOrEmpty(emailEntry.Text) && Regex.IsMatch(email,emailPattern))
+
+            if (String.IsNullOrEmpty(emailEntry.Text))
             {
-                await DisplayAlert("Warning", "Type your email or your email is invalid", "Ok");
-                progressLoading.IsVisible = false;
+                await DisplayAlert("Warning", "Please enter your email", "Ok");
                 return;
             }
-            if (passwordEntry.Text.Length < 6)
+
+            if (!Regex.IsMatch(emailEntry.Text, emailPattern))
             {
-                await DisplayAlert("Warning", "Password should be 6 digit.", "Ok");
-                progressLoading.IsVisible = false;
+                await DisplayAlert("Warning", "Enter a valid email (e.g., example@gmail.com)", "Ok");
                 return;
             }
+
             if (String.IsNullOrEmpty(passwordEntry.Text))
             {
                 await DisplayAlert("Warning", "Type password", "Ok");
-                progressLoading.IsVisible = false;
                 return;
             }
-            var genderpick = genderPicker.SelectedItem.ToString();
-            var selectBirthdate = birthdayPicker.Date.ToString("yyyy-MM-dd");
-            var result = await Addusers.addusers(FNEntry.Text, LNEntry.Text, emailEntry.Text, passwordEntry.Text, locationEntry.Text, selectBirthdate, genderpick);
-            //bool isSave = await Addusers.Register(emailEntry.Text, FNEntry.Text, LNEntry.Text, locationEntry.Text, birthdaypicker, genderpicker, passwordEntry.Text);
-            if (result)
+
+            if (passwordEntry.Text.Length < 6)
             {
-                await DisplayAlert("Register user", "Registration completed", "Ok");
-                progressLoading.IsVisible = true;
-                await Navigation.PopModalAsync();
+                await DisplayAlert("Warning", "Password should be at least 6 characters.", "Ok");
+                return;
             }
-            else
+
+            if (string.IsNullOrEmpty(locationEntry.Text))
             {
-                await DisplayAlert("Register user", "Registration failed", "Ok");
-                progressLoading.IsVisible = false;
+                await DisplayAlert("Warning", " Type your Home Address", "Ok");
+            }
+
+
+            if (genderPicker.SelectedItem == null)
+            {
+                await DisplayAlert("Warning", "Select your gender", "Ok");
+                return;
+            }
+
+            var registrationResult = await Regis.AddUser(FNEntry.Text, LNEntry.Text, emailEntry.Text, passwordEntry.Text, locationEntry.Text, birthdaypicker, genderpicker);
+
+            switch (registrationResult)
+            {
+                case RegistrationResult.Success:
+                    await DisplayAlert("Register user", "Registration completed", "Ok");
+                    progressLoading.IsVisible = true;
+                    await Navigation.PopModalAsync();
+                    break;
+                case RegistrationResult.EmailExists:
+                    await DisplayAlert("Warning", "Email already exists. Please try another email.", "Ok");
+                    break;
+                case RegistrationResult.Error:
+                    await DisplayAlert("Error", "Registration failed", "Ok");
+                    break;
             }
         }
         catch (Exception exception)
         {
             if (exception.Message.Contains("EMAIL_EXISTS"))
             {
-                await DisplayAlert("Warning", "Email exist", "Ok");
+                await DisplayAlert("Warning", "Email already exists. Please try another email.", "Ok");
             }
             else
             {
                 await DisplayAlert("Error", exception.Message, "Ok");
-                progressLoading.IsVisible = false;
             }
-
         }
-        progressLoading.IsVisible = false;
-
     }
 
 }

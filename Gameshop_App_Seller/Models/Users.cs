@@ -335,17 +335,17 @@ namespace Gameshop_App_Seller.Models
         //}
 
         // add user
-        public async Task<bool> addusers(string name, string lname, string email, string password, string address, string birthday, string gender)
+        public async Task<RegistrationResult> AddUser(string name, string lname, string email, string password, string address, string birthday, string gender)
         {
             try
             {
-                var User = (await ClientUsers.Child("Account")
+                var user = (await ClientUsers.Child("Account")
                     .OnceAsync<Users>())
                     .FirstOrDefault(a => a.Object.MAIL == email);
 
-                if (User == null)
+                if (user == null)
                 {
-                    var user = new Users()
+                    var newUser = new Users()
                     {
                         MAIL = email,
                         FNAME = name,
@@ -354,25 +354,30 @@ namespace Gameshop_App_Seller.Models
                         Haddress = address,
                         BIRTHDAY = birthday,
                         GENDER = gender
-
                     };
-                    await ClientUsers
-                        .Child("Account")
-                        .PostAsync(user);
-                    ClientUsers.Dispose();
-                    return true;
 
+                    await ClientUsers.Child("Account").PostAsync(newUser);
+                    ClientUsers.Dispose();
+                    return RegistrationResult.Success;
                 }
                 else
                 {
-                    return false;
+                    return RegistrationResult.EmailExists;
                 }
             }
-            catch
+            catch (Exception)
             {
-                return false;
+                return RegistrationResult.Error;
             }
         }
+
+        public enum RegistrationResult
+        {
+            Success,
+            EmailExists,
+            Error
+        }
+
 
 
         //upload photos of product
@@ -538,6 +543,8 @@ namespace Gameshop_App_Seller.Models
 
             return userProductList;
         }
+
+
         private async Task<List<string>> GetUserKeysAsync()
         {
             var userKeysSnapshot = await ClientUsers
@@ -841,14 +848,27 @@ namespace Gameshop_App_Seller.Models
         }
 
 
-        public ObservableCollection<Users> GetDeniedApplicationsList()
+        public async Task<ObservableCollection<Users>> GetDeniedApplicationsListAsync()
         {
-            // Assuming DeniedApplication is a class representing denied applications
-            var deniedApplicationsList = ClientUsers
-                .Child("Denied Applications")
-                .AsObservable<Users>()
-                .AsObservableCollection();
-            return deniedApplicationsList;
+            try
+            {
+                // Assuming DeniedApplication is a class representing denied applications
+                var deniedApplications = await ClientUsers
+                    .Child("Denied Applications")
+                    .OnceAsync<Users>();
+
+                var deniedApplicationsList = deniedApplications
+                    .Select(item => item.Object)
+                    .ToList();
+
+                return new ObservableCollection<Users>(deniedApplicationsList);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
+            }
         }
 
 

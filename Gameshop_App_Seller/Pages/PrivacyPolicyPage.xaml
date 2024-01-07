@@ -9,12 +9,19 @@
         <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="40" RowSpacing="20">
             <Label Grid.Row="0" Text="Privacy Policy for Gameshop" FontSize="30" TextColor="Black"/>
             <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="Black"/>
-            <Label Grid.Row="3" Text="1. Introduction Welcome to Gameshop! This Privacy Policy describes how we collect, use, and disclose personal information when you use our application. By accessing or using Gameshop, you agree to the terms outlined in this policy.
-" FontSize="15"  TextColor="Black"/>
-                <Label Grid.Row="4" FontSize="15" TextColor="Black">
+                <Label Grid.Row="3" FontSize="15" TextColor="Black">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="2. Information We Collect" />
+                            <Span Text="1. Introduction Welcome to" />
+                            <Span Text="&#10;&#10; Gameshop! This Privacy Policy describes how we collect, use, and disclose personal information when you use our application. By accessing or using Gameshop, you agree to the terms outlined in this policy." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    </Label>
+
+                    <Label Grid.Row="4" FontSize="15" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="2. Information We Collect"/>
                             <Span Text="&#10;&#10;Personal Information: We may collect personal information such as your name, email address, and contact details when you register or use our services." />
                             <Span Text="&#10;&#10;Transaction Information: If you engage in transactions through Gameshop, we may collect information related to those transactions, including payment information." />
                             <Span Text="&#10;&#10;Usage Data: We may collect information about how you interact with Gameshop, such as your browsing history, search queries, and device information." />

@@ -6,6 +6,8 @@
     <ScrollView>
         <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
         <ImageButton Source="back.png"
+                     Aspect="AspectFit"
+                     HeightRequest="40"
                      HorizontalOptions="Start" 
                      x:Name="btnBackImg" 
                      Clicked="btnBackImg_Clicked"

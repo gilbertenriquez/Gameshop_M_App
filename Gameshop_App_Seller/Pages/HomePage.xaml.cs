@@ -126,14 +126,31 @@ public partial class HomePage : ContentPage
 
     private async void EditProdsBTN_Clicked(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(App.key))
-		{
-			await Navigation.PushAsync(new EditProductPage());
-		}
-		else
-		{
-			await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
-		}
+        if (listViewProducts.SelectedItem != null)
+        {
+            var selectedUser = listViewProducts.SelectedItem as Users;
+
+            if (selectedUser != null)
+            {
+               
+                await Navigation.PushModalAsync(new EditProductPage(
+                    selectedUser.ProductName, 
+                    selectedUser.ProductDesc, 
+                    selectedUser.ProductPrice,
+                    selectedUser.ProductQuantity,
+                    selectedUser.Imagae_1_link, 
+                    selectedUser.image1,
+                    selectedUser.image2,
+                    selectedUser.image3,
+                    selectedUser.image4,
+                    selectedUser.image5,
+                    selectedUser.image6));
+            }
+        }
+        else
+        {
+            await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
+        }
     }
     private async void ChatBTN_Clicked(object sender, EventArgs e)
     {
@@ -162,8 +179,30 @@ public partial class HomePage : ContentPage
 
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        App.email = (e.CurrentSelection.FirstOrDefault() as Users)?.MAIL;
-        App.key = await dusers.GetUserKey(App.email);
+        if (e.CurrentSelection != null)
+        {
+            var selectedUser = e.CurrentSelection.FirstOrDefault() as Users;
+
+            if (selectedUser != null)
+            {
+                // Set App.email based on the selected user's email
+                App.productname = selectedUser.ProductName.ToLower();
+
+                // Retrieve the user key based on the email
+                App.key = await dusers.GetUserKey(App.productname);
+
+                // Fetch additional user data, including ReporterEmail
+                selectedUser = await dusers.GetUserDataByEmailAsync(App.email);
+
+                // Load user data to update UI
+
+            }
+            else
+            {
+                // Reset App.key when selection is cleared
+                App.key = null;
+            }
+        }
     }
 
     private async void reportBTN_Clicked(object sender, EventArgs e)
