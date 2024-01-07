@@ -37,13 +37,13 @@
                             <HorizontalStackLayout Grid.Column="0">
                                 <ImageButton Grid.Row="0" Source="back.png"  
                                              HeightRequest="40"
-                                             Margin="0,40,0,0"
+                                             Margin="20,40,0,0"
                                              HorizontalOptions="Start"
                                              Clicked="btnBackImg_Clicked"                                          
                                              x:Name="btnBackImg"/>
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                   HorizontalOptions="End" Margin="0,40,-50,0"
+                                   HorizontalOptions="End" Margin="0,80,-50,0"
                                     WidthRequest="100">
                                 
 
@@ -56,20 +56,20 @@
 
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
-                            <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
+                            <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
                      Grid.Row="1" Margin="20" StrokeThickness="3"
                      Stroke="#007AFF"
-                     HeightRequest="140" WidthRequest="140">
+                     HeightRequest="130" WidthRequest="130">
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
-                            <Grid Grid.Column="1"
+                            <Grid Grid.Column="1" VerticalOptions="Center"
                                        RowDefinitions="Auto, Auto"
                                        ColumnDefinitions="Auto,Auto"  ColumnSpacing="5">
-                                <Label x:Name="FirstName" Grid.Row="1" Margin="0,15,0,0"
+                                <Label x:Name="FirstName" Grid.Row="1" 
                                        TextColor="#007AFF"
                                        FontSize="18" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
-                                <Label x:Name="LastName" Grid.Row="1" Grid.Column="1" Margin="0,15,0,0"
+                                <Label x:Name="LastName" Grid.Row="1" Grid.Column="1"
                                        TextColor="#007AFF"
                                        FontSize="18" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />

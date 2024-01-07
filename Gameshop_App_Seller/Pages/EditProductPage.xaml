@@ -13,11 +13,15 @@
                          x:Name="btnBackImg"
                          Margin="20"
                          Clicked="btnBackImg_Clicked"/>
-            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="10" Margin="20">
-                <Entry Grid.Row="6"  x:Name="itemName" TextColor="Black" Background="White"/>
-                <Entry Grid.Row="7" x:Name="itemDescription" TextColor="Black" Background="White"/>
-                <Entry Grid.Row="8" x:Name="itemPrice" TextColor="Black" Background="White"/>
-                <Entry Grid.Row="9" x:Name="itemQuanity" TextColor="Black" Background="White"/>
+            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="20" Margin="20">
+                <Label Grid.Row="6" Text="ITEM NAME" TextColor="Black"/>
+                <Entry Grid.Row="7"  x:Name="itemName" TextColor="Black" Background="White"/>
+                <Label Grid.Row="8" Text="ITEM DESCRIPTION" TextColor="Black"/>
+                <Editor Grid.Row="9" x:Name="itemDescription" TextColor="Black" Background="White" HeightRequest="200"/>
+                <Label Grid.Row="10" Text="ITEM PRICE" TextColor="Black"/>
+                <Entry Grid.Row="11" x:Name="itemPrice" TextColor="Black" Background="White"/>
+                <Label Grid.Row="12" Text="ITEM QUANTITY" TextColor="Black"/>
+                <Entry Grid.Row="13" x:Name="itemQuanity" TextColor="Black" Background="White"/>
                 
                 <Label Grid.Row="4" HorizontalOptions="Center" Text="Update Your 6 Supporting Image Item" TextColor="Black" FontAttributes="Bold"/>
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="Update Your Main Image Item" TextColor="Black" FontAttributes="Bold"/>
@@ -37,7 +41,7 @@
                 </HorizontalStackLayout>
 
                 <ScrollView Grid.Row="3" Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
-                    <Grid RowDefinitions="AUTO,AUTO" RowSpacing="10" HorizontalOptions="CenterAndExpand"  ColumnDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" ColumnSpacing="5">
+                    <Grid RowDefinitions="AUTO,AUTO" HorizontalOptions="CenterAndExpand"  ColumnDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" ColumnSpacing="10">
                         <Image Grid.Row="0" x:Name="mage1" Grid.Column="1" HeightRequest="150" Aspect="AspectFit"/>
                         <Image Grid.Row="0" x:Name="mage2" Grid.Column="2" HeightRequest="150" Aspect="AspectFit"/>
                         <Image Grid.Row="0" x:Name="mage3" Grid.Column="3" HeightRequest="150" Aspect="AspectFit"/>
@@ -46,7 +50,7 @@
                         <Image Grid.Row="0" x:Name="mage6" Grid.Column="6" HeightRequest="150" Aspect="AspectFit"/>
                     </Grid>
                     </ScrollView>
-                <Button Grid.Row="10" Text="Update Item" BackgroundColor="#007AFF" TextColor="White"/>
+                <Button Grid.Row="14" Text="Update Item" BackgroundColor="#007AFF" TextColor="White"/>
                 
             </Grid>
     </VerticalStackLayout>

@@ -68,26 +68,26 @@
                     
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
-                            <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
+                            <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
                             Grid.Row="1" Margin="20" StrokeThickness="3"
                             Stroke="#007AFF"
-                            HeightRequest="140" WidthRequest="140">
+                            HeightRequest="130" WidthRequest="130">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
                           
-                            <CollectionView Grid.Column="3" x:Name="username">
+                            <CollectionView Grid.Column="1" x:Name="username" VerticalOptions="Center">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid
                                               RowDefinitions="Auto, Auto"
                                               ColumnDefinitions="Auto,Auto" ColumnSpacing="5" Margin="0,0,0,0">
-                                            <Label Text="{Binding FNAME}" Margin="0,15,0,0" Grid.Row="1"
+                                            <Label Text="{Binding FNAME}"  Grid.Row="1"
                                               TextColor="#007AFF"
                                               FontSize="18" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                            <Label Text="{Binding LNAME}" Margin="0,15,0,0" Grid.Row="1" Grid.Column="1"
+                                            <Label Text="{Binding LNAME}"  Grid.Row="1" Grid.Column="1"
                                               TextColor="#007AFF"
                                               FontSize="18" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
