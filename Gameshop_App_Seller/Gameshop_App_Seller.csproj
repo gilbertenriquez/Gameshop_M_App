@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\filledStar.png" />
 	  <None Remove="Resources\Images\flag.png" />
 	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\home.png" />
@@ -71,6 +72,7 @@
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\shop.png" />
+	  <None Remove="Resources\Images\unfilledStar.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
 
@@ -119,6 +121,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReportPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ReviewSeller.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReviewsOnSellerPage.xaml">

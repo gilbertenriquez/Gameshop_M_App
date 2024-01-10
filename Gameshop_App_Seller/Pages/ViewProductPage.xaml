@@ -40,6 +40,20 @@
                 <Label  Grid.Row="3"
                         TextColor="DarkSlateGray"
                         x:Name="ProductPrice" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" FontAttributes="Bold"/>
+                <HorizontalStackLayout Grid.Row="4" BackgroundColor="LightGray">
+                    <Grid RowDefinitions="AUTO,AUTO" ColumnDefinitions="AUTO,AUTO">
+                    <Border StrokeShape="RoundRectangle 60" 
+                            HorizontalOptions="StartAndExpand"                                              
+                            Grid.Row="1" Grid.Column="0" Margin="20" 
+                            StrokeThickness="1"                                             
+                            Stroke="#007AFF"                                             
+                            HeightRequest="70" 
+                            WidthRequest="70">
+                        <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
+                    </Border>
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="Shopnames" Margin="0,20,0,0" FontAttributes="Bold" FontSize="20" TextColor="Black" />
+                    </Grid>
+                </HorizontalStackLayout>
 
                 <Button Text="Chat Now" TextColor="Black" Grid.Row="6" Margin="0,80,0,0" BackgroundColor="#007AFF"/>
             </Grid>

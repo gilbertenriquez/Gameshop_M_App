@@ -194,4 +194,9 @@ public partial class ShopDetail : ContentPage
             ShopContactEntry.Text = newText;
         }
     }
+
+    private async void btnBackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+    }
 }

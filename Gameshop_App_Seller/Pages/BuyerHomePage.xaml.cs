@@ -23,15 +23,6 @@ public partial class BuyerHomePage : ContentPage
         InitializeAsync(userKey);
     }
 
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-
-        // Clear the selection in your datalist
-        datalist.SelectedItem = null;
-
-    }
-
 
 
     protected async void OnAppearingDenied()
@@ -71,7 +62,17 @@ public partial class BuyerHomePage : ContentPage
     {
         try
         {
-            string userKey = App.key;
+            // Call InitializeAsync and await the result
+            string userKey = await InitializeAsync(UserKey);
+
+            // Check if App.key is null or empty
+            if (string.IsNullOrEmpty(userKey))
+            {
+                Console.WriteLine("App.key is null or empty. Unable to proceed.");
+                // Handle this case as needed, e.g., show an error message to the user
+                return;
+            }
+
             Console.WriteLine($"User key: {userKey}");
 
             var usersInfo = await vans.GetUsersinfoAsync(userKey);
@@ -95,8 +96,6 @@ public partial class BuyerHomePage : ContentPage
             Console.WriteLine($"Exception in OnAppearing: {ex.Message}");
         }
     }
-
-
 
 
 
@@ -235,11 +234,11 @@ public partial class BuyerHomePage : ContentPage
 
         if (selectedProduct != null)
         {
-            App.productname = selectedProduct.ProductName?.ToLower();
-            App.key = await vans.GetUserKey(App.productname);
+            //App.productname = selectedProduct.ProductName?.ToLower();
+            //App.productprice = await vans.GetUserKey(App.productname);
 
             // Check for null or empty values before passing them to the constructor
-            string email = selectedProduct.MAIL ?? string.Empty;
+            string productemail = selectedProduct.MAIL ?? string.Empty;
             string productName = selectedProduct.ProductName ?? "Unknown Product";
             string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
             string productDescriptions = selectedProduct.ProductDesc ?? "Unknown Description";
@@ -251,7 +250,7 @@ public partial class BuyerHomePage : ContentPage
             string image5 = selectedProduct.image5 ?? string.Empty;
             string image6 = selectedProduct.image6 ?? string.Empty;
 
-            await Navigation.PushModalAsync(new ViewProductPage(email, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+            await Navigation.PushModalAsync(new ViewProductPage(App.key, productemail, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
         }
     }
 
@@ -260,7 +259,7 @@ public partial class BuyerHomePage : ContentPage
         await Navigation.PushModalAsync(new SellerSettings(App.key));
     }
 
-    private async void InitializeAsync(string userKey)
+    private async Task<string> InitializeAsync(string userKey)
     {
         try
         {
@@ -269,12 +268,20 @@ public partial class BuyerHomePage : ContentPage
             // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
             string obtainedUserKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
 
+            // Update UserKey property
             UserKey = obtainedUserKey;
+
+            // Update App.key if needed
+            App.key = obtainedUserKey;
+
+            // Return the obtainedUserKey
+            return obtainedUserKey;
         }
         catch (Exception ex)
         {
             // Handle the exception appropriately (log, display, etc.)
             Console.WriteLine($"Error in AppShell initialization: {ex.Message}");
+            return null; // Return null or handle the error accordingly
         }
     }
 }
