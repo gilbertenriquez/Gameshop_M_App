@@ -11,6 +11,11 @@ public partial class ViewProductPage : ContentPage
     private string userId;
     private Users GetUSERdata = new Users();
     public string productemail { get; set; }
+    public string reporter {  get; set; }
+    public string productItemName { get; set; }
+    public string productItemprice { get; set; }
+    public string imageProduct { get; set; }
+
 
     public ViewProductPage()
     {
@@ -18,11 +23,15 @@ public partial class ViewProductPage : ContentPage
     }
 
 
-    public ViewProductPage(string userId, string productemail, string productName, string productPrice, string ProductDescrip, string productQuantity, string image1, string image2, string image3, string image4, string image5, string image6)
+    public ViewProductPage(string userId,string reporteremail ,string productemail, string productName, string productPrice, string ProductDescrip, string productQuantity, string image1, string image2, string image3, string image4, string image5, string image6)
     {
         InitializeComponent();
         this.userId = userId;
         this.productemail = productemail;
+        this.reporter = App.email;
+        this.productItemName = productName;
+        this.productItemprice = productPrice;
+        this.imageProduct = image1;
         // Use the passed parameters to set up your ViewProductPage UI
         // For example, you can set the Source of Image controls to the provided image URLs
         // Similarly, set up other UI elements as needed.
@@ -99,4 +108,13 @@ public partial class ViewProductPage : ContentPage
         await Navigation.PushModalAsync(new BuyerHomePage(userId));
     }
 
+    private async void ReviewBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ReviewSeller(productemail));
+    }
+
+    private async void reportsBTN_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ReportPage(productItemName, productItemprice, productemail, imageProduct, reporter));
+    }
 }

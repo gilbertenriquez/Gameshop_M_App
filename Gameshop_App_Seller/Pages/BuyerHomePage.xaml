@@ -48,12 +48,7 @@
                             <HorizontalStackLayout Grid.Column="1" Spacing="20"
                                            HorizontalOptions="End" Margin="0,40,40,0"
                                            WidthRequest="100">
-                                
-                                
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                       WidthRequest="25" x:Name="ReportBtn" Source="flag.png"
-                                             Clicked="reportBTN_Clicked"/>
-                                
+
                                 <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
                                       WidthRequest="25" x:Name="ShopBTN" Source="shop.png"
                                             Clicked="ShopBTN_Clicked"/>
@@ -81,15 +76,15 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid
-                                              RowDefinitions="Auto, Auto"
-                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="5" Margin="0,0,0,0">
-                                            <Label Text="{Binding FNAME}"  Grid.Row="1"
+                                              RowDefinitions="Auto"
+                                              ColumnDefinitions="Auto,Auto" ColumnSpacing="5" >
+                                            <Label Text="{Binding FNAME}" 
                                               TextColor="#007AFF"
-                                              FontSize="18" LineBreakMode="TailTruncation"
+                                              FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                            <Label Text="{Binding LNAME}"  Grid.Row="1" Grid.Column="1"
+                                            <Label Text="{Binding LNAME}"  Grid.Column="1"
                                               TextColor="#007AFF"
-                                              FontSize="18" LineBreakMode="TailTruncation"
+                                              FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
                                         </Grid>
                                     </DataTemplate>

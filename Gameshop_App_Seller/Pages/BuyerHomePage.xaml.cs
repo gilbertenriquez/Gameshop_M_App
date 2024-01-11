@@ -219,10 +219,7 @@ public partial class BuyerHomePage : ContentPage
         {
             // Display an alert indicating that the user's email is not in the Request list
             await DisplayAlert("Information", "Please submit your verification ID's to access the Seller Mode", "Proceed");
-
             // Add debug statement
-          
-
             await Navigation.PushModalAsync(new Valid_IDpage(userKey));
             return;
         }
@@ -238,6 +235,7 @@ public partial class BuyerHomePage : ContentPage
             //App.productprice = await vans.GetUserKey(App.productname);
 
             // Check for null or empty values before passing them to the constructor
+            string reporterMail = selectedProduct.ReporterEmail;
             string productemail = selectedProduct.MAIL ?? string.Empty;
             string productName = selectedProduct.ProductName ?? "Unknown Product";
             string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
@@ -250,7 +248,7 @@ public partial class BuyerHomePage : ContentPage
             string image5 = selectedProduct.image5 ?? string.Empty;
             string image6 = selectedProduct.image6 ?? string.Empty;
 
-            await Navigation.PushModalAsync(new ViewProductPage(App.key, productemail, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+            await Navigation.PushModalAsync(new ViewProductPage(App.key,reporterMail, productemail, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
         }
     }
 

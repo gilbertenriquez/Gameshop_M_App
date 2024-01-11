@@ -20,30 +20,13 @@ public partial class HomePage : ContentPage
     public HomePage(string userkey) : this()
     {
         InitializeComponent();
-        InitializeAsync(userkey);
         OnAppearing();
         LoadUserDataAsync();
 
 
     }
 
-    private async void InitializeAsync(string userKey)
-    {
-        try
-        {
-            string userEmail = App.email;
-
-            // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
-            string obtainedUserKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-
-            UserKey = obtainedUserKey;
-        }
-        catch (Exception ex)
-        {
-            // Handle the exception appropriately (log, display, etc.)
-            Console.WriteLine($"Error in App initialization: {ex.Message}");
-        }
-    }
+   
 
 
     private async Task LoadUserDataAsync()
@@ -144,7 +127,9 @@ public partial class HomePage : ContentPage
                     selectedUser.image3,
                     selectedUser.image4,
                     selectedUser.image5,
-                    selectedUser.image6));
+                    selectedUser.image6,
+                    selectedUser.ProductPath,
+                    selectedUser.MAIL));
             }
         }
         else

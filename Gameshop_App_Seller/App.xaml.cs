@@ -11,7 +11,7 @@ namespace Gameshop_App_Seller
         public static string UserKey { get; set; }
         public static FirebaseClient ClientUsers = new("https://gameshopdb-f4df3-default-rtdb.asia-southeast1.firebasedatabase.app/");
         public static FirebaseStorage firebaseStorage = new("gameshopdb-f4df3.appspot.com");
-        public static string key, email, imgLink, img1, img2, img3, img4, img5, img6, productname, productdesc, productprice, productquantity;
+        public static string key, email, imgLink, img1, img2, img3, img4, img5, img6, productname, productdesc, productprice, productquantity,productpath;
         public static FileResult _mainimgResult, _img1Result, _img2Result, _img3Result,
              _img4Result, _img5Result, _img6Result, _ValidIDFront, _ValidIDBack, _ValidIDBackSelfie, _ValidIDFrontSelfie,ShopProfile,ShopCover;
         public static FirebaseService FirebaseService { get; set; } = new FirebaseService();
@@ -20,7 +20,7 @@ namespace Gameshop_App_Seller
         {
             InitializeComponent();
 
-            MainPage = new ReviewSeller();
+            MainPage = new WelcomePage();
         }
 
         public App(string userKey) : this()

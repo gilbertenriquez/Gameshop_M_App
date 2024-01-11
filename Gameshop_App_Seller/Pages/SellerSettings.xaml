@@ -32,28 +32,24 @@
            HorizontalOptions="FillAndExpand"
            Margin="5" Padding="5">
 
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
-               HorizontalOptions="FillAndExpand">
-                            <HorizontalStackLayout Grid.Column="0">
-                                <ImageButton Grid.Row="0" Source="back.png"  
-                                             HeightRequest="40"
-                                             Margin="20,40,0,0"
-                                             HorizontalOptions="Start"
-                                             Clicked="btnBackImg_Clicked"                                          
-                                             x:Name="btnBackImg"/>
+                        <Grid Grid.Row="0"
+               HorizontalOptions="FillAndExpand" Margin="20">
+                            
+                            <HorizontalStackLayout  HorizontalOptions="End">
+                                <ImageButton HeightRequest="40" 
+                                             Margin="0,40,0,0" 
+                                             HorizontalOptions="End"                                                                          
+                                             x:Name="ShopBTN" 
+                                             Source="shop.png"/>
                             </HorizontalStackLayout>
-                            <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                   HorizontalOptions="End" Margin="0,80,-50,0"
-                                    WidthRequest="100">
-                                
-
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                      WidthRequest="25" x:Name="ShopBTN" Source="shop.png"/>
-                            </HorizontalStackLayout>
-
+                            
+                            <ImageButton Source="back.png"  
+                                         HeightRequest="40"
+                                         Margin="0,40,0,0"
+                                         HorizontalOptions="Start"
+                                         Clicked="btnBackImg_Clicked"                                          
+                                         x:Name="btnBackImg"/>
                         </Grid>
-
-
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"

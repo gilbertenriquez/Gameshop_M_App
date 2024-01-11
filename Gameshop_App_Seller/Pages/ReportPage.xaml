@@ -38,7 +38,7 @@
 
                 <Label Grid.Row="8" Text="Owner of the Product" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
                 <Label  Grid.Row="9" x:Name="Emailtxt" TextColor="Black"/>
-                <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Black"/>
+                <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Transparent"/>
 
 
 

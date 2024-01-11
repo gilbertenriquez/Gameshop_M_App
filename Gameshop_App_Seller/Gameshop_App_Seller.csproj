@@ -68,6 +68,7 @@
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
 	  <None Remove="Resources\Images\record.png" />
+	  <None Remove="Resources\Images\review.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\settings.png" />

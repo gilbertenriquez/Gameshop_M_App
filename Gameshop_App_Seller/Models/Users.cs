@@ -57,10 +57,60 @@ namespace Gameshop_App_Seller.Models
         public string DeniedReason { get; set; }
         public string ProfilePicture { get; set; }
 
+
+
+        public string StarReview { get; set; }     
+        public string comment { get; set; }
+        public string itemShopImage { get; set; }
+
         public Users()
         {
             authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
         }
+
+        public async Task<bool> SellerReviews(string rating,string RaterComment, string email,string itemImage)
+        {
+            var evaluateEmail = (await ClientUsers
+                  .Child("Reviews")
+                  .OnceAsync<Users>())
+                  .FirstOrDefault(a => a.Object.MAIL == email);
+
+            var admin = new Users()
+            {
+                StarReview = rating,
+                comment = RaterComment,              
+                itemShopImage = itemImage,
+                MAIL = email,              
+            };
+            await ClientUsers
+                      .Child($"Reviews")
+                      .PostAsync(admin);
+            return true;
+        }
+        public async Task<bool> UploadReview(
+                       FileResult img1,
+                       string shopRate,
+                       string shopComment,
+                       string shopEmail){
+
+            var ImageReview = await UploadImage(await img1.OpenReadAsync(),
+                                                 "ReviewImages",
+                                                 img1.FileName);
+
+            var ValidIDs = await SellerReviews(                                  
+                                    shopRate,
+                                    shopComment,
+                                    shopEmail,
+                                    ImageReview);
+
+            return true;
+        }
+
+
+
+
+
+
 
 
 
@@ -684,6 +734,156 @@ namespace Gameshop_App_Seller.Models
 
             return true;
         }
+
+        //update user item
+
+
+        public async Task<bool> UpdateProductData(
+                                 string MainImageItem,
+                                 string ITEM1,
+                                 string ITEM2,
+                                 string ITEM3,
+                                 string ITEM4,
+                                 string ITEM5,
+                                 string ITEM6,
+                                 string productname,
+                                 string productDescript,
+                                 string productprice,
+                                 string productquantity,
+                                 string productpath)
+        {
+            try
+            {
+                // Construct the path to the product node
+                var userProductPath = $"{productpath}";
+
+                Console.WriteLine($"Updating product at path: {userProductPath}");
+
+                // Retrieve the product using the known key directly
+                var evaluateProduct = await ClientUsers
+                    .Child(userProductPath)
+                    .OnceSingleAsync<Users>();
+
+                if (evaluateProduct != null)
+                {
+                    // Product exists, update product data
+                    Console.WriteLine($"Existing product: {evaluateProduct.ProductName}");
+
+                    // Update only the fields that are provided
+                    if (!string.IsNullOrEmpty(productDescript))
+                        evaluateProduct.ProductDesc = productDescript;
+
+                    if (!string.IsNullOrEmpty(productname))
+                        evaluateProduct.ProductName = productname;
+
+                    if (!string.IsNullOrEmpty(productprice))
+                        evaluateProduct.ProductPrice = productprice;
+
+                    if (!string.IsNullOrEmpty(productquantity))
+                        evaluateProduct.ProductQuantity = productquantity;
+
+                    // Update image links
+                    evaluateProduct.Imagae_1_link = MainImageItem;
+                    evaluateProduct.image1 = ITEM1;
+                    evaluateProduct.image2 = ITEM2;
+                    evaluateProduct.image3 = ITEM3;
+                    evaluateProduct.image4 = ITEM4;
+                    evaluateProduct.image5 = ITEM5;
+                    evaluateProduct.image6 = ITEM6;
+
+                    // Use the product's path as the child node
+                    await ClientUsers
+                        .Child(userProductPath)
+                        .PatchAsync(evaluateProduct);
+
+                    Console.WriteLine("Product updated successfully!");
+                    return true;
+                }
+                else
+                {
+                    // Product does not exist
+                    Console.WriteLine("Product does not exist.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // An error occurred
+                Console.WriteLine($"Error updating product data: {ex.Message}");
+                return false;
+            }
+        }
+
+
+
+
+
+
+        public async Task<bool> UpdateProductUser(
+                         FileResult maninimg,
+                         FileResult img1,
+                         FileResult img2,
+                         FileResult img3,
+                         FileResult img4,
+                         FileResult img5,
+                         FileResult img6,
+                         string productname,
+                         string productDescript,
+                         string productprice,
+                         string productquantity,
+                         string productpath) // Add productpath parameter
+        {
+            try
+            {
+                var MainImageItem = await UploadImage(await maninimg.OpenReadAsync(),
+                                                     "ProductImg",
+                                                     maninimg.FileName);
+
+                var ITEM1 = await UploadImage(await img1.OpenReadAsync(),
+                                              "ProductImg",
+                                              img1.FileName);
+                var ITEM2 = await UploadImage(await img2.OpenReadAsync(),
+                                              "ProductImg",
+                                              img2.FileName);
+                var ITEM3 = await UploadImage(await img3.OpenReadAsync(),
+                                              "ProductImg",
+                                              img3.FileName);
+                var ITEM4 = await UploadImage(await img4.OpenReadAsync(),
+                                              "ProductImg",
+                                              img4.FileName);
+                var ITEM5 = await UploadImage(await img5.OpenReadAsync(),
+                                              "ProductImg",
+                                              img5.FileName);
+                var ITEM6 = await UploadImage(await img6.OpenReadAsync(),
+                                              "ProductImg",
+                                              img6.FileName);
+
+                // Pass the productpath parameter to UpdateProductData
+                var isUpdated = await UpdateProductData(
+                                      MainImageItem,
+                                      ITEM1,
+                                      ITEM2,
+                                      ITEM3,
+                                      ITEM4,
+                                      ITEM5,
+                                      ITEM6,
+                                      productname,
+                                      productDescript,
+                                      productprice,
+                                      productquantity,
+                                      productpath);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error in UpdateProductUser: {ex.Message}");
+                return false;
+            }
+        }
+
+
 
         //not yet
         public async Task<bool> SendMessage(string senderEmail, string receiverEmail, string message)

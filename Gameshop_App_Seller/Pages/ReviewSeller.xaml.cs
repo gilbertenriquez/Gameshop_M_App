@@ -1,20 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
+using Font = Microsoft.Maui.Font;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Alerts;
+using Gameshop_App_Seller.Models;
+using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages
 {
     public partial class ReviewSeller : ContentPage
     {
+        CancellationTokenSource cancellationTokenSource = new();
         private List<ImageButton> starButtons;
-
-        public ReviewSeller()
+        private Users ReviewUser = new Users();
+        private string userEmails;
+        public ReviewSeller() 
         {
             InitializeComponent();
             InitializeStarButtons();
+           
+        }
+
+        public ReviewSeller(string email) : this()
+        {
+            this.userEmails = email;
         }
 
         private void InitializeStarButtons()
@@ -81,5 +88,72 @@ namespace Gameshop_App_Seller.Pages
             }
         }
 
+        private async void BTNupload_Clicked(object sender, EventArgs e)
+        {
+            var result = await FilePicker.PickAsync(new PickOptions
+            {
+                PickerTitle = "Select main image",
+                FileTypes = FilePickerFileType.Images
+            });
+
+            if (result == null)
+                return;
+
+            FileInfo fi = new(result.FullPath);
+            var size = fi.Length;
+
+            // Set the maximum allowed size to 50MB (50 * 1024 * 1024 bytes)
+            var maxSize = 50 * 1024 * 1024;
+
+            if (size > maxSize)
+            {
+                var snackbarOptions = new SnackbarOptions
+                {
+                    BackgroundColor = Color.FromRgb(32, 32, 40),
+                    TextColor = Colors.WhiteSmoke,
+                    ActionButtonTextColor = Colors.White,
+                    CornerRadius = new CornerRadius(10),
+                    Font = Font.SystemFontOfSize(10),
+                    ActionButtonFont = Font.SystemFontOfSize(10)
+                };
+                const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size (50MB). Thank you!";
+                const string actionButtonText = "Got it!";
+                var duration = TimeSpan.FromSeconds(10);
+                var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
+
+                await snackbar.Show(cancellationTokenSource.Token);
+                return;
+            }
+
+            var stream = await result.OpenReadAsync();
+            App._mainimgResult = result;
+            photoITEM.Source = ImageSource.FromStream(() => stream);
+        }
+
+        private void BTNremove_Clicked(object sender, EventArgs e)
+        {
+            photoITEM.Source = null;
+        }
+
+       private async void BTNsubmit_Clicked(object sender, EventArgs e)
+{
+    var result = await ReviewUser.UploadReview(_mainimgResult, ratingLabel.Text, commentTXT.Text, userEmails);
+
+    if (result)
+    {
+        await DisplayAlert("Success", "Review submitted successfully!", "OK");
     }
+    else
+    {
+        await DisplayAlert("Error", "Failed to submit review. Please try again.", "OK");
+    }
+}
+
+
+        private async void btnBackImg_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+    }
+    
 }

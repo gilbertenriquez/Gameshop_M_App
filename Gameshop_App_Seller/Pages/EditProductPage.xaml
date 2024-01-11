@@ -27,13 +27,13 @@
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="Update Your Main Image Item" TextColor="Black" FontAttributes="Bold"/>
 
                 <Grid Grid.Row="2" ColumnDefinitions="AUTO,AUTO" HorizontalOptions="CenterAndExpand" ColumnSpacing="20">
-                    <Button  Text="Upload" Grid.Column="0"  BackgroundColor="#007AFF" TextColor="White"/>
-                    <Button  Text="Remove" Grid.Column="1"  BackgroundColor="#007AFF" TextColor="White"/>
+                    <Button  Text="Upload" Grid.Column="0" x:Name="updateMainImageItemBTN" Clicked="updateMainImageItemBTN_Clicked"  BackgroundColor="#007AFF" TextColor="White"/>
+                    <Button  Text="Remove" Grid.Column="1" x:Name="RemoveImageBTN" Clicked="RemoveImageBTN_Clicked" BackgroundColor="#007AFF" TextColor="White"/>
                 </Grid>
 
                 <Grid Grid.Row="5" ColumnDefinitions="AUTO,AUTO" HorizontalOptions="CenterAndExpand" ColumnSpacing="20">
-                    <Button  Text="Upload" Grid.Column="0" BackgroundColor="#007AFF" TextColor="White"/>
-                    <Button  Text="Remove" Grid.Column="1" BackgroundColor="#007AFF" TextColor="White"/>
+                    <Button  Text="Upload" Grid.Column="0" x:Name="updateSupportImageItemBTN" Clicked="updateSupportImageItemBTN_Clicked" BackgroundColor="#007AFF" TextColor="White"/>
+                    <Button  Text="Remove" Grid.Column="1" x:Name="BTNremoveSuppportImage" Clicked="BTNremoveSuppportImage_Clicked" BackgroundColor="#007AFF" TextColor="White"/>
                 </Grid>
                 
                 <HorizontalStackLayout  Grid.Row="0"  HorizontalOptions="Center" >
@@ -50,7 +50,7 @@
                         <Image Grid.Row="0" x:Name="mage6" Grid.Column="6" HeightRequest="150" Aspect="AspectFit"/>
                     </Grid>
                     </ScrollView>
-                <Button Grid.Row="14" Text="Update Item" BackgroundColor="#007AFF" TextColor="White"/>
+                <Button Grid.Row="14" Text="Update Item" x:Name="UpdateBTNitem" BackgroundColor="#007AFF" TextColor="White" Clicked="UpdateBTNitem_Clicked"/>
                 
             </Grid>
     </VerticalStackLayout>

@@ -1,49 +1,77 @@
+using Gameshop_App_Seller.Models;
+using Font = Microsoft.Maui.Font;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Alerts;
+using Gameshop_App_Seller.Pages;
+using static Gameshop_App_Seller.App;
+
+
 namespace Gameshop_App_Seller.Pages;
 
 public partial class EditProductPage : ContentPage
 {
+    CancellationTokenSource cancellationTokenSource = new();
     private string mainImageItem;
+    private Users updateProduct = new Users();
+    private string productpath;
+    private string productemail;
     public EditProductPage()
     {
         InitializeComponent();
+       
     }
     public EditProductPage(
-           string productName,
-           string productDesc,
-           string productPrice,
-           string productQuantity,
-           string MainImageItem,
-           string images1,
-           string images2,
-           string images3,
-           string images4,
-           string images5,
-           string images6)
+      string productName,
+      string productDesc,
+      string productPrice,
+      string productQuantity,
+      string MainImageItem,
+      string images1,
+      string images2,
+      string images3,
+      string images4,
+      string images5,
+      string images6,
+      string productpath,
+      string productemail)
     {
-
+       
         InitializeComponent();
+        Initialize(productName, productDesc, productPrice, productQuantity,
+                   MainImageItem, images1, images2, images3, images4, images5, images6,productpath, productemail);
+    }
+
+    private void Initialize(
+        string productName,
+        string productDesc,
+        string productPrice,
+        string productQuantity,
+        string MainImageItem,
+        string images1,
+        string images2,
+        string images3,
+        string images4,
+        string images5,
+        string images6,
+        string productpath,
+        string productemail)
+    {
         itemName.Text = productName;
         itemDescription.Text = productDesc;
         itemPrice.Text = productPrice;
         itemQuanity.Text = productQuantity;
         mainImageItem = MainImageItem; // Assign the original source to the field
         MainImage.Source = mainImageItem;
-      
         mage1.Source = images1;
         mage2.Source = images2;
         mage3.Source = images3;
         mage4.Source = images4;
         mage5.Source = images5;
         mage6.Source = images6;
-
-        // Attach tap event handlers for mage, mage1, mage2, ..., mage6      
-        mage1.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage1)) });
-        mage2.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage2)) });
-        mage3.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage3)) });
-        mage4.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage4)) });
-        mage5.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage5)) });
-        mage6.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(() => OnImageTapped(mage6)) });
+        this.productpath = productpath;
+        this.productemail = productemail;
     }
+
 
 
 
@@ -52,39 +80,145 @@ public partial class EditProductPage : ContentPage
         await Navigation.PopModalAsync();
     }
 
-    private void OnImageTapped(Image tappedImage)
-    { 
-            MainImage.Source = tappedImage.Source;
+    private async void updateMainImageItemBTN_Clicked(object sender, EventArgs e)
+    {
+
+        var result = await FilePicker.PickAsync(new PickOptions
+        {
+            PickerTitle = "Select main image",
+            FileTypes = FilePickerFileType.Images
+        });
+        if (result == null) return;
+
+        FileInfo fi = new(result.FullPath);
+        var size = fi.Length;
+
+        if (size > 524288)
+        {
+            var snackbarOptions = new SnackbarOptions
+            {
+                BackgroundColor = Color.FromRgb(32, 32, 40),
+                TextColor = Colors.WhiteSmoke,
+                ActionButtonTextColor = Colors.White,
+                CornerRadius = new CornerRadius(10),
+                Font = Font.SystemFontOfSize(10),
+                ActionButtonFont = Font.SystemFontOfSize(10)
+            };
+            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+            const string actionButtonText = "Got it!";
+            var duration = TimeSpan.FromSeconds(10);
+            var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
+
+            await snackbar.Show(cancellationTokenSource.Token);
+            return;
+        }
+        var stream = await result.OpenReadAsync();
+        App._mainimgResult = result;
+        MainImage.Source = ImageSource.FromStream(() => stream);
+
     }
 
-
-    private void mage1ToMain_Tapped(object sender, TappedEventArgs e)
+    private void RemoveImageBTN_Clicked(object sender, EventArgs e)
     {
-        OnImageTapped(mage1);
+        MainImage.Source = null;
     }
 
-    private void mage2ToMain_Tapped(object sender, TappedEventArgs e)
+    private async void updateSupportImageItemBTN_Clicked(object sender, EventArgs e)
     {
-        OnImageTapped(mage2);
+        {
+            var ctr = 0;
+            var results = await FilePicker.PickMultipleAsync();
+            foreach (var result in results)
+            {
+                
+                ctr++;
+                switch (ctr)
+                {
+                    //first image
+                    case 1:
+                        {
+                            _img1Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage1.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+                    case 2:
+                        {
+                            _img2Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage2.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+                    case 3:
+                        {
+                            _img3Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage3.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+                    case 4:
+                        {
+                            _img4Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage4.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+                    case 5:
+                        {
+                            _img5Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage5.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+                    case 6:
+                        {
+                            _img6Result = result;
+                            var stream = await result.OpenReadAsync();
+                            mage6.Source = ImageSource.FromStream(() => stream);
+                            break;
+                        }
+
+                }
+            }         
+        }
     }
 
-    private void mage3ToMain_Tapped(object sender, TappedEventArgs e)
+    private void BTNremoveSuppportImage_Clicked(object sender, EventArgs e)
     {
-        OnImageTapped(mage3);
+        mage1.Source = null;
+        mage2.Source = null;
+        mage3.Source = null;
+        mage4.Source = null;
+        mage5.Source = null;
+        mage6.Source = null;
     }
 
-    private void mage4ToMain_Tapped(object sender, TappedEventArgs e)
+    private async void UpdateBTNitem_Clicked(object sender, EventArgs e)
     {
-        OnImageTapped(mage4);
-    }
+        var result = await updateProduct.UpdateProductUser(
+            _mainimgResult,
+            _img1Result,
+            _img2Result,
+            _img3Result,
+            _img4Result,
+            _img5Result,
+            _img6Result,
+            itemName.Text,
+            itemDescription.Text,
+            itemPrice.Text,
+            itemQuanity.Text,
+            productpath);
 
-    private void mage5ToMain_Tapped(object sender, TappedEventArgs e)
-    {
-        OnImageTapped(mage5);
-    }
-
-    private void mage6ToMain_Tapped(object sender, TappedEventArgs e)
-    {
-        OnImageTapped(mage6);
+        if (result)
+        {
+            // Product update successful
+            await DisplayAlert("Success", "Product updated successfully!", "OK");
+            await Navigation.PopModalAsync();
+        }
+        else
+        {
+            // Product update failed
+            await DisplayAlert("Error", "Failed to update product.", "OK");
+        }
     }
 }
