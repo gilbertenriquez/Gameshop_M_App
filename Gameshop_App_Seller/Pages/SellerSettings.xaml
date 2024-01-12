@@ -34,18 +34,13 @@
 
                         <Grid Grid.Row="0"
                HorizontalOptions="FillAndExpand" Margin="20">
-                            
+
                             <HorizontalStackLayout  HorizontalOptions="End">
-                                <ImageButton HeightRequest="40" 
-                                             Margin="0,40,0,0" 
-                                             HorizontalOptions="End"                                                                          
-                                             x:Name="ShopBTN" 
-                                             Source="shop.png"/>
                             </HorizontalStackLayout>
                             
                             <ImageButton Source="back.png"  
                                          HeightRequest="40"
-                                         Margin="0,40,0,0"
+                                         Margin="0,55,0,0"
                                          HorizontalOptions="Start"
                                          Clicked="btnBackImg_Clicked"                                          
                                          x:Name="btnBackImg"/>

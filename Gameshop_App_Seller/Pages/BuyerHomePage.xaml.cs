@@ -140,33 +140,33 @@ public partial class BuyerHomePage : ContentPage
 
 
 
-    private async void datalist_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection != null)
-        {
-            var selectedUser = e.CurrentSelection.FirstOrDefault() as Users;
+    //private async void datalist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //    if (e.CurrentSelection != null)
+    //    {
+    //        var selectedUser = e.CurrentSelection.FirstOrDefault() as Users;
 
-            if (selectedUser != null)
-            {
-                // Set App.email based on the selected user's email
-                App.productname = selectedUser.ProductName.ToLower();
+    //        if (selectedUser != null)
+    //        {
+    //            // Set App.email based on the selected user's email
+    //            App.productname = selectedUser.ProductName.ToLower();
 
-                // Retrieve the user key based on the email
-                App.key = await vans.GetUserKey(App.productname);
+    //            // Retrieve the user key based on the email
+    //            App.key = await vans.GetUserKey(App.productname);
 
-                // Fetch additional user data, including ReporterEmail
-                selectedUser = await vans.GetUserDataByEmailAsync(App.email);
+    //            // Fetch additional user data, including ReporterEmail
+    //            selectedUser = await vans.GetUserDataByEmailAsync(App.email);
 
-                // Load user data to update UI
+    //            // Load user data to update UI
 
-            }
-            else
-            {
-                // Reset App.key when selection is cleared
-                App.key = null;
-            }
-        }
-    }
+    //        }
+    //        else
+    //        {
+    //            // Reset App.key when selection is cleared
+    //            App.key = null;
+    //        }
+    //    }
+    //}
 
     private async void ShopBTN_Clicked(object sender, EventArgs e)
     {
@@ -282,6 +282,28 @@ public partial class BuyerHomePage : ContentPage
             return null; // Return null or handle the error accordingly
         }
     }
+
+    
+
+    private async void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        string searchText = e.NewTextValue;
+
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            // If the search text is null or empty, reset the datalist to show all items
+            datalist.ItemsSource = await vans.GetUserProductListsAsync();
+        }
+        else
+        {
+            // Filter items based on the search text
+            var filteredItems = await vans.GetUserProductListsAsync(searchText);
+
+            // Update the datalist with the filtered items
+            datalist.ItemsSource = filteredItems;
+        }
+    }
+
 }
 
 

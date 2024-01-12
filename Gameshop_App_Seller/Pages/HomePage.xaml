@@ -127,11 +127,11 @@
                                             <Label Grid.Row="3" Text="Description" TextColor="Black"/>
                                             <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
 
-                                            <Label Grid.Row="6" Text="Price"  TextColor="Black"/>
-                                            <Label Grid.Row="7" TextColor="Black"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" />
+                                            <Label Grid.Row="5" Text="Price"  TextColor="Black"/>
+                                            <Label Grid.Row="6" TextColor="Black"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" />
 
-                                            <Label Grid.Row="8" Text="Qauntity"  TextColor="Black"/>
-                                            <Label Grid.Row="9" TextColor="Black"  FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="Black"/>
+                                            <Label Grid.Row="8" TextColor="Black"  FontSize="20" Text="{Binding ProductQuantity}" />
 
                                         </Grid>
                                     </ContentView>

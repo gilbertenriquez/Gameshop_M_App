@@ -112,15 +112,18 @@
 
 
             <SearchBar Grid.Row="3" 
-                       Margin="20"                        
-                       Placeholder="Search....." 
-                       BackgroundColor="#007AFF" 
-                       TextColor="White"
-                       PlaceholderColor="White" />
+           Margin="20"                        
+           Placeholder="Search....." 
+           BackgroundColor="#007AFF" 
+           TextColor="White"
+           PlaceholderColor="White"
+                         x:Name="searchBar"
+         TextChanged="searchBar_TextChanged" />
+
 
 
             <ScrollView Grid.Row="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand" SelectionMode="Single" SelectionChanged="datalist_SelectionChanged">
+                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>

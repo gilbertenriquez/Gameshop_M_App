@@ -89,6 +89,7 @@ public partial class ViewProductPage : ContentPage
                 // Set the ShopName text in your UI
                 Shopnames.Text = usersInfo[0].ShopName;
                 imglogo.Source = usersInfo[0].ShopProfile;
+                containMessengerLink.Text = usersInfo[0].ShopMessengerLink;
             }
             else
             {
@@ -135,5 +136,30 @@ public partial class ViewProductPage : ContentPage
         }
 
         isExpanded = !isExpanded;
+    }
+
+    private async void linkTOmessenger_Clicked(object sender, EventArgs e)
+    {
+        string messengerLink = containMessengerLink.Text;
+
+        if (!string.IsNullOrEmpty(messengerLink))
+        {
+            if (Uri.TryCreate(messengerLink, UriKind.Absolute, out Uri result))
+            {
+                // The link is a valid absolute URI
+                await Launcher.OpenAsync(result);
+            }
+            else
+            {
+                // The link is not a valid URI, you can handle it accordingly
+                // For example, open the link in the browser
+                await Launcher.OpenAsync($"https://{messengerLink}");
+            }
+        }
+        else
+        {
+            // The messenger link is empty, handle it accordingly
+            // For example, display an alert or take any other action
+        }
     }
 }

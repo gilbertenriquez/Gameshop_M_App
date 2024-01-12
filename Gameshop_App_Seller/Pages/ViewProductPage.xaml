@@ -102,7 +102,8 @@
                     </Grid>
                 </HorizontalStackLayout>
 
-                <Button Text="Chat Now" TextColor="White" Grid.Row="10" Margin="0,20,0,0" BackgroundColor="#007AFF"/>
+                <Button Text="Chat Now" TextColor="White" Grid.Row="10" Margin="0,20,0,0" x:Name="linkTOmessenger" BackgroundColor="#007AFF" Clicked="linkTOmessenger_Clicked"/>
+                <Label Grid.Row="11" x:Name="containMessengerLink" TextColor="Transparent"/>
             </Grid>
     </VerticalStackLayout>
     </ScrollView>

@@ -52,6 +52,9 @@ namespace Gameshop_App_Seller.Models
         public string ShopCoverImg { get; set; }
         public string ShopName { get; set; }
         public string ShopContactNumber { get; set; }
+        public string ShopMessengerLink { get; set; }
+
+
 
         public string isVerified { get; set; }
         public string Message { get; set; }
@@ -61,7 +64,7 @@ namespace Gameshop_App_Seller.Models
 
 
 
-        public string StarReview { get; set; }     
+        public string StarReview { get; set; }
         public string comment { get; set; }
         public string itemShopImage { get; set; }
 
@@ -72,7 +75,7 @@ namespace Gameshop_App_Seller.Models
             authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
         }
 
-        public async Task<bool> SellerReviews(string rating,string RaterComment, string email,string itemImage)
+        public async Task<bool> SellerReviews(string rating, string RaterComment, string email, string itemImage)
         {
             var evaluateEmail = (await ClientUsers
                   .Child("Reviews")
@@ -82,9 +85,9 @@ namespace Gameshop_App_Seller.Models
             var admin = new Users()
             {
                 StarReview = rating,
-                comment = RaterComment,              
+                comment = RaterComment,
                 itemShopImage = itemImage,
-                MAIL = email,              
+                MAIL = email,
             };
             await ClientUsers
                       .Child($"Reviews")
@@ -95,13 +98,14 @@ namespace Gameshop_App_Seller.Models
                        FileResult img1,
                        string shopRate,
                        string shopComment,
-                       string shopEmail){
+                       string shopEmail)
+        {
 
             var ImageReview = await UploadImage(await img1.OpenReadAsync(),
                                                  "ReviewImages",
                                                  img1.FileName);
 
-            var ValidIDs = await SellerReviews(                                  
+            var ValidIDs = await SellerReviews(
                                     shopRate,
                                     shopComment,
                                     shopEmail,
@@ -171,7 +175,7 @@ namespace Gameshop_App_Seller.Models
                                 string gender,
                                 string hAddress,
                                 string password)
-                                    {
+        {
             try
             {
                 // Construct the path to the user's account node
@@ -274,7 +278,8 @@ namespace Gameshop_App_Seller.Models
                                 string ShopProfilePicture,
                                 string ShopCoverPicture,
                                 string Shopname,
-                                string Contactnumber)
+                                string Contactnumber,
+                                string Messengerlink)
         {
             try
             {
@@ -295,18 +300,19 @@ namespace Gameshop_App_Seller.Models
                     existingUser.ShopCoverImg = ShopCoverPicture;
                     existingUser.ShopName = Shopname;
                     existingUser.ShopContactNumber = Contactnumber;
-                
+                    existingUser.ShopMessengerLink = Messengerlink;
+
                     await ClientUsers
                         .Child($"{userAccountPath}/{App.key}")
                         .PatchAsync(existingUser);
 
                     return true;
-            }
+                }
                 else
-            {
-                return false;
+                {
+                    return false;
+                }
             }
-        }
             catch
             {
                 return false;
@@ -318,7 +324,8 @@ namespace Gameshop_App_Seller.Models
         public async Task<bool> UpdateShop(FileResult ShopProfilePic,
                                            FileResult ShopCover,
                                            string Shopname,
-                                           string ShopContactNumber)
+                                           string ShopContactNumber,
+                                           string messengerLink)
         {
             var ShopProfile = await UploadProfilePicture(await ShopProfilePic.OpenReadAsync(),
                                              "ProfilePictureShop",
@@ -330,7 +337,7 @@ namespace Gameshop_App_Seller.Models
 
 
 
-            var ShopUpdates = await UpdateUserShop(ShopProfile, ShopCoverPic, Shopname, ShopContactNumber);
+            var ShopUpdates = await UpdateUserShop(ShopProfile, ShopCoverPic, Shopname, ShopContactNumber, messengerLink);
 
             return true;
         }
@@ -571,9 +578,6 @@ namespace Gameshop_App_Seller.Models
                 return null;
             }
         }
-
-
-
 
 
         //displaying all seller products
@@ -1110,6 +1114,39 @@ namespace Gameshop_App_Seller.Models
                 return new List<Users>();
             }
         }
+
+
+
+        public async Task<ObservableCollection<Users>> GetUserProductListsAsync(string searchQuery = null)
+        {
+            var userKeys = await GetUserKeysAsync();
+
+            var userProductList = new ObservableCollection<Users>();
+
+            foreach (var userKey in userKeys)
+            {
+                var userData = await ClientUsers
+                    .Child($"Account/{userKey}/Product")
+                    .OnceAsync<Users>();
+
+                foreach (var firebaseObject in userData)
+                {
+                    var user = firebaseObject.Object;
+
+                    // If a search query is provided and the product doesn't match, skip it
+                    if (!string.IsNullOrWhiteSpace(searchQuery) &&
+                        !user.ProductName.Contains(searchQuery, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    userProductList.Add(user);
+                }
+            }
+
+            return userProductList;
+        }
+
 
 
 

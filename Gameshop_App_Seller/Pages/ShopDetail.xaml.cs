@@ -3,6 +3,9 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
 using Gameshop_App_Seller.Models;
 using static Gameshop_App_Seller.App;
+using System.Text.RegularExpressions;
+
+
 
 
 namespace Gameshop_App_Seller.Pages;
@@ -12,15 +15,76 @@ public partial class ShopDetail : ContentPage
     CancellationTokenSource cancellationTokenSource = new();
     private Users Shop = new();
     private string userId;
+    private FileResult shopprofile { get; set; }
+    private FileResult shopcover { get; set; }
+
     public ShopDetail()
 	{
 		InitializeComponent();
-	}
+    }
 
     public ShopDetail(string userId)
     {
         InitializeComponent();
         this.userId = userId; // Store the user ID
+    }
+
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        try
+        {
+            // Assuming App.key is the unique identifier for the user
+            var userId = App.key;
+
+            // Construct the path to the user's account node
+            var userAccountPath = $"Account/{userId}";
+
+            // Retrieve the user data from the database
+            var userSnapshot = await ClientUsers
+                .Child(userAccountPath)
+                .OnceSingleAsync<Users>();
+
+            // Check if the user data exists
+            if (userSnapshot != null)
+            {
+                // Update the UI with the retrieved user data
+                ShopProfilePicture.Source = !string.IsNullOrEmpty(userSnapshot.ShopProfile)
+                    ? new UriImageSource
+                    {
+                        Uri = new Uri(userSnapshot.ShopProfile),
+                        CachingEnabled = true,
+                        CacheValidity = TimeSpan.FromDays(1)
+                    }
+                    : "account.png";
+
+                ShopCoverPhoto.Source = !string.IsNullOrEmpty(userSnapshot.ShopCoverImg)
+                   ? new UriImageSource
+                   {
+                       Uri = new Uri(userSnapshot.ShopCoverImg),
+                       CachingEnabled = true,
+                       CacheValidity = TimeSpan.FromDays(1)
+                   }
+                   : "account.png";
+                shopprofile = new FileResult(userSnapshot.ShopProfile);
+                shopcover = new FileResult(userSnapshot.ShopCoverImg);
+                ShopNameEntry.Text = userSnapshot.ShopName;
+                ShopContactEntry.Text = userSnapshot.ShopContactNumber;
+                ShopMessenger.Text = userSnapshot.ShopMessengerLink;              
+            }
+            else
+            {
+                // Handle the case where user data is not found
+                // You might want to display an error message or handle it accordingly
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions that might occur during data retrieval
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 
 
@@ -146,12 +210,45 @@ public partial class ShopDetail : ContentPage
             return;
         }
 
-        var result = await Shop.UpdateShop(ShopProfile, ShopCover, shopName, shopContact);
+
+        string messengerLink = ShopMessenger.Text;
+
+        // Regular expression pattern for a valid Facebook Messenger link
+        string regexPattern = @"^(https?:\/\/)?(?:www\.)?m\.me\/[a-zA-Z0-9._-]+$";
+
+        // Create a Regex object
+        Regex regex = new Regex(regexPattern);
+
+        if (!regex.IsMatch(messengerLink))
+        {
+            await DisplayAlert("Information", "Please enter a valid Facebook Messenger link.", "OK");
+            return;
+        }
+
+
+
+        if (ShopProfile == null)
+        {
+            // One or both of the images is null, show an alert
+            await DisplayAlert("Information", "Please upload An shop profile.", "OK");
+            return;
+        }
+
+
+        if (ShopCover == null)
+        {
+            await DisplayAlert("Information", "Please upload An cover images.", "OK");
+            return;
+        }
+
+        var result = await Shop.UpdateShop(ShopProfile, ShopCover, shopName, shopContact, ShopMessenger.Text);
+
+
 
         if (result)
         {
             await DisplayAlert("Information", "Successfully updated shop details", "OK");
-            await Navigation.PushModalAsync(new AppShell(App.key));
+            await Navigation.PushModalAsync(new AppShell());
         }
         else
         {
