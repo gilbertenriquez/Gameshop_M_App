@@ -14,6 +14,8 @@ public partial class Valid_IDpage : ContentPage
     public Valid_IDpage()
     {
         InitializeComponent();
+        Frontimage.Source = "valid1.png";
+        Backimage.Source = "valid2.png";
     }
 
 
@@ -49,13 +51,19 @@ public partial class Valid_IDpage : ContentPage
             PickerTitle = "Select main image",
             FileTypes = FilePickerFileType.Images
         });
-        if (result == null) return;
+
+        if (result == null)
+            return;
 
         FileInfo fi = new(result.FullPath);
-        var size = fi.Length;
+        var sizeInBytes = fi.Length;
+        var sizeInMegabytes = sizeInBytes / (1024 * 1024); // Convert bytes to megabytes
 
-        if (size > 524288)
+        const int maxSizeInMegabytes = 50; // Maximum allowed file size in megabytes
+
+        if (sizeInMegabytes > maxSizeInMegabytes)
         {
+            // Display a message indicating that the selected image is too large
             var snackbarOptions = new SnackbarOptions
             {
                 BackgroundColor = Color.FromRgb(32, 32, 40),
@@ -65,7 +73,7 @@ public partial class Valid_IDpage : ContentPage
                 Font = Font.SystemFontOfSize(10),
                 ActionButtonFont = Font.SystemFontOfSize(10)
             };
-            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+            const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size. Thank you!";
             const string actionButtonText = "Got it!";
             var duration = TimeSpan.FromSeconds(10);
             var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
@@ -73,13 +81,14 @@ public partial class Valid_IDpage : ContentPage
             await snackbar.Show(cancellationTokenSource.Token);
             return;
         }
+
         var stream = await result.OpenReadAsync();
         App._ValidIDFront = result;
         Frontimage.Source = ImageSource.FromStream(() => stream);
 
-
         progressLoading.IsVisible = false;
     }
+
 
     private async void backimage_Clicked(object sender, EventArgs e)
     {
@@ -88,13 +97,19 @@ public partial class Valid_IDpage : ContentPage
             PickerTitle = "Select main image",
             FileTypes = FilePickerFileType.Images
         });
-        if (result == null) return;
+
+        if (result == null)
+            return;
 
         FileInfo fi = new(result.FullPath);
-        var size = fi.Length;
+        var sizeInBytes = fi.Length;
+        var sizeInMegabytes = sizeInBytes / (1024 * 1024); // Convert bytes to megabytes
 
-        if (size > 524288)
+        const int maxSizeInMegabytes = 50; // Maximum allowed file size in megabytes
+
+        if (sizeInMegabytes > maxSizeInMegabytes)
         {
+            // Display a message indicating that the selected image is too large
             var snackbarOptions = new SnackbarOptions
             {
                 BackgroundColor = Color.FromRgb(32, 32, 40),
@@ -104,7 +119,7 @@ public partial class Valid_IDpage : ContentPage
                 Font = Font.SystemFontOfSize(10),
                 ActionButtonFont = Font.SystemFontOfSize(10)
             };
-            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+            const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size. Thank you!";
             const string actionButtonText = "Got it!";
             var duration = TimeSpan.FromSeconds(10);
             var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
@@ -112,24 +127,72 @@ public partial class Valid_IDpage : ContentPage
             await snackbar.Show(cancellationTokenSource.Token);
             return;
         }
+
         var stream = await result.OpenReadAsync();
         App._ValidIDBack = result;
         Backimage.Source = ImageSource.FromStream(() => stream);
 
-
         progressLoading.IsVisible = false;
     }
+
 
     private async void nextBack_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;
+
+        if (IsDefaultImage(Frontimage.Source, "valid1.png"))
+        {
+            // Display alert for front ID image not uploaded
+            await DisplayAlert("Error", "Please upload the front ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
+        if (IsDefaultImage(Backimage.Source, "valid2.png"))
+        {
+            // Display alert for back ID image not uploaded
+            await DisplayAlert("Error", "Please upload the back ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
+        // Continue with navigation if both images are uploaded
         await Navigation.PushModalAsync(new VerifyingPage(UserKey));
         progressLoading.IsVisible = false;
     }
+
+    private bool IsDefaultImage(ImageSource source, string defaultImagePath)
+    {
+        if (source == null)
+        {
+            return true; // Treat null as a default image
+        }
+
+        if (source is FileImageSource fileImageSource)
+        {
+            return string.IsNullOrEmpty(fileImageSource.File) || fileImageSource.File == defaultImagePath;
+        }
+
+        return false;
+    }
+
+
+
 
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopModalAsync();
         progressLoading.IsVisible = false;
+    }
+
+    private  void Button_Clicked(object sender, EventArgs e)
+    {
+        Frontimage.Source = null;
+       
+    }
+
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+        Backimage.Source = null;
     }
 }

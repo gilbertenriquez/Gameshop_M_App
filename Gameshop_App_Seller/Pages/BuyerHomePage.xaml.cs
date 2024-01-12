@@ -99,23 +99,23 @@ public partial class BuyerHomePage : ContentPage
 
 
 
-    private async void reportBTN_Clicked(object sender, EventArgs e)
-    {
-        if (datalist.SelectedItem != null)
-        {
-            var selectedUser = datalist.SelectedItem as Users;
+    //private async void reportBTN_Clicked(object sender, EventArgs e)
+    //{
+    //    if (datalist.SelectedItem != null)
+    //    {
+    //        var selectedUser = datalist.SelectedItem as Users;
 
-            if (selectedUser != null)
-            {
-                // Pass the necessary data to ReportPage, including reporter's email
-                await Navigation.PushModalAsync(new ReportPage(selectedUser.ProductName, selectedUser.ProductPrice, selectedUser.MAIL, selectedUser.image1, selectedUser.ReporterEmail));
-            }
-        }
-        else
-        {
-            await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
-        }
-    }
+    //        if (selectedUser != null)
+    //        {
+    //            // Pass the necessary data to ReportPage, including reporter's email
+    //            await Navigation.PushModalAsync(new ReportPage(selectedUser.ProductName, selectedUser.ProductPrice, selectedUser.MAIL, selectedUser.image1, selectedUser.ReporterEmail));
+    //        }
+    //    }
+    //    else
+    //    {
+    //        await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
+    //    }
+    //}
 
 
     private void SetImageSource(string imageUrl)

@@ -51,96 +51,74 @@
                        Margin="10" 
                        TextColor="Black" />
 
-                <Label Grid.Row="1" Margin="0,90,0,0" TextColor="Black"
-        Text="PLEASE UPLOAD THR FRONT OF YOUR VALID ID FRONT"
-        HorizontalOptions="CenterAndExpand"/>
+                <Label Grid.Row="3"  
+                        TextColor="Black"
+                        Text="PLEASE UPLOAD THR FRONT OF YOUR VALID ID FRONT"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"/>
 
 
-                <Grid Grid.Row="2" Margin="10" WidthRequest="400">
-
-                    <Grid RowDefinitions="Auto, Auto, Auto" 
-                          ColumnDefinitions="Auto, *" 
-                          HorizontalOptions="CenterAndExpand">
-
+                <Grid Grid.Row="2">
+                    <Grid HorizontalOptions="CenterAndExpand">
                         <Border Grid.Row="0" Grid.Column="0"
                                StrokeThickness="0"
-                               BackgroundColor="#272829"
+                               BackgroundColor="Transparent"
                                StrokeShape="RoundRectangle 5"
-                               WidthRequest="300" 
-                               HeightRequest="200">
+                               HeightRequest="400">
 
-                            <Grid RowDefinitions="100,Auto">
-                                <ImageButton Grid.Row="0" 
-                                         HorizontalOptions="CenterAndExpand"
-                                         HeightRequest="30" 
-                                         WidthRequest="30"
-                                         Source="add.png" 
-                                         x:Name="btnFrontimage"
-                                             Clicked="btnFontimage_Clicked"/>
-                                <Image Grid.Row="0" 
-                                       x:Name="Frontimage"
-                                       HeightRequest="100" 
-                                       WidthRequest="100" />
-
-                                <Label Grid.Row="1" 
-                                       Text="Front image" 
-                                       HorizontalOptions="FillAndExpand"
-                                       TextColor="#007AFF"
-                                       HorizontalTextAlignment="Center"
-                                       BackgroundColor="#272829"
-                                       Opacity="0.9" Margin="0"/>
+                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Image 
+                                       x:Name="Frontimage" Aspect="AspectFit"                                   
+                                        />
                             </Grid>
                         </Border>
                     </Grid>
                 </Grid>
 
+                <HorizontalStackLayout Grid.Row="4" HorizontalOptions="CenterAndExpand">
+                    <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
+                        <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnFontimage_Clicked"/>
+                        <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked"/>
+                    </Grid>
+                    
+                </HorizontalStackLayout>
 
+                <Label Grid.Row="7" TextColor="Black" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID "  
+                       FontSize="20" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Grid Grid.Row="6">
 
-
-                <Grid Grid.Row="4" Margin="10" WidthRequest="400">
-
-                    <Grid RowDefinitions="Auto, Auto, Auto" 
-                          ColumnDefinitions="Auto, *" 
-                          HorizontalOptions="CenterAndExpand">
+                    <Grid HorizontalOptions="CenterAndExpand">
 
                         <Border Grid.Row="0" Grid.Column="0"
                                StrokeThickness="0"
-                               BackgroundColor="#272829"
+                               BackgroundColor="Transparent"
                                StrokeShape="RoundRectangle 5"
-                               WidthRequest="300" 
-                               HeightRequest="200">
+                               HeightRequest="400">
 
-                            <Grid RowDefinitions="100,Auto">
-                                <ImageButton Grid.Row="0" 
-                                         HorizontalOptions="CenterAndExpand"
-                                         HeightRequest="30" 
-                                         WidthRequest="30"
-                                         Source="add.png" 
-                                         x:Name="btnBackimage"
-                                             Clicked="backimage_Clicked"/>
+                            <Grid>
                                 <Image Grid.Row="0" 
                                        x:Name="Backimage"
-                                       HeightRequest="100" 
-                                       WidthRequest="100" />
-
-                                <Label Grid.Row="1" 
-                                       Text="Back image" 
-                                       HorizontalOptions="FillAndExpand"
-                                       TextColor="#007AFF"
-                                       HorizontalTextAlignment="Center"
-                                       BackgroundColor="#272829"
-                                       Opacity="0.9" Margin="0"/>
+                                       Aspect="AspectFit" />
                             </Grid>
                         </Border>
                     </Grid>
                 </Grid>
 
 
-                <Label Grid.Row="6" TextColor="Black" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID " HorizontalOptions="CenterAndExpand"/>
+                <HorizontalStackLayout Grid.Row="8" HorizontalOptions="CenterAndExpand">
+                    <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
+                        <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="backimage_Clicked"/>
+                        <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked_1"/>
+                    </Grid>
+                </HorizontalStackLayout>
+
 
                 <Button Grid.Row="9" VerticalOptions="End" 
                             Text="Next"                               
-                            BackgroundColor="#272829"
+                            BackgroundColor="#007AFF"
                             TextColor="White" 
                             Margin="0,80,0,0" 
                             x:Name="nextBack" 

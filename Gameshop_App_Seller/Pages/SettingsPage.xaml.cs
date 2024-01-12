@@ -1,11 +1,54 @@
+using Gameshop_App_Seller.Models;
+using System.Collections.ObjectModel;
+using static Gameshop_App_Seller.App;
+using static System.Net.Mime.MediaTypeNames;
+
+
 namespace Gameshop_App_Seller.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
-	{
-		InitializeComponent();
-	}
+    public SettingsPage()
+    {
+        InitializeComponent();
+        LoadUserDataAsync();
+    }
+
+
+    private async Task LoadUserDataAsync()
+    {
+        try
+        {
+            var userData = App.key;
+            var userAccountPath = $"Account/{userData}";
+
+            // Retrieve the user data from the database
+            var userSnapshot = await ClientUsers
+                .Child(userAccountPath)
+                .OnceSingleAsync<Users>();
+
+            // Check if the user data exists
+            if (userSnapshot != null)
+            {
+                // Update the UI with the retrieved user data
+                imglogo.Source = !string.IsNullOrEmpty(userSnapshot.ShopProfile)
+                    ? new UriImageSource
+                    {
+                        Uri = new Uri(userSnapshot.ShopProfile),
+                        CachingEnabled = true,
+                        CacheValidity = TimeSpan.FromDays(1)
+                    }
+                    : "account.png";
+
+                lblcompanyname.Text = userSnapshot.ShopName;
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions that might occur during data retrieval
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
 
     private async void LogoutBTN_Tapped(object sender, TappedEventArgs e)
     {

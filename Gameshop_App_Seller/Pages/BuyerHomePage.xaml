@@ -46,15 +46,15 @@
                            FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
                            FontSize="30" />
                             <HorizontalStackLayout Grid.Column="1" Spacing="20"
-                                           HorizontalOptions="End" Margin="0,40,40,0"
+                                           HorizontalOptions="End" Margin="0,70,40,0"
                                            WidthRequest="100">
 
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                      WidthRequest="25" x:Name="ShopBTN" Source="shop.png"
+                                <ImageButton HorizontalOptions="End"   HeightRequest="45"                                      
+                                     x:Name="ShopBTN" Source="shop.png"
                                             Clicked="ShopBTN_Clicked"/>
                                 
-                                <ImageButton HeightRequest="25" HorizontalOptions="End"                                        
-                                    WidthRequest="25" x:Name="SettingsBTN" Source="settings.png"
+                                <ImageButton HeightRequest="45" HorizontalOptions="End"                                        
+                                    x:Name="SettingsBTN" Source="settings.png"
                                            Clicked="SettingsBTN_Clicked"/>
 
                             </HorizontalStackLayout>
@@ -64,9 +64,9 @@
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="20" StrokeThickness="3"
+                            Grid.Row="1" Margin="0,0,20,0" StrokeThickness="3"
                             Stroke="#007AFF"
-                            HeightRequest="130" WidthRequest="130">
+                            HeightRequest="100" WidthRequest="100">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>

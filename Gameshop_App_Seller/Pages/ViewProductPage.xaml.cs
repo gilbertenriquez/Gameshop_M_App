@@ -16,6 +16,7 @@ public partial class ViewProductPage : ContentPage
     public string productItemprice { get; set; }
     public string imageProduct { get; set; }
 
+    private bool isExpanded = false;
 
     public ViewProductPage()
     {
@@ -115,6 +116,24 @@ public partial class ViewProductPage : ContentPage
 
     private async void reportsBTN_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new ReportPage(productItemName, productItemprice, productemail, imageProduct, reporter));
+        await Navigation.PushModalAsync(new ReportPage(Shopnames.Text, productItemName, productItemprice, productemail, imageProduct, reporter));
+    }
+
+    private void OnSeeMore_Tapped(object sender, TappedEventArgs e)
+    {
+        if (isExpanded)
+        {
+            // If expanded, show less
+            ProductDescription.MaxLines = 1;
+            SeeMoreLabel.Text = "See More";
+        }
+        else
+        {
+            // If not expanded, show more
+            ProductDescription.MaxLines = int.MaxValue; // Set a large value to allow as many lines as needed
+            SeeMoreLabel.Text = "See Less";
+        }
+
+        isExpanded = !isExpanded;
     }
 }

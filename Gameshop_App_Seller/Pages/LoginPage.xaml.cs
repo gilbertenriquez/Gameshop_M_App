@@ -55,8 +55,7 @@ public partial class LoginPage : INotifyPropertyChanged
             return;
         }
 
-
-        string cleanedEmail = emailEntry.Text.Trim();
+        string cleanedEmail = emailEntry.Text.Trim().ToLower(); // Convert to lowercase
 
         var result = await ulogin.AdminLogin(cleanedEmail, passwordEntry.Text);
         progressLoading.IsVisible = true;
@@ -87,6 +86,7 @@ public partial class LoginPage : INotifyPropertyChanged
 
         progressLoading.IsVisible = false;
     }
+
 
 
 

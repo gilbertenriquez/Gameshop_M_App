@@ -8,26 +8,13 @@ namespace Gameshop_App_Seller.Pages;
 
 public partial class HomePage : ContentPage
 {
-   private Users dusers = new Users();
+    private Users dusers = new Users();
     public HomePage()
     {
         InitializeComponent();
-
-
-    }
-
-
-    public HomePage(string userkey) : this()
-    {
-        InitializeComponent();
-        OnAppearing();
         LoadUserDataAsync();
-
-
+        OnAppearing();
     }
-
-   
-
 
     private async Task LoadUserDataAsync()
     {
@@ -103,9 +90,9 @@ public partial class HomePage : ContentPage
     }
 
     private async void AddProdsBTN_Clicked(object sender, EventArgs e)
-           {
-		await Navigation.PushModalAsync(new addproductPage());
-          }
+    {
+        await Navigation.PushModalAsync(new addproductPage());
+    }
 
     private async void EditProdsBTN_Clicked(object sender, EventArgs e)
     {
@@ -115,13 +102,13 @@ public partial class HomePage : ContentPage
 
             if (selectedUser != null)
             {
-               
+
                 await Navigation.PushModalAsync(new EditProductPage(
-                    selectedUser.ProductName, 
-                    selectedUser.ProductDesc, 
+                    selectedUser.ProductName,
+                    selectedUser.ProductDesc,
                     selectedUser.ProductPrice,
                     selectedUser.ProductQuantity,
-                    selectedUser.Imagae_1_link, 
+                    selectedUser.Imagae_1_link,
                     selectedUser.image1,
                     selectedUser.image2,
                     selectedUser.image3,
@@ -159,7 +146,7 @@ public partial class HomePage : ContentPage
         {
             await DisplayAlert("Warning", "No user key found", "OK");
         }
-       
+
     }
 
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)

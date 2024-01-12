@@ -20,7 +20,7 @@ public partial class ReportPage : ContentPage
         LoadUserData();
     }
 
-    public ReportPage(string productName, string productPrice, string userEmail, string imageUri, string reporterMail)
+    public ReportPage(string SellerName,string productName, string productPrice, string userEmail, string imageUri, string reporterMail)
     {
         InitializeComponent();
 
@@ -28,6 +28,7 @@ public partial class ReportPage : ContentPage
         Productname.Text = productName;
         Productprice.Text = productPrice;
         Emailtxt.Text = userEmail;
+        SellerShopname.Text = SellerName;
 
         // Set MainImage.Source to a placeholder or user-friendly representation
         MainImage.Source = imageUri; // Replace with your placeholder image

@@ -7,6 +7,8 @@
     using Firebase.Auth;
     using Firebase.Database;
     using System.Collections.ObjectModel;
+using System.Reactive.Linq;
+using Firebase.Database.Streaming;
 
 
 
@@ -62,6 +64,8 @@ namespace Gameshop_App_Seller.Models
         public string StarReview { get; set; }     
         public string comment { get; set; }
         public string itemShopImage { get; set; }
+
+
 
         public Users()
         {
@@ -1071,33 +1075,67 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
-
-
-
-
-        public async Task<string> ReceiveMessage(string receiverEmail)
+        public async Task<List<Users>> GetReviewsByEmail(string userEmail)
         {
             try
             {
-                // Assuming your structure is like this: Users/Messages
-                var user = (await ClientUsers
-                    .Child($"Users/Messages")
-                    .OnceAsync<Users>())
-                    .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
+                var reviewsSnapshot = await ClientUsers
+                    .Child("Reviews")
+                    .OnceAsync<Dictionary<string, Users>>();
 
-                // Check if the user exists and has a message
-                if (user != null && !string.IsNullOrEmpty(user.Object.Message))
+                var reviewList = new List<Users>();
+
+                foreach (var entry in reviewsSnapshot)
                 {
-                    return user.Object.Message;
+                    var reviewsDictionary = entry.Object;
+
+                    foreach (var reviewEntry in reviewsDictionary)
+                    {
+                        var review = reviewEntry.Value;
+
+                        if (review != null && review.MAIL == userEmail)
+                        {
+                            reviewList.Add(review);
+                        }
+                    }
                 }
 
-                return "No messages"; // Return a default message if there are no messages
+                Console.WriteLine($"Review List Count: {reviewList.Count}");
+                return reviewList;
             }
-            catch
+            catch (Exception ex)
             {
-                return "Error fetching messages"; // Handle errors appropriately
+                // Handle exceptions as needed
+                Console.WriteLine($"Error: {ex.Message}");
+                return new List<Users>();
             }
         }
+
+
+
+        //public async Task<string> ReceiveMessage(string receiverEmail)
+        //{
+        //    try
+        //    {
+        //        // Assuming your structure is like this: Users/Messages
+        //        var user = (await ClientUsers
+        //            .Child($"Users/Messages")
+        //            .OnceAsync<Users>())
+        //            .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
+
+        //        // Check if the user exists and has a message
+        //        if (user != null && !string.IsNullOrEmpty(user.Object.Message))
+        //        {
+        //            return user.Object.Message;
+        //        }
+
+        //        return "No messages"; // Return a default message if there are no messages
+        //    }
+        //    catch
+        //    {
+        //        return "Error fetching messages"; // Handle errors appropriately
+        //    }
+        //}
 
         //private void ShowNotification(string title, string description)
         //{

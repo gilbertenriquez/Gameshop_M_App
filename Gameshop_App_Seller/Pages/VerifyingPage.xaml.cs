@@ -15,6 +15,8 @@ public partial class VerifyingPage : ContentPage
     {
         InitializeComponent();
 
+        Frontimage.Source = "selfieidfront.png";
+        backimage.Source = "selfieidfront.png";
     }
 
     public VerifyingPage(string userKey) : this()
@@ -125,6 +127,22 @@ public partial class VerifyingPage : ContentPage
     {
         progressLoading.IsVisible = true;
         // Check if a save operation is already in progress
+
+        if (Frontimage.Source == null && Frontimage.Source.ToString() == "selfieidfront.png")
+        {
+            // Display alert for front ID image not uploaded
+            await DisplayAlert("Error", "Please upload the front ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
+        if (backimage.Source == null && backimage.Source.ToString() == "selfieidfront.png")
+        {
+            // Display alert for back ID image not uploaded
+            await DisplayAlert("Error", "Please upload the back ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
         if (isSaveInProgress)
         {
             return; // If yes, do nothing
@@ -140,7 +158,7 @@ public partial class VerifyingPage : ContentPage
             var status = statusUser.SelectedItem.ToString();
             var result = await Valids.SaveValid(_ValidIDFront, _ValidIDBack, _ValidIDFrontSelfie, _ValidIDBackSelfie, userEmail, status);
             await DisplayAlert("Confirmation", "Your Application for Become a Seller has been submitted. Please wait for 3 to 7 days for verification", "OK");
-            await Navigation.PushModalAsync(new MainPage());
+            await Navigation.PushModalAsync(new BuyerHomePage());
         }
         finally
         {
@@ -154,5 +172,15 @@ public partial class VerifyingPage : ContentPage
     {
         await Navigation.PopModalAsync();
         progressLoading.IsVisible = false;
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Frontimage.Source = null;
+    }
+
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+        backimage.Source = null;
     }
 }

@@ -60,32 +60,18 @@
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                            Stroke="#007AFF"
-                            HeightRequest="70" WidthRequest="70">
-                                <!--<Border.Shadow>
-                        <Shadow Radius="40" Brush="{StaticResource ShadowDark}"
-                                Offset="20,20"
-                                Opacity=".7" />
-                    </Border.Shadow>-->
-                                <Image HorizontalOptions="Fill" Source="account.png"
-                               Aspect="AspectFill">
-                                    <!-- <Image.Source>
-                                <UriImageSource x:Name="imglogo"
-                                                CachingEnabled="True"
-                                                CacheValidity="5" />
-                            </Image.Source>
-                            -->
-                                </Image>
+                                        Grid.Row="1" Margin="10,-5" StrokeThickness="1"
+                                        Stroke="#007AFF"
+                                        HeightRequest="70" WidthRequest="70">
+
+                                <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
-                            <Grid Grid.Column="1"
-                          RowDefinitions="Auto, Auto"
-                          ColumnDefinitions="100, *">
-                                <Label Text="Shop Name" Grid.Row="0" x:Name="lblcompanyname"
-                               TextColor="#007AFF"
-                               FontSize="18" LineBreakMode="TailTruncation"
-                               FontFamily="RobotoCondensed" />
+                            <Grid Grid.Column="1">
+                                <Label Text="Shop Name"  VerticalOptions="Center" x:Name="lblcompanyname"
+                                    TextColor="#007AFF"
+                                   FontSize="25"
+                                    FontFamily="RobotoCondensed" />
                             </Grid>
                         </Grid>
                     </Grid>
