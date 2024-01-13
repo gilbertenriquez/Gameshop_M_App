@@ -28,6 +28,14 @@ public partial class Valid_IDpage : ContentPage
     {
         try
         {
+
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+                return;
+            }
+
             string userEmail = App.email;
 
             // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key

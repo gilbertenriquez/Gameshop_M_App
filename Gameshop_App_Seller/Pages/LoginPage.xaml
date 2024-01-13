@@ -5,39 +5,52 @@
              Title="LoginPage" BackgroundColor="#EEF5FF">
 
 
-    <ScrollView>
-    <VerticalStackLayout Spacing="20" Margin="20" VerticalOptions="FillAndExpand">
-        <ImageButton Grid.Row="0" Source="back.png" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
-        
 
-        <Label FontSize="40"
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0"
+                     x:Name="btnBackImg"
+                     Source="back.png"
+                     BackgroundColor="Transparent"
+                     HeightRequest="40"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="0,10,0,0"
+                     Clicked="btnBackImg_Clicked" />
+
+        <ScrollView Grid.Row="1" Grid.RowSpan="1">
+            <VerticalStackLayout Spacing="20" Margin="20" VerticalOptions="FillAndExpand">
+
+            <Label FontSize="40"
             Text="GAMESHOP" TextColor="#007AFF"
                    FontAttributes="Bold"
                    Margin="0,40,0,20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <StackLayout VerticalOptions="CenterAndExpand"
+            <StackLayout VerticalOptions="CenterAndExpand"
                x:Name="progressLoading"
                IsVisible="False"
                AbsoluteLayout.LayoutBounds="0,0,1,1"
                AbsoluteLayout.LayoutFlags="All"
                BackgroundColor="Transparent">
-               <ActivityIndicator
+                <ActivityIndicator
                x:Name="ai"
                IsRunning="True" IsVisible="True"
                HorizontalOptions="CenterAndExpand"
                Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-               <Label x:Name="lblorderstate" FontSize="20" 
+                <Label x:Name="lblorderstate" FontSize="20" 
                FontFamily="facompa" Text="We're processing your request, please wait..." 
                Margin="20" 
                HorizontalOptions="CenterAndExpand" 
                TextColor="Black"/>
-        </StackLayout>
+            </StackLayout>
 
-
-
-        <Label FontSize="25"
+            <Label FontSize="25"
             Text="Offer other players your in-game item for sale." TextColor="Black"
             FontAttributes="Bold"
             HorizontalTextAlignment="Center"
@@ -45,7 +58,32 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="5">
+
+            <Grid x:Name="nointernet"
+                    IsVisible="false"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Transparent">
+                <Grid VerticalOptions="CenterAndExpand" RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
+                    <Label Grid.Row="1" Text="Something went wrong. Please check your internet connection."
+                     TextColor="{StaticResource TextColorGray}" VerticalOptions="Center"
+                     Margin="0,30,0,0" FontSize="Small" HorizontalOptions="Center"
+                     HorizontalTextAlignment="Center" />
+                    <ActivityIndicator Grid.Row="0"
+                     x:Name="Net"
+                     IsRunning="True" IsVisible="True"
+                     HorizontalOptions="CenterAndExpand"
+                     Color="{StaticResource ButtonColor}"/>
+                    <Button Grid.Row="2" Text="Try again" TextColor="White" CornerRadius="30"
+                            BackgroundColor="{StaticResource ButtonColor}"
+                            Margin="40,0" x:Name="btntryagain"/>
+                </Grid>
+            </Grid>
+
+
+            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="5">
             <Entry Placeholder="Email" HorizontalOptions="FillAndExpand"
                    TextColor="Black"
                    PlaceholderColor="DimGray"
@@ -59,6 +97,7 @@
                    PlaceholderColor="DimGray"
                    x:Name="passwordEntry"/>
         </Frame>
+        
         
 
         <Button Text="Log In"  Margin="0,30,0,30"
@@ -84,5 +123,7 @@
                     />
 
     </VerticalStackLayout>
+        
     </ScrollView>
+    </Grid>
 </ContentPage>

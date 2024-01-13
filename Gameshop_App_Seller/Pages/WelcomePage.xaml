@@ -30,16 +30,11 @@
                            IsRunning="True" IsVisible="True"
                            HorizontalOptions="CenterAndExpand"
                            Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                    <Label x:Name="lblorderstate" FontSize="20" 
-                           FontFamily="facompa" Text="We're processing your request, please wait..." 
-                           Margin="20" 
-                           HorizontalOptions="CenterAndExpand" 
-                           TextColor="Black"/>
                 </StackLayout>
             
                 <Label FontSize="25" 
                    Grid.Row="1" 
-                   Margin="0,-100,0,0"
+                   Margin="0,-80,0,0"
                    Text="Welcome to GAME SHOP!" 
                    FontAttributes="Bold"
                    TextColor="#007AFF"
@@ -49,7 +44,7 @@
             </Grid>
 
         <Button x:Name="GetStart" Text="Get Started!" 
-                Margin="20,80,20,0"
+                Margin="20,60,20,0"
                 VerticalOptions="End"  
                 BackgroundColor="#007AFF" 
                 TextColor="White" 
@@ -57,7 +52,7 @@
                 />
 
         <Button x:Name="Exitbtn" Text="EXIT" 
-                 Margin="20,0,20,0"
+                 Margin="20,0,20,20"
                 VerticalOptions="End"  
                 BackgroundColor="#007AFF" 
                 TextColor="White" 

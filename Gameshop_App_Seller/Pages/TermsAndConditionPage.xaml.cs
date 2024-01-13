@@ -4,11 +4,26 @@ public partial class TermsAndConditionPage : ContentPage
 {
 	public TermsAndConditionPage()
 	{
-		InitializeComponent();
+        if (CheckInternetConnection())
+        {
+            return;
+        }
+        InitializeComponent();
+    }
+
+	private async void btnBackImg_Clicked(object sender, EventArgs e)
+	{
+		await Navigation.PopModalAsync();
 	}
 
-    private  async void btnBackImg_Clicked(object sender, EventArgs e)
+
+    private bool CheckInternetConnection()
     {
-		await Navigation.PopModalAsync();
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
     }
 }

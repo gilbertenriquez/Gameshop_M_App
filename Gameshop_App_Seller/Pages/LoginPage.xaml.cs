@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using Firebase.Database;
 using System.Text.RegularExpressions;
+using Plugin.Connectivity;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 
 
 namespace Gameshop_App_Seller.Pages;
@@ -17,8 +20,10 @@ public partial class LoginPage : INotifyPropertyChanged
 
     //public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
     private Users ulogin = new();
+    CancellationTokenSource cancellationTokenSource = new();
     public LoginPage()
     {
+        Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         InitializeComponent();
         bool hasKey = Preferences.ContainsKey("token");
         //if (hasKey)
@@ -29,8 +34,39 @@ public partial class LoginPage : INotifyPropertyChanged
         //        Navigation.PushAsync(new HomePage());
         //    }
         //}
-
     }
+
+
+    private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+    {
+        if (e.NetworkAccess != NetworkAccess.Internet)
+        {
+            nointernet.IsVisible = true;
+            var toast = Toast.Make("You may have no internet connection!", ToastDuration.Long, 12);
+            await toast.Show(cancellationTokenSource.Token);
+        }
+        else
+        {
+            nointernet.IsVisible = false;
+            var toast = Toast.Make("Internet connection Restored!", ToastDuration.Long, 12);
+            await toast.Show(cancellationTokenSource.Token);
+        }
+    }
+
+    private void IC_check()
+    {
+        if (CrossConnectivity.Current.IsConnected)
+        {
+            nointernet.IsVisible = false;
+            return;
+        }
+        else
+        {
+            nointernet.IsVisible = true;
+            return;
+        }
+    }
+
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         await Navigation.PushModalAsync(new ForgotPassword());
@@ -48,6 +84,11 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         // Check if email and password are empty after trimming white spaces
         if (emailEntry == null || string.IsNullOrEmpty(emailEntry.Text?.Trim()) || string.IsNullOrEmpty(passwordEntry.Text))
         {

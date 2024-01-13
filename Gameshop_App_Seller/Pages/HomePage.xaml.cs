@@ -11,9 +11,27 @@ public partial class HomePage : ContentPage
     private Users dusers = new Users();
     public HomePage()
     {
+        if (!CheckInternetConnection())
+        {
+            // Optionally display an alert or take appropriate action if there's no internet
+            return;
+        }
+
+
         InitializeComponent();
         LoadUserDataAsync();
         OnAppearing();
+    }
+
+
+    private bool CheckInternetConnection()
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
     }
 
     private async Task LoadUserDataAsync()
@@ -31,17 +49,30 @@ public partial class HomePage : ContentPage
             // Check if the user data exists
             if (userSnapshot != null)
             {
-                // Update the UI with the retrieved user data
-                imglogo.Source = !string.IsNullOrEmpty(userSnapshot.ShopProfile)
-                    ? new UriImageSource
+                if (string.IsNullOrEmpty(userSnapshot.ShopProfile)
+                    || string.IsNullOrEmpty(userSnapshot.ShopCoverImg)
+                    || string.IsNullOrEmpty(userSnapshot.ShopName)
+                    || string.IsNullOrEmpty(userSnapshot.ShopContactNumber)
+                    || string.IsNullOrEmpty(userSnapshot.ShopMessengerLink))
+                {
+                    // If any of the properties is empty or null, show an alert or take appropriate action
+                    await DisplayAlert("Error", "Shop details are incomplete. Please update your shop details.", "OK");
+                    await Navigation.PushModalAsync(new ShopDetail(App.key));
+                    return;
+                }
+                else
+                {
+                    // Update the UI with the retrieved user data
+                    imglogo.Source = new UriImageSource
                     {
                         Uri = new Uri(userSnapshot.ShopProfile),
                         CachingEnabled = true,
                         CacheValidity = TimeSpan.FromDays(1)
-                    }
-                    : "account.png";
+                    };
 
-                lblcompanyname.Text = userSnapshot.ShopName;
+                    imglogo.Source = userSnapshot.ShopProfile;
+                    lblcompanyname.Text = userSnapshot.ShopName;
+                }
             }
         }
         catch (Exception ex)
@@ -50,6 +81,7 @@ public partial class HomePage : ContentPage
             Console.WriteLine($"Error: {ex.Message}");
         }
     }
+
 
 
 

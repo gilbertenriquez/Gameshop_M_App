@@ -13,7 +13,9 @@ public partial class SignUpPage : INotifyPropertyChanged
     private Users Regis = new();
 	public SignUpPage()
 	{
-		InitializeComponent();
+
+
+        InitializeComponent();
 	}
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
@@ -24,6 +26,12 @@ public partial class SignUpPage : INotifyPropertyChanged
 
     private async void nextBTN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
         progressLoading.IsVisible = false;
 
@@ -109,7 +117,7 @@ public partial class SignUpPage : INotifyPropertyChanged
             }
         }
     }
-
+   
 }
 
 

@@ -4,118 +4,126 @@
              x:Class="Gameshop_App_Seller.Pages.SignUpPage"
              Title="SignUpPage"
              BackgroundColor="#EEF5FF">
-    <ScrollView>
-        <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <ImageButton Grid.Row="0" Source="back.png" Margin="0,10,0,0" HeightRequest="40" HorizontalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
           AbsoluteLayout.LayoutFlags="All" Margin="20">
 
-                <ImageButton Grid.Row="0" Source="back.png" HeightRequest="30" HorizontalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
 
-            <Label Text="Registering is quick and simple." FontSize="20" FontAttributes="Bold" Margin="20" TextColor="#007AFF"/>
+                <Label Text="Registering is quick and simple." FontSize="20" FontAttributes="Bold" Margin="20" TextColor="#007AFF"/>
 
-            <Grid RowDefinitions=" Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="20">
+                <Grid RowDefinitions=" Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="20">
 
-                <Label Grid.Row="0" Text="First Name" TextColor="Black"/>
-                <Frame Grid.Row="1" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                    <Entry Placeholder="First Name"
+                    <Label Grid.Row="0" Text="First Name" TextColor="Black"/>
+                    <Frame Grid.Row="1" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                        <Entry Placeholder="First Name"
                        PlaceholderColor="DimGray"
                        TextColor="Black"
                        x:Name="FNEntry"/>
-                </Frame>
-                <Label Grid.Row="2" Text="Last Name" TextColor="Black"/>
+                    </Frame>
+                    <Label Grid.Row="2" Text="Last Name" TextColor="Black"/>
 
-                <Frame Grid.Row="3" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                    <Entry Placeholder="Last Name"
+                    <Frame Grid.Row="3" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                        <Entry Placeholder="Last Name"
                        PlaceholderColor="DimGray"
                        TextColor="Black"
                        x:Name="LNEntry"/>
-                </Frame>
-                
-                <Label Grid.Row="4" Text="Email" TextColor="Black"/>
-                <Frame Grid.Row="5" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                    <Entry Placeholder="Email"
+                    </Frame>
+
+                    <Label Grid.Row="4" Text="Email" TextColor="Black"/>
+                    <Frame Grid.Row="5" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                        <Entry Placeholder="Email"
                        PlaceholderColor="DimGray"
                        TextColor="Black"
                        x:Name="emailEntry"/>
-                </Frame>
+                    </Frame>
 
-                <StackLayout
+                    <StackLayout
 x:Name="progressLoading"
 IsVisible="False"
 AbsoluteLayout.LayoutBounds="0,0,1,1"
 AbsoluteLayout.LayoutFlags="All"
 BackgroundColor="Transparent">
-                    <ActivityIndicator
+                        <ActivityIndicator
     x:Name="ai"
     IsRunning="True" IsVisible="True"
     HorizontalOptions="CenterAndExpand"
     Color="{StaticResource TextColorAccent}" Margin="0,0,0,0" />
-                    <Label x:Name="lblorderstate" FontSize="20" 
+                        <Label x:Name="lblorderstate" FontSize="20" 
                            FontFamily="facompa" Text="We're processing your request, please wait..." 
                            Margin="20" 
                            HorizontalOptions="CenterAndExpand" 
                            TextColor="#7cfdd0"/>
-                </StackLayout>
+                    </StackLayout>
 
-                <Label Grid.Row="6" Text="Password" TextColor="Black"/>
+                    <Label Grid.Row="6" Text="Password" TextColor="Black"/>
 
-                <Frame Grid.Row="7"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                    <Entry Placeholder="Password"
+                    <Frame Grid.Row="7"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                        <Entry Placeholder="Password"
                         IsPassword="True"
                         TextColor="Black"
                         PlaceholderColor="DimGray"
                         x:Name="passwordEntry"/>
-                </Frame>
+                    </Frame>
 
-                <Label Grid.Row="8" Text="Home Address" TextColor="Black"/>
-                <Frame Grid.Row="9"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                    <Entry Placeholder="Address"
+                    <Label Grid.Row="8" Text="Home Address" TextColor="Black"/>
+                    <Frame Grid.Row="9"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                        <Entry Placeholder="Address"
                        TextColor="Black"
                        PlaceholderColor="DimGray"
                        x:Name="locationEntry"/>
-                </Frame>
+                    </Frame>
 
-                <Label Grid.Row="10" 
+                    <Label Grid.Row="10" 
                        Text="Birthday" 
                        FontSize="15"  
                        TextColor="Black"/>
 
-                <DatePicker Grid.Row="11"   
-                        BackgroundColor="White"
+                    <DatePicker Grid.Row="11"   
+                        BackgroundColor="Transparent"
                         x:Name="birthdayPicker" 
                         TextColor="Black"   
                         Format="MM-dd-yyyy"
                 />
 
-                <Label Grid.Row="12" 
+                    <Label Grid.Row="12" 
                    Text="Gender" 
                    FontSize="15" 
                    TextColor="Black"/>
 
-                
-                <Picker Grid.Row="13"  
-                        BackgroundColor="White"
+
+                    <Picker Grid.Row="13"  
+                        BackgroundColor="Transparent"
                         x:Name="genderPicker" 
                         TitleColor="Black" 
                         Title="Select Gender"                       
                         TextColor="Black" >
 
-                    <Picker.ItemsSource  >
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Male</x:String>
-                            <x:String>Female</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                        <Picker.ItemsSource  >
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
 
-            </Grid>
+                </Grid>
 
-            <Button Text="Register" 
+                <Button Text="Register" 
                     x:Name="nextBTN"   
                     BackgroundColor="#007AFF"
                     TextColor="White" 
                     Clicked="nextBTN_Clicked" 
                     />
-            
-        </VerticalStackLayout>
-    </ScrollView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

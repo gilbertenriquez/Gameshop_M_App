@@ -12,7 +12,23 @@ public partial class AddproductinfoPage : ContentPage
     private Users imgSave = new();
     public AddproductinfoPage()
     {
+
+        if (!CheckInternetConnection())
+        {
+            // Optionally display an alert or take appropriate action if there's no internet
+            return;
+        }
         InitializeComponent();
+    }
+
+    private bool CheckInternetConnection()
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
     }
 
 

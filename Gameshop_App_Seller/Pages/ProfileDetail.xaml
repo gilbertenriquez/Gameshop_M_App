@@ -3,24 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.ProfileDetail"
              Title="ProfileDetail"  BackgroundColor="#EEF5FF">
-    <ScrollView>
-        <VerticalStackLayout Margin="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
+
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0" Margin="0,10,0,0" Source="back.png" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+                             Clicked="btnBackImg_Clicked"/>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Margin="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
                   RowSpacing="20">
-                <ImageButton Grid.Row="0" Source="back.png" HeightRequest="40" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
-                             Margin="0,0,0,100" Clicked="btnBackImg_Clicked"/>
-                <Border Grid.Row="1"  Margin="0,-70,0,0">
-                    <Image  Source="account.png" x:Name="ProfilePictureUser" Aspect="AspectFit" HeightRequest="300" />
-                </Border>
-                <Label Grid.Row="2" Text="Upload Your Profile Picture" HorizontalOptions="Center" TextColor="#252525"/>
-                <Button Text="Upload Image"                      
+
+                    <Border Grid.Row="1"  Margin="0,-70,0,0">
+                        <Image  Source="account.png" x:Name="ProfilePictureUser" Aspect="AspectFit" HeightRequest="300" />
+                    </Border>
+                    <Label Grid.Row="2" Text="Upload Your Profile Picture" HorizontalOptions="Center" TextColor="#252525"/>
+                    <Button Text="Upload Image"                      
                         TextColor="#252525" 
                         BackgroundColor="#007AFF"
                         Grid.Row="3"
                         x:Name="UploadProfileImage"
                         HorizontalOptions="Start"
                         Clicked="UploadProfileImage_Clicked"/>
-                <Button Text="Remove Image"                      
+                    <Button Text="Remove Image"                      
                         TextColor="#252525" 
                         BackgroundColor="#007AFF" 
                         Grid.Row="3"
@@ -29,36 +38,36 @@
                         Clicked="RemoveIMGbtn_Clicked"
                         />
 
-                <Label Text="First Name:" TextColor="#252525" Grid.Row="4"/>
-                <Frame Grid.Row="5"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
-                    <Entry x:Name="fnameEntry" IsReadOnly="True"  TextColor="#252525"/>
-                </Frame>
+                    <Label Text="First Name:" TextColor="#252525" Grid.Row="4"/>
+                    <Frame Grid.Row="5"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                        <Entry x:Name="fnameEntry" IsReadOnly="True"  TextColor="#252525"/>
+                    </Frame>
 
-                <Label Text="Last Name:" TextColor="#252525"  Grid.Row="6"/>
-                <Frame  Grid.Row="7" BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
-                    <Entry x:Name="lnameEntry" IsReadOnly="True"  TextColor="#252525"/>
-                </Frame>
+                    <Label Text="Last Name:" TextColor="#252525"  Grid.Row="6"/>
+                    <Frame  Grid.Row="7" BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                        <Entry x:Name="lnameEntry" IsReadOnly="True"  TextColor="#252525"/>
+                    </Frame>
 
-                <Label Text="Email:" TextColor="#252525"  Grid.Row="8"/>
-                <Frame  Grid.Row="9"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
-                    <Entry x:Name="Emailentry" IsReadOnly="True"  TextColor="#252525"/>
-                </Frame>
+                    <Label Text="Email:" TextColor="#252525"  Grid.Row="8"/>
+                    <Frame  Grid.Row="9"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                        <Entry x:Name="Emailentry" IsReadOnly="True"  TextColor="#252525"/>
+                    </Frame>
 
-                <Label Text="Password:" TextColor="#252525"  Grid.Row="10"/>
-                <Frame Grid.Row="11"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
-                    <Entry x:Name="Passwordentry" IsPassword="True"   TextColor="#252525"/>
-                </Frame>
+                    <Label Text="Password:" TextColor="#252525"  Grid.Row="10"/>
+                    <Frame Grid.Row="11"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                        <Entry x:Name="Passwordentry" IsPassword="True"   TextColor="#252525"/>
+                    </Frame>
 
-                <Label Text="Address:" TextColor="#252525"  Grid.Row="12"/>
-                <Frame Grid.Row="13"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
-                    <Entry x:Name="Addressentry"   TextColor="#252525"/>
-                </Frame>
-                <Label Grid.Row="14" 
+                    <Label Text="Address:" TextColor="#252525"  Grid.Row="12"/>
+                    <Frame Grid.Row="13"  BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                        <Entry x:Name="Addressentry"   TextColor="#252525"/>
+                    </Frame>
+                    <Label Grid.Row="14" 
                             Text="Birthday" 
                             FontSize="15"  
                             TextColor="#252525"/>
 
-                <DatePicker Grid.Row="15"   
+                    <DatePicker Grid.Row="15"   
                              BackgroundColor="#EEF5FF"
                              x:Name="birthdayPicker" 
                              TextColor="#252525"   
@@ -66,36 +75,37 @@
                             IsEnabled="False"
                      />
 
-                <Label Grid.Row="16" 
+                    <Label Grid.Row="16" 
                         Text="Gender" 
                         FontSize="15" 
                         TextColor="#252525"/>
-                     
-                     
-                 <Picker Grid.Row="17"  
+
+
+                    <Picker Grid.Row="17"  
                              BackgroundColor="#EEF5FF"
                              x:Name="genderPicker" 
                              TitleColor="#252525" 
                              Title="Select Gender"                       
                              TextColor="#252525" 
                          IsEnabled="False">
-                     
-                    <Picker.ItemsSource  >
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Male</x:String>
-                            <x:String>Female</x:String>
-                             </x:Array>
-                         </Picker.ItemsSource>
-                     </Picker>
-                
-                <Button Text="Update Profile" 
+
+                        <Picker.ItemsSource  >
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Male</x:String>
+                                <x:String>Female</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Button Text="Update Profile" 
                         Grid.Row="18"
                          x:Name="updateProfileBTN"
                          BackgroundColor="#007AFF"
                          TextColor="White"
                         Clicked="updateProfileBTN_Clicked"/>
 
-            </Grid>
-    </VerticalStackLayout>
-    </ScrollView>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

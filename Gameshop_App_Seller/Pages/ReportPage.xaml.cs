@@ -16,6 +16,14 @@ public partial class ReportPage : ContentPage
 
     public ReportPage()
     {
+
+        if (!CheckInternetConnection())
+        {
+            // Optionally display an alert or take appropriate action if there's no internet
+            return;
+        }
+
+
         InitializeComponent();
         LoadUserData();
     }
@@ -40,6 +48,17 @@ public partial class ReportPage : ContentPage
 
         // Set the actual URI in the MainImage.Source property (not displayed)
         MainImageOriginalSource = imageUri;
+    }
+
+
+    private bool CheckInternetConnection()
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
     }
 
 

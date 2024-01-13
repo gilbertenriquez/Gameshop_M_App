@@ -68,6 +68,15 @@ public partial class ViewProductPage : ContentPage
     {
         try
         {
+
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+                // Handle this case as needed, e.g., show an error message to the user
+                return;
+            }
+
             // Use the productemail parameter instead of App.email
             string userEmail = productemail.ToLower();
             string userKey = await GetUserKeyByEmail(userEmail);

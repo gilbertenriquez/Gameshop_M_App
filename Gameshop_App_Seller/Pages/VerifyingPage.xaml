@@ -6,82 +6,85 @@
              BackgroundColor="#EEF5FF">
 
 
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <ScrollView>
-        <VerticalStackLayout Margin="20">
+        <ImageButton Grid.Row="0" Source="back.png" 
+            HeightRequest="30"
+            Margin="20"
+            HorizontalOptions="Start" 
+            VerticalOptions="Start" 
+            x:Name="btnBackImg"
+               Clicked="btnBackImg_Clicked"/>
+        <ScrollView>
+            <VerticalStackLayout Margin="20">
 
-            <ImageButton Grid.Row="0" Source="back.png" 
-                      HeightRequest="30"
-                      Margin="20"
-                      HorizontalOptions="Start" 
-                      VerticalOptions="Start" 
-                      x:Name="btnBackImg"
-                         Clicked="btnBackImg_Clicked"/>
-
-
-            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" 
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto" 
                RowSpacing="10">
 
-                <Label Grid.Row="0"
+                    <Label Grid.Row="0"
                     TextColor="Black" 
                     Text="Valid ID"
                     FontSize="30"
                     FontFamily="RobotoCondensed"
                     Margin="20,10,0,0" />
 
-                <Label Grid.Row="1"
+                    <Label Grid.Row="1"
                     Text="Note: Please make your valid id photos presentable as possible. These images will verify if you are eligable for to become seller."
                     Margin="20" 
                     TextColor="Black" />
 
-                <Grid Grid.Row="2">
+                    <Grid Grid.Row="2">
 
-                    <Grid HorizontalOptions="CenterAndExpand">
+                        <Grid HorizontalOptions="CenterAndExpand">
 
-                        <Border StrokeThickness="0"
+                            <Border StrokeThickness="0"
                             BackgroundColor="Transparent"
                             StrokeShape="RoundRectangle 5"
                             HeightRequest="400">
-                            
-                            <Grid>
-                                <Image 
+
+                                <Grid>
+                                    <Image 
                                     x:Name="Frontimage"
                                     />
-                            </Grid>
-                        </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
                     </Grid>
-                </Grid>
 
-                <Label Grid.Row="3" TextColor="Black"
+                    <Label Grid.Row="3" TextColor="Black"
                     Text="Please take a selfie with your valid ID facing forward"
                         FontSize="20"
                         FontAttributes="Bold"
                     HorizontalOptions="CenterAndExpand"/>
 
-                <HorizontalStackLayout Grid.Row="4" HorizontalOptions="CenterAndExpand">
-                    <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
-                        <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnFrontimage_Clicked"/>
-                        <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked"/>
-                    </Grid>
-                </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="4" HorizontalOptions="CenterAndExpand">
+                        <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
+                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnFrontimage_Clicked"/>
+                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked"/>
+                        </Grid>
+                    </HorizontalStackLayout>
 
-                <Grid Grid.Row="5">
+                    <Grid Grid.Row="5">
 
-                    <Grid  HorizontalOptions="CenterAndExpand">
-                        <Border  StrokeThickness="0"
+                        <Grid  HorizontalOptions="CenterAndExpand">
+                            <Border  StrokeThickness="0"
                                  BackgroundColor="Transparent"
                                  StrokeShape="RoundRectangle 5"
                                  HeightRequest="400">
-                            
-                            <Grid>
-                                <Image Grid.Row="0" x:Name="backimage"/>
-                            </Grid>
-                        </Border>
-                    </Grid>
-                </Grid>
-                
 
-                <Label Grid.Row="6" 
+                                <Grid>
+                                    <Image Grid.Row="0" x:Name="backimage"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+
+
+                    <Label Grid.Row="6" 
                        TextColor="Black"
                        FontSize="20"
                        FontAttributes="Bold"
@@ -89,34 +92,34 @@
                        HorizontalOptions="CenterAndExpand"/>
 
 
-                <HorizontalStackLayout Grid.Row="7" HorizontalOptions="CenterAndExpand">
-                    <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
-                        <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnBackimage_Clicked"/>
-                        <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked_1"/>
-                    </Grid>
-                </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="7" HorizontalOptions="CenterAndExpand">
+                        <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
+                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnBackimage_Clicked"/>
+                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked_1"/>
+                        </Grid>
+                    </HorizontalStackLayout>
 
 
-                <StackLayout Grid.Row="2"
+                    <StackLayout Grid.Row="2"
                     x:Name="progressLoading"
                     IsVisible="False"
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
                     AbsoluteLayout.LayoutFlags="All"
                     BackgroundColor="Transparent">
-                    <ActivityIndicator
+                        <ActivityIndicator
                     x:Name="ai"
                     IsRunning="True" IsVisible="True"
                     HorizontalOptions="CenterAndExpand"
                     Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                    <Label x:Name="lblorderstate" FontSize="20" 
+                        <Label x:Name="lblorderstate" FontSize="20" 
                     FontFamily="facompa" 
                     Text="We're processing your request, please wait..." 
                     Margin="20" 
                     HorizontalOptions="CenterAndExpand"
                     TextColor="Black"/>
-                </StackLayout>
-                
-                <Picker Grid.Row="6"  
+                    </StackLayout>
+
+                    <Picker Grid.Row="6"  
                      BackgroundColor="Transparent"
                      x:Name="statusUser" 
                      TitleColor="Transparent" 
@@ -124,21 +127,21 @@
                      TextColor="Transparent"
                      >
 
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>False</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+
+                        <!-- Set the default selected item -->
+                        <Picker.SelectedItem>
                             <x:String>False</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-
-                    <!-- Set the default selected item -->
-                    <Picker.SelectedItem>
-                        <x:String>False</x:String>
-                    </Picker.SelectedItem>
-                </Picker>
+                        </Picker.SelectedItem>
+                    </Picker>
 
 
 
-                <Button Grid.Row="8" 
+                    <Button Grid.Row="8" 
                          Text="Submit Your Application for Become A Seller"                               
                          BackgroundColor="#272829"
                          TextColor="White" 
@@ -146,7 +149,8 @@
                          x:Name="saveBtn" 
                          Clicked="saveBtn_Clicked" />
 
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

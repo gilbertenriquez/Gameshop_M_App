@@ -10,7 +10,14 @@ public partial class SellerSettings : ContentPage
     private string userId;
 	public SellerSettings()
 	{
-		InitializeComponent();
+
+        if (!CheckInternetConnection())
+        {
+            // Optionally display an alert or take appropriate action if there's no internet
+            return;
+        }
+
+        InitializeComponent();
     }
 
     public SellerSettings(string userId)
@@ -18,6 +25,19 @@ public partial class SellerSettings : ContentPage
         InitializeComponent();
         this.userId = userId; // Store the user ID
     }
+
+    private bool CheckInternetConnection()
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
+    }
+
+
+
     protected async override void OnAppearing()
     {
         base.OnAppearing();

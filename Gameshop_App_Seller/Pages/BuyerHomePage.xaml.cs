@@ -12,6 +12,13 @@ public partial class BuyerHomePage : ContentPage
 
     public BuyerHomePage()
     {
+
+        if (!CheckInternetConnection())
+        {
+            // Optionally display an alert or take appropriate action if there's no internet
+            return;
+        }
+
         InitializeComponent();
         LoadDataAsync();
         OnAppearing();
@@ -23,6 +30,16 @@ public partial class BuyerHomePage : ContentPage
         InitializeAsync(userKey);
     }
 
+
+    private bool CheckInternetConnection()
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
+            return false;
+        }
+        return true;
+    }
 
 
     protected async void OnAppearingDenied()
@@ -206,7 +223,7 @@ public partial class BuyerHomePage : ContentPage
             // Add debug statement
            
 
-            await Navigation.PushModalAsync(new AppShell(userKey));
+            await Navigation.PushModalAsync(new AppShell());
             return;
         }
 
