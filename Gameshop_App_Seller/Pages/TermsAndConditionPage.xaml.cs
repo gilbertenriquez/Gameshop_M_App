@@ -4,10 +4,7 @@ public partial class TermsAndConditionPage : ContentPage
 {
 	public TermsAndConditionPage()
 	{
-        if (CheckInternetConnection())
-        {
-            return;
-        }
+
         InitializeComponent();
     }
 
@@ -17,13 +14,5 @@ public partial class TermsAndConditionPage : ContentPage
 	}
 
 
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
+    
 }

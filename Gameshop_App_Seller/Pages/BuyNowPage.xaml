@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_App_Seller.Pages.BuyNowPage"
+             Title="BuyNowPage"  BackgroundColor="#EEF5FF">
+
+
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0"
+                     x:Name="btnBackImg"
+                     Source="backbtn.png"
+                     BackgroundColor="Transparent"
+                     HeightRequest="20"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="20,10,0,0"
+                     Clicked="btnBackImg_Clicked" />
+
+
+        <HorizontalStackLayout HorizontalOptions="End" Spacing="5" Margin="10">
+            <Button Text="Chat Now" 
+             BackgroundColor="Transparent"
+             TextColor="#007AFF"  
+             BorderColor="Black"
+            HorizontalOptions="Start"  
+            HeightRequest="50"
+            x:Name="MessengerLink" Clicked="MessengerLink_Clicked"/>
+
+            <Button Text="CONFIRM" 
+            BorderColor="Black"
+            BackgroundColor="Transparent"
+            TextColor="#007AFF"  
+            HorizontalOptions="End" x:Name="ConfirmationBTN" Clicked="ConfirmationBTN_Clicked"/>
+        </HorizontalStackLayout>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20">
+                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="10">
+                    <HorizontalStackLayout Grid.Row="2" Margin="0,30,0,0">
+                        <Grid ColumnDefinitions="AUTO,AUTO" RowDefinitions="30,auto,auto">
+                            <Image  x:Name="ItemImage" Source="account.png" HeightRequest="80" Margin="0,0,10,0" Aspect="AspectFit" Grid.Column="0" />
+                            <Label Text="ITEM NAME" x:Name="itemname" FontSize="Medium" Grid.Column="1" TextColor="Black" />
+                            <HorizontalStackLayout  Grid.Row="1"  Grid.Column="1" Spacing="5">
+                                <Label Text="Stock:" FontSize="Caption" TextColor="Grey" />
+                                <Label x:Name="itemQuantity" FontSize="Caption" TextColor="Grey" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </HorizontalStackLayout>
+                    <Label Text="Quantity:" TextColor="Black" Grid.Row="5" />
+                    <HorizontalStackLayout Grid.Row="5"  HorizontalOptions="End">
+                        <Frame Padding="0" CornerRadius="0" BorderColor="Gray" BackgroundColor="Transparent">
+                            <Grid ColumnDefinitions="*,*,*" HorizontalOptions="End" >
+                                <ImageButton Source="minus.png" Aspect="AspectFit" HeightRequest="20" Clicked="MinusButton_Clicked" Grid.Column="0"/>
+                                <Label x:Name="QuantityLabel"  VerticalOptions="Center" HorizontalOptions="Center"  TextColor="Black" Grid.Column="1" />
+                                <ImageButton Source="plus.png" Aspect="AspectFit" HeightRequest="20" Clicked="PlusButton_Clicked" Grid.Column="2" />
+                            </Grid>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5" Grid.Row="6">
+                    <Label Text="Price:" TextColor="Black"/>
+                    <Label x:Name="itemPRICE" TextColor="Black"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout  Grid.Row="7" Spacing="5">
+                        <Label Text="Purchaser:" TextColor="Black"/>
+                        <Label x:Name="BuyerName" TextColor="Black"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="8" Spacing="5">
+                        <Label Text="Shop:" TextColor="Black" />
+                        <Label x:Name="SellerName" TextColor="Black" />
+                    </HorizontalStackLayout>
+
+                    <Label Text="Transactions Image" TextColor="Black" FontSize="Medium" Grid.Row="9"/>
+
+                    <VerticalStackLayout  Grid.Row="10" HorizontalOptions="FillAndExpand" >
+                        <Grid> 
+                    <Image Aspect="AspectFit"  x:Name="Prooftransraction" HeightRequest="250" />
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout Grid.Row="12" HorizontalOptions="Center">
+                        <Button Text="Upload" x:Name="addimageBTN" Clicked="addimageBTN_Clicked" BackgroundColor="#007AFF" TextColor="White"/>
+                        <Button Text="Remove" x:Name="removeBTN" Clicked="removeBTN_Clicked"  BackgroundColor="#007AFF" TextColor="White" />
+                    </HorizontalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Row="13">
+                        <HorizontalStackLayout Spacing="5">
+                            <Label x:Name="GetTime" TextColor="Transparent"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="5">
+                            <Label x:Name="GetDateToday" TextColor="Transparent"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

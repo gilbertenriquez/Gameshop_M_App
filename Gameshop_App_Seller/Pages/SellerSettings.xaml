@@ -37,9 +37,9 @@
 
                             <HorizontalStackLayout  HorizontalOptions="End">
                             </HorizontalStackLayout>
-                            
-                            <ImageButton Source="back.png"  
-                                         HeightRequest="40"
+
+                            <ImageButton Source="backbtnwhite.png"  
+                                         HeightRequest="20"
                                          Margin="0,55,0,0"
                                          HorizontalOptions="Start"
                                          Clicked="btnBackImg_Clicked"                                          
@@ -50,7 +50,7 @@
                             <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
                      Grid.Row="1" Margin="20" StrokeThickness="3"
                      Stroke="#007AFF"
-                     HeightRequest="130" WidthRequest="130">
+                     HeightRequest="100" WidthRequest="100">
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
                             <Grid Grid.Column="1" VerticalOptions="Center"
@@ -58,11 +58,11 @@
                                        ColumnDefinitions="Auto,Auto"  ColumnSpacing="5">
                                 <Label x:Name="FirstName" Grid.Row="1" 
                                        TextColor="#007AFF"
-                                       FontSize="18" LineBreakMode="TailTruncation"
+                                       FontSize="25" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
                                 <Label x:Name="LastName" Grid.Row="1" Grid.Column="1"
                                        TextColor="#007AFF"
-                                       FontSize="18" LineBreakMode="TailTruncation"
+                                       FontSize="25" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
                             </Grid>
                         </Grid>

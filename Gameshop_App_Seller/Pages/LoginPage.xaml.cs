@@ -110,19 +110,19 @@ public partial class LoginPage : INotifyPropertyChanged
 
             if (result)
             {
-                await DisplayAlert("Alert!", "Access Granted!", "OK!");
+                await DisplayAlert("Information!", "Log In Successfully!", "OK!");
                 emailEntry.Text = "";
                 passwordEntry.Text = "";
                 await Navigation.PushModalAsync(new BuyerHomePage(userUid));
             }
             else
             {
-                await DisplayAlert("Alert!", "Access Denied!", "OK!");
+                await DisplayAlert("Information!", "Log In Failed!", "OK!");
             }
         }
         else
         {
-            await DisplayAlert("Alert!", "Invalid Email or Password", "OK!");
+            await DisplayAlert("Information!", "Invalid Email or Password", "OK!");
         }
 
         progressLoading.IsVisible = false;

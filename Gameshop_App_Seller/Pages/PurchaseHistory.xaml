@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gameshop_App_Seller.Pages.PurchaseHistory"
+             Title="PurchaseHistory" BackgroundColor="#EEF5FF">
+    
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0"
+                  x:Name="btnBackImg"
+                  Source="backbtn.png"
+                  BackgroundColor="Transparent"
+                  HeightRequest="20"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  Margin="20,10,0,0"
+                  Clicked="btnBackImg_Clicked" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
+                <CollectionView x:Name="purchaselist"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ContentView
+                                      BackgroundColor="White" 
+                                      Padding="10"
+                                      VerticalOptions="Start">
+
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20">
+                                        <Image 
+                                       Grid.Row="0"  
+                                       Source="{Binding soldImageItem}"
+                                       HeightRequest="100"
+                                       HorizontalOptions="Start" 
+                                       Aspect="AspectFit"/>
+
+                                        <Image Grid.Row="1" 
+                                       HorizontalOptions="Start" 
+                                       Source="{Binding soldTranscationImage}"
+                                       HeightRequest="100" 
+                                       Aspect="AspectFit"/>
+                                        <Label  Grid.Row="2" Text="{Binding soldName}" TextColor="Black" HorizontalOptions="Start"  />
+                                        <Label  Grid.Row="3" Text="{Binding soldQuantity}" TextColor="Black"   />
+                                        <Label  Grid.Row="4" Text="{Binding soldPrice}" TextColor="Black" />
+                                        <Label  Grid.Row="5" Text="{Binding soldTime}" TextColor="Black" />
+                                        <Label  Grid.Row="6" Text="{Binding soldDate}" TextColor="Black" HorizontalOptions="Start"  />
+                                        <Label  Grid.Row="7" Text="{Binding Seller}" TextColor="Black"   />
+                                        <Label  Grid.Row="8" Text="{Binding Buyer}" TextColor="Black" />
+                                    </Grid>
+                                </ContentView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

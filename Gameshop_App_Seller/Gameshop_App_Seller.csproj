@@ -55,8 +55,9 @@
 	  <None Remove="Resources\Fonts\Metropolis-Medium.otf" />
 	  <None Remove="Resources\Fonts\Metropolis-Regular.otf" />
 	  <None Remove="Resources\Images\account.png" />
-	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\back.png" />
+	  <None Remove="Resources\Images\backbtn.png" />
+	  <None Remove="Resources\Images\backbtnwhite.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\edit.png" />
@@ -65,10 +66,14 @@
 	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\messages.png" />
+	  <None Remove="Resources\Images\minus.png" />
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
+	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\purchasehistory.png" />
 	  <None Remove="Resources\Images\record.png" />
 	  <None Remove="Resources\Images\review.png" />
+	  <None Remove="Resources\Images\reviewseller.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\selfieidfront.png" />
 	  <None Remove="Resources\Images\sent.png" />
@@ -106,6 +111,9 @@
 	  <MauiXaml Update="Pages\BuyerHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\BuyNowPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -124,6 +132,9 @@
 	  <MauiXaml Update="Pages\ProfileDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\PurchaseHistory.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -131,9 +142,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReviewsOnSellerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\SearchPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SellerSettings.xaml">

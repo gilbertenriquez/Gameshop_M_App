@@ -10,26 +10,10 @@ public partial class SettingsPage : ContentPage
 {
     public SettingsPage()
     {
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
-        InitializeComponent();
         LoadUserDataAsync();
+        InitializeComponent();
     }
 
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
 
     private async Task LoadUserDataAsync()
     {

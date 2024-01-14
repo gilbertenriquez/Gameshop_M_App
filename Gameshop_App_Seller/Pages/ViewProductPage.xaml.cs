@@ -39,6 +39,7 @@ public partial class ViewProductPage : ContentPage
         ProductName.Text = productName;
         ProductDescription.Text = ProductDescrip;
         ProductPrice.Text = productPrice;
+        itemQuantity.Text = productQuantity;
 
         PhotoCarousel.ItemsSource = new List<string>
             {
@@ -67,16 +68,7 @@ public partial class ViewProductPage : ContentPage
     protected override async void OnAppearing()
     {
         try
-        {
-
-
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
-                // Handle this case as needed, e.g., show an error message to the user
-                return;
-            }
-
+        {         
             // Use the productemail parameter instead of App.email
             string userEmail = productemail.ToLower();
             string userKey = await GetUserKeyByEmail(userEmail);
@@ -126,6 +118,12 @@ public partial class ViewProductPage : ContentPage
 
     private async void reportsBTN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
+        }
         await Navigation.PushModalAsync(new ReportPage(Shopnames.Text, productItemName, productItemprice, productemail, imageProduct, reporter));
     }
 
@@ -147,28 +145,39 @@ public partial class ViewProductPage : ContentPage
         isExpanded = !isExpanded;
     }
 
-    private async void linkTOmessenger_Clicked(object sender, EventArgs e)
+    private async void BuynowBTN_Clicked(object sender, EventArgs e)
     {
-        string messengerLink = containMessengerLink.Text;
-
-        if (!string.IsNullOrEmpty(messengerLink))
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
-            if (Uri.TryCreate(messengerLink, UriKind.Absolute, out Uri result))
-            {
-                // The link is a valid absolute URI
-                await Launcher.OpenAsync(result);
-            }
-            else
-            {
-                // The link is not a valid URI, you can handle it accordingly
-                // For example, open the link in the browser
-                await Launcher.OpenAsync($"https://{messengerLink}");
-            }
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
         }
-        else
-        {
-            // The messenger link is empty, handle it accordingly
-            // For example, display an alert or take any other action
-        }
+        await Navigation.PushModalAsync(new BuyNowPage(containMessengerLink.Text,Shopnames.Text, productItemName, reporter, productemail, itemQuantity.Text, imageProduct, ProductPrice.Text));
     }
+
+    //private async void linkTOmessenger_Clicked(object sender, EventArgs e)
+    //{
+    //    string messengerLink = containMessengerLink.Text;
+
+    //    if (!string.IsNullOrEmpty(messengerLink))
+    //    {
+    //        if (Uri.TryCreate(messengerLink, UriKind.Absolute, out Uri result))
+    //        {
+    //            // The link is a valid absolute URI
+    //            await Launcher.OpenAsync(result);
+    //        }
+    //        else
+    //        {
+    //            // The link is not a valid URI, you can handle it accordingly
+    //            // For example, open the link in the browser
+    //            await Launcher.OpenAsync($"https://{messengerLink}");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // The messenger link is empty, handle it accordingly
+    //        // For example, display an alert or take any other action
+    //    }
+    //}
 }

@@ -27,7 +27,7 @@
                            BackgroundColor="Transparent">
                     <ActivityIndicator
                            x:Name="ai"
-                           IsRunning="True" IsVisible="True"
+                           IsRunning="True" IsVisible="True" 
                            HorizontalOptions="CenterAndExpand"
                            Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
                 </StackLayout>

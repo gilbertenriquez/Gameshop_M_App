@@ -3,18 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.ReviewsOnSellerPage"
              Title="ReviewsOnSellerPage"  BackgroundColor="#EEF5FF">
-    <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
-        <CollectionView x:Name="reviewontheSeller" BackgroundColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO" HeightRequest="350" RowSpacing="20" Margin="20">
-                        <Label Grid.Row="1" Text="{Binding comment}" TextColor="White" />
-                        <Image Grid.Row="2" x:Name="TransactionImage" Source="{Binding itemShopImage}" HeightRequest="250" Aspect="AspectFit"/>
-                        <Label Grid.Row="3" x:Name="Stars" Text="{Binding StarReview}" TextColor="White"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-       
-    </VerticalStackLayout>
+
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0"
+                  x:Name="btnBackImg"
+                  Source="backbtn.png"
+                  BackgroundColor="Transparent"
+                  HeightRequest="20"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  Margin="20,10,0,0"
+                  Clicked="btnBackImg_Clicked" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
+                <CollectionView x:Name="reviewontheSeller"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ContentView
+                                      BackgroundColor="White" 
+                                      Padding="10"
+                                      VerticalOptions="Start">
+
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20">
+                                        <Image Grid.Row="0"  
+                                       HorizontalOptions="Start" 
+                                       x:Name="TransactionImage" Source="{Binding itemShopImage}"
+                                       HeightRequest="200" Aspect="AspectFit"/>
+                                        <Label Text="Comment" TextColor="Black" Grid.Row="1" HorizontalOptions="Start"  />
+                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="Black"   />
+                                        <Label Text="Rating" TextColor="Black" Grid.Row="3" />
+                                        <Label Grid.Row="4" x:Name="Stars" Text="{Binding StarReview}" TextColor="Black" />
+                                        <StackLayout Grid.Row="5" Grid.Column="0" 
+                                                     Grid.ColumnSpan="2" 
+                                                     HorizontalOptions="Center" 
+                                                     Orientation="Horizontal"
+                                                     HeightRequest="30">
+                                            <Image x:Name="stars1" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                            <Image x:Name="stars2" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                            <Image x:Name="stars3" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                            <Image x:Name="stars4" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                            <Image x:Name="stars5" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </ContentView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

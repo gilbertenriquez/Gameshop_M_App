@@ -60,6 +60,10 @@
                                            WidthRequest="100">
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="EditProdsBTN"
                                      WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
+                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerReview"
+                                     WidthRequest="25" Source="reviewseller.png"  Clicked="sellerReview_Clicked"/>
+                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerHistory"
+                                     WidthRequest="25" Source="purchasehistory.png"  Clicked="sellerHistory_Clicked"/>
                             </HorizontalStackLayout>
 
 
@@ -119,7 +123,7 @@
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
-                                            <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding Imagae_1_link}"  Aspect="AspectFill"  HeightRequest="150" />
+                                            <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="150" />
                                            
                                             <Label Grid.Row="1" Text="Item Name"  TextColor="Black"/>
                                             <Label Grid.Row="2" TextColor="Black"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />

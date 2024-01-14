@@ -13,7 +13,7 @@ namespace Gameshop_App_Seller
         public static FirebaseStorage firebaseStorage = new("gameshopdb-f4df3.appspot.com");
         public static string key, email, imgLink, img1, img2, img3, img4, img5, img6, productname, productdesc, productprice, productquantity,productpath;
         public static FileResult _mainimgResult, _img1Result, _img2Result, _img3Result,
-             _img4Result, _img5Result, _img6Result, _ValidIDFront, _ValidIDBack, _ValidIDBackSelfie, _ValidIDFrontSelfie,ShopProfile,ShopCover;
+             _img4Result, _img5Result, _img6Result, Productimage,TransactionImage ,_ValidIDFront, _ValidIDBack, _ValidIDBackSelfie, _ValidIDFrontSelfie,ShopProfile,ShopCover;
         public static FirebaseService FirebaseService { get; set; } = new FirebaseService();
 
         public App()

@@ -29,6 +29,18 @@ namespace Gameshop_App_Seller.Models
 
             return userWithKey?.Key;
         }
+
+
+        public async Task<string> GetUserKeyByEmailinReview(string email)
+        {
+            var users = await ClientUsers
+                .Child("Reviews")
+                .OnceAsync<Users>();
+
+            var userWithKey = users.FirstOrDefault(u => u.Object.MAIL == email);
+
+            return userWithKey?.Key;
+        }
         public void SetUserKey(string userKey)
         {
             UserKey = userKey;

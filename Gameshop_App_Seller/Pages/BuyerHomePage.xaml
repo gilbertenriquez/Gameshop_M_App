@@ -45,15 +45,15 @@
                            TextColor="#007AFF"
                            FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
                            FontSize="30" />
-                            <HorizontalStackLayout Grid.Column="1" Spacing="20"
+                            <HorizontalStackLayout Grid.Column="1" 
                                            HorizontalOptions="End" Margin="0,70,40,0"
                                            WidthRequest="100">
 
-                                <ImageButton HorizontalOptions="End"   HeightRequest="45"                                      
+                                <ImageButton HorizontalOptions="End"   HeightRequest="30"                                      
                                      x:Name="ShopBTN" Source="shop.png"
                                             Clicked="ShopBTN_Clicked"/>
                                 
-                                <ImageButton HeightRequest="45" HorizontalOptions="End"                                        
+                                <ImageButton HeightRequest="30" HorizontalOptions="End"                                        
                                     x:Name="SettingsBTN" Source="settings.png"
                                            Clicked="SettingsBTN_Clicked"/>
 

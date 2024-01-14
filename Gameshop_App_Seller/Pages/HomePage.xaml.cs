@@ -11,28 +11,11 @@ public partial class HomePage : ContentPage
     private Users dusers = new Users();
     public HomePage()
     {
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
-
-        InitializeComponent();
         LoadUserDataAsync();
+        InitializeComponent();
         OnAppearing();
     }
 
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
 
     private async Task LoadUserDataAsync()
     {
@@ -156,30 +139,7 @@ public partial class HomePage : ContentPage
             await DisplayAlert("Alert", "Please Select A Data To Edit", "OK!");
         }
     }
-    private async void ChatBTN_Clicked(object sender, EventArgs e)
-    {
-        // Obtain the user email from your source; replace this with your actual logic
-        string userEmail = App.email;
 
-        // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
-        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
-
-        if (!string.IsNullOrEmpty(userKey))
-        {
-            bool user = await DisplayAlert("Confirmation", "Do you want to continue?", "Yes", "No");
-            if (user)
-            {
-                App.key = userKey;
-                // You might want to use userKey here as needed
-                //await Navigation.PushModalAsync(new ChatHomepage(userKey));
-            }
-        }
-        else
-        {
-            await DisplayAlert("Warning", "No user key found", "OK");
-        }
-
-    }
 
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -209,18 +169,15 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private async void reportBTN_Clicked(object sender, EventArgs e)
-    {
-        bool userConfirmed = await DisplayAlert("ALERT", "Report This Product", "Yes", "No");
+   
 
-        if (userConfirmed)
-        {
-            await Navigation.PushModalAsync(new ReportPage());
-        }
-        else
-        {
-            return;
-        }
+    private async void sellerReview_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ReviewsOnSellerPage());
     }
 
+    private async void sellerHistory_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new PurchaseHistory());
+    }
 }

@@ -7,9 +7,9 @@
     using Firebase.Auth;
     using Firebase.Database;
     using System.Collections.ObjectModel;
-using System.Reactive.Linq;
-using Firebase.Database.Streaming;
-
+    using System.Reactive.Linq;
+    using Firebase.Database.Streaming;
+    
 
 
 
@@ -67,15 +67,105 @@ namespace Gameshop_App_Seller.Models
         public string StarReview { get; set; }
         public string comment { get; set; }
         public string itemShopImage { get; set; }
+        public string EmailReviewer { get; set; }
+        public string Date { get; set; }
 
 
 
-        public Users()
+
+
+
+
+
+        // properties of being purchase/buy confirmation
+        public string soldName { get; set; }
+        public string soldQuantity { get; set; }
+        public string soldPrice { get; set; }
+        public string soldTime { get; set; }
+        public string soldDate { get; set; }
+        public string Seller { get; set; }
+        public string Buyer { get; set; }
+        public string soldImageItem { get; set; }
+        public string soldTranscationImage { get; set; }
+
+
+
+
+        public async Task<bool> SoldProduct(
+                                string img1,
+                                string img2,
+                                string soldname,
+                                string soldquantity,
+                                string soldprice,
+                                string soldtime,
+                                string solddate,
+                                string soldtoseller,
+                                string soldtobuyer)
         {
-            authProvider = new FirebaseAuthProvider(new FirebaseConfig(webAPIKey));
+
+            // Construct the path to the user's account node
+            var evaluateEmail = (await ClientUsers
+              .Child("Purchase History")
+              .OnceAsync<Users>())
+              .FirstOrDefault(a => a.Object.MAIL == soldtoseller);
+
+            var admin = new Users()
+            {
+                soldName = soldname,
+                soldQuantity = soldquantity,
+                soldPrice = soldprice,
+                soldTime = soldtime,
+                soldDate = solddate,
+                Seller = soldtoseller,
+                Buyer = soldtobuyer,
+                soldImageItem = img1,
+                soldTranscationImage = img2
+            };
+            await ClientUsers
+                      .Child($"Purchase History")
+                      .PostAsync(admin);
+
+            return true;
         }
 
-        public async Task<bool> SellerReviews(string rating, string RaterComment, string email, string itemImage)
+
+
+        public async Task<bool> PurchaseH(
+                      string img1,
+                      FileResult img2,
+                     string soldname,
+                     string soldquantity,
+                     string soldprice,
+                     string soldtime,
+                     string solddate,
+                     string soldtoseller,
+                     string soldtobuyer)
+        {
+
+          
+            var ImageTransaction = await UploadImage(await img2.OpenReadAsync(),
+                                                "TransactionImage",
+                                                img2.FileName);
+
+            var ValidIDs = await SoldProduct(
+                                         img1,
+                                         ImageTransaction,
+                                         soldname,
+                                         soldquantity,
+                                         soldprice,
+                                         soldtime,
+                                         solddate,
+                                         soldtoseller,
+                                         soldtobuyer);
+
+            return true;
+        }
+
+
+
+
+
+        public async Task<bool> SellerReviews(string emailreviewer, string date, string rating, string RaterComment, string email, string itemImage)
         {
             var evaluateEmail = (await ClientUsers
                   .Child("Reviews")
@@ -87,7 +177,10 @@ namespace Gameshop_App_Seller.Models
                 StarReview = rating,
                 comment = RaterComment,
                 itemShopImage = itemImage,
+                EmailReviewer = emailreviewer,
+                Date = date,
                 MAIL = email,
+
             };
             await ClientUsers
                       .Child($"Reviews")
@@ -98,14 +191,17 @@ namespace Gameshop_App_Seller.Models
                        FileResult img1,
                        string shopRate,
                        string shopComment,
-                       string shopEmail)
+                       string shopEmail,
+                       string emailReviewer,
+                       string date)
         {
 
             var ImageReview = await UploadImage(await img1.OpenReadAsync(),
                                                  "ReviewImages",
                                                  img1.FileName);
 
-            var ValidIDs = await SellerReviews(
+            var ValidIDs = await SellerReviews(emailReviewer,
+                                    date,
                                     shopRate,
                                     shopComment,
                                     shopEmail,
@@ -894,37 +990,6 @@ namespace Gameshop_App_Seller.Models
 
 
         //not yet
-        public async Task<bool> SendMessage(string senderEmail, string receiverEmail, string message)
-        {
-            try
-            {
-                // Assuming your structure is like this: Users/Messages
-                var user = (await ClientUsers
-                    .Child($"Users/Messages")
-                    .OnceAsync<Users>())
-                    .FirstOrDefault(a => a.Object.MAIL == senderEmail && a.Object.MAIL == receiverEmail);
-
-                // Check if the user exists and the message is sent successfully
-                if (user != null)
-                {
-                    // Assuming the Users class has properties like SenderEmail, ReceiverEmail, Message, etc.
-                    user.Object.Message = message;
-
-                    // Update the message in the database
-                    await ClientUsers
-                        .Child($"Users/Messages/{user.Key}")
-                        .PutAsync(user.Object);
-
-                    return true;
-                }
-
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
 
         //path and upload a photo to validate
@@ -1013,7 +1078,7 @@ namespace Gameshop_App_Seller.Models
 
             };
             await ClientUsers
-                      .Child($"Reported/{App.key}")
+                      .Child($"Reported")
                       .PostAsync(admin);
             return true;
         }
@@ -1079,41 +1144,56 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
-        public async Task<List<Users>> GetReviewsByEmail(string userEmail)
+
+        public async Task<ObservableCollection<Users>> GetReviewListAsync()
         {
             try
             {
-                var reviewsSnapshot = await ClientUsers
+                // Assuming DeniedApplication is a class representing denied applications
+                var deniedApplications = await ClientUsers
                     .Child("Reviews")
-                    .OnceAsync<Dictionary<string, Users>>();
+                    .OnceAsync<Users>();
 
-                var reviewList = new List<Users>();
+                var deniedApplicationsList = deniedApplications
+                    .Select(item => item.Object)
+                    .ToList();
 
-                foreach (var entry in reviewsSnapshot)
-                {
-                    var reviewsDictionary = entry.Object;
-
-                    foreach (var reviewEntry in reviewsDictionary)
-                    {
-                        var review = reviewEntry.Value;
-
-                        if (review != null && review.MAIL == userEmail)
-                        {
-                            reviewList.Add(review);
-                        }
-                    }
-                }
-
-                Console.WriteLine($"Review List Count: {reviewList.Count}");
-                return reviewList;
+                return new ObservableCollection<Users>(deniedApplicationsList);
             }
             catch (Exception ex)
             {
-                // Handle exceptions as needed
-                Console.WriteLine($"Error: {ex.Message}");
-                return new List<Users>();
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
             }
         }
+
+
+        public async Task<ObservableCollection<Users>> GetPurchaseListAsync()
+        {
+            try
+            {
+                // Assuming DeniedApplication is a class representing denied applications
+                var deniedApplications = await ClientUsers
+                    .Child("Purchase History")
+                    .OnceAsync<Users>();
+
+                var deniedApplicationsList = deniedApplications
+                    .Select(item => item.Object)
+                    .ToList();
+
+                return new ObservableCollection<Users>(deniedApplicationsList);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
+            }
+        }
+
+
+
 
 
 

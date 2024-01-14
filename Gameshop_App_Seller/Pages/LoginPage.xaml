@@ -14,12 +14,12 @@
 
         <ImageButton Grid.Row="0"
                      x:Name="btnBackImg"
-                     Source="back.png"
+                     Source="backbtn.png"
                      BackgroundColor="Transparent"
-                     HeightRequest="40"
+                     HeightRequest="20"
                      HorizontalOptions="Start"
                      VerticalOptions="Start"
-                     Margin="0,10,0,0"
+                     Margin="20,10,0,0"
                      Clicked="btnBackImg_Clicked" />
 
         <ScrollView Grid.Row="1" Grid.RowSpan="1">

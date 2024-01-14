@@ -10,40 +10,92 @@ namespace Gameshop_App_Seller.Pages
         public ReviewsOnSellerPage()
         {
             InitializeComponent();
+            OnAppearingReview();
             this.userEMAIL = App.email;
-            LoadReviewsAsync(userEMAIL);
+            OnAppearing();
 
-            if (!CheckInternetConnection())
+        }
+
+        protected async Task OnAppearingReview()
+        {
+            try
             {
-                // Optionally display an alert or take appropriate action if there's no internet
-                return;
+                base.OnAppearing();
+
+                string userEmail = App.email.ToLower();
+
+                var deniedApplicationsList = await reviewseller.GetReviewListAsync();
+
+                // Filter the list to include only reviews with the user's email
+                var userReviews = deniedApplicationsList.Where(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                if (userReviews.Any())
+                {
+                    reviewontheSeller.ItemsSource = userReviews;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
             }
         }
+
+
+        //private void SetStarRatingImages(string starReview)
+        //{
+            
+        //    // Set the appropriate stars based on the rating
+        //    switch (starReview.ToLower())
+        //    {
+        //        case "excellent":
+        //            SetStarImage(stars1, "filledstar.png");
+        //            SetStarImage(stars2, "filledstar.png");
+        //            SetStarImage(stars3, "filledstar.png");
+        //            SetStarImage(stars4, "filledstar.png");
+        //            SetStarImage(stars5, "filledstar.png");
+        //            break;
+        //        case "good":
+        //            SetStarImage(stars1, "filledstar.png");
+        //            SetStarImage(stars2, "filledstar.png");
+        //            SetStarImage(stars3, "filledstar.png");
+        //            SetStarImage(stars4, "filledstar.png");
+        //            break;
+        //        case "average":
+        //            SetStarImage(stars1, "filledstar.png");
+        //            SetStarImage(stars2, "filledstar.png");
+        //            SetStarImage(stars3, "filledstar.png");
+        //            break;
+        //        case "poor":
+        //            SetStarImage(stars1, "filledstar.png");
+        //            SetStarImage(stars2, "filledstar.png");
+        //            break;
+        //        case "very poor":
+        //            SetStarImage(stars1, "filledstar.png");
+        //            break;
+        //            // Add cases for other ratings as needed
+        //    }
+        //}
+
+        private void SetStarImage(Image star, string imageName)
+        {
+            star.Source = imageName;
+        }
+
+
+
 
         public ReviewsOnSellerPage(string userkey) : this()
         {
            App.key = userkey;
         }
 
-        private bool CheckInternetConnection()
+       
+
+      
+        private async void btnBackImg_Clicked(object sender, EventArgs e)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-                return false;
-            }
-            return true;
+            await Navigation.PopModalAsync();
         }
-
-        private async void LoadReviewsAsync(string userEmail)
-        {
-            var reviews = await reviewseller.GetReviewsByEmail(userEmail);
-
-            // Display reviews in your UI, e.g., set the item source of your collection view
-            reviewontheSeller.ItemsSource = reviews;
-        }
-
-
     }
 
 }

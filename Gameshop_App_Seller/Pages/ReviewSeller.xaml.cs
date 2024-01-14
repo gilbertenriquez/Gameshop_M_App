@@ -157,7 +157,9 @@ namespace Gameshop_App_Seller.Pages
 
        private async void BTNsubmit_Clicked(object sender, EventArgs e)
 {
-    var result = await ReviewUser.UploadReview(_mainimgResult, ratingLabel.Text, commentTXT.Text, userEmails);
+            var TodayDate = DateTime.Now.ToString("MM-dd-yyyy");
+
+            var result = await ReviewUser.UploadReview(_mainimgResult, ratingLabel.Text, commentTXT.Text, userEmails,App.email, TodayDate);
 
     if (result)
     {

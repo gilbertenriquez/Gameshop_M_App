@@ -12,7 +12,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Source="back.png" 
+        <ImageButton Source="backbtn.png" 
               HeightRequest="40" 
               HorizontalOptions="Start"
               VerticalOptions="Start"
