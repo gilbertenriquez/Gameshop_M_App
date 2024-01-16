@@ -30,7 +30,7 @@
                             <HorizontalStackLayout Grid.Column="0" Spacing="10"
                                            HorizontalOptions="Start" Margin="20,40,0,10"
                                            WidthRequest="100">
-                                <ImageButton x:Name="BTNbackImg" Source="backbtn.png" Clicked="BTNbackImg_Clicked"/>
+                                <ImageButton x:Name="BTNbackImg" Source="backbtnwhite.png" Clicked="BTNbackImg_Clicked"/>
 
                             </HorizontalStackLayout>
 
@@ -59,7 +59,7 @@
             </Border>
 
             <Grid Grid.Row="4" Margin="30" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"
-  RowSpacing="10" >
+  RowSpacing="20" >
                 <Label Grid.Row="0" Text="Account Settings" TextColor="White" FontSize="20"/>
               
 

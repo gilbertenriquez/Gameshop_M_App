@@ -77,11 +77,7 @@ public partial class LoginPage : INotifyPropertyChanged
         await Navigation.PushModalAsync(new SignUpPage());
     }
 
-    private async void btnBackImg_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PopModalAsync();
-    }
-
+ 
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)

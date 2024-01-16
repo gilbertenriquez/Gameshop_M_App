@@ -8,12 +8,21 @@ namespace Gameshop_App_Seller.Pages;
 
 public partial class SettingsPage : ContentPage
 {
+    private string userkey;
     public SettingsPage()
     {
-        
+
         InitializeComponent();
         LoadUserDataAsync();
     }
+
+    public SettingsPage( string userkey): this ()
+    {
+
+        this.userkey = userkey;
+       
+    }
+
 
 
     private async Task LoadUserDataAsync()

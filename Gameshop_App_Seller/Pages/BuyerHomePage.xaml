@@ -13,12 +13,6 @@
             Margin="-5,-60,-5,20" BackgroundColor="#5234a7"
             StrokeThickness="0"
             StrokeShape="RoundRectangle ">
-                <Border.Shadow>
-                    <Shadow Brush="#5234a7"
-                    Offset="20,30"
-                    Radius="30"
-                    Opacity=".5" />
-                </Border.Shadow>
                 <Grid>
                     <Image Aspect="AspectFill" Opacity="0.5"
                    HorizontalOptions="FillAndExpand"
@@ -48,15 +42,7 @@
                             <HorizontalStackLayout Grid.Column="1" 
                                            HorizontalOptions="End" Margin="0,70,40,0"
                                            WidthRequest="100">
-
-                                <ImageButton HorizontalOptions="End"   HeightRequest="30"                                      
-                                      Source="shop.png"
-                                            Clicked="ShopBTN_Clicked"/>
-                                
-                                <ImageButton HeightRequest="30" HorizontalOptions="End"                                        
-                                     Source="settings.png"
-                                           Clicked="SettingsBTN_Clicked"/>
-
+                               
                             </HorizontalStackLayout>
                         </Grid>
 
@@ -111,12 +97,14 @@
             </StackLayout>
 
 
-            <HorizontalStackLayout Grid.Row="3" HorizontalOptions="FillAndExpand"   Margin="0,0,40,0" >
-                <Grid ColumnDefinitions="AUTO,AUTO,AUTO,AUTO"  HorizontalOptions="CenterAndExpand" > 
-                <SearchBar 
+
+            <StackLayout  Grid.Row="3" Margin="10">
+                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="10" >
+                    <SearchBar                    
                   Margin="20"     
-                    Grid.Column="0" Grid.ColumnSpan="3"
-                    HorizontalOptions="FillAndExpand"
+                     Grid.Row="0"
+                    Grid.Column="0" 
+                    HorizontalOptions="Fill"
                   Placeholder="Search....." 
                   BackgroundColor="#212025" 
                   TextColor="White"
@@ -124,17 +112,19 @@
                   x:Name="searchBar"
                   TextChanged="searchBar_TextChanged" />
 
-                    <ImageButton  Grid.Column="2" HeightRequest="30"                                      
-                   x:Name="ShopBTN" Source="shop.png" BackgroundColor="Transparent"
-                          Clicked="ShopBTN_Clicked"/>
+                    <ImageButton HorizontalOptions="End" Grid.Row="0" Grid.Column="1" HeightRequest="30"                                      
+       Source="shop.png"
+             Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
 
-                    <ImageButton  Grid.Column="3" HorizontalOptions="End"                                        
-                  x:Name="SettingsBTN" Source="settings.png" BackgroundColor="Transparent"
-                         Clicked="SettingsBTN_Clicked"/>
+                <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"                                        
+      Source="settings.png" BackgroundColor="Transparent"
+            Clicked="SettingsBTN_Clicked"/>
                 </Grid>
-            </HorizontalStackLayout>
 
-                
+            </StackLayout>
+
+
+
 
 
             <ScrollView Grid.Row="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -144,7 +134,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" >
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="15" >
                                 <Frame
                                        BorderColor="White"                                      
                                        BackgroundColor="#212025" 

@@ -3,44 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.AddproductinfoPage"
              Title="AddproductinfoPage"
-             BackgroundColor="#EEF5FF"
+             BackgroundColor="#212025"
              >
-    <ScrollView> 
-    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
-            <ImageButton HorizontalOptions="Start" Source="backbtn.png" Grid.Column="0" Grid.Row="0"
-        Margin="20,20,0,0" 
-        HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked" />
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40"  AbsoluteLayout.LayoutBounds="0,0,1,1"
+        <ImageButton HorizontalOptions="Start" Source="backbtnwhite.png" 
+                     Grid.Column="0" 
+                     Grid.Row="0" 
+                     Margin="20"
+                     BackgroundColor="Transparent"
+                     HeightRequest="40"  
+                     Clicked="ImageButton_Clicked" />
+
+        <ScrollView Grid.Row="1">
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="40">
+
+
+
+                <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40"  AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
-            
-            <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."
-                   
-                   
-               FontSize="20" FontFamily="RobotoLight"  TextColor="Black"/>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="Black" TextColor="Black" x:Name="entryName"/>
-            </Frame>
 
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="Black" TextColor="Black" x:Name="entryPrice"/>
-            </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0" HeightRequest="200">
-                <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="Black" TextColor="Black" x:Name="entryDescription"/>
-            </Frame>
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
-                <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="Black" TextColor="Black" x:Name="entryQuantity"/>
-            </Frame>
+                    <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
+               FontSize="20" FontFamily="RobotoLight"  TextColor="White"/>
+                    
+                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                        <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="LightGray" TextColor="White" x:Name="entryName"/>
+                    </Frame>
 
-                <Grid HeightRequest="50"
-  Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">
+                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                        <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice"/>
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
+                        <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
+                    </Frame>
+                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                        <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity"/>
+                    </Frame>
 
-                    <Button Text="Save"  x:Name="saveBTN" BackgroundColor="Black"
-            BorderColor="WhiteSmoke" TextColor="White" Clicked="saveBTN_Clicked"/>
-                </Grid>
-            
-        </VerticalStackLayout>
-    </AbsoluteLayout>
-    </ScrollView>
+                    <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">
+
+                        <Button Text="Save"  x:Name="saveBTN" BackgroundColor="#d22f3d"
+            BorderColor="Transparent" TextColor="White" Clicked="saveBTN_Clicked"/>
+                    </Grid>
+
+                </VerticalStackLayout>
+            </AbsoluteLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

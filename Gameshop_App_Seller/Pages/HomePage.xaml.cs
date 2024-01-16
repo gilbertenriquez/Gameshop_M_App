@@ -154,7 +154,7 @@ public partial class HomePage : ContentPage
                 App.productname = selectedUser.ProductName.ToLower();
 
                 // Retrieve the user key based on the email
-                App.key = await dusers.GetUserKey(App.productname);
+                App.UserKey = await dusers.GetUserKey(App.productname);
 
                 // Fetch additional user data, including ReporterEmail
                 selectedUser = await dusers.GetUserDataByEmailAsync(App.email);
@@ -165,7 +165,7 @@ public partial class HomePage : ContentPage
             else
             {
                 // Reset App.key when selection is cleared
-                App.key = null;
+                App.UserKey = null;
             }
         }
     }
@@ -184,6 +184,17 @@ public partial class HomePage : ContentPage
 
     private async void sellerSettings_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new SettingsPage());
+        await Navigation.PushModalAsync(new SettingsPage(App.key));
+    }
+
+    private void tobeUNSELECTED_Tapped(object sender, TappedEventArgs e)
+    {
+        var selectedUser = ((Frame)sender).BindingContext as Users;
+
+        if (selectedUser != null)
+        {
+            // Toggle the selection
+            listViewProducts.SelectedItem = (listViewProducts.SelectedItem == selectedUser) ? null : selectedUser;
+        }
     }
 }

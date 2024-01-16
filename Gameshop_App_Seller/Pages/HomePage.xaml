@@ -25,7 +25,7 @@
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
                 <Grid>
-                    <Image x:Name="imgcover" HorizontalOptions="Fill"  Aspect="AspectFill"/>
+                    <Image x:Name="imgcover" HorizontalOptions="FillAndExpand"  Aspect="AspectFill"/>
                     <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -43,14 +43,14 @@
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
                                            HorizontalOptions="End" Margin="0,40,80,0"
                                            WidthRequest="100">
-                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="EditProdsBTN"
-                                     WidthRequest="25" Source="editwhite.png"  Clicked="EditProdsBTN_Clicked"/>
-                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerReview"
-                                     WidthRequest="25" Source="reviewseller.png"  Clicked="sellerReview_Clicked"/>
-                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerHistory"
-                                     WidthRequest="25" Source="purchasehistory.png"  Clicked="sellerHistory_Clicked"/>
-                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerSettings"
-                                     WidthRequest="25" Source="settings.png"  Clicked="sellerSettings_Clicked"/>
+                                <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="EditProdsBTN"
+                                     Source="editwhite.png"  Clicked="EditProdsBTN_Clicked" BackgroundColor="Transparent"/>
+                                <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerReview"
+                                     Source="reviewseller.png"  Clicked="sellerReview_Clicked" BackgroundColor="Transparent"/>
+                                <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerHistory"
+                                     Source="purchasehistory.png"  Clicked="sellerHistory_Clicked" BackgroundColor="Transparent"/>
+                                <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerSettings"
+                                     Source="settings.png"  Clicked="sellerSettings_Clicked" BackgroundColor="Transparent"/>
                             </HorizontalStackLayout>
 
 
@@ -68,7 +68,7 @@
 
                             <Grid Grid.Column="1">
                                 <Label Text="Shop Name"  VerticalOptions="Center" x:Name="lblcompanyname"
-                               TextColor="#007AFF"
+                               TextColor="White"
                               FontSize="25"
                                FontFamily="RobotoCondensed" />
                             </Grid>
@@ -77,13 +77,13 @@
                 </Grid>
             </Border>
             <Grid Grid.Row="1">
-                <Button Text="Add Item" x:Name="AddProductsBTN" CornerRadius="20" 
-                WidthRequest="200" HeightRequest="50"
+                <Button Text="Add Item" x:Name="AddProductsBTN"  Margin="20,-50,20,-50" 
+                 HeightRequest="50"
                 Clicked="AddProdsBTN_Clicked"
                TextColor="White" BackgroundColor="#d22f3d"/>
             </Grid>
             <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand">
-                <CollectionView x:Name="listViewProducts" SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
+                <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
@@ -94,10 +94,15 @@
                             <VerticalStackLayout VerticalOptions="FillAndExpand"
                                          HorizontalOptions="FillAndExpand" Margin="10" >
                                 <ScrollView>
-                                    <ContentView
-                                           BackgroundColor="White" 
+                                    <Frame
+                                           BackgroundColor="#212025" 
                                            Padding="10"
+                                           BorderColor="White"
+                                          CornerRadius="0"
                                            VerticalOptions="Start">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="tobeUNSELECTED" Tapped="tobeUNSELECTED_Tapped"/>
+                                        </Frame.GestureRecognizers>
                                         <Grid  RowSpacing="5" Margin="5">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -111,21 +116,21 @@
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="150" />
-                                           
-                                            <Label Grid.Row="1" Text="Item Name"  TextColor="Black"/>
-                                            <Label Grid.Row="2" TextColor="Black"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
-                                            <Label Grid.Row="3" Text="Description" TextColor="Black"/>
-                                            <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
+                                            <Label Grid.Row="1" Text="Item Name"  TextColor="White"/>
+                                            <Label Grid.Row="2" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
-                                            <Label Grid.Row="5" Text="Price"  TextColor="Black"/>
-                                            <Label Grid.Row="6" TextColor="Black"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" />
+                                            <Label Grid.Row="3" Text="Description" TextColor="White"/>
+                                            <Label Grid.Row="4" TextColor="#d22f3d" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
 
-                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="Black"/>
-                                            <Label Grid.Row="8" TextColor="Black"  FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="5" Text="Price"  TextColor="White"/>
+                                            <Label Grid.Row="6" TextColor="#d22f3d"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" />
+
+                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="White"/>
+                                            <Label Grid.Row="8" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductQuantity}" />
 
                                         </Grid>
-                                    </ContentView>
+                                    </Frame>
                                 </ScrollView>
                             </VerticalStackLayout>
                         </DataTemplate>

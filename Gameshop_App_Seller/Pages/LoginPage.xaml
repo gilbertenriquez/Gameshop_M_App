@@ -12,15 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0"
-                     x:Name="btnBackImg"
-                     Source="backbtnwhite.png"
-                     BackgroundColor="Transparent"
-                     HeightRequest="20"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="20,10,0,0"
-                     Clicked="btnBackImg_Clicked" />
+       
 
         <ScrollView Grid.Row="1" Grid.RowSpan="1">
             <VerticalStackLayout Spacing="5" Margin="40" VerticalOptions="FillAndExpand">
