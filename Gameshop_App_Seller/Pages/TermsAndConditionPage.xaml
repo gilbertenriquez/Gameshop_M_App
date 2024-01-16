@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.TermsAndConditionPage"
-             Title="TermsAndConditionPage" BackgroundColor="#EEF5FF">
+             Title="TermsAndConditionPage" BackgroundColor="#212025">
 
 
 
@@ -12,16 +12,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Margin="20"  Source="backbtn.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
+        <ImageButton Margin="40"  Source="backbtnwhite.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
 
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="40" RowSpacing="20">
-                    <Label Grid.Row="0" Text="Terms And Condition for Gameshop" FontSize="30" TextColor="Black"/>
-                    <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="0" Text="Terms And Condition for Gameshop" FontSize="30" TextColor="WHITE"/>
+                    <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="WHITE"/>
 
-                    <Label FontSize="15" Grid.Row="3" TextColor="Black">
+                    <Label FontSize="15" Grid.Row="3" TextColor="WHITE">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Welcome to GameShop!" />

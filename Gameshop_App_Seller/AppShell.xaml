@@ -10,13 +10,4 @@
     Shell.TabBarBackgroundColor="{StaticResource Gradient1}"
     Shell.TabBarTitleColor="{StaticResource TextColorWhite}"
     Shell.TabBarUnselectedColor="{StaticResource TextColorGary}">
-
-
-    <TabBar>
-        <ShellContent Title="Home"                     
-                      ContentTemplate="{DataTemplate local:HomePage}"/>
-        <ShellContent Title="Settings"
-                     
-                      ContentTemplate="{DataTemplate local:SettingsPage}"/>
-    </TabBar>
 </Shell>

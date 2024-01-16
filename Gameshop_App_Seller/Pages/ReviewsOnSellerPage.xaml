@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.ReviewsOnSellerPage"
-             Title="ReviewsOnSellerPage"  BackgroundColor="#EEF5FF">
+             Title="ReviewsOnSellerPage"  BackgroundColor="#212025">
 
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
@@ -12,7 +12,7 @@
 
         <ImageButton Grid.Row="0"
                   x:Name="btnBackImg"
-                  Source="backbtn.png"
+                  Source="backbtnwhite.png"
                   BackgroundColor="Transparent"
                   HeightRequest="20"
                   HorizontalOptions="Start"
@@ -25,23 +25,23 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                <ContentView
-                                      BackgroundColor="White" 
-                                      Padding="10"
+                                <Frame
+                                      BackgroundColor="#212025" 
+                                      Padding="5"
+                                      BorderColor="White"
+                                      Margin="20"
                                       VerticalOptions="Start">
 
-                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20">
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
                                         <Image Grid.Row="0"  
                                        HorizontalOptions="Start" 
                                        x:Name="TransactionImage" Source="{Binding itemShopImage}"
                                        HeightRequest="200" Aspect="AspectFit"/>
-                                        <Label Text="Comment" TextColor="Black" Grid.Row="1" HorizontalOptions="Start"  />
-                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="Black"   />
-                                        <Label Text="Rating" TextColor="Black" Grid.Row="3" />
-                                        <Label Grid.Row="4" x:Name="Stars" Text="{Binding StarReview}" TextColor="Black" />
-                                        <StackLayout Grid.Row="5" Grid.Column="0" 
-                                                     Grid.ColumnSpan="2" 
-                                                     HorizontalOptions="Center" 
+                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="White"   />
+                                        <Label Grid.Row="5" x:Name="Stars" Text="{Binding StarReview}" TextColor="White" />
+                                        <Label Grid.Row="4"  Text="{Binding Date}" TextColor="White" />
+                                        <StackLayout Grid.Row="6" 
+                                                     HorizontalOptions="Start" 
                                                      Orientation="Horizontal"
                                                      HeightRequest="30">
                                             <Image x:Name="stars1" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
@@ -51,7 +51,7 @@
                                             <Image x:Name="stars5" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
                                         </StackLayout>
                                     </Grid>
-                                </ContentView>
+                                </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -50,11 +50,11 @@
                                            WidthRequest="100">
 
                                 <ImageButton HorizontalOptions="End"   HeightRequest="30"                                      
-                                     x:Name="ShopBTN" Source="shop.png"
+                                      Source="shop.png"
                                             Clicked="ShopBTN_Clicked"/>
                                 
                                 <ImageButton HeightRequest="30" HorizontalOptions="End"                                        
-                                    x:Name="SettingsBTN" Source="settings.png"
+                                     Source="settings.png"
                                            Clicked="SettingsBTN_Clicked"/>
 
                             </HorizontalStackLayout>
@@ -111,15 +111,30 @@
             </StackLayout>
 
 
-            <SearchBar Grid.Row="3" 
-           Margin="20"                        
-           Placeholder="Search....." 
-           BackgroundColor="#d22f3d" 
-           TextColor="White"
-           PlaceholderColor="White"
-                         x:Name="searchBar"
-         TextChanged="searchBar_TextChanged" />
+            <HorizontalStackLayout Grid.Row="3" HorizontalOptions="FillAndExpand"   Margin="0,0,40,0" >
+                <Grid ColumnDefinitions="AUTO,AUTO,AUTO,AUTO"  HorizontalOptions="CenterAndExpand" > 
+                <SearchBar 
+                  Margin="20"     
+                    Grid.Column="0" Grid.ColumnSpan="3"
+                    HorizontalOptions="FillAndExpand"
+                  Placeholder="Search....." 
+                  BackgroundColor="#212025" 
+                  TextColor="White"
+                  PlaceholderColor="White"
+                  x:Name="searchBar"
+                  TextChanged="searchBar_TextChanged" />
 
+                    <ImageButton  Grid.Column="2" HeightRequest="30"                                      
+                   x:Name="ShopBTN" Source="shop.png" BackgroundColor="Transparent"
+                          Clicked="ShopBTN_Clicked"/>
+
+                    <ImageButton  Grid.Column="3" HorizontalOptions="End"                                        
+                  x:Name="SettingsBTN" Source="settings.png" BackgroundColor="Transparent"
+                         Clicked="SettingsBTN_Clicked"/>
+                </Grid>
+            </HorizontalStackLayout>
+
+                
 
 
             <ScrollView Grid.Row="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -129,44 +144,43 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
-                                    <ContentView
-                                       BackgroundColor="#5234a7" 
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" >
+                                <Frame
+                                       BorderColor="White"                                      
+                                       BackgroundColor="#212025" 
                                        Padding="10"
-                                       
+                                       CornerRadius="0"
                                        VerticalOptions="Start">
-                                        
-
-                                        <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
-                                        </ContentView.GestureRecognizers>
 
 
-                                        <Grid RowSpacing="20">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
+                                    <ContentView.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
+                                    </ContentView.GestureRecognizers>
 
-                                            <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
-                                                <Image.Scale>
-                                                    <OnIdiom x:TypeArguments="x:Double">
-                                                        <OnIdiom.Phone>2.5</OnIdiom.Phone>
-                                                        <OnIdiom.Tablet>3.5</OnIdiom.Tablet>
-                                                    </OnIdiom>
-                                                </Image.Scale>
-                                            </Image>
 
-                                            <Label Grid.Row="4" TextColor="Black" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
-                                            <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="{StaticResource ButtonColor}" />
-                                        </Grid>
-                                    </ContentView>
-                                </ScrollView>
+                                    <Grid RowSpacing="20">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
+                                            <Image.Scale>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>2.5</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>3.5</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.Scale>
+                                        </Image>
+
+                                        <Label Grid.Row="4" TextColor="White" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                        <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="#d22f3d" />
+                                    </Grid>
+                                </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

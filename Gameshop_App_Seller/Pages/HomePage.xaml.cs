@@ -55,6 +55,7 @@ public partial class HomePage : ContentPage
 
                     imglogo.Source = userSnapshot.ShopProfile;
                     lblcompanyname.Text = userSnapshot.ShopName;
+                    imgcover.Source = userSnapshot.ShopCoverImg;
                 }
             }
         }
@@ -179,5 +180,10 @@ public partial class HomePage : ContentPage
     private async void sellerHistory_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new PurchaseHistory());
+    }
+
+    private async void sellerSettings_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new SettingsPage());
     }
 }

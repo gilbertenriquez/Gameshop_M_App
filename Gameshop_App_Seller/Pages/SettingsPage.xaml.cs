@@ -10,8 +10,9 @@ public partial class SettingsPage : ContentPage
 {
     public SettingsPage()
     {
-        LoadUserDataAsync();
+        
         InitializeComponent();
+        LoadUserDataAsync();
     }
 
 
@@ -41,6 +42,9 @@ public partial class SettingsPage : ContentPage
                     : "account.png";
 
                 lblcompanyname.Text = userSnapshot.ShopName;
+                imglogo.Source = userSnapshot.ShopProfile;
+                imgcover.Source = userSnapshot.ShopCoverImg;
+                   
             }
         }
         catch (Exception ex)
@@ -96,5 +100,10 @@ public partial class SettingsPage : ContentPage
     private async void PrivacyPoliBTN_Tapped(object sender, TappedEventArgs e)
     {
       await Navigation.PushModalAsync(new PrivacyPolicyPage());
+    }
+
+    private async void BTNbackImg_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
     }
 }

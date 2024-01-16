@@ -14,12 +14,7 @@ namespace Gameshop_App_Seller.Pages
         private string userEmails;
         public ReviewSeller() 
         {
-            if (!CheckInternetConnection())
-            {
-                // Optionally display an alert or take appropriate action if there's no internet
-                return;
-            }
-
+         
 
             InitializeComponent();
             InitializeStarButtons();
@@ -32,17 +27,7 @@ namespace Gameshop_App_Seller.Pages
         }
 
 
-        private bool CheckInternetConnection()
-        {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-                return false;
-            }
-            return true;
-        }
-
-
+    
 
         private void InitializeStarButtons()
         {
@@ -96,15 +81,15 @@ namespace Gameshop_App_Seller.Pages
         private void commentTXT_TextChanged(object sender, TextChangedEventArgs e)
         {
             int charCount = e.NewTextValue.Length;
-            wordCountLabel.Text = $"{charCount}/600 characters";
+            wordCountLabel.Text = $"{charCount}/100 characters";
 
-            if (charCount > 600)
+            if (charCount > 100)
             {
                 // Disable further input
                 ((Editor)sender).IsEnabled = false;
 
                 // Display an alert message
-                DisplayAlert("Character Limit Exceeded", "You have reached the maximum limit of 600 characters.", "OK");
+                DisplayAlert("Character Limit Exceeded", "You have reached the maximum limit of 100 characters.", "OK");
             }
         }
 

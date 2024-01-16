@@ -43,7 +43,7 @@
                    />
             </Grid>
 
-        <Button x:Name="GetStart" Text="Get Started!" 
+        <Button x:Name="GetStart" Text="Get Started" 
                 Margin="20,60,20,0"
                 VerticalOptions="End"  
                 BackgroundColor="#d22f3d" 

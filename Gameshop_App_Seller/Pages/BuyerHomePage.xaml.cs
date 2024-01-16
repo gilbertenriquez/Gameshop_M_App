@@ -223,7 +223,7 @@ public partial class BuyerHomePage : ContentPage
             // Add debug statement
            
 
-            await Navigation.PushModalAsync(new AppShell());
+            await Navigation.PushModalAsync(new HomePage());
             return;
         }
 

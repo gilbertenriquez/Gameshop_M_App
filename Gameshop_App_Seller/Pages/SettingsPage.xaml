@@ -10,30 +10,9 @@
             Padding="0"
             Margin="-5,-40,-5,0" BackgroundColor="#272829"
             StrokeThickness="0"
-            StrokeShape="RoundRectangle 40">
-                <Border.Shadow>
-                    <Shadow Brush="#5234a7"
-                    Offset="20,30"
-                    Radius="20"
-                    Opacity=".5" />
-                </Border.Shadow>
+            StrokeShape="RoundRectangle 60">
                 <Grid>
-                    <Image Aspect="AspectFill" Opacity="0.5"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="FillAndExpand">
-                        <Image.Source>
-                            <UriImageSource x:Name="imgcover"
-                                    CachingEnabled="True"
-                                    CacheValidity="5"/>
-                        </Image.Source>
-                    </Image>
-                    <!--<Border.Background>
-            <LinearGradientBrush EndPoint="5,5">
-                <GradientStop Color="{StaticResource Gradient1}" Offset="0.01"/>
-                <GradientStop Color="{StaticResource Gradient2}" Offset="0.3"/>
-            </LinearGradientBrush>
-        </Border.Background>-->
-
+                    <Image x:Name="imgcover" HorizontalOptions="Fill"  Aspect="AspectFill"/>
                     <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -48,9 +27,10 @@
                            TextColor="#007AFF"
                            FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                            FontSize="30" />
-                            <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                           HorizontalOptions="End" Margin="0,40,0,0"
+                            <HorizontalStackLayout Grid.Column="0" Spacing="10"
+                                           HorizontalOptions="Start" Margin="20,40,0,10"
                                            WidthRequest="100">
+                                <ImageButton x:Name="BTNbackImg" Source="backbtn.png" Clicked="BTNbackImg_Clicked"/>
 
                             </HorizontalStackLayout>
 
@@ -62,7 +42,7 @@
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                                         Grid.Row="1" Margin="10,-5" StrokeThickness="1"
                                         Stroke="Transparent"
-                                        HeightRequest="70" WidthRequest="70">
+                                        HeightRequest="80" WidthRequest="80">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
@@ -70,7 +50,7 @@
                             <Grid Grid.Column="1">
                                 <Label Text="Shop Name"  VerticalOptions="Center" x:Name="lblcompanyname"
                                     TextColor="White"
-                                   FontSize="25"
+                                   FontSize="30"
                                     FontFamily="RobotoCondensed" />
                             </Grid>
                         </Grid>

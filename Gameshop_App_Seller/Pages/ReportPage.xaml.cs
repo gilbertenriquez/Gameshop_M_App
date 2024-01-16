@@ -125,4 +125,19 @@ public partial class ReportPage : ContentPage
 
         await Navigation.PopModalAsync();
     }
+
+    private void reporttxt_TextChanged(object sender, TextChangedEventArgs e)
+    {
+          int charCount = e.NewTextValue.Length;
+            wordCountLabel.Text = $"{charCount}/100 characters";
+
+            if (charCount > 100)
+            {
+                // Disable further input
+                ((Editor)sender).IsEnabled = false;
+
+                // Display an alert message
+                DisplayAlert("Character Limit Exceeded", "You have reached the maximum limit of 100 characters.", "OK");
+            }        
+    }
 }

@@ -24,23 +24,8 @@
             Margin="-5,-40,-5,0" BackgroundColor="#272829"
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
-                <Border.Shadow>
-                    <Shadow Brush="#5234a7"
-                    Offset="20,30"
-                    Radius="20"
-                    Opacity=".5" />
-                </Border.Shadow>
                 <Grid>
-                    <Image Aspect="AspectFill" Opacity="0.5"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="FillAndExpand">
-                        <Image.Source>
-                            <UriImageSource x:Name="imgcover"
-                                    CachingEnabled="True"
-                                    CacheValidity="5"/>
-                        </Image.Source>
-                    </Image>
-
+                    <Image x:Name="imgcover" HorizontalOptions="Fill"  Aspect="AspectFill"/>
                     <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -56,7 +41,7 @@
                            FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                            FontSize="30" />
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                           HorizontalOptions="End" Margin="0,40,60,0"
+                                           HorizontalOptions="End" Margin="0,40,80,0"
                                            WidthRequest="100">
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="EditProdsBTN"
                                      WidthRequest="25" Source="editwhite.png"  Clicked="EditProdsBTN_Clicked"/>
@@ -64,6 +49,8 @@
                                      WidthRequest="25" Source="reviewseller.png"  Clicked="sellerReview_Clicked"/>
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerHistory"
                                      WidthRequest="25" Source="purchasehistory.png"  Clicked="sellerHistory_Clicked"/>
+                                <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerSettings"
+                                     WidthRequest="25" Source="settings.png"  Clicked="sellerSettings_Clicked"/>
                             </HorizontalStackLayout>
 
 
