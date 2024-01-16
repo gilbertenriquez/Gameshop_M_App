@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.SignUpPage"
              Title="SignUpPage"
-             BackgroundColor="#EEF5FF">
+             BackgroundColor="#212025">
 
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
@@ -11,37 +11,41 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0" Source="backbtn.png" Margin="20,10,0,0" HeightRequest="20" HorizontalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
+        <ImageButton Grid.Row="0" Source="backbtnwhite.png" 
+                     Margin="20,10,0,0" 
+                     HeightRequest="20"
+                     HorizontalOptions="Start" 
+                     x:Name="btnBackImg" Clicked="btnBackImg_Clicked" BackgroundColor="Transparent" />
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
-          AbsoluteLayout.LayoutFlags="All" Margin="20">
+          AbsoluteLayout.LayoutFlags="All" Margin="40">
 
 
-                <Label Text="Registering is quick and simple." FontSize="20" FontAttributes="Bold" Margin="20" TextColor="#007AFF"/>
+                <Label Text="Registering is quick and simple." FontSize="20" FontAttributes="Bold" Margin="20" TextColor="White"/>
 
                 <Grid RowDefinitions=" Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="20">
 
-                    <Label Grid.Row="0" Text="First Name" TextColor="Black"/>
-                    <Frame Grid.Row="1" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
+                    <Label Grid.Row="0" Text="First Name" TextColor="White" Margin="0,0,0,-15"/>
+                    <Frame Grid.Row="1"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                         <Entry Placeholder="First Name"
-                       PlaceholderColor="DimGray"
-                       TextColor="Black"
+                       PlaceholderColor="LightGray"
+                       TextColor="White"
                        x:Name="FNEntry"/>
                     </Frame>
-                    <Label Grid.Row="2" Text="Last Name" TextColor="Black"/>
 
+                    <Label Grid.Row="2" Text="Last Name" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="3" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                         <Entry Placeholder="Last Name"
-                       PlaceholderColor="DimGray"
-                       TextColor="Black"
+                       PlaceholderColor="LightGray"
+                       TextColor="White"
                        x:Name="LNEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="4" Text="Email" TextColor="Black"/>
+                    <Label Grid.Row="4" Text="Email" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="5" BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                         <Entry Placeholder="Email"
-                       PlaceholderColor="DimGray"
-                       TextColor="Black"
+                       PlaceholderColor="LightGray"
+                       TextColor="White"
                        x:Name="emailEntry"/>
                     </Frame>
 
@@ -60,51 +64,50 @@ BackgroundColor="Transparent">
                            FontFamily="facompa" Text="We're processing your request, please wait..." 
                            Margin="20" 
                            HorizontalOptions="CenterAndExpand" 
-                           TextColor="#7cfdd0"/>
+                           TextColor="White"/>
                     </StackLayout>
 
-                    <Label Grid.Row="6" Text="Password" TextColor="Black"/>
-
+                    <Label Grid.Row="6" Text="Password" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="7"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                         <Entry Placeholder="Password"
                         IsPassword="True"
-                        TextColor="Black"
-                        PlaceholderColor="DimGray"
+                        TextColor="White"
+                        PlaceholderColor="LightGray"
                         x:Name="passwordEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="8" Text="Home Address" TextColor="Black"/>
+                    <Label Grid.Row="8" Text="Home Address" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="9"  BackgroundColor="Transparent" BorderColor="Black" Padding="0,0">
                         <Entry Placeholder="Address"
-                       TextColor="Black"
-                       PlaceholderColor="DimGray"
+                       TextColor="White"
+                       PlaceholderColor="LightGray"
                        x:Name="locationEntry"/>
                     </Frame>
 
                     <Label Grid.Row="10" 
                        Text="Birthday" 
                        FontSize="15"  
-                       TextColor="Black"/>
+                       TextColor="White" Margin="0,0,0,-15"/>
 
                     <DatePicker Grid.Row="11"   
                         BackgroundColor="Transparent"
                         x:Name="birthdayPicker" 
-                        TextColor="Black"   
+                        TextColor="White"   
                         Format="MM-dd-yyyy"
                 />
 
                     <Label Grid.Row="12" 
                    Text="Gender" 
                    FontSize="15" 
-                   TextColor="Black"/>
+                   TextColor="White"/>
 
 
                     <Picker Grid.Row="13"  
                         BackgroundColor="Transparent"
                         x:Name="genderPicker" 
-                        TitleColor="Black" 
+                        TitleColor="White" 
                         Title="Select Gender"                       
-                        TextColor="Black" >
+                        TextColor="White" >
 
                         <Picker.ItemsSource  >
                             <x:Array Type="{x:Type x:String}">
@@ -118,7 +121,7 @@ BackgroundColor="Transparent">
 
                 <Button Text="Register" 
                     x:Name="nextBTN"   
-                    BackgroundColor="#007AFF"
+                    BackgroundColor="#d22f3d"
                     TextColor="White" 
                     Clicked="nextBTN_Clicked" 
                     />

@@ -265,7 +265,7 @@ public partial class ShopDetail : ContentPage
         if (result)
         {
             await DisplayAlert("Information", "Successfully updated shop details", "OK");
-            await Navigation.PushModalAsync(new AppShell());
+            
         }
         else
         {

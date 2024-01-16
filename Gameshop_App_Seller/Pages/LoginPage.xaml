@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.LoginPage"
-             Title="LoginPage" BackgroundColor="#EEF5FF">
+             Title="LoginPage" BackgroundColor="#212025">
 
 
 
@@ -14,7 +14,7 @@
 
         <ImageButton Grid.Row="0"
                      x:Name="btnBackImg"
-                     Source="backbtn.png"
+                     Source="backbtnwhite.png"
                      BackgroundColor="Transparent"
                      HeightRequest="20"
                      HorizontalOptions="Start"
@@ -23,10 +23,10 @@
                      Clicked="btnBackImg_Clicked" />
 
         <ScrollView Grid.Row="1" Grid.RowSpan="1">
-            <VerticalStackLayout Spacing="20" Margin="20" VerticalOptions="FillAndExpand">
+            <VerticalStackLayout Spacing="5" Margin="40" VerticalOptions="FillAndExpand">
 
             <Label FontSize="40"
-            Text="GAMESHOP" TextColor="#007AFF"
+            Text="PIXELTRADE" TextColor="White"
                    FontAttributes="Bold"
                    Margin="0,40,0,20"
             VerticalOptions="Center" 
@@ -47,11 +47,11 @@
                FontFamily="facompa" Text="We're processing your request, please wait..." 
                Margin="20" 
                HorizontalOptions="CenterAndExpand" 
-               TextColor="Black"/>
+               TextColor="White"/>
             </StackLayout>
 
             <Label FontSize="25"
-            Text="Offer other players your in-game item for sale." TextColor="Black"
+            Text="Offer other players your in-game item for sale." TextColor="White"
             FontAttributes="Bold"
             HorizontalTextAlignment="Center"
             Margin="0,20,0,40"
@@ -83,33 +83,33 @@
             </Grid>
 
 
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="5">
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="5">
             <Entry Placeholder="Email" HorizontalOptions="FillAndExpand"
-                   TextColor="Black"
-                   PlaceholderColor="DimGray"
+                   TextColor="White"
+                   PlaceholderColor="White"
                    x:Name="emailEntry"/>
         </Frame>
 
-            <Frame BackgroundColor="Transparent" BorderColor="Black" Padding="5" >
+            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="5" >
             <Entry Placeholder="Password" HorizontalOptions="FillAndExpand"
-                   TextColor="Black"
+                   TextColor="White"
                    IsPassword="True"
-                   PlaceholderColor="DimGray"
+                   PlaceholderColor="White"
                    x:Name="passwordEntry"/>
         </Frame>
         
         
 
-        <Button Text="Log In"  Margin="0,30,0,30"
+        <Button Text="Log In"  Margin="5"
                 x:Name="btnLOGIN"   
-                BackgroundColor="#007AFF"
-                TextColor="White" 
+                BackgroundColor="#d22f3d"
+                TextColor="White"                
                 Clicked="btnLOGIN_Clicked"/>
 
         <Label Text="Forgot password?"
-                       TextColor="#007AFF"
+                       TextColor="WHITE"
                    HorizontalOptions="Center"
-                   Margin="0,-25,0,0" >
+                   Margin="0,0,0,0" >
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
             </Label.GestureRecognizers>
@@ -117,8 +117,9 @@
 
             <Button Text="Create new account"                
                     x:Name="CreateAccountBTN"
-                     BackgroundColor="#007AFF"
-                     TextColor="White"
+                    Margin="5"
+                     BackgroundColor="#d22f3d"
+                     TextColor="White"                  
                     Clicked="CreateAccountBTN_Clicked"
                     />
 

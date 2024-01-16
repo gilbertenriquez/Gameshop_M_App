@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.WelcomePage"
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             Title="WelcomePage" BackgroundColor="#EEF5FF">
+             Title="WelcomePage" BackgroundColor="#212025">
 
     <ScrollView>
-    <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"> 
+    <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="40"> 
 
         <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             
@@ -35,9 +35,9 @@
                 <Label FontSize="25" 
                    Grid.Row="1" 
                    Margin="0,-80,0,0"
-                   Text="Welcome to GAME SHOP!" 
+                   Text="Welcome to PixelTrade!" 
                    FontAttributes="Bold"
-                   TextColor="#007AFF"
+                   TextColor="White"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" 
                    />
@@ -46,7 +46,7 @@
         <Button x:Name="GetStart" Text="Get Started!" 
                 Margin="20,60,20,0"
                 VerticalOptions="End"  
-                BackgroundColor="#007AFF" 
+                BackgroundColor="#d22f3d" 
                 TextColor="White" 
                 Clicked="GetStart_Clicked"
                 />
@@ -54,7 +54,7 @@
         <Button x:Name="Exitbtn" Text="EXIT" 
                  Margin="20,0,20,20"
                 VerticalOptions="End"  
-                BackgroundColor="#007AFF" 
+                BackgroundColor="#d22f3d" 
                 TextColor="White" 
                 Clicked="Exitbtn_Clicked"
                 />

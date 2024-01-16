@@ -60,19 +60,18 @@
 	  <None Remove="Resources\Images\backbtnwhite.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
-	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\editwhite.png" />
 	  <None Remove="Resources\Images\filledStar.png" />
 	  <None Remove="Resources\Images\flag.png" />
 	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\messages.png" />
-	  <None Remove="Resources\Images\minus.png" />
+	  <None Remove="Resources\Images\minuswhite.png" />
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
-	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\pluswhite.png" />
 	  <None Remove="Resources\Images\purchasehistory.png" />
 	  <None Remove="Resources\Images\record.png" />
-	  <None Remove="Resources\Images\review.png" />
 	  <None Remove="Resources\Images\reviewseller.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\selfieidfront.png" />
@@ -112,6 +111,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\BuyNowPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CustomerSeeSellerReview.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditProductPage.xaml">

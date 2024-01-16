@@ -156,6 +156,11 @@ public partial class ViewProductPage : ContentPage
         await Navigation.PushModalAsync(new BuyNowPage(containMessengerLink.Text,Shopnames.Text, productItemName, reporter, productemail, itemQuantity.Text, imageProduct, ProductPrice.Text));
     }
 
+    private async void viewSellerReview_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new CustomerSeeSellerReview(productemail));
+    }
+
     //private async void linkTOmessenger_Clicked(object sender, EventArgs e)
     //{
     //    string messengerLink = containMessengerLink.Text;

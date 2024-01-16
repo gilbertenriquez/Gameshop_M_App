@@ -24,11 +24,15 @@ public partial class PurchaseHistory : ContentPage
             var deniedApplicationsList = await history.GetPurchaseListAsync();
 
             // Filter the list to include only reviews with the user's email
-            var userReviews = deniedApplicationsList.Where(app => app.Buyer.Equals(userEmail, StringComparison.OrdinalIgnoreCase)).ToList();
+            var userReviews = deniedApplicationsList.Where(app => app.Seller.Equals(userEmail, StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (userReviews.Any())
             {
                 purchaselist.ItemsSource = userReviews;
+            }
+            else
+            {
+                await DisplayAlert("Information!","No Item has been Sold","OK");
             }
         }
         catch (Exception ex)

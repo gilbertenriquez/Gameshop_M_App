@@ -10,8 +10,7 @@ namespace Gameshop_App_Seller.Pages
         public ReviewsOnSellerPage()
         {
             InitializeComponent();
-            OnAppearingReview();
-            this.userEMAIL = App.email;
+            OnAppearingReview();        
             OnAppearing();
 
         }
@@ -32,6 +31,9 @@ namespace Gameshop_App_Seller.Pages
                 if (userReviews.Any())
                 {
                     reviewontheSeller.ItemsSource = userReviews;
+                }
+                else{
+                    await DisplayAlert("Information!", "No Item Reviews", "OK");
                 }
             }
             catch (Exception ex)

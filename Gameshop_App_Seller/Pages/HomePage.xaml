@@ -4,7 +4,7 @@
              x:Class="Gameshop_App_Seller.Pages.HomePage"
              xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"    
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#EEF5FF">
+             BackgroundColor="#212025">
 
     <ContentPage.IconImageSource>
         <FileImageSource File="home.png"/>
@@ -25,7 +25,7 @@
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
                 <Border.Shadow>
-                    <Shadow Brush="#007AFF"
+                    <Shadow Brush="#5234a7"
                     Offset="20,30"
                     Radius="20"
                     Opacity=".5" />
@@ -56,10 +56,10 @@
                            FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                            FontSize="30" />
                             <HorizontalStackLayout Grid.Column="1" Spacing="10"
-                                           HorizontalOptions="End" Margin="0,40,0,0"
+                                           HorizontalOptions="End" Margin="0,40,60,0"
                                            WidthRequest="100">
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="EditProdsBTN"
-                                     WidthRequest="25" Source="edit.png"  Clicked="EditProdsBTN_Clicked"/>
+                                     WidthRequest="25" Source="editwhite.png"  Clicked="EditProdsBTN_Clicked"/>
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerReview"
                                      WidthRequest="25" Source="reviewseller.png"  Clicked="sellerReview_Clicked"/>
                                 <ImageButton HeightRequest="50" HorizontalOptions="End" x:Name="sellerHistory"
@@ -73,7 +73,7 @@
 
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                             Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                            Stroke="#007AFF"
+                            Stroke="Transparent"
                             HeightRequest="70" WidthRequest="70">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
@@ -90,10 +90,10 @@
                 </Grid>
             </Border>
             <Grid Grid.Row="1">
-                <Button Text="Sell Item" x:Name="AddProductsBTN" CornerRadius="20" 
+                <Button Text="Add Item" x:Name="AddProductsBTN" CornerRadius="20" 
                 WidthRequest="200" HeightRequest="50"
                 Clicked="AddProdsBTN_Clicked"
-               TextColor="#007AFF" BackgroundColor="#272829"/>
+               TextColor="White" BackgroundColor="#d22f3d"/>
             </Grid>
             <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand">
                 <CollectionView x:Name="listViewProducts" SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">

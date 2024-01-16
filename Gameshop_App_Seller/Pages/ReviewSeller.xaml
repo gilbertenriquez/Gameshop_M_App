@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              x:Class="Gameshop_App_Seller.Pages.ReviewSeller"
-             Title="ReviewSeller" BackgroundColor="#EEF5FF">
+             Title="ReviewSeller" BackgroundColor="#212025">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Grid.Row="0" Margin="20,10,0,0" Source="backbtn.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
+        <ImageButton Grid.Row="0" Margin="20,10,0,0" Source="backbtnwhite.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
 
         <Button Text="Submit" 
                 Grid.Row="0"
@@ -21,22 +21,22 @@
                FontSize="20"                   
                FontAttributes="Bold"
                BackgroundColor="Transparent"                    
-               TextColor="#007AFF"
-                Margin="0,10,0,0"
+               TextColor="WHITE"
+                Margin="0,10,10,0"
                Clicked="BTNsubmit_Clicked"/>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
 
 
-                <Label Text="Seller Rate" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40" TextColor="Black"/>
+                <Label Text="Seller Rate" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40" TextColor="WHITE"/>
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" ColumnDefinitions="*,*" RowSpacing="25" ColumnSpacing="10">
 
-                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Orientation="Horizontal" HeightRequest="30">
-                        <ImageButton x:Name="star1" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" />
-                        <ImageButton x:Name="star2" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" />
-                        <ImageButton x:Name="star3" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" />
-                        <ImageButton x:Name="star4" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" />
-                        <ImageButton x:Name="star5" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" />
+                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Orientation="Horizontal" HeightRequest="30" >
+                        <ImageButton x:Name="star1" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" BackgroundColor="Transparent" />
+                        <ImageButton x:Name="star2" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" BackgroundColor="Transparent" />
+                        <ImageButton x:Name="star3" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" BackgroundColor="Transparent"/>
+                        <ImageButton x:Name="star4" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" BackgroundColor="Transparent"/>
+                        <ImageButton x:Name="star5" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40" Clicked="StarButton_Clicked" BackgroundColor="Transparent"/>
                     </StackLayout>
 
 
@@ -44,7 +44,7 @@
                         Grid.Row="3"
                         VerticalOptions="End"
                         x:Name="BTNupload"   
-                        BackgroundColor="#007AFF"
+                        BackgroundColor="#d22f3d"
                         TextColor="White" 
                         Clicked="BTNupload_Clicked"
                         />
@@ -53,7 +53,7 @@
                         Grid.Column="1"
                         VerticalOptions="End"
                         x:Name="BTNremove"   
-                        BackgroundColor="#007AFF"
+                        BackgroundColor="#d22f3d"
                         TextColor="White" 
                         Clicked="BTNremove_Clicked"
                         />
@@ -61,11 +61,12 @@
                         <Image x:Name="photoITEM" HorizontalOptions="FillAndExpand"  Aspect="AspectFill" />
                     </HorizontalStackLayout>
 
-                    <Label x:Name="ratingLabel" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2" Text="" FontSize="30" TextColor="Black"/>
-                    <Label Grid.Row="4" Text="Comment" TextColor="Black" FontSize="20" Margin="0,20,0,20"/>
+                    <Label x:Name="ratingLabel" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2" Text="" FontSize="30" TextColor="WHITE"/>
+                    <Label Grid.Row="4" Text="Comment" TextColor="WHITE" FontSize="20" Margin="0,20,0,20"/>
                     <Frame Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0" Padding="0" BorderColor="Gray" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <Editor x:Name="commentTXT" Grid.ColumnSpan="1" Grid.Column="0"
-                            TextColor="Black"
+                            TextColor="WHITE"
+                                PlaceholderColor="LightGray"
                             Placeholder="Enter your comment"
                             HeightRequest="200"
                             TextChanged="commentTXT_TextChanged" />

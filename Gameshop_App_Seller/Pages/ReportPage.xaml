@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.ReportPage"
-             BackgroundColor="#EEF5FF"
+             BackgroundColor="#212025"
              xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0" Source="backbtn.png"
+        <ImageButton Grid.Row="0" Source="backbtnwhite.png"
            HeightRequest="20" 
            HorizontalOptions="Start" 
            x:Name="btnBackImg" 
@@ -22,7 +22,7 @@
            />
 
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1">
-            <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Margin="20">
+            <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Margin="40">
 
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" VerticalOptions="FillAndExpand"
                   HorizontalOptions="CenterAndExpand" Margin="0" RowSpacing="20">
@@ -33,44 +33,39 @@
                     <Label Grid.Row="1" 
                    Text="Submit Your Report" 
                    FontSize="30" 
-                   TextColor="Black"
+                   TextColor="WHITE"
                    FontAttributes="Bold" Margin="0,20,0,30"/>
 
-                    <Label Grid.Row="2" Text="Product Image" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="2" Text="Product Image" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
 
                     <Image Grid.Row="3" x:Name="MainImage" HeightRequest="300" WidthRequest="400"/>
 
-                    <Label Grid.Row="4" Text="Product Name" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
-                    <Label  Grid.Row="5" x:Name="Productname" TextColor="Black"/>
+                    <Label Grid.Row="4" Text="Product Name" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
+                    <Label  Grid.Row="5" x:Name="Productname" TextColor="WHITE"/>
 
-                    <Label Grid.Row="6" Text="Product Price" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
-                    <Label  Grid.Row="7" x:Name="Productprice" TextColor="Black"/>
+                    <Label Grid.Row="6" Text="Product Price" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
+                    <Label  Grid.Row="7" x:Name="Productprice" TextColor="WHITE"/>
 
-                    <Label Grid.Row="8" Text="Owner of the Product" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
-                    <Label  Grid.Row="9" x:Name="SellerShopname" TextColor="Black"/>
+                    <Label Grid.Row="8" Text="Owner of the Product" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
+                    <Label  Grid.Row="9" x:Name="SellerShopname" TextColor="WHITE"/>
                     <Label  Grid.Row="9" x:Name="Emailtxt" TextColor="Transparent"/>
                     <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Transparent"/>
 
 
 
 
-                    <Frame  Grid.Row="10" 
-                        VerticalOptions="Center" 
-                        BackgroundColor="White" 
-                        Padding="5"
-                        HeightRequest="200"
-                        CornerRadius="10">
 
-                        <Editor x:Name="reporttxt"
+                        <Editor x:Name="reporttxt" HeightRequest="200"
                     Placeholder="Type your comment here..." 
-                    PlaceholderColor="DimGray"  
-                    BackgroundColor="Transparent"
-                    TextColor="Black"/>
-                    </Frame>
+                    PlaceholderColor="LightGray" 
+                     Grid.Row="10" 
+                    BackgroundColor="#212025"
+                    TextColor="White"/>
+                    
                     <Button  Grid.Row="11" 
                          Text="Submit"
                          x:Name="btnSubmit"
-                        BackgroundColor="#007AFF"
+                        BackgroundColor="#d22f3d"
                         TextColor="White" 
                          Clicked="btnSubmit_Clicked"
                          VerticalOptions="End"/>

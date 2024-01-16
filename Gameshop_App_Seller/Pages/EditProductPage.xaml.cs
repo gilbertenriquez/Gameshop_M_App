@@ -18,13 +18,6 @@ public partial class EditProductPage : ContentPage
     public EditProductPage()
     {
 
-
-
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
         InitializeComponent();
        
     }
@@ -80,18 +73,6 @@ public partial class EditProductPage : ContentPage
         this.productemail = productemail;
     }
 
-
-
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
@@ -213,6 +194,25 @@ public partial class EditProductPage : ContentPage
 
     private async void UpdateBTNitem_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        // Check if any of the image results is empty or null
+        if (_mainimgResult == null &&
+            _img1Result == null &&
+            _img2Result == null &&
+            _img3Result == null &&
+            _img4Result == null &&
+            _img5Result == null &&
+            _img6Result == null)
+        {        
+            await DisplayAlert("Alert!", "Please upload a new image for all fields to proceed.", "OK");
+            return;
+        }
+
         var result = await updateProduct.UpdateProductUser(
             _mainimgResult,
             _img1Result,
@@ -239,4 +239,6 @@ public partial class EditProductPage : ContentPage
             await DisplayAlert("Error", "Failed to update product.", "OK");
         }
     }
+
+
 }

@@ -4,17 +4,17 @@
              x:Class="Gameshop_App_Seller.Pages.BuyerHomePage"
              Title="Home"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#EEF5FF">
+             BackgroundColor="#212025">
 
     <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-60,-5,20" BackgroundColor="#272829"
+            Margin="-5,-60,-5,20" BackgroundColor="#5234a7"
             StrokeThickness="0"
             StrokeShape="RoundRectangle ">
                 <Border.Shadow>
-                    <Shadow Brush="#007AFF"
+                    <Shadow Brush="#5234a7"
                     Offset="20,30"
                     Radius="30"
                     Opacity=".5" />
@@ -65,8 +65,8 @@
 
                             <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
                             Grid.Row="1" Margin="0,0,20,0" StrokeThickness="3"
-                            Stroke="#007AFF"
-                            HeightRequest="100" WidthRequest="100">
+                            Stroke="Transparent"
+                            HeightRequest="80" WidthRequest="80">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
@@ -79,11 +79,11 @@
                                               RowDefinitions="Auto"
                                               ColumnDefinitions="Auto,Auto" ColumnSpacing="5" >
                                             <Label Text="{Binding FNAME}" 
-                                              TextColor="#007AFF"
+                                              TextColor="WHITE"
                                               FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
                                             <Label Text="{Binding LNAME}"  Grid.Column="1"
-                                              TextColor="#007AFF"
+                                              TextColor="WHITE"
                                               FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
                                         </Grid>
@@ -114,7 +114,7 @@
             <SearchBar Grid.Row="3" 
            Margin="20"                        
            Placeholder="Search....." 
-           BackgroundColor="#007AFF" 
+           BackgroundColor="#d22f3d" 
            TextColor="White"
            PlaceholderColor="White"
                          x:Name="searchBar"
@@ -132,8 +132,9 @@
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
                                     <ContentView
-                                       BackgroundColor="White" 
+                                       BackgroundColor="#5234a7" 
                                        Padding="10"
+                                       
                                        VerticalOptions="Start">
                                         
 
