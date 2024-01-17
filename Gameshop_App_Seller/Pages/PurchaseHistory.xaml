@@ -17,10 +17,26 @@
                   HeightRequest="20"
                   HorizontalOptions="Start"
                   VerticalOptions="Start"
-                  Margin="20,10,0,0"
+                  Margin="20,20,0,0"
                   Clicked="btnBackImg_Clicked" />
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
+
+                <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+                x:Name="progressLoading"
+                IsVisible="False"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent">
+                                    <ActivityIndicator
+                x:Name="ai"
+                IsRunning="True" IsVisible="True"
+                HorizontalOptions="CenterAndExpand"
+                Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                                </StackLayout>
+
+
+
                 <CollectionView x:Name="purchaselist"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

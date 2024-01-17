@@ -88,24 +88,25 @@ BackgroundColor="Transparent">
                        Text="Birthday" 
                        FontSize="15"  
                        TextColor="White" Margin="0,0,0,-15"/>
-
-                    <DatePicker Grid.Row="11"   
+                    <Frame Grid.Row="11" Padding="0,0"   BackgroundColor="Transparent">
+                    <DatePicker 
                         BackgroundColor="Transparent"
                         x:Name="birthdayPicker" 
                         TextColor="White"   
                         Format="MM-dd-yyyy"
                 />
-
+                    </Frame>
                     <Label Grid.Row="12" 
                    Text="Gender" 
                    FontSize="15" 
+                           Margin="0,0,0,-15"
                    TextColor="White"/>
 
-
-                    <Picker Grid.Row="13"  
+                    <Frame Grid.Row="13" Padding="0,0"  BackgroundColor="Transparent"> 
+                    <Picker  
                         BackgroundColor="Transparent"
                         x:Name="genderPicker" 
-                        TitleColor="White" 
+                        TitleColor="GhostWhite" 
                         Title="Select Gender"                       
                         TextColor="White" >
 
@@ -116,7 +117,7 @@ BackgroundColor="Transparent">
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
-
+                    </Frame>
                 </Grid>
 
                 <Button Text="Register" 

@@ -43,6 +43,8 @@ public partial class PurchaseHistory : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        
         await Navigation.PopModalAsync();
+        
     }
 }

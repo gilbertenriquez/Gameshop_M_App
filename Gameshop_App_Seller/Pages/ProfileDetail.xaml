@@ -49,17 +49,32 @@
                         <Entry x:Name="lnameEntry" IsReadOnly="True"  TextColor="White"/>
                     </Frame>
 
-                    <Label Text="Email:" TextColor="#252525"  Grid.Row="8"/>
+
+                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+                        x:Name="progressLoading"
+                        IsVisible="False"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        BackgroundColor="Transparent">
+                                                <ActivityIndicator
+                        x:Name="ai"
+                        IsRunning="True" IsVisible="True"
+                        HorizontalOptions="CenterAndExpand"
+                        Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    </StackLayout>
+
+
+                    <Label Text="Email:" TextColor="white"  Grid.Row="8"/>
                     <Frame  Grid.Row="9"   BackgroundColor="#212025" BorderColor="white" Padding="0,0">
                         <Entry x:Name="Emailentry" IsReadOnly="True"  TextColor="white"/>
                     </Frame>
 
-                    <Label Text="Password:" TextColor="#252525"  Grid.Row="10"/>
+                    <Label Text="Password:" TextColor="white"  Grid.Row="10"/>
                     <Frame Grid.Row="11"   BackgroundColor="#212025" BorderColor="white" Padding="0,0">
                         <Entry x:Name="Passwordentry" IsPassword="True"   TextColor="white"/>
                     </Frame>
 
-                    <Label Text="Address:" TextColor="#252525"  Grid.Row="12"/>
+                    <Label Text="Address:" TextColor="white"  Grid.Row="12"/>
                     <Frame Grid.Row="13"   BackgroundColor="#212025" BorderColor="white" Padding="0,0">
                         <Entry x:Name="Addressentry"   TextColor="white"/>
                     </Frame>
@@ -67,25 +82,26 @@
                             Text="Birthday" 
                             FontSize="15"  
                             TextColor="white"/>
-
-                    <DatePicker Grid.Row="15"   
+                    <Frame Grid.Row="15" Padding="0" BorderColor="White" BackgroundColor="Transparent">
+                    <DatePicker    
                              BackgroundColor="#212025"
                              x:Name="birthdayPicker" 
                              TextColor="white"   
                              Format="MM-dd-yyyy"
                             IsEnabled="False"
                      />
+                    </Frame>
 
                     <Label Grid.Row="16" 
                         Text="Gender" 
                         FontSize="15" 
                         TextColor="white"/>
 
-
-                    <Picker Grid.Row="17"  
+                    <Frame  Grid.Row="17" Padding="0" BorderColor="White" BackgroundColor="Transparent" > 
+                    <Picker
                              BackgroundColor="#212025"
                              x:Name="genderPicker" 
-                             TitleColor="white" 
+                             TitleColor="GhostWhite" 
                              Title="Select Gender"                       
                              TextColor="white" 
                          IsEnabled="False">
@@ -97,6 +113,7 @@
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
+                    </Frame>
 
                     <Button Text="Update Profile" 
                         Grid.Row="18"

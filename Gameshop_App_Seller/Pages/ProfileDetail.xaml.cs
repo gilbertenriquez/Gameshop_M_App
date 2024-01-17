@@ -13,11 +13,7 @@ public partial class ProfileDetail : ContentPage
     private Users updateProfile = new();
     public ProfileDetail()
 	{
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
+      
 
 
         InitializeComponent();
@@ -29,16 +25,7 @@ public partial class ProfileDetail : ContentPage
         this.userId = userId; // Store the user ID
     }
 
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
-
+   
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -95,6 +82,7 @@ public partial class ProfileDetail : ContentPage
 
     private async void UploadProfileImage_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -133,10 +121,19 @@ public partial class ProfileDetail : ContentPage
         var stream = await result.OpenReadAsync();
         App._mainimgResult = result;
         ProfilePictureUser.Source = ImageSource.FromStream(() => stream);
+        progressLoading.IsVisible = false;
     }
 
     private async void updateProfileBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
+
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         // Assuming _mainimgResult is an instance of FileResult obtained from a file picker
         var result = await updateProfile.Update(
             _mainimgResult, // Assuming you want to pass the file path or null if _mainimgResult is null
@@ -157,16 +154,20 @@ public partial class ProfileDetail : ContentPage
         {
             await DisplayAlert("Message", "Update Not Successfully", "OK");
         }
-
+        progressLoading.IsVisible = false;
     }
 
     private void RemoveIMGbtn_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         ProfilePictureUser.Source = null;
+        progressLoading.IsVisible = false;
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
     }
 }

@@ -7,12 +7,12 @@ namespace Gameshop_App_Seller.Pages
         private Users reviewseller = new();
         private string userEMAIL;
 
+
         public ReviewsOnSellerPage()
         {
             InitializeComponent();
-            OnAppearingReview();        
+            OnAppearingReview();
             OnAppearing();
-
         }
 
         protected async Task OnAppearingReview()
@@ -31,8 +31,11 @@ namespace Gameshop_App_Seller.Pages
                 if (userReviews.Any())
                 {
                     reviewontheSeller.ItemsSource = userReviews;
+    
+
                 }
-                else{
+                else
+                {
                     await DisplayAlert("Information!", "No Item Reviews", "OK");
                 }
             }
@@ -43,61 +46,17 @@ namespace Gameshop_App_Seller.Pages
         }
 
 
-        //private void SetStarRatingImages(string starReview)
-        //{
-            
-        //    // Set the appropriate stars based on the rating
-        //    switch (starReview.ToLower())
-        //    {
-        //        case "excellent":
-        //            SetStarImage(stars1, "filledstar.png");
-        //            SetStarImage(stars2, "filledstar.png");
-        //            SetStarImage(stars3, "filledstar.png");
-        //            SetStarImage(stars4, "filledstar.png");
-        //            SetStarImage(stars5, "filledstar.png");
-        //            break;
-        //        case "good":
-        //            SetStarImage(stars1, "filledstar.png");
-        //            SetStarImage(stars2, "filledstar.png");
-        //            SetStarImage(stars3, "filledstar.png");
-        //            SetStarImage(stars4, "filledstar.png");
-        //            break;
-        //        case "average":
-        //            SetStarImage(stars1, "filledstar.png");
-        //            SetStarImage(stars2, "filledstar.png");
-        //            SetStarImage(stars3, "filledstar.png");
-        //            break;
-        //        case "poor":
-        //            SetStarImage(stars1, "filledstar.png");
-        //            SetStarImage(stars2, "filledstar.png");
-        //            break;
-        //        case "very poor":
-        //            SetStarImage(stars1, "filledstar.png");
-        //            break;
-        //            // Add cases for other ratings as needed
-        //    }
-        //}
-
-        private void SetStarImage(Image star, string imageName)
-        {
-            star.Source = imageName;
-        }
-
-
-
 
         public ReviewsOnSellerPage(string userkey) : this()
         {
-           App.key = userkey;
+            App.key = userkey;
         }
 
-       
-
-      
         private async void btnBackImg_Clicked(object sender, EventArgs e)
         {
+           
             await Navigation.PopModalAsync();
+            
         }
     }
-
 }

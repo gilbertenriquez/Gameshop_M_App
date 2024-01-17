@@ -76,12 +76,14 @@ public partial class EditProductPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        
         await Navigation.PopModalAsync();
+        
     }
 
     private async void updateMainImageItemBTN_Clicked(object sender, EventArgs e)
     {
-
+        progressLoading.IsVisible = true;
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -114,17 +116,20 @@ public partial class EditProductPage : ContentPage
         var stream = await result.OpenReadAsync();
         App._mainimgResult = result;
         MainImage.Source = ImageSource.FromStream(() => stream);
-
+        progressLoading.IsVisible = false;
     }
 
     private void RemoveImageBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         MainImage.Source = null;
+        progressLoading.IsVisible = false;
     }
 
     private async void updateSupportImageItemBTN_Clicked(object sender, EventArgs e)
     {
         {
+            progressLoading.IsVisible = true;
             var ctr = 0;
             var results = await FilePicker.PickMultipleAsync();
             foreach (var result in results)
@@ -178,22 +183,26 @@ public partial class EditProductPage : ContentPage
                         }
 
                 }
-            }         
+            }
+            progressLoading.IsVisible = false;
         }
     }
 
     private void BTNremoveSuppportImage_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         mage1.Source = null;
         mage2.Source = null;
         mage3.Source = null;
         mage4.Source = null;
         mage5.Source = null;
         mage6.Source = null;
+        progressLoading.IsVisible = false;
     }
 
     private async void UpdateBTNitem_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
@@ -238,6 +247,7 @@ public partial class EditProductPage : ContentPage
             // Product update failed
             await DisplayAlert("Error", "Failed to update product.", "OK");
         }
+        progressLoading.IsVisible = false;
     }
 
 

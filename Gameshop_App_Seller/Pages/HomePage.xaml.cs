@@ -197,4 +197,19 @@ public partial class HomePage : ContentPage
             listViewProducts.SelectedItem = (listViewProducts.SelectedItem == selectedUser) ? null : selectedUser;
         }
     }
+
+    private void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+           OnAppearing();
+
+           // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
 }

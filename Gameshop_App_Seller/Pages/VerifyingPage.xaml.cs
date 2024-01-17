@@ -53,6 +53,7 @@ public partial class VerifyingPage : ContentPage
 
     private async void btnFrontimage_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -92,6 +93,7 @@ public partial class VerifyingPage : ContentPage
 
     private async void btnBackimage_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -134,6 +136,13 @@ public partial class VerifyingPage : ContentPage
     private async void saveBtn_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
+        }
         // Check if a save operation is already in progress
 
         if (Frontimage.Source == null && Frontimage.Source.ToString() == "selfieidfront.png")
@@ -178,6 +187,7 @@ public partial class VerifyingPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
         progressLoading.IsVisible = false;
     }

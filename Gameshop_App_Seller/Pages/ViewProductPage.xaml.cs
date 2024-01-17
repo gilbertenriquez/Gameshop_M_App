@@ -91,6 +91,7 @@ public partial class ViewProductPage : ContentPage
                 Shopnames.Text = usersInfo[0].ShopName;
                 imglogo.Source = usersInfo[0].ShopProfile;
                 containMessengerLink.Text = usersInfo[0].ShopMessengerLink;
+                imgCover.Source = usersInfo[0].ShopCoverImg;
             }
             else
             {
@@ -107,24 +108,43 @@ public partial class ViewProductPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        // Navigate back to BuyerHomePage with the userId parameter
-        await Navigation.PushModalAsync(new BuyerHomePage(userId));
-    }
-
-    private async void ReviewBTN_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushModalAsync(new ReviewSeller(productemail));
-    }
-
-    private async void reportsBTN_Clicked(object sender, EventArgs e)
-    {
+        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
             // Handle this case as needed, e.g., show an error message to the user
             return;
         }
+        // Navigate back to BuyerHomePage with the userId parameter
+        await Navigation.PushModalAsync(new BuyerHomePage(userId));
+        progressLoading.IsVisible = false;
+    }
+
+    private async void ReviewBTN_Clicked(object sender, EventArgs e)
+    {
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
+        }
+        await Navigation.PushModalAsync(new ReviewSeller(productemail));
+        progressLoading.IsVisible = false;
+    }
+
+    private async void reportsBTN_Clicked(object sender, EventArgs e)
+    {
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
+        }
+
         await Navigation.PushModalAsync(new ReportPage(Shopnames.Text, productItemName, productItemprice, productemail, imageProduct, reporter));
+        progressLoading.IsVisible = false;
     }
 
     private void OnSeeMore_Tapped(object sender, TappedEventArgs e)
@@ -147,6 +167,7 @@ public partial class ViewProductPage : ContentPage
 
     private async void BuynowBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
@@ -154,11 +175,20 @@ public partial class ViewProductPage : ContentPage
             return;
         }
         await Navigation.PushModalAsync(new BuyNowPage(containMessengerLink.Text,Shopnames.Text, productItemName, reporter, productemail, itemQuantity.Text, imageProduct, ProductPrice.Text));
+        progressLoading.IsVisible = false;
     }
 
     private async void viewSellerReview_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new CustomerSeeSellerReview(productemail));
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+            // Handle this case as needed, e.g., show an error message to the user
+            return;
+        }
+        await Navigation.PushModalAsync(new SellerReviews(productemail));
+        progressLoading.IsVisible = false;
     }
 
     //private async void linkTOmessenger_Clicked(object sender, EventArgs e)

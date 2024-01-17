@@ -95,6 +95,7 @@ namespace Gameshop_App_Seller.Pages
 
         private async void BTNupload_Clicked(object sender, EventArgs e)
         {
+            progressLoading.IsVisible = true;
             var result = await FilePicker.PickAsync(new PickOptions
             {
                 PickerTitle = "Select main image",
@@ -133,15 +134,27 @@ namespace Gameshop_App_Seller.Pages
             var stream = await result.OpenReadAsync();
             App._mainimgResult = result;
             photoITEM.Source = ImageSource.FromStream(() => stream);
+            progressLoading.IsVisible = false;
         }
 
         private void BTNremove_Clicked(object sender, EventArgs e)
         {
+           
             photoITEM.Source = null;
+           
         }
 
        private async void BTNsubmit_Clicked(object sender, EventArgs e)
 {
+            progressLoading.IsVisible = true;
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+                return;
+            }
+
+
             var TodayDate = DateTime.Now.ToString("MM-dd-yyyy");
 
             var result = await ReviewUser.UploadReview(_mainimgResult, ratingLabel.Text, commentTXT.Text, userEmails,App.email, TodayDate);
@@ -154,12 +167,15 @@ namespace Gameshop_App_Seller.Pages
     {
         await DisplayAlert("Error", "Failed to submit review. Please try again.", "OK");
     }
-}
+            progressLoading.IsVisible = false;
+        }
 
 
         private async void btnBackImg_Clicked(object sender, EventArgs e)
         {
+            
             await Navigation.PopModalAsync();
+          
         }
     }
     

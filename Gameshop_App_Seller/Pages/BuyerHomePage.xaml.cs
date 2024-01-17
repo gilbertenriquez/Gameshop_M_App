@@ -11,10 +11,7 @@ public partial class BuyerHomePage : ContentPage
 
 
     public BuyerHomePage()
-    {
-
-     
-
+    {   
         InitializeComponent();
         LoadDataAsync();
         OnAppearing();
@@ -25,6 +22,24 @@ public partial class BuyerHomePage : ContentPage
     {
         InitializeAsync(userKey);
     }
+
+
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            await LoadDataAsync();
+
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
+
 
 
     protected async void OnAppearingDenied()
@@ -53,13 +68,14 @@ public partial class BuyerHomePage : ContentPage
 
 
 
-    private async void LoadDataAsync()
+    private async Task LoadDataAsync()
     {
         var userProductLists = await vans.GetUserProductListsAsync();
 
-        // Assuming 'datalist' is your ListView in XAML
+        // Assuming 'datalist' is your CollectionView in XAML
         datalist.ItemsSource = userProductLists;
     }
+
     protected override async void OnAppearing()
     {
         try
@@ -306,6 +322,7 @@ public partial class BuyerHomePage : ContentPage
         }
     }
 
+   
 }
 
 

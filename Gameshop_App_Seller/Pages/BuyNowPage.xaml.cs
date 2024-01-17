@@ -124,10 +124,13 @@ public partial class BuyNowPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
     }
     private async void addimageBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -165,15 +168,19 @@ public partial class BuyNowPage : ContentPage
 
         // Store the result for later use if needed
         App.TransactionImage = result;
+        progressLoading.IsVisible = false;
     }
 
     private void removeBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         Prooftransraction.Source = null;
+        progressLoading.IsVisible = false;
     }
 
     private async void MessengerLink_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         string messengerLink = FBMessengerLink;
 
         if (!string.IsNullOrEmpty(messengerLink))
@@ -195,10 +202,12 @@ public partial class BuyNowPage : ContentPage
             // The messenger link is empty, handle it accordingly
             // For example, display an alert or take any other action
         }
+        progressLoading.IsVisible = false;
     }
 
     private async void ConfirmationBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
@@ -234,6 +243,7 @@ public partial class BuyNowPage : ContentPage
                 // Purchase failed, show an error alert
                 await DisplayAlert("Purchase Failed", "There was an error processing your purchase. Please try again.", "OK");
             }
-        }
-
+        progressLoading.IsVisible = false;
+    }
+ 
 }

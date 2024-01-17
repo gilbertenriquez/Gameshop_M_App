@@ -17,12 +17,6 @@ public partial class ReportPage : ContentPage
     public ReportPage()
     {
 
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
 
         InitializeComponent();
         LoadUserData();
@@ -50,16 +44,6 @@ public partial class ReportPage : ContentPage
         MainImageOriginalSource = imageUri;
     }
 
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
 
 
     private async void LoadUserData()
@@ -93,30 +77,41 @@ public partial class ReportPage : ContentPage
 
     private async void btnSubmit_Clicked(object sender, EventArgs e)
     {
-       
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         var ReporteruserEmail = App.email;
         var result = await Sickboi.ReportedProduct(ImageUri, Productname.Text, Productprice.Text, Emailtxt.Text, reporttxt.Text, ReporteruserEmail.ToString());
         if (String.IsNullOrEmpty(reporttxt.Text))
         {
             await DisplayAlert("Message", "Fill up the empty field", "OK");
+            progressLoading.IsVisible = false;
             return;
         }
         if (result)
         {
             await DisplayAlert("Message", "Your Report has been Submitted", "OK");
+            progressLoading.IsVisible = false;
             reporttxt.Text = "";
             return;
         }
         else
         {
             await DisplayAlert("Message", "Your Report has not been Submitted", "OK");
+            progressLoading.IsVisible = false;
             return;
         }
+
        
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+       
         Productname.Text = string.Empty;
         Productprice.Text = string.Empty;
         Emailtxt.Text = string.Empty;
@@ -124,6 +119,7 @@ public partial class ReportPage : ContentPage
         reporterEmail.Text = string.Empty;
 
         await Navigation.PopModalAsync();
+        
     }
 
     private void reporttxt_TextChanged(object sender, TextChangedEventArgs e)

@@ -53,16 +53,30 @@
                     <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Transparent"/>
 
 
+                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+          x:Name="progressLoading"
+          IsVisible="False"
+          AbsoluteLayout.LayoutBounds="0,0,1,1"
+          AbsoluteLayout.LayoutFlags="All"
+          BackgroundColor="Transparent">
+                        <ActivityIndicator
+          x:Name="ai"
+          IsRunning="True" IsVisible="True"
+          HorizontalOptions="CenterAndExpand"
+          Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    </StackLayout>
 
 
 
-                        <Editor x:Name="reporttxt" HeightRequest="200"
+                    <Frame Grid.Row="10" Padding="0" BorderColor="LightGray" BackgroundColor="Transparent">
+                    <Editor x:Name="reporttxt" HeightRequest="200"
                     Placeholder="Type your comment here..." 
                     PlaceholderColor="LightGray" 
-                     Grid.Row="10" 
+                     
                     BackgroundColor="#212025"
                                 TextChanged="reporttxt_TextChanged"
                     TextColor="White"/>
+                    </Frame>
 
                     <Label x:Name="wordCountLabel" Grid.Row="11" 
         Grid.Column="0" 

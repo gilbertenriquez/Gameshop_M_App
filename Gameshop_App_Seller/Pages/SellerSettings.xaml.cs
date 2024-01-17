@@ -11,12 +11,6 @@ public partial class SellerSettings : ContentPage
 	public SellerSettings()
 	{
 
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
         InitializeComponent();
     }
 
@@ -25,17 +19,6 @@ public partial class SellerSettings : ContentPage
         InitializeComponent();
         this.userId = userId; // Store the user ID
     }
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
-
 
 
     protected async override void OnAppearing()
@@ -80,22 +63,71 @@ public partial class SellerSettings : ContentPage
     private async void ProfileDetailBTN_Tapped(object sender, TappedEventArgs e)
     {
         progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         await Navigation.PushModalAsync(new ProfileDetail(App.key));
         progressLoading.IsVisible = false;
     }
 
     private async void PrivacyPoliBTN_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new PrivacyPolicyPage());
+        progressLoading.IsVisible = false;
     }
 
     private async void TandCBTN_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new TermsAndConditionPage());
+        progressLoading.IsVisible = false;
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+        bool answer = await DisplayAlert("Logout", "Are you sure you want to log out?", "Yes", "No");
+
+        if (answer)
+        {
+            progressLoading.IsVisible = true;
+
+            try
+            {
+                App.email = null;
+                App.key = null;
+                App.UserKey = null;
+
+                // Simulate a delay for demonstration purposes
+                await Task.Delay(1000);
+
+                // Navigate to the login page or the initial page of your app 
+                await Navigation.PushModalAsync(new LoginPage());
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that might occur during the logout process
+                Console.WriteLine($"Error during logout: {ex.Message}");
+            }
+            finally
+            {
+                progressLoading.IsVisible = false;
+            }
+        }
     }
 }

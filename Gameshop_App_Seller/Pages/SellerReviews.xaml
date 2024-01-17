@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.ReviewsOnSellerPage"
-             Title="ReviewsOnSellerPage"  BackgroundColor="#212025">
+             x:Class="Gameshop_App_Seller.Pages.SellerReviews"
+             Title="SellerReviews"
+           BackgroundColor="#212025">
 
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
@@ -22,48 +23,45 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
 
+
                 <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
-     x:Name="progressLoading"
-     IsVisible="False"
-     AbsoluteLayout.LayoutBounds="0,0,1,1"
-     AbsoluteLayout.LayoutFlags="All"
-     BackgroundColor="Transparent">
-                    <ActivityIndicator
-     x:Name="ai"
-     IsRunning="True" IsVisible="True"
-     HorizontalOptions="CenterAndExpand"
-     Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    x:Name="progressLoading"
+                    IsVisible="False"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Transparent">
+                                   <ActivityIndicator
+                    x:Name="ai"
+                    IsRunning="True" IsVisible="True"
+                    HorizontalOptions="CenterAndExpand"
+                    Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
                 </StackLayout>
-                <CollectionView x:Name="reviewontheSeller"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                
+                <CollectionView x:Name="sellerreviews"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <Frame
                                       BackgroundColor="#212025" 
                                       Padding="5"
+                                      CornerRadius="0"
                                       BorderColor="White"
                                       Margin="20"
                                       VerticalOptions="Start">
 
                                     <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
                                         <Image Grid.Row="0"  
-                                       HorizontalOptions="Start" 
+                                       HorizontalOptions="FillAndExpand" 
                                        x:Name="TransactionImage" Source="{Binding itemShopImage}"
                                        HeightRequest="200" Aspect="AspectFit"/>
-                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="White"   />
-                                        <Label Grid.Row="5" x:Name="RateLabel" Text="{Binding StarReview}" TextColor="White" />
-                                        <Label Grid.Row="4"  Text="{Binding Date}" TextColor="White" />
-                                        <StackLayout Grid.Row="6" 
-                                                     HorizontalOptions="Start" 
-                                                     Orientation="Horizontal"
-                                                     HeightRequest="30">
-                                            <Image x:Name="stars1" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
-                                            <Image x:Name="stars2" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
-                                            <Image x:Name="stars3" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
-                                            <Image x:Name="stars4" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
-                                            <Image x:Name="stars5" Source="unfilledstar.png" HeightRequest="40" WidthRequest="40"/>
+                                        <Label Grid.Row="1"  Text="Comment" TextColor="White" />
+                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="#d22f3d" />
 
-                                        </StackLayout>
+                                        <Label Grid.Row="3"  Text="Date of Purchase" TextColor="White" />
+                                        <Label Grid.Row="4"  Text="{Binding Date}"  TextColor="#d22f3d" />
+                                        
+                                        <Label Grid.Row="5"  Text="Rate" TextColor="White" />
+                                        <Label Grid.Row="6" x:Name="RateLabel" Text="{Binding StarReview}" TextColor="#d22f3d" />
                                     </Grid>
                                 </Frame>
                             </StackLayout>

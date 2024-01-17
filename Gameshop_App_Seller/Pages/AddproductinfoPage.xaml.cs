@@ -12,33 +12,22 @@ public partial class AddproductinfoPage : ContentPage
     private Users imgSave = new();
     public AddproductinfoPage()
     {
-
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
         InitializeComponent();
     }
 
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
+  
 
 
     private async void exit_Button_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new HomePage());
+        progressLoading.IsVisible = false;
     }
 
     private async void saveBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
 
 
         var a = await imgSave.Save(_mainimgResult,
@@ -62,19 +51,45 @@ public partial class AddproductinfoPage : ContentPage
         if (string.IsNullOrEmpty(userKey))
         {
             await DisplayAlert("Message", "Product Successfully Added", "OK");
-            await Navigation.PushModalAsync(new BuyerHomePage());
+            await Navigation.PushModalAsync(new HomePage());
+            progressLoading.IsVisible = false;
             return;
         }
         else
         {
             await DisplayAlert("Message", "Product Not Successfully Added", "OK");
+            progressLoading.IsVisible = false;
             return;
         }
-    
+        
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
+    }
+
+    private void entryPrice_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+        if (sender is Entry entry)
+        {
+            // Remove non-numeric characters
+            string cleanedText = new string(entry.Text.Where(c => Char.IsDigit(c) || c == '.').ToArray());
+
+            // Convert the cleaned text to a numeric value
+            if (double.TryParse(cleanedText, out double numericValue))
+            {
+                // Format the numeric value as currency
+                entry.Text = string.Format("{0:C}", numericValue);
+            }
+            else
+            {
+                // Handle invalid input (e.g., non-numeric characters)
+                entry.Text = string.Empty;
+            }
+        }
     }
 }

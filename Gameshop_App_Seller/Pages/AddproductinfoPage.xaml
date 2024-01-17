@@ -36,8 +36,23 @@
                     </Frame>
 
                     <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                        <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice"/>
+                        <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
                     </Frame>
+
+                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+                      x:Name="progressLoading"
+                      IsVisible="False"
+                      AbsoluteLayout.LayoutBounds="0,0,1,1"
+                      AbsoluteLayout.LayoutFlags="All"
+                      BackgroundColor="Transparent">
+                                          <ActivityIndicator
+                      x:Name="ai"
+                      IsRunning="True" IsVisible="True"
+                      HorizontalOptions="CenterAndExpand"
+                      Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    </StackLayout>
+
+
                     <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
                         <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
                     </Frame>

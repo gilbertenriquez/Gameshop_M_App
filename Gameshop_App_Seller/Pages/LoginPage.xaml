@@ -15,10 +15,10 @@
        
 
         <ScrollView Grid.Row="1" Grid.RowSpan="1">
-            <VerticalStackLayout Spacing="5" Margin="40" VerticalOptions="FillAndExpand">
+            <VerticalStackLayout Spacing="10" Margin="40" VerticalOptions="FillAndExpand">
 
             <Label FontSize="40"
-            Text="PIXELTRADE" TextColor="White"
+            Text="PIXEL TRADE" TextColor="White"
                    FontAttributes="Bold"
                    Margin="0,40,0,20"
             VerticalOptions="Center" 
@@ -75,18 +75,18 @@
             </Grid>
 
 
-            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="5">
+                <Frame BackgroundColor="Transparent" BorderColor="White" Padding="1">
             <Entry Placeholder="Email" HorizontalOptions="FillAndExpand"
                    TextColor="White"
-                   PlaceholderColor="White"
+                   PlaceholderColor="LightGray"
                    x:Name="emailEntry"/>
         </Frame>
 
-            <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="5" >
+            <Frame BackgroundColor="Transparent" BorderColor="White" Padding="1" >
             <Entry Placeholder="Password" HorizontalOptions="FillAndExpand"
                    TextColor="White"
                    IsPassword="True"
-                   PlaceholderColor="White"
+                   PlaceholderColor="LightGray"
                    x:Name="passwordEntry"/>
         </Frame>
         

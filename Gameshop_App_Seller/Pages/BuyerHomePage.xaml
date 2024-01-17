@@ -6,136 +6,145 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#212025">
 
-    <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Border Grid.Row="0"
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+                         RefreshColor="DimGray"
+                        >
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Border Grid.Row="0"
             Padding="0"
             Margin="-5,-60,-5,20" BackgroundColor="#5234a7"
             StrokeThickness="0"
             StrokeShape="RoundRectangle ">
-                <Grid>
-                    <Image Aspect="AspectFill" Opacity="0.5"
+                    <Grid>
+                        <Image Aspect="AspectFill" Opacity="0.5"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="FillAndExpand">
-                        <Image.Source >
-                            <UriImageSource x:Name="imgcover" 
+                            <Image.Source >
+                                <UriImageSource x:Name="imgcover" 
                                     CachingEnabled="True"
                                     CacheValidity="5"/>
-                        </Image.Source>
-                    </Image>
-                  
+                            </Image.Source>
+                        </Image>
 
-                    <Grid ColumnSpacing="50"
+
+                        <Grid ColumnSpacing="50"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
                   RowSpacing="1"
                   HorizontalOptions="FillAndExpand"
                   Margin="5" Padding="5">
 
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
+                            <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
                       HorizontalOptions="FillAndExpand">
 
-                            <Label Grid.Column="0" Text=""
+                                <Label Grid.Column="0" Text=""
                            TextColor="#007AFF"
                            FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
                            FontSize="30" />
-                            <HorizontalStackLayout Grid.Column="1" 
+                                <HorizontalStackLayout Grid.Column="1" 
                                            HorizontalOptions="End" Margin="0,70,40,0"
                                            WidthRequest="100">
-                               
-                            </HorizontalStackLayout>
-                        </Grid>
 
-                    
-                        <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+                                </HorizontalStackLayout>
+                            </Grid>
 
-                            <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
+
+                            <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+
+                                <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
                             Grid.Row="1" Margin="0,0,20,0" StrokeThickness="3"
                             Stroke="Transparent"
                             HeightRequest="80" WidthRequest="80">
 
-                                <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
-                            </Border>
+                                    <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
+                                </Border>
 
-                          
-                            <CollectionView Grid.Column="1" x:Name="username" VerticalOptions="Center">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid
+
+                                <CollectionView Grid.Column="1" x:Name="username" VerticalOptions="Center">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid
                                               RowDefinitions="Auto"
                                               ColumnDefinitions="Auto,Auto" ColumnSpacing="5" >
-                                            <Label Text="{Binding FNAME}" 
+                                                <Label Text="{Binding FNAME}" 
                                               TextColor="WHITE"
                                               FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                            <Label Text="{Binding LNAME}"  Grid.Column="1"
+                                                <Label Text="{Binding LNAME}"  Grid.Column="1"
                                               TextColor="WHITE"
                                               FontSize="25" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Border>
+                </Border>
 
 
 
-            <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="4"
+                <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="4"
         x:Name="progressLoading"
         IsVisible="False"
         AbsoluteLayout.LayoutBounds="0,0,1,1"
         AbsoluteLayout.LayoutFlags="All"
         BackgroundColor="Transparent">
-                <ActivityIndicator
+                    <ActivityIndicator
         x:Name="ai"
-        IsRunning="True" IsVisible="True"
+        IsRunning="False" IsVisible="False"
         HorizontalOptions="CenterAndExpand"
         Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-            </StackLayout>
+                </StackLayout>
 
 
 
-            <StackLayout  Grid.Row="3" Margin="10">
-                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="10" >
-                    <SearchBar                    
-                  Margin="20"     
-                     Grid.Row="0"
-                    Grid.Column="0" 
-                    HorizontalOptions="Fill"
-                  Placeholder="Search....." 
-                  BackgroundColor="#212025" 
-                  TextColor="White"
-                  PlaceholderColor="White"
-                  x:Name="searchBar"
-                  TextChanged="searchBar_TextChanged" />
+                <StackLayout  Grid.Row="3" Margin="5">
+                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="10" >
+                        <Frame  Margin="20"
+                                Padding="0"
+                                CornerRadius="6"
+                        Grid.Row="0"
+                         BorderColor="White"
+                       Grid.Column="0"                           
+                       HorizontalOptions="FillAndExpand">
+                            <SearchBar                                    
+                            Placeholder="Search....." 
+                           HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#212025" 
+                            TextColor="White"
+                            PlaceholderColor="White"
+                            x:Name="searchBar"
+                            TextChanged="searchBar_TextChanged" />
+                        </Frame>
 
-                    <ImageButton HorizontalOptions="End" Grid.Row="0" Grid.Column="1" HeightRequest="30"                                      
-       Source="shop.png"
+                        <ImageButton HorizontalOptions="End" Grid.Row="0" Grid.Column="1" HeightRequest="30"                                      
+       Source="onlineshop.png"
              Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
 
-                <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"                                        
+                        <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"                                        
       Source="settings.png" BackgroundColor="Transparent"
             Clicked="SettingsBTN_Clicked"/>
-                </Grid>
+                    </Grid>
 
-            </StackLayout>
-
-
+                </StackLayout>
 
 
 
-            <ScrollView Grid.Row="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="15" >
-                                <Frame
+
+
+                <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="4">
+                    <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="15" >
+                                    <Frame
                                        BorderColor="White"                                      
                                        BackgroundColor="#212025" 
                                        Padding="10"
@@ -143,39 +152,40 @@
                                        VerticalOptions="Start">
 
 
-                                    <ContentView.GestureRecognizers>
-                                        <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
-                                    </ContentView.GestureRecognizers>
+                                        <ContentView.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
+                                        </ContentView.GestureRecognizers>
 
 
-                                    <Grid RowSpacing="20">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                        <Grid RowSpacing="20">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
-                                        <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
-                                            <Image.Scale>
-                                                <OnIdiom x:TypeArguments="x:Double">
-                                                    <OnIdiom.Phone>2.5</OnIdiom.Phone>
-                                                    <OnIdiom.Tablet>3.5</OnIdiom.Tablet>
-                                                </OnIdiom>
-                                            </Image.Scale>
-                                        </Image>
+                                            <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
+                                                <Image.Scale>
+                                                    <OnIdiom x:TypeArguments="x:Double">
+                                                        <OnIdiom.Phone>2.5</OnIdiom.Phone>
+                                                        <OnIdiom.Tablet>3.5</OnIdiom.Tablet>
+                                                    </OnIdiom>
+                                                </Image.Scale>
+                                            </Image>
 
-                                        <Label Grid.Row="4" TextColor="White" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
-                                        <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="#d22f3d" />
-                                    </Grid>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
-        </Grid>
-    </ScrollView>
+                                            <Label Grid.Row="4" TextColor="White" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="#d22f3d" />
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

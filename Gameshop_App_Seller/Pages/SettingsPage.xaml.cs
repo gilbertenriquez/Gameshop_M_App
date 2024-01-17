@@ -78,7 +78,7 @@ public partial class SettingsPage : ContentPage
                 App.UserKey = null;
 
                 // Simulate a delay for demonstration purposes
-                await Task.Delay(3000);
+                await Task.Delay(1000);
 
                 // Navigate to the login page or the initial page of your app 
                 await Navigation.PushModalAsync(new LoginPage());
@@ -98,21 +98,47 @@ public partial class SettingsPage : ContentPage
 
     private async void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         await Navigation.PushModalAsync(new ShopDetail(App.key));
+        progressLoading.IsVisible = false;
     }
 
     private async void TandCBTN_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new TermsAndConditionPage());
+        progressLoading.IsVisible = false;
     }
 
     private async void PrivacyPoliBTN_Tapped(object sender, TappedEventArgs e)
     {
-      await Navigation.PushModalAsync(new PrivacyPolicyPage());
+        progressLoading.IsVisible = true;
+
+        await Navigation.PushModalAsync(new PrivacyPolicyPage());
+        progressLoading.IsVisible = false;
     }
 
     private async void BTNbackImg_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
+        progressLoading.IsVisible = false;
+    }
+
+    private async void BTNbacktobeBuyer_Tapped(object sender, TappedEventArgs e)
+    {
+        progressLoading.IsVisible = true;
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+        await Navigation.PushModalAsync(new BuyerHomePage(App.key));
+        progressLoading.IsVisible = false;
     }
 }

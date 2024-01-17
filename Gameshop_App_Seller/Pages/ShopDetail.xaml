@@ -62,20 +62,33 @@
                    Clicked="RemoveCoverShop_Clicked"
                    />
 
+                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+                    x:Name="progressLoading"
+                    IsVisible="False"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Transparent">
+                                            <ActivityIndicator
+                    x:Name="ai"
+                    IsRunning="True" IsVisible="True"
+                    HorizontalOptions="CenterAndExpand"
+                    Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                    </StackLayout>
+
 
 
                     <Label Text="Shop Name" TextColor="White"  Grid.Row="8"/>
-                <Frame  Grid.Row="9" BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                    <Frame  Grid.Row="9" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
                     <Entry x:Name="ShopNameEntry" Placeholder="Shop Name"   TextColor="#252525"/>
                 </Frame>
 
                     <Label Text="Telephone Number" TextColor="White"  Grid.Row="11"/>
-                <Frame  Grid.Row="11" BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                    <Frame  Grid.Row="11" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
                     <Entry x:Name="ShopContactEntry"  Placeholder="Telephone Number"  TextColor="#252525" TextChanged="ShopContactEntry_TextChanged"/>
                 </Frame>
 
                     <Label Text="Fb Messenger Link" TextColor="White"  Grid.Row="12"/>
-                <Frame  Grid.Row="12" BackgroundColor="#EEF5FF" BorderColor="#252525" Padding="0,0">
+                    <Frame  Grid.Row="12" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
                     <Entry x:Name="ShopMessenger"  Placeholder="Example:m.me/username/"  TextColor="#252525"/>
                 </Frame>
 

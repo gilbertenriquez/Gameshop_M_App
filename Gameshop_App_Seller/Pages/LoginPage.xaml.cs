@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using Firebase.Database;
 using System.Text.RegularExpressions;
-using Plugin.Connectivity;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 
@@ -69,12 +68,16 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new ForgotPassword());
+        progressLoading.IsVisible = false;
     }
 
     private async void CreateAccountBTN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         await Navigation.PushModalAsync(new SignUpPage());
+        progressLoading.IsVisible = false;
     }
 
  

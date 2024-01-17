@@ -17,6 +17,20 @@
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+     x:Name="progressLoading"
+     IsVisible="False"
+     AbsoluteLayout.LayoutBounds="0,0,1,1"
+     AbsoluteLayout.LayoutFlags="All"
+     BackgroundColor="Transparent">
+                    <ActivityIndicator
+     x:Name="ai"
+     IsRunning="True" IsVisible="True"
+     HorizontalOptions="CenterAndExpand"
+     Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                </StackLayout>
+
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="40" RowSpacing="20">
                     <Label Grid.Row="0" Text="Terms And Condition for Gameshop" FontSize="30" TextColor="WHITE"/>
                     <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="WHITE"/>

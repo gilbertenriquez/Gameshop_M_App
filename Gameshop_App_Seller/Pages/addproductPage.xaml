@@ -63,9 +63,9 @@
                                     StrokeThickness="0"
                                     BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 0">
-                                            <Grid RowDefinitions="130,Auto">
-                                                <Image Grid.Row="0" VerticalOptions="Center" x:Name="mainimage"
-                                          Aspect="AspectFill"/>
+                                            <Grid RowDefinitions="100,Auto">
+                                                <Image Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="mainimage"
+                                          Aspect="AspectFit"/>
                                             </Grid>
                                         </Border>
                                         <Grid Grid.Row="0" Grid.Column="1"

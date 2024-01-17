@@ -69,8 +69,10 @@
 	  <None Remove="Resources\Images\minuswhite.png" />
 	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
+	  <None Remove="Resources\Images\onlineshop.png" />
 	  <None Remove="Resources\Images\pluswhite.png" />
 	  <None Remove="Resources\Images\purchasehistory.png" />
+	  <None Remove="Resources\Images\purchasehistorywhite.png" />
 	  <None Remove="Resources\Images\record.png" />
 	  <None Remove="Resources\Images\reviewseller.png" />
 	  <None Remove="Resources\Images\search.png" />
@@ -113,9 +115,6 @@
 	  <MauiXaml Update="Pages\BuyNowPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\CustomerSeeSellerReview.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -144,6 +143,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\ReviewsOnSellerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SellerReviews.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SellerSettings.xaml">
