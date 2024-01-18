@@ -34,7 +34,7 @@ public partial class SignUpPage : INotifyPropertyChanged
             return;
         }
 
-        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        string emailPattern = @"^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
         progressLoading.IsVisible = false;
 
         try

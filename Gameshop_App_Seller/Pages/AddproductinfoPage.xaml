@@ -21,53 +21,49 @@
                      Clicked="ImageButton_Clicked" />
 
         <ScrollView Grid.Row="1">
-            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="40">
 
 
+            <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40">
 
-                <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40"  AbsoluteLayout.LayoutBounds="0,0,1,1"
-              AbsoluteLayout.LayoutFlags="All">
-
-                    <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
+                <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
                FontSize="20" FontFamily="RobotoLight"  TextColor="White"/>
-                    
-                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                        <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="LightGray" TextColor="White" x:Name="entryName"/>
-                    </Frame>
 
-                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                        <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
-                    </Frame>
+                <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                    <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="LightGray" TextColor="White" x:Name="entryName"/>
+                </Frame>
 
-                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+                <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                    <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
+                </Frame>
+
+                <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
                       x:Name="progressLoading"
                       IsVisible="False"
                       AbsoluteLayout.LayoutBounds="0,0,1,1"
                       AbsoluteLayout.LayoutFlags="All"
                       BackgroundColor="Transparent">
-                                          <ActivityIndicator
+                    <ActivityIndicator
                       x:Name="ai"
                       IsRunning="True" IsVisible="True"
                       HorizontalOptions="CenterAndExpand"
                       Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                    </StackLayout>
+                </StackLayout>
 
 
-                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
-                        <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
-                    </Frame>
-                    <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                        <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity"/>
-                    </Frame>
+                <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
+                    <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
+                </Frame>
+                <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
+                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity"/>
+                </Frame>
 
-                    <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">
+                <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">
 
-                        <Button Text="Save"  x:Name="saveBTN" BackgroundColor="#d22f3d"
+                    <Button Text="Save"  x:Name="saveBTN" BackgroundColor="#d22f3d"
             BorderColor="Transparent" TextColor="White" Clicked="saveBTN_Clicked"/>
-                    </Grid>
+                </Grid>
 
-                </VerticalStackLayout>
-            </AbsoluteLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </ContentPage>

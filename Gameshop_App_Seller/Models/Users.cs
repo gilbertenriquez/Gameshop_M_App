@@ -1145,6 +1145,61 @@ namespace Gameshop_App_Seller.Models
         }
 
 
+        public async Task<ObservableCollection<Users>> GetVerifiedStatus()
+        {
+            try
+            {
+                // Assuming DeniedApplication is a class representing denied applications
+                var VerifiedUser = await ClientUsers
+                    .Child("Verified")
+                    .OnceAsync<Users>();
+
+                var VerifiedStatus = VerifiedUser
+                    .Select(item => item.Object)
+                    .ToList();
+
+                return new ObservableCollection<Users>(VerifiedStatus);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
+            }
+        }
+
+
+
+
+       
+
+        public async Task DeleteDeniedApplicationAsync(string deniedApplicationKey)
+        {
+            try
+            {
+                var deniedApplicationsNode = "Denied Applications"; 
+
+                // Reference to the Denied Applications node
+                var deniedApplicationsRef = ClientUsers.Child(deniedApplicationsNode);
+
+                // Reference to the specific Denied Application using its key
+                var deniedApplicationRef = deniedApplicationsRef.Child(deniedApplicationKey);
+
+                // Delete the Denied Application
+                await deniedApplicationRef.DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in DeleteDeniedApplicationAsync: {ex.Message}");
+                // Handle error accordingly
+                // You might want to notify the user about the error
+            }
+        }
+
+
+
+
+
         public async Task<ObservableCollection<Users>> GetReviewListAsync()
         {
             try

@@ -55,7 +55,7 @@
                        Margin="20" TextColor="White" />
                             <Grid Grid.Row="2" Margin="10">
                                 <Border StrokeShape="RoundRectangle 0" StrokeThickness="0" Padding="0"
-                            BackgroundColor="White">
+                            BackgroundColor="#212025">
 
                                     <Grid RowDefinitions="Auto, Auto, Auto" Margin="10"
                               ColumnDefinitions="Auto, *" HorizontalOptions="FillAndExpand">
@@ -63,8 +63,8 @@
                                     StrokeThickness="0"
                                     BackgroundColor="{StaticResource FrameColor}"
                                     StrokeShape="RoundRectangle 0">
-                                            <Grid RowDefinitions="100,Auto">
-                                                <Image Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="mainimage"
+                                            <Grid RowDefinitions="100,Auto"> 
+                                                <Image Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="mainimage"
                                           Aspect="AspectFit"/>
                                             </Grid>
                                         </Border>
@@ -73,7 +73,7 @@
                                   HorizontalOptions="EndAndExpand"
                                   VerticalOptions="EndAndExpand"
                                   Margin="20">
-                                            <Label Text="This is the main image of your property."
+                                            <Label Text="This is the main image of your product."
                                        LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" TextColor="#212025" />
                                             <HorizontalStackLayout Grid.Row="1" HorizontalOptions="EndAndExpand"
                                                        VerticalOptions="EndAndExpand"
@@ -83,7 +83,7 @@
                                             TextColor="White" />
                                                 <Button Text="Remove image" BorderColor="Transparent"
                                             BackgroundColor="#d22f3d"
-                                            TextColor="White" />
+                                            TextColor="White"  />
                                             </HorizontalStackLayout>
                                         </Grid>
                                     </Grid>
@@ -93,7 +93,7 @@
                        Margin="20,30,0,0" FontSize="20" />
                             <Label Grid.Row="4" Margin="30,10,0,0"
                        TextColor="White"
-                       Text="Add 6 supporting images. These images will be used to show more what your property is all about." />
+                       Text="Add 6 supporting images. These images will be used to show more what your product is all about." />
                             <Grid Grid.Row="5" Margin="10">
                                 <Border StrokeShape="RoundRectangle 0" Margin="20,0"
                                 StrokeThickness="0" Padding="10"

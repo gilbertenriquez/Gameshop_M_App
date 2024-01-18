@@ -16,26 +16,10 @@ public partial class addproductPage : ContentPage
 
     public addproductPage()
     {
-
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
+      
         InitializeComponent();
     }
-
-
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
+ 
 
     private async void addimageBTN_Clicked(object sender, EventArgs e)
     {
@@ -44,12 +28,14 @@ public partial class addproductPage : ContentPage
             PickerTitle = "Select main image",
             FileTypes = FilePickerFileType.Images
         });
+
         if (result == null) return;
-                    
+
         FileInfo fi = new(result.FullPath);
+        var sizeLimitInBytes = 50 * 1024 * 1024; // 50MB
         var size = fi.Length;
 
-        if (size > 524288)
+        if (size > sizeLimitInBytes)
         {
             var snackbarOptions = new SnackbarOptions
             {
@@ -60,7 +46,8 @@ public partial class addproductPage : ContentPage
                 Font = Font.SystemFontOfSize(10),
                 ActionButtonFont = Font.SystemFontOfSize(10)
             };
-            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+
+            const string text = "The image you have selected is larger than 50MB. Please ensure that the size of the image is less than 50MB. Thank you!";
             const string actionButtonText = "Got it!";
             var duration = TimeSpan.FromSeconds(10);
             var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
@@ -68,23 +55,16 @@ public partial class addproductPage : ContentPage
             await snackbar.Show(cancellationTokenSource.Token);
             return;
         }
+
         var stream = await result.OpenReadAsync();
         App._mainimgResult = result;
         mainimage.Source = ImageSource.FromStream(() => stream);
 
-
         progressLoading.IsVisible = false;
 
+
     }
-    //private async void IC_check()
-    //{
-    //    if (CrossConnectivity.Current.IsConnected)
-    //    {
-    //        return;
-    //    }
-    //    await DisplayAlert("Alert", "No Internet Connection", "OK!");
-    //    return;
-    //}
+   
 
     private async void addsupportimgBTN_Clicked(object sender, EventArgs e)
     {
@@ -148,7 +128,13 @@ public partial class addproductPage : ContentPage
 
     private async void NEXTBTN_Clicked(object sender, EventArgs e)
     {
-        if(_mainimage == null
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        if (_mainimage == null
           && _img1Result == null 
           && _img2Result == null
           && _img3Result == null

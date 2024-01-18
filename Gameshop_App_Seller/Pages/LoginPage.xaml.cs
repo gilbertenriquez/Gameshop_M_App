@@ -68,9 +68,9 @@ public partial class LoginPage : INotifyPropertyChanged
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        progressLoading.IsVisible = true;
+
         await Navigation.PushModalAsync(new ForgotPassword());
-        progressLoading.IsVisible = false;
+  
     }
 
     private async void CreateAccountBTN_Clicked(object sender, EventArgs e)

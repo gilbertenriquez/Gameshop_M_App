@@ -12,7 +12,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Margin="20"  Source="backbtnwhite.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
+        <ImageButton Margin="20"  Source="backbtnwhite.png" HeightRequest="20" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
 
 
         <ScrollView Grid.Row="1">

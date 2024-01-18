@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Images\backbtnwhite.png" />
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contacts.png" />
+	  <None Remove="Resources\Images\denied.png" />
 	  <None Remove="Resources\Images\editwhite.png" />
 	  <None Remove="Resources\Images\filledStar.png" />
 	  <None Remove="Resources\Images\flag.png" />
@@ -83,6 +84,7 @@
 	  <None Remove="Resources\Images\unfilledStar.png" />
 	  <None Remove="Resources\Images\valid1.png" />
 	  <None Remove="Resources\Images\valid2.png" />
+	  <None Remove="Resources\Images\verified.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>
 

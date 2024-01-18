@@ -107,11 +107,22 @@ public partial class HomePage : ContentPage
 
     private async void AddProdsBTN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         await Navigation.PushModalAsync(new addproductPage());
     }
 
     private async void EditProdsBTN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         if (listViewProducts.SelectedItem != null)
         {
             var selectedUser = listViewProducts.SelectedItem as Users;
@@ -144,6 +155,12 @@ public partial class HomePage : ContentPage
 
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         if (e.CurrentSelection != null)
         {
             var selectedUser = e.CurrentSelection.FirstOrDefault() as Users;
@@ -174,16 +191,33 @@ public partial class HomePage : ContentPage
 
     private async void sellerReview_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         await Navigation.PushModalAsync(new ReviewsOnSellerPage());
     }
 
     private async void sellerHistory_Clicked(object sender, EventArgs e)
     {
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         await Navigation.PushModalAsync(new PurchaseHistory());
     }
 
     private async void sellerSettings_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         await Navigation.PushModalAsync(new SettingsPage(App.key));
     }
 

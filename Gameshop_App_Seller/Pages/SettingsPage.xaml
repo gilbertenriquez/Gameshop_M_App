@@ -30,7 +30,7 @@
                             <HorizontalStackLayout Grid.Column="0" Spacing="10"
                                            HorizontalOptions="Start" Margin="20,40,0,35"
                                            WidthRequest="100">
-                                <ImageButton x:Name="BTNbackImg" HeightRequest="20" Source="backbtnwhite.png" Clicked="BTNbackImg_Clicked"/>
+                                <ImageButton x:Name="BTNbackImg" BackgroundColor="Transparent" HeightRequest="20" Source="backbtnwhite.png" Clicked="BTNbackImg_Clicked"/>
 
                             </HorizontalStackLayout>
 
@@ -67,7 +67,7 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer x:Name="BTNshopDetails" Tapped="BTNshopDetails_Tapped"/>
                     </Frame.GestureRecognizers>
-                    <Label Text=" Shop Details"  TextColor="White" />
+                    <Label Text="Shop Details"  TextColor="White" />
                 </Frame>
 
 
@@ -75,7 +75,7 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer x:Name="BTNbacktobeBuyer" Tapped="BTNbacktobeBuyer_Tapped"/>
                     </Frame.GestureRecognizers>
-                    <Label Text=" Become a Buyer"  TextColor="White" />
+                    <Label Text="Buyer Mode"  TextColor="White" />
                 </Frame>
 
                 <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
@@ -105,14 +105,14 @@
                         <TapGestureRecognizer x:Name="PrivacyPoliBTN" Tapped="PrivacyPoliBTN_Tapped"/>
                     </Frame.GestureRecognizers>
 
-                    <Label Text=" Privacy policy"  TextColor="White" />
+                    <Label Text="Privacy policy"  TextColor="White" />
                 </Frame>
 
                 <Frame Grid.Row="7"  HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="Transparent">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer x:Name="TandCBTN" Tapped="TandCBTN_Tapped"/>
                     </Frame.GestureRecognizers>
-                    <Label Text=" Terms and conditions"  TextColor="White" />
+                    <Label Text="Terms and conditions"  TextColor="White" />
                 </Frame>
 
                 <Frame Grid.Row="9"  HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="Transparent">

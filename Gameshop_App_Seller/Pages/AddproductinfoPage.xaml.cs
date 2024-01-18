@@ -28,7 +28,11 @@ public partial class AddproductinfoPage : ContentPage
     private async void saveBTN_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;
-
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
 
         var a = await imgSave.Save(_mainimgResult,
                            _img1Result,
@@ -50,14 +54,14 @@ public partial class AddproductinfoPage : ContentPage
 
         if (string.IsNullOrEmpty(userKey))
         {
-            await DisplayAlert("Message", "Product Successfully Added", "OK");
+            await DisplayAlert("Information", "Product Successfully Added", "OK");         
             await Navigation.PushModalAsync(new HomePage());
             progressLoading.IsVisible = false;
             return;
         }
         else
         {
-            await DisplayAlert("Message", "Product Not Successfully Added", "OK");
+            await DisplayAlert("Information", "Product Not Successfully Added", "OK");
             progressLoading.IsVisible = false;
             return;
         }
@@ -66,9 +70,7 @@ public partial class AddproductinfoPage : ContentPage
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
-        progressLoading.IsVisible = false;
     }
 
     private void entryPrice_TextChanged(object sender, TextChangedEventArgs e)

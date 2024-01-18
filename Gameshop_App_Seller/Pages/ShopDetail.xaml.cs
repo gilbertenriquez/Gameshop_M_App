@@ -212,6 +212,13 @@ public partial class ShopDetail : ContentPage
     private async void updateShopBTN_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         if (!termsCheckbox.IsChecked)
         {
             await DisplayAlert("Information", "Please agree to the terms and conditions before updating shop details.", "OK");

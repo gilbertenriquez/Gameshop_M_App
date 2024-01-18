@@ -13,9 +13,11 @@ public partial class BuyerHomePage : ContentPage
     public BuyerHomePage()
     {   
         InitializeComponent();
+        OnAppearingDenied();
+        OnAppearingVerified();
         LoadDataAsync();
         OnAppearing();
-        OnAppearingDenied();
+        
 
     }
     public BuyerHomePage(string userKey) : this()
@@ -48,7 +50,7 @@ public partial class BuyerHomePage : ContentPage
         {
             base.OnAppearing();
 
-            string userEmail = App.email.ToLower(); 
+            string userEmail = App.email.ToLower();
 
             var deniedApplicationsList = await vans.GetDeniedApplicationsListAsync();
             var deniedApplication = deniedApplicationsList.FirstOrDefault(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase));
@@ -56,13 +58,55 @@ public partial class BuyerHomePage : ContentPage
             if (deniedApplication != null)
             {
                 await DisplayAlert("Denied Application", $"Denied Reason: {deniedApplication.DeniedReason}", "OK");
-            }          
+
+                // User is denied, show DeniedImage
+                DeniedImage.IsVisible = true;
+                VerifiedImage.IsVisible = false;
+            }
+            else
+            {
+                // User is no status, 
+                VerifiedImage.IsVisible = false;
+                DeniedImage.IsVisible = false;
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
         }
     }
+
+
+    protected async void OnAppearingVerified()
+    {
+        try
+        {
+            base.OnAppearing();
+
+            string userEmail = App.email.ToLower();
+
+            var VerifiedStats = await vans.GetVerifiedStatus();
+            var VerifiedStatus = VerifiedStats.FirstOrDefault(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase));
+
+            if (VerifiedStatus != null)
+            {               
+                // User is verified, show DeniedImage
+                DeniedImage.IsVisible = false;
+                VerifiedImage.IsVisible = true;
+            }
+            else
+            {
+                // User is no status, 
+                VerifiedImage.IsVisible = false;
+                DeniedImage.IsVisible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
+        }
+    }
+
 
 
 
@@ -188,6 +232,13 @@ public partial class BuyerHomePage : ContentPage
 
     private async void ShopBTN_Clicked(object sender, EventArgs e)
     {
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         // Check if the user is logged in
         if (string.IsNullOrEmpty(App.email) || string.IsNullOrEmpty(App.key))
         {
@@ -245,6 +296,12 @@ public partial class BuyerHomePage : ContentPage
 
     private async void ViewProductBTN_Tapped_1(object sender, TappedEventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         var selectedProduct = e.Parameter as Users; // Replace Users with your actual type
 
         if (selectedProduct != null)
@@ -272,6 +329,12 @@ public partial class BuyerHomePage : ContentPage
 
     private async void SettingsBTN_Clicked(object sender, EventArgs e)
     {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         await Navigation.PushModalAsync(new SellerSettings(App.key));
     }
 
@@ -305,6 +368,12 @@ public partial class BuyerHomePage : ContentPage
 
     private async void searchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
         string searchText = e.NewTextValue;
 
         if (string.IsNullOrWhiteSpace(searchText))

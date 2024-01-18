@@ -11,7 +11,7 @@
         </Grid.RowDefinitions>
         <ImageButton Grid.Row="0" Source="backbtnwhite.png" Margin="40,10,0,0" HeightRequest="40"
                      HorizontalOptions="Start"
-                     VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
+                     VerticalOptions="Start" x:Name="btnBackImg" BackgroundColor="Transparent" Clicked="btnBackImg_Clicked"/>
               
 
         <ScrollView Grid.Row="1">

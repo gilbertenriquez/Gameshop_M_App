@@ -159,15 +159,15 @@ public partial class ProfileDetail : ContentPage
 
     private void RemoveIMGbtn_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+
         ProfilePictureUser.Source = null;
-        progressLoading.IsVisible = false;
+
     }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+
         await Navigation.PopModalAsync();
-        progressLoading.IsVisible = false;
+
     }
 }

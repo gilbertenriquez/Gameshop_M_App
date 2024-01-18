@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.Valid_IDpage"
              Title="Valid_IDpage"
-              BackgroundColor="#EEF5FF">
+              BackgroundColor="#212025">
 
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
@@ -11,9 +11,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0" Source="backbtn.png" 
+        <ImageButton Grid.Row="0" Source="backbtnwhite.png" 
              Margin="20"
-             HeightRequest="30" 
+             BackgroundColor="Transparent"
+             HeightRequest="20" 
              HorizontalOptions="Start" 
              VerticalOptions="Start" 
              x:Name="btnBackImg"
@@ -40,14 +41,14 @@
                        Text="We're processing your request, please wait..." 
                        Margin="20" 
                        HorizontalOptions="CenterAndExpand"
-                       TextColor="Black"/>
+                       TextColor="WHITE"/>
                 </StackLayout>
 
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto,Auto,Auto,Auto,Auto,Auto" 
                   RowSpacing="10">
 
                     <Label Grid.Row="0"
-                       TextColor="Black" 
+                       TextColor="WHITE" 
                        Text="Valid ID"
                        FontSize="30"
                        FontFamily="RobotoCondensed"
@@ -56,10 +57,10 @@
                     <Label Grid.Row="1"
                        Text="Note: Please make your valid id photos presentable as possible. These images will verify if you are eligable for to become seller."
                        Margin="10" 
-                       TextColor="Black" />
+                       TextColor="WHITE" />
 
                     <Label Grid.Row="3"  
-                        TextColor="Black"
+                        TextColor="WHITE"
                         Text="PLEASE UPLOAD THR FRONT OF YOUR VALID ID FRONT"
                         FontSize="20"
                         FontAttributes="Bold"
@@ -85,13 +86,13 @@
 
                     <HorizontalStackLayout Grid.Row="4" HorizontalOptions="CenterAndExpand">
                         <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
-                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="btnFontimage_Clicked"/>
-                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked"/>
+                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#d22f3d" Text="UPLOAD" Clicked="btnFontimage_Clicked"/>
+                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#d22f3d" Text="REMOVE" Clicked="Button_Clicked"/>
                         </Grid>
 
                     </HorizontalStackLayout>
 
-                    <Label Grid.Row="7" TextColor="Black" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID "  
+                    <Label Grid.Row="7" TextColor="WHITE" Text="PLEASE UPLOAD THE BACK PHOTO IN YOUR VALID ID "  
                        FontSize="20" 
                        FontAttributes="Bold" 
                        HorizontalOptions="CenterAndExpand"/>
@@ -117,15 +118,15 @@
 
                     <HorizontalStackLayout Grid.Row="8" HorizontalOptions="CenterAndExpand">
                         <Grid ColumnDefinitions="AUTO,AUTO" ColumnSpacing="20" HorizontalOptions="CenterAndExpand">
-                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#007AFF" Text="UPLOAD" Clicked="backimage_Clicked"/>
-                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#007AFF" Text="REMOVE" Clicked="Button_Clicked_1"/>
+                            <Button Grid.Column="0" TextColor="White" BackgroundColor="#d22f3d" Text="UPLOAD" Clicked="backimage_Clicked"/>
+                            <Button Grid.Column="1" TextColor="White" BackgroundColor="#d22f3d" Text="REMOVE" Clicked="Button_Clicked_1"/>
                         </Grid>
                     </HorizontalStackLayout>
 
 
                     <Button Grid.Row="9" VerticalOptions="End" 
                             Text="Next"                               
-                            BackgroundColor="#007AFF"
+                            BackgroundColor="#d22f3d"
                             TextColor="White" 
                             Margin="0,80,0,0" 
                             x:Name="nextBack" 

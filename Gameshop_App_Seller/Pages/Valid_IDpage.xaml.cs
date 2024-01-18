@@ -54,7 +54,7 @@ public partial class Valid_IDpage : ContentPage
 
     private async void btnFontimage_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+       
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -95,13 +95,13 @@ public partial class Valid_IDpage : ContentPage
         App._ValidIDFront = result;
         Frontimage.Source = ImageSource.FromStream(() => stream);
 
-        progressLoading.IsVisible = false;
+       
     }
 
 
     private async void backimage_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+       
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -142,7 +142,7 @@ public partial class Valid_IDpage : ContentPage
         App._ValidIDBack = result;
         Backimage.Source = ImageSource.FromStream(() => stream);
 
-        progressLoading.IsVisible = false;
+       
     }
 
 
@@ -152,10 +152,10 @@ public partial class Valid_IDpage : ContentPage
 
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
-            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
-            // Handle this case as needed, e.g., show an error message to the user
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
             return;
         }
+
 
         if (IsDefaultImage(Frontimage.Source, "valid1.png"))
         {

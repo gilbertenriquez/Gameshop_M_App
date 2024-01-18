@@ -42,15 +42,10 @@ public partial class BuyNowPage : ContentPage
 
     }
 
-
-
-
     private void SetCurrentTimeAndDate()
     {
         // Set current time
         GetTime.Text = DateTime.Now.ToString("h:mm tt");
-
-
         // Set current date
         GetDateToday.Text = DateTime.Now.ToString("MM-dd-yyyy");
     }
@@ -124,9 +119,7 @@ public partial class BuyNowPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
         await Navigation.PopModalAsync();
-        progressLoading.IsVisible = false;
     }
     private async void addimageBTN_Clicked(object sender, EventArgs e)
     {
@@ -180,6 +173,13 @@ public partial class BuyNowPage : ContentPage
 
     private async void MessengerLink_Clicked(object sender, EventArgs e)
     {
+
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
         progressLoading.IsVisible = true;
         string messengerLink = FBMessengerLink;
 
