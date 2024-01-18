@@ -153,4 +153,9 @@ public partial class addproductPage : ContentPage
     {
         await Navigation.PopModalAsync();
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        mainimage.Source = null;
+    }
 }

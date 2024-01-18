@@ -104,13 +104,13 @@
                              TitleColor="GhostWhite" 
                              Title="Select Gender"                       
                              TextColor="white" 
-                         IsEnabled="False">
+                         IsEnabled="True">
 
                         <Picker.ItemsSource  >
                             <x:Array Type="{x:Type x:String}">
-                                <x:String>Male</x:String>
-                                <x:String>Female</x:String>
-                            </x:Array>
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
                     </Frame>

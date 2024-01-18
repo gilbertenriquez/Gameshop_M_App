@@ -785,6 +785,31 @@ namespace Gameshop_App_Seller.Models
         }
 
 
+        public async Task<ObservableCollection<Users>> SearchUserProducts(string userKey)
+        {
+            try
+            {
+                var products = await ClientUsers
+                    .Child($"Account/{userKey}/Product")
+                    .OnceAsync<Users>();
+
+                var productList = products.Select(p =>
+                {
+                    var user = p.Object;
+                    user.ProductPath = $"Account/{userKey}/Product/{p.Key}";
+                    return user;
+                }).ToList();
+
+                return new ObservableCollection<Users>(productList);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions as needed
+                return new ObservableCollection<Users>();
+            }
+        }
+
+
 
         //upload seller products
         public async Task<bool> Save(FileResult maninimg,

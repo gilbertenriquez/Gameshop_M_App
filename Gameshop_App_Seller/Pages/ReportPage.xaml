@@ -19,7 +19,7 @@
            x:Name="btnBackImg"
                      BackgroundColor="Transparent"
            Clicked="btnBackImg_Clicked"
-           Margin="20,10,0,0"
+           Margin="20,20,0,0"
            />
 
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1">
@@ -68,15 +68,14 @@
 
 
 
-                    <Frame Grid.Row="10" Padding="0" BorderColor="LightGray" BackgroundColor="Transparent">
+                    <Border Grid.Row="10" Padding="0" BackgroundColor="White">
                     <Editor x:Name="reporttxt" HeightRequest="200"
-                    Placeholder="Type your comment here..." 
-                    PlaceholderColor="LightGray" 
-                     
+                    Placeholder="Type your comment here..."                            
+                    PlaceholderColor="LightGray"                     
                     BackgroundColor="#212025"
-                                TextChanged="reporttxt_TextChanged"
+                    TextChanged="reporttxt_TextChanged"
                     TextColor="White"/>
-                    </Frame>
+                    </Border>
 
                     <Label x:Name="wordCountLabel" Grid.Row="11" 
         Grid.Column="0" 

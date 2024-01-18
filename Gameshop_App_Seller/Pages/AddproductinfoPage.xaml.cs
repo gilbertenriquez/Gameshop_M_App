@@ -1,4 +1,4 @@
-using Gameshop_App_Seller.Models;
+﻿using Gameshop_App_Seller.Models;
 using Font = Microsoft.Maui.Font;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
@@ -85,13 +85,25 @@ public partial class AddproductinfoPage : ContentPage
             if (double.TryParse(cleanedText, out double numericValue))
             {
                 // Format the numeric value as currency
-                entry.Text = string.Format("{0:C}", numericValue);
+                entry.Text = string.Format("₱{0:N2}", numericValue);
             }
             else
             {
                 // Handle invalid input (e.g., non-numeric characters)
                 entry.Text = string.Empty;
             }
+        }
+    }
+
+    private void entryQuantity_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (sender is Entry entry)
+        {
+            // Remove non-numeric characters
+            string cleanedText = new string(entry.Text.Where(char.IsDigit).ToArray());
+
+            // Set the cleaned text to the entry
+            entry.Text = cleanedText;
         }
     }
 }

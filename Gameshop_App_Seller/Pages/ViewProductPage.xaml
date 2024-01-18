@@ -132,7 +132,7 @@
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
-                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="20,0,0,0"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"  >
+                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="60,0,0,0"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"  >
                                 <Label VerticalOptions="Center" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
                             </Frame>
                         </Grid>

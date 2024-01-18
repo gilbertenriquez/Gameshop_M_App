@@ -8,7 +8,7 @@
     <ScrollView>
     <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="40"> 
 
-        <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid RowDefinitions="auto,auto,auto,auto" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             
             <Skia:SKLottieView 
                 Source="games.json"
@@ -34,7 +34,7 @@
             
                 <Label FontSize="25" 
                    Grid.Row="1" 
-                   Margin="0,-80,0,0"
+                   Margin="0,0,0,0"
                    Text="Welcome to PixelTrade!" 
                    FontAttributes="Bold"
                    TextColor="White"
@@ -44,7 +44,7 @@
             </Grid>
 
         <Button x:Name="GetStart" Text="Get Started" 
-                Margin="20,60,20,0"
+                Margin="20,50,20,0"
                 VerticalOptions="End"  
                 BackgroundColor="#d22f3d" 
                 TextColor="White" 

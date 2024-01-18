@@ -1,4 +1,4 @@
-using Gameshop_App_Seller.Models;
+﻿using Gameshop_App_Seller.Models;
 using System.Collections.ObjectModel;
 using static Gameshop_App_Seller.App;
 using static System.Net.Mime.MediaTypeNames;
@@ -245,5 +245,54 @@ public partial class HomePage : ContentPage
         {
             Console.WriteLine($"Error during refresh: {ex.Message}");
         }
+    }
+
+    private async void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        string userEmail = App.email;
+        string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+        string searchText = e.NewTextValue;
+
+        // Use the GetUserProducts method to retrieve the full list of user products
+        var allUserProducts = await dusers.SearchUserProducts(userKey); // Pass the appropriate user key here
+
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            // If the search text is null or empty, reset the datalist to show all items
+            listViewProducts.ItemsSource = allUserProducts;
+        }
+        else
+        {
+            // Filter items based on the search text or numeric value
+            var filteredItems = allUserProducts
+                .Where(product =>
+                    product.ProductName.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                    product.ProductPrice.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                    IsNumericMatch(product.ProductPrice, searchText))
+                .ToList();
+
+            // Update the datalist with the filtered items
+            listViewProducts.ItemsSource = new ObservableCollection<Users>(filteredItems);
+        }
+    }
+
+    // Helper method to check if a string is numeric and matches the search text
+    private bool IsNumericMatch(string input, string searchText)
+    {
+        // Remove currency symbol ("₱") and commas, then check if it contains the search text
+        string cleanedInput = input.Replace("₱", "").Replace(",", "");
+
+        if (double.TryParse(cleanedInput, out double numericValue))
+        {
+            return numericValue.ToString().Contains(searchText, StringComparison.OrdinalIgnoreCase);
+        }
+
+        return false;
     }
 }

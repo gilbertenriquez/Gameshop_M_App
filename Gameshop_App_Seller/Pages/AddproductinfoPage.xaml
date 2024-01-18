@@ -17,13 +17,13 @@
                      Grid.Row="0" 
                      Margin="20"
                      BackgroundColor="Transparent"
-                     HeightRequest="40"  
+                     HeightRequest="20"  
                      Clicked="ImageButton_Clicked" />
 
-        <ScrollView Grid.Row="1">
+        <ScrollView Grid.Row="1"  Margin="30">
 
 
-            <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="40">
+            <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="20">
 
                 <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
                FontSize="20" FontFamily="RobotoLight"  TextColor="White"/>
@@ -54,7 +54,7 @@
                     <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
                 </Frame>
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity"/>
+                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity" TextChanged="entryQuantity_TextChanged"/>
                 </Frame>
 
                 <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">

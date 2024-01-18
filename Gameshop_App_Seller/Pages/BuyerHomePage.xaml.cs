@@ -270,11 +270,6 @@ public partial class BuyerHomePage : ContentPage
         {
             // Display an alert indicating that the user is verified
             progressLoading.IsVisible = true;
-            await DisplayAlert("Information", "You Are Verified", "OK");
-
-            // Add debug statement
-           
-
             await Navigation.PushModalAsync(new HomePage());
             return;
         }

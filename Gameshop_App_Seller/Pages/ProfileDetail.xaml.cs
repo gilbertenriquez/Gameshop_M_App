@@ -13,15 +13,16 @@ public partial class ProfileDetail : ContentPage
     private Users updateProfile = new();
     public ProfileDetail()
 	{
-      
-
-
+        
         InitializeComponent();
-	}
+        OnAppearing();
+
+    }
 
     public ProfileDetail(string userId)
     {
         InitializeComponent();
+        OnAppearing();
         this.userId = userId; // Store the user ID
     }
 
@@ -61,9 +62,7 @@ public partial class ProfileDetail : ContentPage
                 Emailentry.Text = userSnapshot.MAIL;
                 Passwordentry.Text = userSnapshot.PASSWORD;
                 Addressentry.Text = userSnapshot.Haddress;
-                birthdayPicker.Date = DateTime.Parse(userSnapshot.BIRTHDAY);
-
-                // Set the value for Picker (assuming GENDER is a string property)
+                birthdayPicker.Date = DateTime.Parse(userSnapshot.BIRTHDAY);                
                 genderPicker.SelectedItem = userSnapshot.GENDER;
             }
             else
@@ -166,8 +165,6 @@ public partial class ProfileDetail : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-
         await Navigation.PopModalAsync();
-
     }
 }

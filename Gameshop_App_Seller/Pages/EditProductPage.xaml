@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ImageButton Source="backbtnwhite.png" 
-              HeightRequest="40" 
+              HeightRequest="20" 
               HorizontalOptions="Start"
               VerticalOptions="Start"
               x:Name="btnBackImg"

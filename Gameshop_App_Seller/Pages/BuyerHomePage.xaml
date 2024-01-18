@@ -49,9 +49,9 @@
                            FontSize="30" />
                                 <HorizontalStackLayout Grid.Column="1" 
                                            HorizontalOptions="End" Margin="0,70,40,0"
-                                           WidthRequest="100">
-                                    <Image Source="verified.png" x:Name="VerifiedImage" Aspect="AspectFit" IsVisible="False"/>
-                                    <Image Source="denied.png" x:Name="DeniedImage" Aspect="AspectFit" IsVisible="False"/>
+                                           WidthRequest="30">
+                                    <Image Source="verified.png" HeightRequest="30" x:Name="VerifiedImage" Aspect="AspectFit" IsVisible="False"/>
+                                    <Image Source="denied.png" HeightRequest="30" x:Name="DeniedImage" Aspect="AspectFit" IsVisible="False"/>
                                 </HorizontalStackLayout>
                             </Grid>
 
@@ -108,21 +108,19 @@
 
 
                 <StackLayout  Grid.Row="3" Margin="5">
-                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="10" >
+                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="0" >
                         <Frame  Margin="20"
-                                Padding="0"
-                                CornerRadius="6"
-                        Grid.Row="0"
-                         BorderColor="White"
-                       Grid.Column="0"                           
+                                Padding="0"                              
+                        Grid.Row="0"                        
+                       Grid.Column="0"  WidthRequest="230"                          
                        HorizontalOptions="FillAndExpand">
                             <SearchBar                                    
                             Placeholder="Search....." 
                            HorizontalOptions="FillAndExpand"
-                            BackgroundColor="#212025" 
-                            TextColor="White"
-                            PlaceholderColor="White"
-                            x:Name="searchBar"
+                            BackgroundColor="White" 
+                            TextColor="#212025"
+                            PlaceholderColor="#212025"
+                            x:Name="searchBar"                          
                             TextChanged="searchBar_TextChanged" />
                         </Frame>
 
@@ -181,7 +179,7 @@
                                         </Image>
 
                                         <Label Grid.Row="4" TextColor="White" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
-                                        <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='₱{0:N2}'}" TextColor="#d22f3d" />
+                                        <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='{0:N2}'}" TextColor="#d22f3d" />
                                     </Grid>
                                 </Frame>
                             </StackLayout>
