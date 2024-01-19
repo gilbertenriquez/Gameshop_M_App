@@ -107,13 +107,13 @@
 
 
 
-                <StackLayout  Grid.Row="3" Margin="5">
-                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,auto,auto" ColumnSpacing="0" >
-                        <Frame  Margin="20"
-                                Padding="0"                              
+                <StackLayout  Grid.Row="3" Margin="10">
+                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,30,30,30" ColumnSpacing="7" >
+                        <Frame  Margin="0"
+                         Padding="0"                              
                         Grid.Row="0"                        
                        Grid.Column="0"  WidthRequest="230"                          
-                       HorizontalOptions="FillAndExpand">
+                       HorizontalOptions="StartAndExpand">
                             <SearchBar                                    
                             Placeholder="Search....." 
                            HorizontalOptions="FillAndExpand"
@@ -123,14 +123,17 @@
                             x:Name="searchBar"                          
                             TextChanged="searchBar_TextChanged" />
                         </Frame>
-
                         <ImageButton HorizontalOptions="End" Grid.Row="0" Grid.Column="1" HeightRequest="30"                                      
        Source="onlineshop.png"
              Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
 
                         <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"                                        
-      Source="settings.png" BackgroundColor="Transparent"
-            Clicked="SettingsBTN_Clicked"/>
+      Source="purchasehistorywhite.png" BackgroundColor="Transparent"
+            Clicked="ImageButton_Clicked"/>
+
+                        <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="3" HorizontalOptions="End"                                        
+Source="settings.png" BackgroundColor="Transparent"
+      Clicked="SettingsBTN_Clicked"/>
                     </Grid>
                 </StackLayout>
 

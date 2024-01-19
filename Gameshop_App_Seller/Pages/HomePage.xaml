@@ -6,16 +6,17 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#212025">
 
-    <Page.Behaviors >
-        <behavior:StatusBarBehavior
-        StatusBarColor="red"
-         StatusBarStyle="LightContent"/>
-    </Page.Behaviors>
-
     <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
                       RefreshColor="DimGray"
                      >
-        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+
+        <Grid Background="Transparent" BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <Grid RowDefinitions="150,150,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Border Grid.Row="0"
             Padding="0"
@@ -74,7 +75,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                
+
                 <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand" Margin="20">
                     <Grid ColumnDefinitions="230,Auto"  ColumnSpacing="10" HorizontalOptions="CenterAndExpand">
                         <Button Text="Add Item" Grid.Column="1" x:Name="AddProductsBTN"   VerticalOptions="Start" HorizontalOptions="Center"
@@ -82,7 +83,7 @@
                        Clicked="AddProdsBTN_Clicked"
                       TextColor="White" BackgroundColor="#d22f3d"/>
                         <Frame Padding="0" Grid.Column="0"  VerticalOptions="Start" HorizontalOptions="Center" >
-                        <SearchBar                           
+                            <SearchBar                           
                              Placeholder="Search....." 
                              HorizontalOptions="CenterAndExpand"
                              BackgroundColor="White" 
@@ -93,66 +94,65 @@
                         </Frame>
                     </Grid>
                 </HorizontalStackLayout>
-                
-                    
-                    
-               
-                <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="0,-50,0,0">
-                    <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="2" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <!-- Your item template here -->
-                                <!-- For example, you can display product name and description -->
-                                <VerticalStackLayout VerticalOptions="FillAndExpand"
+
+            </Grid>
+
+
+            <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="0,-50,0,0">
+                <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Your item template here -->
+                            <!-- For example, you can display product name and description -->
+                            <VerticalStackLayout VerticalOptions="FillAndExpand"
                                          HorizontalOptions="FillAndExpand" Margin="10" >
-                                    <ScrollView>
-                                        <Frame
+                                <ScrollView>
+                                    <Frame
                                            BackgroundColor="#212025" 
                                            Padding="10"
                                            BorderColor="White"
                                           CornerRadius="0"
                                            VerticalOptions="Start">
-                                            <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer x:Name="tobeUNSELECTED" Tapped="tobeUNSELECTED_Tapped"/>
-                                            </Frame.GestureRecognizers>
-                                            <Grid  RowSpacing="5" Margin="5">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="150" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="tobeUNSELECTED" Tapped="tobeUNSELECTED_Tapped"/>
+                                        </Frame.GestureRecognizers>
+                                        <Grid  RowSpacing="5" Margin="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="150" />
 
-                                                <Label Grid.Row="1" Text="Item Name"  TextColor="White"/>
-                                                <Label Grid.Row="2" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Grid.Row="1" Text="Item Name"  TextColor="White"/>
+                                            <Label Grid.Row="2" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
-                                                <Label Grid.Row="3" Text="Description" TextColor="White"/>
-                                                <Label Grid.Row="4" TextColor="#d22f3d" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
+                                            <Label Grid.Row="3" Text="Description" TextColor="White"/>
+                                            <Label Grid.Row="4" TextColor="#d22f3d" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
 
-                                                <Label Grid.Row="5" Text="Price"  TextColor="White"/>
-                                                <Label Grid.Row="6" TextColor="#d22f3d"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='{0:N2}'}" />
+                                            <Label Grid.Row="5" Text="Price"  TextColor="White"/>
+                                            <Label Grid.Row="6" TextColor="#d22f3d"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='{0:N2}'}" />
 
-                                                <Label Grid.Row="7" Text="Qauntity"  TextColor="White"/>
-                                                <Label Grid.Row="8" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="White"/>
+                                            <Label Grid.Row="8" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductQuantity}" />
 
-                                            </Grid>
-                                        </Frame>
-                                    </ScrollView>
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
-            </Grid>
-        </ScrollView>
+                                        </Grid>
+                                    </Frame>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
     </RefreshView>
 </ContentPage>

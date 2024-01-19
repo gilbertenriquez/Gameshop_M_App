@@ -165,6 +165,9 @@
 	  <MauiXaml Update="Pages\TermsAndConditionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\UserPurchaseHistory.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Valid_IDpage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

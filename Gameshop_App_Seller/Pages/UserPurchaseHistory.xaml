@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.PurchaseHistory"
-             Title="PurchaseHistory" BackgroundColor="#212025">
+             x:Class="Gameshop_App_Seller.Pages.UserPurchaseHistory"
+             Title="UserPurchaseHistory" Background="#212025">
     
     <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
@@ -28,26 +28,26 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 BackgroundColor="Transparent">
-                                    <ActivityIndicator
+                    <ActivityIndicator
                 x:Name="ai"
                 IsRunning="True" IsVisible="True"
                 HorizontalOptions="CenterAndExpand"
                 Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                                </StackLayout>
+                </StackLayout>
 
 
 
-                <CollectionView x:Name="purchaselist"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <CollectionView x:Name="UserPurchasehistory"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
                                 <Frame
                                       BackgroundColor="#212025" 
-                                      Padding="10"
+                                      Padding="15"
                                       BorderColor="White"
                                       VerticalOptions="Start">
 
-                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20">
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO">
                                         <Image 
                                        Grid.Row="0"  
                                        Source="{Binding soldImageItem}"
@@ -57,7 +57,7 @@
                                         <HorizontalStackLayout Grid.Row="2">
                                             <Grid RowDefinitions="AUTO,AUTO">
                                                 <Label   Grid.Row="0" Text="Item Name" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
+                                            <Label   Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
@@ -88,6 +88,7 @@
                                                 <Label   Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
+
                                     </Grid>
                                 </Frame>
                             </StackLayout>

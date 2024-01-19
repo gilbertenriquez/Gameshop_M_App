@@ -98,36 +98,36 @@ public partial class SettingsPage : ContentPage
 
     private async void BTNshopDetails_Tapped(object sender, TappedEventArgs e)
     {
-        progressLoading.IsVisible = true;
+       
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
             return;
         }
         await Navigation.PushModalAsync(new ShopDetail(App.key));
-        progressLoading.IsVisible = false;
+        
     }
 
     private async void TandCBTN_Tapped(object sender, TappedEventArgs e)
     {
-        progressLoading.IsVisible = true;
+        
         await Navigation.PushModalAsync(new TermsAndConditionPage());
-        progressLoading.IsVisible = false;
+       
     }
 
     private async void PrivacyPoliBTN_Tapped(object sender, TappedEventArgs e)
     {
-        progressLoading.IsVisible = true;
+        
 
         await Navigation.PushModalAsync(new PrivacyPolicyPage());
-        progressLoading.IsVisible = false;
+       
     }
 
     private async void BTNbackImg_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+  
         await Navigation.PopModalAsync();
-        progressLoading.IsVisible = false;
+
     }
 
     private async void BTNbacktobeBuyer_Tapped(object sender, TappedEventArgs e)

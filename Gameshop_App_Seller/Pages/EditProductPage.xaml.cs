@@ -76,7 +76,18 @@ public partial class EditProductPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        
+        _mainimgResult = null;
+        _img1Result = null;
+        _img2Result = null;
+        _img3Result = null;
+        _img4Result = null;
+        _img5Result = null;
+        _img6Result = null;
+        itemName.Text = null;
+        itemDescription.Text = null;
+        itemPrice.Text = null;
+        itemQuanity.Text = null;
+        productpath = null;
         await Navigation.PopModalAsync();
         
     }
@@ -121,9 +132,9 @@ public partial class EditProductPage : ContentPage
 
     private void RemoveImageBTN_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+   
         MainImage.Source = null;
-        progressLoading.IsVisible = false;
+ 
     }
 
     private async void updateSupportImageItemBTN_Clicked(object sender, EventArgs e)
@@ -190,14 +201,12 @@ public partial class EditProductPage : ContentPage
 
     private void BTNremoveSuppportImage_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
         mage1.Source = null;
         mage2.Source = null;
         mage3.Source = null;
         mage4.Source = null;
         mage5.Source = null;
         mage6.Source = null;
-        progressLoading.IsVisible = false;
     }
 
     private async void UpdateBTNitem_Clicked(object sender, EventArgs e)
