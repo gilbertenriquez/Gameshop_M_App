@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Gameshop_App_Seller</ApplicationTitle>
+		<ApplicationTitle>PixelTrade</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.gameshop_app_seller</ApplicationId>
@@ -32,10 +32,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#212025" />
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#212025" BaseSize="250,250" />
+
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -83,6 +83,7 @@
 	  <None Remove="Resources\Images\selfieidfront.png" />
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\shop.png" />
+	  <None Remove="Resources\Images\splashscreen.gif" />
 	  <None Remove="Resources\Images\unfilledStar.png" />
 	  <None Remove="Resources\Images\valid1.png" />
 	  <None Remove="Resources\Images\valid2.png" />

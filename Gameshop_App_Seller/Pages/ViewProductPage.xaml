@@ -129,16 +129,22 @@
                             <!-- Rest of your content inside the Grid -->
 
                             <Border Margin="20,0,0,0" StrokeShape="RoundRectangle 60"
-                HorizontalOptions="Start"                                              
-                Grid.Row="1" Grid.Column="0"  
-                StrokeThickness="3"                            
-                Stroke="Transparent"                                             
-                HeightRequest="80" 
-                WidthRequest="80">
+                              HorizontalOptions="Start"                                              
+                              Grid.Row="1" Grid.Column="0"  
+                              StrokeThickness="3"                            
+                              Stroke="Transparent"                                             
+                              HeightRequest="80" 
+                              WidthRequest="80">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="viewSellerReview_Tapped"/>
+                                </Border.GestureRecognizers>
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
                             <Frame Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="60,0,0,0"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"  >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="viewSellerReview_Tapped"/>
+                                </Frame.GestureRecognizers>
                                 <Label VerticalOptions="Center" TextTransform="Uppercase" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
                             </Frame>
                         </Grid>
