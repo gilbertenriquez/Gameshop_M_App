@@ -129,6 +129,15 @@ public partial class ViewProductPage : ContentPage
             // Handle this case as needed, e.g., show an error message to the user
             return;
         }
+
+        // Check if the user is trying to rate their own shop
+        if (App.email.Equals(productemail, StringComparison.OrdinalIgnoreCase))
+        {
+            await DisplayAlert("Information!", "You cannot rate your own shop.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
         await Navigation.PushModalAsync(new ReviewSeller(productemail));
         progressLoading.IsVisible = false;
     }
@@ -181,15 +190,19 @@ public partial class ViewProductPage : ContentPage
     private async void viewSellerReview_Tapped(object sender, TappedEventArgs e)
     {
         progressLoading.IsVisible = true;
+
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
             // Handle this case as needed, e.g., show an error message to the user
             return;
         }
+        
+
         await Navigation.PushModalAsync(new SellerReviews(productemail));
         progressLoading.IsVisible = false;
     }
+
 
     //private async void linkTOmessenger_Clicked(object sender, EventArgs e)
     //{

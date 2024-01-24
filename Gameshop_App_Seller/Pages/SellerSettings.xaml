@@ -5,14 +5,18 @@
              Title="Settings"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#212025">
-    
 
-    <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        
+
+    <Grid Background="Transparent" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid RowDefinitions="AUTO,AUTO,AUTO,Auto"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Border Grid.Row="1"
      Padding="0"
-     Margin="-5,-60,-5,20" BackgroundColor="#5234a7"
+     Margin="-5,-80,-5,20" BackgroundColor="#5234a7"
      StrokeThickness="0"
      StrokeShape="RoundRectangle 0">
                 <Grid>
@@ -32,7 +36,7 @@
                             <ImageButton Source="backbtnwhite.png"  
                                          HeightRequest="20"
                                          BackgroundColor="Transparent"
-                                         Margin="0,55,0,0"
+                                         Margin="0,70,0,0"
                                          HorizontalOptions="Start"
                                          Clicked="btnBackImg_Clicked"                                          
                                          x:Name="btnBackImg"/>
@@ -50,73 +54,77 @@
                                        ColumnDefinitions="Auto,Auto"  ColumnSpacing="5">
                                 <Label x:Name="FirstName" Grid.Row="1" 
                                        TextColor="WHITE"
-                                       FontSize="25" LineBreakMode="TailTruncation"
+                                       TextTransform="Uppercase"
+                                       FontSize="Body" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
                                 <Label x:Name="LastName" Grid.Row="1" Grid.Column="1"
                                        TextColor="WHITE"
-                                       FontSize="25" LineBreakMode="TailTruncation"
+                                       TextTransform="Uppercase"
+                                       FontSize="Body" LineBreakMode="TailTruncation"
                                        FontFamily="RobotoCondensed" />
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </Border>
-            <Grid Grid.Row="4" Margin="30" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"
+        </Grid>
+        <ScrollView Grid.Row="1">
+        <Grid Grid.Row="4" Margin="30" RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"
               RowSpacing="10" >
-                <Label Grid.Row="0" Text="Account Settings" TextColor="#d22f3d" FontAttributes="Bold" FontSize="20"/>
+            <Label Grid.Row="0" Text="Account Settings" TextColor="#d22f3d" FontAttributes="Bold" FontSize="20" TextTransform="Uppercase"/>
 
-                <Frame Grid.Row="1"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="ProfileDetailBTN" Tapped="ProfileDetailBTN_Tapped"/>
-                    </Frame.GestureRecognizers>
-                    <Label Text="Profile details" TextColor="White" HorizontalOptions="FillAndExpand"/>
-                </Frame>
-
-               
-
-               
+            <Frame Grid.Row="1"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="ProfileDetailBTN" Tapped="ProfileDetailBTN_Tapped"/>
+                </Frame.GestureRecognizers>
+                    <Label Text="Profile details" TextColor="White" HorizontalOptions="FillAndExpand" TextTransform="Uppercase" FontSize="Caption"/>
+            </Frame>
 
 
-                <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
+
+
+
+
+            <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
                    x:Name="progressLoading"
                    IsVisible="False"
                    AbsoluteLayout.LayoutBounds="0,0,1,1"
                    AbsoluteLayout.LayoutFlags="All"
                    BackgroundColor="Transparent">
-                    <ActivityIndicator
+                <ActivityIndicator
                    x:Name="ai"
                    IsRunning="True" IsVisible="True"
                    HorizontalOptions="CenterAndExpand"
                    Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                </StackLayout>
+            </StackLayout>
 
 
 
-                <Label Grid.Row="4" Text="Privacy" FontAttributes="Bold" FontSize="20" TextColor="#d22f3d" Margin="0,10,0,0"/>
+            <Label Grid.Row="4" Text="Privacy" FontAttributes="Bold" FontSize="20" TextColor="#d22f3d" Margin="0,10,0,0" TextTransform="Uppercase" />
 
-                <Frame Grid.Row="6"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="PrivacyPoliBTN" Tapped="PrivacyPoliBTN_Tapped"/>
-                    </Frame.GestureRecognizers>
-                    <Label Text=" Privacy policy"  TextColor="White" />
-                </Frame>
+            <Frame Grid.Row="6"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="PrivacyPoliBTN" Tapped="PrivacyPoliBTN_Tapped"/>
+                </Frame.GestureRecognizers>
+                    <Label Text=" Privacy policy"  TextColor="White" TextTransform="Uppercase" FontSize="Caption" />
+            </Frame>
 
-                <Frame Grid.Row="7"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TandCBTN" Tapped="TandCBTN_Tapped"/>
-                    </Frame.GestureRecognizers>
-                    <Label Text=" Terms and conditions"  TextColor="White" />
-                </Frame>
+            <Frame Grid.Row="7"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TandCBTN" Tapped="TandCBTN_Tapped"/>
+                </Frame.GestureRecognizers>
+                    <Label Text=" Terms and conditions"  TextColor="White"  TextTransform="Uppercase"  FontSize="Caption"/>
+            </Frame>
 
-                <Frame Grid.Row="9"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
-                 <Label Text="Logout"  Margin="20,-5" TextColor="White">
+            <Frame Grid.Row="9"  HorizontalOptions="FillAndExpand" BorderColor="#212025" BackgroundColor="#212025">
+                    <Label Text="Logout"  Margin="20,-5" TextColor="White" TextTransform="Uppercase"  FontSize="Caption">
                     <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        </Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
                 </Label>
-                </Frame>
+            </Frame>
 
-            </Grid>
         </Grid>
-    </ScrollView>
-</ContentPage>
+        </ScrollView>
+    </Grid>
+</ContentPage> 

@@ -15,6 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <Grid RowDefinitions="150,150,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -39,34 +40,21 @@
                            TextColor="#007AFF"
                            FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
                            FontSize="30" />
-                                <HorizontalStackLayout Grid.Column="1" 
-                                           HorizontalOptions="End" Margin="0,40,0,0"
-                                           Spacing="5" >
-                                    <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="EditProdsBTN"
-                                     Source="editwhite.png"  Clicked="EditProdsBTN_Clicked" BackgroundColor="Transparent"/>
-                                    <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerReview"
-                                     Source="reviewseller.png"  Clicked="sellerReview_Clicked" BackgroundColor="Transparent"/>
-                                    <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerHistory"
-                                     Source="purchasehistorywhite.png"  Clicked="sellerHistory_Clicked" BackgroundColor="Transparent"/>
-                                    <ImageButton HeightRequest="20" HorizontalOptions="End" x:Name="sellerSettings"
-                                     Source="settings.png"  Clicked="sellerSettings_Clicked" BackgroundColor="Transparent"/>
-                                </HorizontalStackLayout>
-
 
                             </Grid>
 
                             <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                                 <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="10,-5" StrokeThickness="1"
-                            Stroke="Transparent"
+                            Grid.Row="1" Margin="10,-5" StrokeThickness="2"
+                            Stroke="White"
                             HeightRequest="70" WidthRequest="70">
 
-                                    <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
+                                    <Image x:Name="imglogo" HorizontalOptions="FillAndExpand" Aspect="AspectFill"/>
                                 </Border>
 
                                 <Grid Grid.Column="1">
-                                    <Label Text="Shop Name"  VerticalOptions="Center" x:Name="lblcompanyname"
+                                    <Label Text="Shop Name" TextTransform="Uppercase"  VerticalOptions="Center" x:Name="lblcompanyname"
                                TextColor="White"
                               FontSize="25"
                                FontFamily="RobotoCondensed" />
@@ -76,12 +64,18 @@
                     </Grid>
                 </Border>
 
-                <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand" Margin="20">
-                    <Grid ColumnDefinitions="230,Auto"  ColumnSpacing="10" HorizontalOptions="CenterAndExpand">
-                        <Button Text="Add Item" Grid.Column="1" x:Name="AddProductsBTN"   VerticalOptions="Start" HorizontalOptions="Center"
+                <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand" Margin="5">
+                    <Grid ColumnDefinitions="220,auto,auto"  ColumnSpacing="5" HorizontalOptions="CenterAndExpand">
+                        <Button Text="Add" Grid.Column="2" x:Name="AddProductsBTN"   VerticalOptions="Start" HorizontalOptions="Center"
                         HeightRequest="50"
+                                TextTransform="Uppercase"
                        Clicked="AddProdsBTN_Clicked"
                       TextColor="White" BackgroundColor="#d22f3d"/>
+                        <Button Text="EDIT" Grid.Column="1"  VerticalOptions="Start" HorizontalOptions="Center"
+                                               HeightRequest="50"
+                                               TextTransform="Uppercase"
+                                              Clicked="EditProdsBTN_Clicked"
+                                             TextColor="White" BackgroundColor="#d22f3d"/>
                         <Frame Padding="0" Grid.Column="0"  VerticalOptions="Start" HorizontalOptions="Center" >
                             <SearchBar                           
                              Placeholder="Search....." 
@@ -94,11 +88,10 @@
                         </Frame>
                     </Grid>
                 </HorizontalStackLayout>
-
             </Grid>
 
 
-            <ScrollView Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="0,-50,0,0">
+            <ScrollView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="10,-80,0,10">
                 <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
@@ -108,7 +101,7 @@
                             <!-- Your item template here -->
                             <!-- For example, you can display product name and description -->
                             <VerticalStackLayout VerticalOptions="FillAndExpand"
-                                         HorizontalOptions="FillAndExpand" Margin="10" >
+                                         HorizontalOptions="FillAndExpand" Margin="20" >
                                 <ScrollView>
                                     <Frame
                                            BackgroundColor="#212025" 
@@ -128,22 +121,20 @@
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
-                                            <Image HorizontalOptions="Start" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="150" />
+                                            <Image HorizontalOptions="CenterAndExpand" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="80" />
 
-                                            <Label Grid.Row="1" Text="Item Name"  TextColor="White"/>
-                                            <Label Grid.Row="2" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
-                                            <Label Grid.Row="3" Text="Description" TextColor="White"/>
-                                            <Label Grid.Row="4" TextColor="#d22f3d" FontSize="20" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
+                                            <Label Grid.Row="1" TextColor="WHITE" TextTransform="Uppercase" Margin="0,10,0,0"  FontSize="Small" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />
 
-                                            <Label Grid.Row="5" Text="Price"  TextColor="White"/>
-                                            <Label Grid.Row="6" TextColor="#d22f3d"  FontSize="20"  Text="{Binding ProductPrice, StringFormat='{0:N2}'}" />
 
-                                            <Label Grid.Row="7" Text="Qauntity"  TextColor="White"/>
-                                            <Label Grid.Row="8" TextColor="#d22f3d"  FontSize="20" Text="{Binding ProductQuantity}" />
+                                            <Label Grid.Row="2" TextColor="WHITE" TextTransform="Uppercase"  FontSize="Small" Text="{Binding ProductDesc}"  LineBreakMode="TailTruncation" MaxLines="1"/>
+
+
+                                            <Label Grid.Row="3" TextColor="#d22f3d"  Margin="0,20,0,20" TextTransform="Uppercase"  FontSize="Small"  Text="{Binding ProductPrice, StringFormat='{0:N2}'}" />
+
+
+                                            <Label Grid.Row="4" TextColor="WHITE" TextTransform="Uppercase"   FontSize="Small" Text="{Binding ProductQuantity}" />
 
                                         </Grid>
                                     </Frame>
@@ -153,6 +144,16 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
+            <StackLayout Grid.Row="2" BackgroundColor="#5234a7">
+                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"  ColumnSpacing="100" Margin="20,10,20,10" >
+                    <ImageButton HeightRequest="25"  HorizontalOptions="Start" x:Name="sellerReview"
+     Source="rated.png"  Clicked="sellerReview_Clicked" BackgroundColor="Transparent"/>
+                    <ImageButton HeightRequest="25" HorizontalOptions="Center" x:Name="sellerHistory"
+     Source="purchasehistorywhite.png"  Clicked="sellerHistory_Clicked" BackgroundColor="Transparent"/>
+                    <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="sellerSettings"
+     Source="setting.png"  Clicked="sellerSettings_Clicked" BackgroundColor="Transparent"/>
+                </Grid>
+            </StackLayout>
         </Grid>
     </RefreshView>
 </ContentPage>

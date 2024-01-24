@@ -32,10 +32,11 @@
                            Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
                 </StackLayout>
             
-                <Label FontSize="25" 
+                <Label FontSize="20" 
                    Grid.Row="1" 
                    Margin="0,0,0,0"
                    Text="Welcome to PixelTrade!" 
+                       TextTransform="Uppercase"
                    FontAttributes="Bold"
                    TextColor="White"
                    VerticalOptions="CenterAndExpand" 
@@ -45,6 +46,8 @@
 
         <Button x:Name="GetStart" Text="Get Started" 
                 Margin="20,50,20,0"
+                TextTransform="Uppercase"
+                 WidthRequest="200"
                 VerticalOptions="End"  
                 BackgroundColor="#d22f3d" 
                 TextColor="White" 
@@ -53,6 +56,8 @@
 
         <Button x:Name="Exitbtn" Text="EXIT" 
                  Margin="20,0,20,20"
+                TextTransform="Uppercase"
+                 WidthRequest="200"
                 VerticalOptions="End"  
                 BackgroundColor="#d22f3d" 
                 TextColor="White" 

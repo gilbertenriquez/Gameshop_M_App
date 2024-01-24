@@ -13,12 +13,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO"/>
             </Grid.RowDefinitions>
 
             <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0">
                 <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-60,-5,20" BackgroundColor="#5234a7"
+            Margin="-5,-100,-5,20" BackgroundColor="#5234a7"
             StrokeThickness="0"
             StrokeShape="RoundRectangle ">
                     <Grid>
@@ -48,7 +49,7 @@
                            FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
                            FontSize="30" />
                                 <HorizontalStackLayout Grid.Column="1" 
-                                           HorizontalOptions="End" Margin="0,70,40,0"
+                                           HorizontalOptions="End" Margin="0,100,40,0"
                                            WidthRequest="30">
                                     <Image Source="verified.png" HeightRequest="30" x:Name="VerifiedImage" Aspect="AspectFit" IsVisible="False"/>
                                     <Image Source="denied.png" HeightRequest="30" x:Name="DeniedImage" Aspect="AspectFit" IsVisible="False"/>
@@ -59,8 +60,8 @@
                             <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                                 <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="0,0,20,0" StrokeThickness="3"
-                            Stroke="Transparent"
+                            Grid.Row="1" Margin="0,0,20,0" StrokeThickness="2"
+                            Stroke="White"
                             HeightRequest="80" WidthRequest="80">
 
                                     <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
@@ -73,13 +74,15 @@
                                             <Grid
                                               RowDefinitions="Auto"
                                               ColumnDefinitions="Auto,Auto" ColumnSpacing="5" >
-                                                <Label Text="{Binding FNAME}" 
+                                                <Label Text="{Binding FNAME}"
+                                                       TextTransform="Uppercase"
                                               TextColor="WHITE"
-                                              FontSize="25" LineBreakMode="TailTruncation"
+                                              FontSize="15" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
-                                                <Label Text="{Binding LNAME}"  Grid.Column="1"
+                                                <Label Text="{Binding LNAME}"
+                                                       TextTransform="Uppercase" Grid.Column="1"
                                               TextColor="WHITE"
-                                              FontSize="25" LineBreakMode="TailTruncation"
+                                              FontSize="15" LineBreakMode="TailTruncation"
                                               FontFamily="RobotoCondensed" />
                                             </Grid>
                                         </DataTemplate>
@@ -108,12 +111,12 @@
 
 
                 <StackLayout  Grid.Row="3" Margin="10">
-                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnDefinitions="*,30,30,30" ColumnSpacing="7" >
+                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnSpacing="7" >
                         <Frame  Margin="0"
                          Padding="0"                              
                         Grid.Row="0"                        
-                       Grid.Column="0"  WidthRequest="230"                          
-                       HorizontalOptions="StartAndExpand">
+                       Grid.Column="0"                           
+                       HorizontalOptions="FillAndExpand">
                             <SearchBar                                    
                             Placeholder="Search....." 
                            HorizontalOptions="FillAndExpand"
@@ -123,17 +126,6 @@
                             x:Name="searchBar"                          
                             TextChanged="searchBar_TextChanged" />
                         </Frame>
-                        <ImageButton HorizontalOptions="End" Grid.Row="0" Grid.Column="1" HeightRequest="30"                                      
-       Source="onlineshop.png"
-             Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
-
-                        <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="End"                                        
-      Source="purchasehistorywhite.png" BackgroundColor="Transparent"
-            Clicked="ImageButton_Clicked"/>
-
-                        <ImageButton HeightRequest="30" Grid.Row="0" Grid.Column="3" HorizontalOptions="End"                                        
-Source="settings.png" BackgroundColor="Transparent"
-      Clicked="SettingsBTN_Clicked"/>
                     </Grid>
                 </StackLayout>
 
@@ -141,14 +133,14 @@ Source="settings.png" BackgroundColor="Transparent"
 
 
 
-            <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1">
+            <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1" Margin="10">
                 <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="15" >
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" >
                                 <Frame
                                        BorderColor="White"                                      
                                        BackgroundColor="#212025" 
@@ -172,7 +164,7 @@ Source="settings.png" BackgroundColor="Transparent"
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Row="0" Source="{Binding image1}" Aspect="Fill" HeightRequest="100">
+                                        <Image Grid.Row="0" Source="{Binding image1}" Aspect="AspectFill" HeightRequest="60">
                                             <Image.Scale>
                                                 <OnIdiom x:TypeArguments="x:Double">
                                                     <OnIdiom.Phone>2.5</OnIdiom.Phone>
@@ -181,8 +173,8 @@ Source="settings.png" BackgroundColor="Transparent"
                                             </Image.Scale>
                                         </Image>
 
-                                        <Label Grid.Row="4" TextColor="White" FontSize="20" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
-                                        <Label Grid.Row="5"  FontSize="20" Text="{Binding ProductPrice, StringFormat='{0:N2}'}" TextColor="#d22f3d" />
+                                        <Label Grid.Row="4" TextColor="White" TextTransform="Uppercase" FontSize="Body" Margin="0,10,0,-10" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                        <Label Grid.Row="5" TextTransform="Uppercase" FontSize="Body" Text="{Binding ProductPrice, StringFormat='{0:N2}'}" TextColor="#d22f3d" />
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -190,6 +182,23 @@ Source="settings.png" BackgroundColor="Transparent"
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
+
+            <StackLayout  Grid.Row="3"  BackgroundColor="#5234a7">
+                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"  ColumnSpacing="100" Margin="20,10,20,10" >
+                    <ImageButton HorizontalOptions="Start" Grid.Row="0" Grid.Column="0"                                     
+       Source="circlearround.png" HeightRequest="25"
+             Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
+
+                    <ImageButton Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"                                        
+      Source="paymenthistory.png" HeightRequest="25" BackgroundColor="Transparent"
+            Clicked="ImageButton_Clicked"/>
+
+                    <ImageButton  Grid.Row="0" HeightRequest="25" Grid.Column="2" HorizontalOptions="End"                                        
+       Source="setting.png" BackgroundColor="Transparent"
+      Clicked="SettingsBTN_Clicked"/>
+                </Grid>
+            </StackLayout>
+
         </Grid>
     </RefreshView>
 </ContentPage>

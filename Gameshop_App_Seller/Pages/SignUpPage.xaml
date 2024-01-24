@@ -9,13 +9,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0" Source="backbtnwhite.png" 
-                     Margin="20,10,0,0" 
-                     HeightRequest="20"
-                     HorizontalOptions="Start" 
-                     x:Name="btnBackImg" Clicked="btnBackImg_Clicked" BackgroundColor="Transparent" />
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20">
+                <Label Text="Registration" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
+
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="btnBackImg_Clicked"/>
+            </Grid>
+        </StackLayout>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1,1"
           AbsoluteLayout.LayoutFlags="All" Margin="40">
@@ -28,24 +33,27 @@
                     <Label Grid.Row="0" Text="First Name" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="1"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="First Name"
-                       PlaceholderColor="LightGray"
-                       TextColor="White"
+                          TextColor="#212025"
+                          BackgroundColor="White"
+                           PlaceholderColor="#212025"
                        x:Name="FNEntry"/>
                     </Frame>
 
                     <Label Grid.Row="2" Text="Last Name" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="3" BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Last Name"
-                       PlaceholderColor="LightGray"
-                       TextColor="White"
+                      TextColor="#212025"
+                      BackgroundColor="White"
+                         PlaceholderColor="#212025"
                        x:Name="LNEntry"/>
                     </Frame>
 
                     <Label Grid.Row="4" Text="Email" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="5" BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Email"
-                       PlaceholderColor="LightGray"
-                       TextColor="White"
+                       TextColor="#212025"
+                       BackgroundColor="White"
+                          PlaceholderColor="#212025"
                        x:Name="emailEntry"/>
                     </Frame>
 
@@ -71,16 +79,18 @@ BackgroundColor="Transparent">
                     <Frame Grid.Row="7"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Password"
                         IsPassword="True"
-                        TextColor="White"
-                        PlaceholderColor="LightGray"
+                         TextColor="#212025"
+                        BackgroundColor="White"
+                           PlaceholderColor="#212025"
                         x:Name="passwordEntry"/>
                     </Frame>
 
                     <Label Grid.Row="8" Text="Home Address" TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="9"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Address"
-                       TextColor="White"
-                       PlaceholderColor="LightGray"
+                          TextColor="#212025"
+                          BackgroundColor="White"
+                          PlaceholderColor="#212025"
                        x:Name="locationEntry"/>
                     </Frame>
 
@@ -90,9 +100,9 @@ BackgroundColor="Transparent">
                        TextColor="White" Margin="0,0,0,-15"/>
                     <Frame Grid.Row="11" Padding="0,0"   BackgroundColor="Transparent">
                     <DatePicker 
-                        BackgroundColor="Transparent"
+                        BackgroundColor="White"
                         x:Name="birthdayPicker" 
-                        TextColor="White"   
+                        TextColor="#212025"   
                         Format="MM-dd-yyyy"
                 />
                     </Frame>
@@ -104,11 +114,11 @@ BackgroundColor="Transparent">
 
                     <Frame Grid.Row="13" Padding="0,0"  BackgroundColor="Transparent"> 
                     <Picker  
-                        BackgroundColor="Transparent"
+                        BackgroundColor="White"
                         x:Name="genderPicker" 
-                        TitleColor="GhostWhite" 
+                        TitleColor="#212025" 
                         Title="Select Gender"                       
-                        TextColor="White" >
+                        TextColor="#212025" >
 
                         <Picker.ItemsSource  >
                             <x:Array Type="{x:Type x:String}">
@@ -129,5 +139,9 @@ BackgroundColor="Transparent">
 
             </VerticalStackLayout>
         </ScrollView>
+        <StackLayout Grid.Row="2"  BackgroundColor="#5234a7" HeightRequest="50">
+
+            <Label Margin="20,10,20,10"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

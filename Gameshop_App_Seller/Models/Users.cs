@@ -70,10 +70,11 @@ namespace Gameshop_App_Seller.Models
         public string EmailReviewer { get; set; }
         public string Date { get; set; }
 
-
-
-
-
+        public string Star1Source { get; set; }
+        public string Star2Source { get; set; }
+        public string Star3Source { get; set; }
+        public string Star4Source { get; set; }
+        public string Star5Source { get; set; }
 
 
 

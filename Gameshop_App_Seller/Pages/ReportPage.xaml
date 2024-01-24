@@ -13,42 +13,44 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0" Source="backbtnwhite.png"
-           HeightRequest="20" 
-           HorizontalOptions="Start" 
-           x:Name="btnBackImg"
-                     BackgroundColor="Transparent"
-           Clicked="btnBackImg_Clicked"
-           Margin="20,20,0,0"
-           />
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="50" >
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="10">
+                <Label Text="Report" TextTransform="Uppercase"  FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
+
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"   HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="btnBackImg_Clicked"/>
+            </Grid>
+        </StackLayout>
 
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Margin="40">
 
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" VerticalOptions="FillAndExpand"
-                  HorizontalOptions="CenterAndExpand" Margin="0" RowSpacing="20">
+                  HorizontalOptions="CenterAndExpand" Margin="0" RowSpacing="10">
 
 
 
 
                     <Label Grid.Row="1" 
                    Text="Submit Your Report" 
-                   FontSize="30" 
+                           TextTransform="Uppercase"
+                   FontSize="25" 
                    TextColor="WHITE"
                    FontAttributes="Bold" Margin="0,20,0,30"/>
 
-                    <Label Grid.Row="2" Text="Product Image" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
+                    <Label Grid.Row="2" Text="Product Image" TextTransform="Uppercase" FontAttributes="Bold" FontSize="20" TextColor="WHITE"/>
 
                     <Image Grid.Row="3" x:Name="MainImage" HeightRequest="300" WidthRequest="400"/>
 
-                    <Label Grid.Row="4" Text="Product Name" FontAttributes="Bold"  TextColor="WHITE"/>
-                    <Label  Grid.Row="5" x:Name="Productname" TextColor="WHITE" FontSize="20"/>
+                    <Label Grid.Row="4" Text="Product Name" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Micro" Margin="0,20,0,0"  TextColor="WHITE"/>
+                    <Label  Grid.Row="5" x:Name="Productname" TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
 
-                    <Label Grid.Row="6" Text="Product Price" FontAttributes="Bold"  TextColor="WHITE"/>
-                    <Label  Grid.Row="7" x:Name="Productprice" TextColor="WHITE" FontSize="20"/>
+                    <Label Grid.Row="6" Text="Product Price" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="Micro"  TextColor="WHITE"/>
+                    <Label  Grid.Row="7" x:Name="Productprice" TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
 
-                    <Label Grid.Row="8" Text="Owner of the Product" FontAttributes="Bold" TextColor="WHITE"/>
-                    <Label  Grid.Row="9" x:Name="SellerShopname" TextColor="WHITE"  FontSize="20"/>
+                    <Label Grid.Row="8" Text="Owner of the Product" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="Micro" TextColor="WHITE"/>
+                    <Label  Grid.Row="9" x:Name="SellerShopname"  TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
                     <Label  Grid.Row="9" x:Name="Emailtxt" TextColor="Transparent"/>
                     <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Transparent"/>
 
@@ -68,7 +70,7 @@
 
 
 
-                    <Border Grid.Row="10" Padding="0" BackgroundColor="White">
+                    <Border Grid.Row="10" Padding="0" BackgroundColor="White" Margin="0,20,0,0">
                     <Editor x:Name="reporttxt" HeightRequest="200"
                     Placeholder="Type your comment here..."                            
                     PlaceholderColor="LightGray"                     
@@ -86,6 +88,7 @@
                     <Button  Grid.Row="12" 
                          Text="Submit"
                          x:Name="btnSubmit"
+                             TextTransform="Uppercase"
                         BackgroundColor="#d22f3d"
                         TextColor="White" 
                          Clicked="btnSubmit_Clicked"

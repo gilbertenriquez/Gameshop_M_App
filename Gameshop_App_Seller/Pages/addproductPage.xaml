@@ -10,17 +10,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20">
+                <Label Text="ITEM Image" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
 
-        <ImageButton Source="backbtnwhite.png" 
-           Grid.Column="0"
-           Grid.Row="0"
-           HorizontalOptions="Start"
-           Margin="20" 
-           HeightRequest="20" 
-           BackgroundColor="Transparent"
-           Clicked="ImageButton_Clicked"/>
-
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="ImageButton_Clicked"/>
+            </Grid>
+        </StackLayout>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0" >
 
@@ -47,11 +47,11 @@
 
                     <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
                         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *,auto,auto,auto,auto,auto">
-                            <Label Grid.Row="0" Text="Item Images" FontSize="30"
+                            <Label Grid.Row="0" Text="Item Images" FontSize="30" TextTransform="Uppercase"
                        FontFamily="RobotoCondensed" Margin="20,10,0,0"  TextColor="White"/>
                             <Label Grid.Row="1"
                        Text="Note: Please make your product photos presentable as possible. These images will appear on the renter's app. Presentable images can attract customers"
-                       Margin="20" TextColor="White" />
+                       Margin="20" TextColor="White" TextTransform="Uppercase" FontSize="Caption" />
                             <Grid Grid.Row="2" Margin="10">
                                 <Border StrokeShape="RoundRectangle 0" StrokeThickness="0" Padding="0"
                             BackgroundColor="#212025">
@@ -78,12 +78,12 @@
                                                        VerticalOptions="CenterAndExpand"
                                                        Spacing="10" Margin="5">
                                                 <Grid RowDefinitions="AUTO,AUTO" VerticalOptions="CenterAndExpand" RowSpacing="20">
-                                                <Button BorderColor="Transparent" Grid.Row="0" Text="Add image" x:Name="addimageBTN" Clicked="addimageBTN_Clicked"
+                                                    <Button BorderColor="Transparent" Grid.Row="0" Text="Add image" TextTransform="Uppercase" x:Name="addimageBTN" Clicked="addimageBTN_Clicked"
                                             BackgroundColor="#d22f3d"
                                             TextColor="White" />
 
                                                     <Button Text="Remove image" Grid.Row="1" BorderColor="Transparent"
-                                            BackgroundColor="#d22f3d"
+                                            BackgroundColor="#d22f3d" TextTransform="Uppercase"
                                             TextColor="White" Clicked="Button_Clicked"/>
                                                 </Grid>
                                             </VerticalStackLayout>
@@ -91,11 +91,12 @@
                                     </Grid>
                                 </Border>
                             </Grid>
-                            <Label Grid.Row="3" Text="Additional images" TextColor="White" FontFamily="RobotoLight"
+                            <Label Grid.Row="3" Text="Additional images" TextTransform="Uppercase" TextColor="White" FontFamily="RobotoLight"
                        Margin="20,30,0,0" FontSize="20" />
                             <Label Grid.Row="4" Margin="30,10,5,0"
                        TextColor="White"
-                       Text="Add 6 supporting images. These images will be used to show more what your product is all about." />
+                                   FontSize="Caption"
+                       Text="Add 6 supporting images. These images will be used to show more what your product is all about."  TextTransform="Uppercase"/>
                             <Grid Grid.Row="5" Margin="10">
                                 <Border StrokeShape="RoundRectangle 0" Margin="0"
                                 StrokeThickness="0" Padding="10"
@@ -109,7 +110,7 @@
                               RowSpacing="5"
                               Margin="5" ColumnSpacing="10"
                               ColumnDefinitions="AUTO, AUTO, AUTO" HorizontalOptions="Center">
-                                        <Button Text="Add supporting images" x:Name="addsupportimgBTN"  TextColor="White"
+                                        <Button Text="Add supporting images" x:Name="addsupportimgBTN"  TextTransform="Uppercase" TextColor="White"
                                         Clicked="addsupportimgBTN_Clicked" BackgroundColor="#d22f3d" Grid.Row="0" 
                                     Grid.Column="0" Grid.ColumnSpan="3"  BorderColor="{StaticResource FrameColor}"
                                     BorderWidth="1"/>
@@ -119,7 +120,7 @@
                                     StrokeShape="RoundRectangle 5" HorizontalOptions="CenterAndExpand">
                                             <Grid RowDefinitions="*,Auto" HorizontalOptions="FillAndExpand">
                                                 <Image Grid.Row="0" x:Name="img1" WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="1st img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="1st img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -132,7 +133,7 @@
                                     StrokeShape="RoundRectangle 5">
                                             <Grid RowDefinitions="*,Auto">
                                                 <Image Grid.Row="0" x:Name="img2" WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="2nd img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="2nd img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -145,7 +146,7 @@
                                     StrokeShape="RoundRectangle 5">
                                             <Grid RowDefinitions="*,Auto">
                                                 <Image Grid.Row="0" x:Name="img3" WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="3rd img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="3rd img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -159,7 +160,7 @@
                                             <Grid RowDefinitions="*,Auto">
                                                 <Image Grid.Row="0" Aspect="AspectFit" x:Name="img4" 
                                             WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="4th img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="4th img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -173,7 +174,7 @@
                                             <Grid RowDefinitions="*,Auto">
                                                 <Image Grid.Row="0" x:Name="img5"
                                            WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="5th img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="5th img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -187,7 +188,7 @@
                                             <Grid RowDefinitions="*,Auto">
                                                 <Image Grid.Row="0" x:Name="img6"
                                            WidthRequest="100" />
-                                                <Label Grid.Row="1" Text="6th img" HorizontalOptions="FillAndExpand"
+                                                <Label Grid.Row="1" Text="6th img" TextTransform="Uppercase" HorizontalOptions="FillAndExpand"
                                            HorizontalTextAlignment="Center"
                                            Opacity="0.9" Margin="0"
                                            TextColor="White" />
@@ -204,10 +205,14 @@
                   Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <Button Text="Next" Grid.Column="1" x:Name="NEXTBTN" BorderColor="Transparent"
                             Clicked="NEXTBTN_Clicked" TextColor="White"
-                        BackgroundColor="#d22f3d"/>
+                        BackgroundColor="#d22f3d" WidthRequest="200" TextTransform="Uppercase"/>
                     </Grid>
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>
+        <StackLayout Grid.Row="2"  BackgroundColor="#5234a7" HeightRequest="50">
+
+            <Label Margin="20,10,20,10"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

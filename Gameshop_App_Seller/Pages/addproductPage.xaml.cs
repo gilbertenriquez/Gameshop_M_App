@@ -134,20 +134,23 @@ public partial class addproductPage : ContentPage
             return;
         }
 
-        if (_mainimage == null
-          && _img1Result == null 
-          && _img2Result == null
-          && _img3Result == null
-          && _img4Result == null
-          && _img5Result == null
-          && _img6Result == null)
+        // Check if any of the images is empty or null
+        if (mainimage.Source == null
+            || img1.Source == null
+            || img2.Source == null
+            || img3.Source == null
+            || img4.Source == null
+            || img5.Source == null
+            || img6.Source == null)
         {
             await DisplayAlert("Warning", "Fill Up All Fields", "OK");
             return;
         }
 
+        // Proceed with navigation if all images are provided
         await Navigation.PushModalAsync(new AddproductinfoPage());
     }
+
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {

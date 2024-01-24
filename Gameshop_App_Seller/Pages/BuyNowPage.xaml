@@ -11,32 +11,42 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ImageButton Grid.Row="0"
+        <StackLayout Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55" >
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto,auto"  Margin="10" ColumnSpacing="10">
+
+                <ImageButton Grid.Column="0" 
                      x:Name="btnBackImg"
                      Source="backbtnwhite.png"
                      BackgroundColor="Transparent"
                      HeightRequest="20"
                      HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="20,10,0,0"
+                     VerticalOptions="Center"
                      Clicked="btnBackImg_Clicked" />
 
 
-        <HorizontalStackLayout HorizontalOptions="End" Spacing="5" Margin="10">
-            <Button Text="Chat Now" 
-             BackgroundColor="#d22f3d"
-             TextColor="WHITE"  
-             BorderColor="Black"
-            HorizontalOptions="Start"  
-            HeightRequest="50"
-            x:Name="MessengerLink" Clicked="MessengerLink_Clicked"/>
+             
+                    <Button Text="Chat Now" 
+                    TextTransform="Uppercase"
+                     BackgroundColor="#d22f3d"
+                     Grid.Column="1" 
+                     TextColor="WHITE"  
+                     HorizontalOptions="Start"  
+                     HeightRequest="35"
+                     x:Name="MessengerLink" 
+                     Clicked="MessengerLink_Clicked"/>
 
-            <Button Text="CONFIRM" 
-            BorderColor="Black"
-            BackgroundColor="#d22f3d"
-            TextColor="WHITE"  
-            HorizontalOptions="End" x:Name="ConfirmationBTN" Clicked="ConfirmationBTN_Clicked"/>
-        </HorizontalStackLayout>
+                    <Button Text="CONFIRM" 
+                    TextTransform="Uppercase"
+                     HeightRequest="35"
+                     Grid.Column="2" 
+                     BackgroundColor="#d22f3d"
+                     TextColor="WHITE"  
+                     HorizontalOptions="End" 
+                     x:Name="ConfirmationBTN" 
+                    Clicked="ConfirmationBTN_Clicked"/>
+
+            </Grid>
+        </StackLayout>
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20">
@@ -59,14 +69,14 @@
                     <HorizontalStackLayout Grid.Row="2" Margin="0,30,0,0">
                         <Grid ColumnDefinitions="AUTO,AUTO" RowDefinitions="30,auto,auto">
                             <Image  x:Name="ItemImage" Source="account.png" HeightRequest="80" Margin="0,0,10,0" Aspect="AspectFit" Grid.Column="0" />
-                            <Label Text="ITEM NAME" x:Name="itemname" FontSize="Medium" Grid.Column="1" TextColor="WHITE" />
+                            <Label Text="ITEM NAME" TextTransform="Uppercase" x:Name="itemname" FontSize="Medium" Grid.Column="1" TextColor="WHITE" />
                             <HorizontalStackLayout  Grid.Row="1"  Grid.Column="1" Spacing="5">
-                                <Label Text="Stock:" FontSize="Caption" TextColor="LightGray" />
+                                <Label TextTransform="Uppercase" Text="Stock:" FontSize="Caption" TextColor="LightGray" />
                                 <Label x:Name="itemQuantity" FontSize="Caption" TextColor="Grey" />
                             </HorizontalStackLayout>
                         </Grid>
                     </HorizontalStackLayout>
-                    <Label Text="Quantity:" TextColor="WHITE" Grid.Row="5" />
+                    <Label Text="Quantity:"  TextTransform="Uppercase" TextColor="WHITE" Grid.Row="5" />
                     <HorizontalStackLayout Grid.Row="5"  HorizontalOptions="End">
                         <Frame Padding="0" CornerRadius="0" BorderColor="Gray" BackgroundColor="Transparent">
                             <Grid ColumnDefinitions="*,*,*" HorizontalOptions="End" >
@@ -78,21 +88,21 @@
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Spacing="5" Grid.Row="6">
-                        <Label Text="Price:" TextColor="WHITE"/>
+                        <Label Text="Price:" TextTransform="Uppercase" TextColor="WHITE"/>
                         <Label x:Name="itemPRICE" TextColor="WHITE"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout  Grid.Row="7" Spacing="5">
-                        <Label Text="Purchaser:" TextColor="WHITE"/>
-                        <Label x:Name="BuyerName" TextColor="WHITE"/>
+                        <Label Text="Purchaser:" TextTransform="Uppercase" TextColor="WHITE"/>
+                        <Label x:Name="BuyerName"  TextTransform="Uppercase" TextColor="WHITE"/>
                     </HorizontalStackLayout>
 
                     <HorizontalStackLayout Grid.Row="8" Spacing="5">
-                        <Label Text="Shop:" TextColor="WHITE" />
-                        <Label x:Name="SellerName" TextColor="WHITE" />
+                        <Label Text="Shop:" TextTransform="Uppercase" TextColor="WHITE" />
+                        <Label x:Name="SellerName" TextTransform="Uppercase" TextColor="WHITE" />
                     </HorizontalStackLayout>
 
-                    <Label Text="Transactions Image" TextColor="WHITE" FontSize="Medium" Grid.Row="9"/>
+                    <Label Text="Transactions Image" TextTransform="Uppercase" TextColor="WHITE" FontSize="Medium" Grid.Row="9"/>
 
                     <VerticalStackLayout  Grid.Row="10" HorizontalOptions="FillAndExpand" >
                         <Grid> 
@@ -100,9 +110,9 @@
                         </Grid>
                     </VerticalStackLayout>
 
-                    <HorizontalStackLayout Grid.Row="12" HorizontalOptions="Center" Spacing="5">
-                        <Button Text="Upload" x:Name="addimageBTN" Clicked="addimageBTN_Clicked" BackgroundColor="#d22f3d" TextColor="White"/>
-                        <Button Text="Remove" x:Name="removeBTN" Clicked="removeBTN_Clicked"  BackgroundColor="#d22f3d" TextColor="White" />
+                    <HorizontalStackLayout Grid.Row="12" HorizontalOptions="Center" Spacing="20">
+                        <Button Text="Upload" x:Name="addimageBTN" TextTransform="Uppercase" Clicked="addimageBTN_Clicked" BackgroundColor="#d22f3d" TextColor="White"/>
+                        <Button Text="Remove" x:Name="removeBTN" TextTransform="Uppercase" Clicked="removeBTN_Clicked"  BackgroundColor="#d22f3d" TextColor="White" />
                     </HorizontalStackLayout>
 
 

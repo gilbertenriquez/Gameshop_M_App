@@ -10,16 +10,23 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#5234a7" HeightRequest="55" >
+            <Grid RowDefinitions="auto"  Margin="20" >
+            <ImageButton 
+            x:Name="btnBackImg"
+                Grid.Row="0"
+            Source="backbtnwhite.png"
+            BackgroundColor="Transparent"
+            HeightRequest="20"            
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            
+            Clicked="btnBackImg_Clicked" />
 
-        <ImageButton Grid.Row="0"
-                  x:Name="btnBackImg"
-                  Source="backbtnwhite.png"
-                  BackgroundColor="Transparent"
-                  HeightRequest="20"
-                  HorizontalOptions="Start"
-                  VerticalOptions="Start"
-                  Margin="20,20,0,0"
-                  Clicked="btnBackImg_Clicked" />
+                <Label Text="Reviews On Seller" TextTransform="Uppercase" TextColor="White" Margin="20,0,0,0"  FontSize="Medium" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"  />
+            </Grid>
+        </StackLayout>
+      
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
 
@@ -49,19 +56,21 @@
                                       Margin="20"
                                       VerticalOptions="Start">
 
-                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="10">
                                         <Image Grid.Row="0"  
                                        HorizontalOptions="FillAndExpand" 
                                        x:Name="TransactionImage" Source="{Binding itemShopImage}"
                                        HeightRequest="200" Aspect="AspectFit"/>
-                                        <Label Grid.Row="1"  Text="Comment" TextColor="White" />
-                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="#d22f3d" />
-
-                                        <Label Grid.Row="3"  Text="Date of Purchase" TextColor="White" />
-                                        <Label Grid.Row="4"  Text="{Binding Date}"  TextColor="#d22f3d" />
-                                        
-                                        <Label Grid.Row="5"  Text="Rate" TextColor="White" />
-                                        <Label Grid.Row="6" x:Name="RateLabel" Text="{Binding StarReview}" TextColor="#d22f3d" />
+                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="White"  FontSize="10" />
+                                        <Label Grid.Row="4"  Text="{Binding Date}"  TextColor="White"  FontSize="10" />
+                                        <Label Grid.Row="5" x:Name="RateLabel" Text="{Binding StarReview}" TextColor="White"  FontSize="10"/>
+                                        <StackLayout Grid.Row="6" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="30">
+                                            <Image Source="{Binding Star1Source}" HeightRequest="20" WidthRequest="20"/>
+                                            <Image Source="{Binding Star2Source}" HeightRequest="20" WidthRequest="20"/>
+                                            <Image Source="{Binding Star3Source}" HeightRequest="20" WidthRequest="20"/>
+                                            <Image Source="{Binding Star4Source}" HeightRequest="20" WidthRequest="20"/>
+                                            <Image Source="{Binding Star5Source}" HeightRequest="20" WidthRequest="20"/>
+                                        </StackLayout>
                                     </Grid>
                                 </Frame>
                             </StackLayout>

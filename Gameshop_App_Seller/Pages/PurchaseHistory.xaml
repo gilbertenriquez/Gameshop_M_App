@@ -8,17 +8,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="50">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20">
+                <Label Text="Sales History" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
 
-        <ImageButton Grid.Row="0"
-                  x:Name="btnBackImg"
-                  Source="backbtnwhite.png"
-                  BackgroundColor="Transparent"
-                  HeightRequest="20"
-                  HorizontalOptions="Start"
-                  VerticalOptions="Start"
-                  Margin="20,20,0,0"
-                  Clicked="btnBackImg_Clicked" />
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="btnBackImg_Clicked"/>
+            </Grid>
+        </StackLayout>
+
+
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
 
@@ -40,14 +42,14 @@
                 <CollectionView x:Name="purchaselist"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
                                 <Frame
                                       BackgroundColor="#212025" 
                                       Padding="10"
                                       BorderColor="White"
                                       VerticalOptions="Start">
 
-                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20">
+                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" >
                                         <Image 
                                        Grid.Row="0"  
                                        Source="{Binding soldImageItem}"
@@ -56,36 +58,36 @@
                                        Aspect="AspectFit"/>
                                         <HorizontalStackLayout Grid.Row="2">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                                <Label   Grid.Row="0" Text="Item Name" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="3">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                                <Label   Grid.Row="0" Text="Price" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldPrice}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldPrice}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="4">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                                <Label   Grid.Row="0" Text="Quantity" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldQuantity}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label   TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldQuantity}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout Grid.Row="5">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                                <Label   Grid.Row="0" Text="Date" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldDate}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldDate}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="6">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                                <Label   Grid.Row="0" Text="Time" TextColor="#d22f3d" HorizontalOptions="Start"  />
-                                                <Label   Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
                                     </Grid>
@@ -96,5 +98,11 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
+
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50" >
+            <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
+
+        </StackLayout>
     </Grid>
 </ContentPage>

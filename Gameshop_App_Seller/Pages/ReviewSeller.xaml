@@ -11,24 +11,38 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Grid.Row="0" Margin="20,20,0,0" 
-                  BackgroundColor="Transparent"   Source="backbtnwhite.png" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
+
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto,auto" Margin="10">
+                <Label Text="RATE" TextTransform="Uppercase" FontSize="Medium" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" TextColor="White"/>
+ 
+        <ImageButton Grid.Row="0"
+                  BackgroundColor="Transparent" 
+                     Source="backbtnwhite.png" 
+                     Margin="0,10,0,0"
+                     HeightRequest="20" 
+                     HorizontalOptions="Start" 
+                     VerticalOptions="Start" 
+                     x:Name="btnBackImg" Clicked="btnBackImg_Clicked" />
 
         <Button Text="Submit" 
                 Grid.Row="0"
                VerticalOptions="Start"
                HorizontalOptions="End"
-               x:Name="BTNsubmit"                                 
+               x:Name="BTNsubmit" 
+                TextTransform="Uppercase"
                FontAttributes="Bold"
+                HeightRequest="35"
                BackgroundColor="#d22f3d"                    
                TextColor="WHITE"
-                Margin="0,20,10,0"
                Clicked="BTNsubmit_Clicked"/>
+            </Grid>
+        </StackLayout>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20">
 
 
-                <Label Text="Seller Rate" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40" TextColor="WHITE"/>
+                <Label Text="Shop Rate" TextTransform="Uppercase" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40" TextColor="WHITE"/>
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" ColumnDefinitions="*,*" RowSpacing="25" ColumnSpacing="10">
 
                     <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" Orientation="Horizontal" HeightRequest="30" >
@@ -44,6 +58,7 @@
                         Grid.Row="3"
                         VerticalOptions="End"
                         x:Name="BTNupload"   
+                            TextTransform="Uppercase"
                         BackgroundColor="#d22f3d"
                         TextColor="White" 
                         Clicked="BTNupload_Clicked"
@@ -51,6 +66,7 @@
                     <Button Text="Remove" 
                         Grid.Row="3"
                         Grid.Column="1"
+                            TextTransform="Uppercase"
                         VerticalOptions="End"
                         x:Name="BTNremove"   
                         BackgroundColor="#d22f3d"
@@ -81,16 +97,16 @@
                     </HorizontalStackLayout>
 
                     <Label x:Name="ratingLabel" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2" Text="" FontSize="30" TextColor="WHITE"/>
-                    <Label Grid.Row="4" Text="Comment" TextColor="WHITE" FontSize="20" Margin="0,20,0,20"/>
+                    <Label Grid.Row="4" Text="Comment" TextTransform="Uppercase" TextColor="WHITE" FontSize="20" Margin="0,20,0,20"/>
                     <Frame Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0" Padding="0" BorderColor="Gray" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <Editor x:Name="commentTXT" Grid.ColumnSpan="1" Grid.Column="0"
                             TextColor="WHITE"
                                 PlaceholderColor="LightGray"
-                            Placeholder="Enter your comment"
+                            Placeholder="Enter Your Comment About The Seller....."
                             HeightRequest="200"
                             TextChanged="commentTXT_TextChanged" />
                     </Frame>
-                    <Label x:Name="wordCountLabel" Grid.Row="6" 
+                    <Label x:Name="wordCountLabel" TextTransform="Uppercase" Grid.Row="6" 
                            Grid.Column="0" 
                            Grid.ColumnSpan="2" 
                            Text="" FontSize="16" 

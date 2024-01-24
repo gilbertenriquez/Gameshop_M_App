@@ -10,11 +10,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20" >
+                <Label Text="Terms and Conditions" TextTransform="Uppercase" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
 
-        <ImageButton Margin="40"  Source="backbtnwhite.png" BackgroundColor="Transparent" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
-
-
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="btnBackImg_Clicked"/>
+            </Grid>
+        </StackLayout>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
@@ -32,7 +38,7 @@
                 </StackLayout>
 
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="40" RowSpacing="20">
-                    <Label Grid.Row="0" Text="Terms And Condition for Gameshop" FontSize="30" TextColor="WHITE"/>
+                    <Label Grid.Row="0" Text="Terms And Conditions for Gameshop" FontSize="30" TextColor="WHITE"/>
                     <Label Grid.Row="1" Text="Last Updated: 06/01/2024" FontSize="20" TextColor="WHITE"/>
 
                     <Label FontSize="15" Grid.Row="3" TextColor="WHITE">
@@ -85,5 +91,10 @@
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50">
+            <ImageButton   Source="backbtnwhite.png" 
+   BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
+
+        </StackLayout>
     </Grid>
 </ContentPage>

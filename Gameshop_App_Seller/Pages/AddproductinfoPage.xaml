@@ -10,30 +10,32 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <ImageButton HorizontalOptions="Start" Source="backbtnwhite.png" 
-                     Grid.Column="0" 
-                     Grid.Row="0" 
-                     Margin="20"
-                     BackgroundColor="Transparent"
-                     HeightRequest="20"  
-                     Clicked="ImageButton_Clicked" />
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20">
+                <Label Text="ITEM information" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
 
-        <ScrollView Grid.Row="1"  Margin="30">
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="ImageButton_Clicked"/>
+            </Grid>
+        </StackLayout>
 
+        <ScrollView Grid.Row="1"  Margin="40">
 
             <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="20">
 
-                <Label Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
-               FontSize="20" FontFamily="RobotoLight"  TextColor="White"/>
+                <Label TextTransform="Uppercase" Text="Create or moderate a gaming community or forum where gamers can connect, share experiences, and motivate each other."                                     
+               FontSize="Caption" FontFamily="RobotoLight"  TextColor="White"/>
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="LightGray" TextColor="White" x:Name="entryName"/>
+                    <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryName"/>
                 </Frame>
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="LightGray" TextColor="White" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
+                    <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
                 </Frame>
 
                 <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
@@ -51,10 +53,10 @@
 
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
-                    <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="LightGray" TextColor="White" x:Name="entryDescription"/>
+                    <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryDescription"/>
                 </Frame>
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="LightGray" TextColor="White" x:Name="entryQuantity" TextChanged="entryQuantity_TextChanged"/>
+                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryQuantity" TextChanged="entryQuantity_TextChanged"/>
                 </Frame>
 
                 <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">
@@ -62,8 +64,11 @@
                     <Button Text="Save"  x:Name="saveBTN" BackgroundColor="#d22f3d"
             BorderColor="Transparent" TextColor="White" Clicked="saveBTN_Clicked"/>
                 </Grid>
-
             </VerticalStackLayout>
         </ScrollView>
+        <StackLayout Grid.Row="2"  BackgroundColor="#5234a7" HeightRequest="50">
+
+            <Label Margin="20,10,20,10"/>
+        </StackLayout>
     </Grid>
 </ContentPage>

@@ -11,9 +11,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="AUTO"/>
         </Grid.RowDefinitions>
-        <ImageButton Margin="20"  Source="backbtnwhite.png" HeightRequest="20" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg" Clicked="btnBackImg_Clicked"/>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="55">
+            <Grid RowDefinitions="auto" ColumnDefinitions="*,auto"  Margin="20">
+                <Label Text="Privacy Policy" TextTransform="Uppercase" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
 
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
+      Clicked="btnBackImg_Clicked"/>
+            </Grid>
+        </StackLayout>
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -102,5 +110,10 @@
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50">
+            <ImageButton   Source="backbtnwhite.png" 
+   BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
+
+        </StackLayout>
     </Grid>
 </ContentPage>
