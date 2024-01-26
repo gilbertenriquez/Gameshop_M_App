@@ -50,9 +50,9 @@
                                 <Frame BackgroundColor="#212025" Padding="5" BorderColor="White" Margin="20" VerticalOptions="Start">
                                     <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
                                         <Image Grid.Row="0" HorizontalOptions="Start" x:Name="TransactionImage" Source="{Binding itemShopImage}" HeightRequest="200" Aspect="AspectFit"/>
-                                        <Label Grid.Row="2" Text="{Binding comment}" TextColor="White" />
-                                        <Label Grid.Row="5" x:Name="RateLabel" Text="{Binding StarReview}" TextColor="White" />
-                                        <Label Grid.Row="4" Text="{Binding Date}" TextColor="White" />
+                                        <Label Grid.Row="2" Text="{Binding comment}" FontSize="Default" TextColor="White" />
+                                        <Label Grid.Row="5" x:Name="RateLabel" Text="{Binding StarReview}" FontSize="Default" TextColor="White" />
+                                        <Label Grid.Row="4" Text="{Binding Date}" FontSize="Default" TextColor="White" />
                                         <StackLayout Grid.Row="6" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="30">
                                             <Image Source="{Binding Star1Source}" HeightRequest="20" WidthRequest="20"/>
                                             <Image Source="{Binding Star2Source}" HeightRequest="20" WidthRequest="20"/>

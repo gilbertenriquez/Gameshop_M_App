@@ -80,13 +80,10 @@
 	  <None Remove="Resources\Images\record.png" />
 	  <None Remove="Resources\Images\reviewseller.png" />
 	  <None Remove="Resources\Images\search.png" />
-	  <None Remove="Resources\Images\selfieidfront.png" />
 	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\shop.png" />
 	  <None Remove="Resources\Images\splashscreen.gif" />
 	  <None Remove="Resources\Images\unfilledStar.png" />
-	  <None Remove="Resources\Images\valid1.png" />
-	  <None Remove="Resources\Images\valid2.png" />
 	  <None Remove="Resources\Images\verified.png" />
 	  <None Remove="Resources\Raw\games.json" />
 	</ItemGroup>

@@ -15,8 +15,6 @@ public partial class VerifyingPage : ContentPage
     {
         InitializeComponent();
 
-        Frontimage.Source = "selfieidfront.png";
-        backimage.Source = "selfieidfront.png";
     }
 
     public VerifyingPage(string userKey) : this()
@@ -189,7 +187,7 @@ public partial class VerifyingPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+       
         await Navigation.PopModalAsync();
         progressLoading.IsVisible = false;
     }

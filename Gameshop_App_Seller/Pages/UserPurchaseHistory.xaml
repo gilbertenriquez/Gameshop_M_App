@@ -57,36 +57,36 @@ BackgroundColor="Transparent"    HeightRequest="20" HorizontalOptions="Start" Ve
                                        Aspect="AspectFit"/>
                                         <HorizontalStackLayout Grid.Row="2">
                                             <Grid RowDefinitions="AUTO,AUTO">
-                                               
-                                            <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
+
+                                                <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="3">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
-                                                <Label TextTransform="Uppercase"   Grid.Row="1" Text="{Binding soldPrice}" TextColor="White" HorizontalOptions="Start"  />
+                                                <Label TextTransform="Uppercase" FontSize="Default"   Grid.Row="1" Text="{Binding soldPrice}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="4">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
-                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldQuantity}" TextColor="White" HorizontalOptions="Start"  />
+                                                <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldQuantity}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout Grid.Row="5">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
-                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldDate}" TextColor="White" HorizontalOptions="Start"  />
+                                                <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldDate}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
                                         <HorizontalStackLayout  Grid.Row="6">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
-                                                <Label  TextTransform="Uppercase"  Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
+                                                <Label  TextTransform="Uppercase"  FontSize="Default" Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 

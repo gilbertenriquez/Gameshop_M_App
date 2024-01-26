@@ -77,7 +77,7 @@
 
                                 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                     <Image 
-                                       x:Name="Frontimage" Aspect="AspectFit"                                   
+                                       x:Name="Frontimage" Source="pluswhite.png" Aspect="AspectFit"                                   
                                         />
                                 </Grid>
                             </Border>
@@ -108,7 +108,7 @@
 
                                 <Grid>
                                     <Image Grid.Row="0" 
-                                       x:Name="Backimage"
+                                       x:Name="Backimage"  Source="pluswhite.png"
                                        Aspect="AspectFit" />
                                 </Grid>
                             </Border>

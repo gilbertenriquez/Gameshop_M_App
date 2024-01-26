@@ -14,8 +14,6 @@ public partial class Valid_IDpage : ContentPage
     public Valid_IDpage()
     {
         InitializeComponent();
-        Frontimage.Source = "valid1.png";
-        Backimage.Source = "valid2.png";
     }
 
 

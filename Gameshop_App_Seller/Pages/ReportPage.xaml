@@ -43,14 +43,14 @@ BackgroundColor="Transparent"   HeightRequest="20" HorizontalOptions="Start" Ver
 
                     <Image Grid.Row="3" x:Name="MainImage" HeightRequest="300" WidthRequest="400"/>
 
-                    <Label Grid.Row="4" Text="Product Name" TextTransform="Uppercase" FontAttributes="Bold" FontSize="Micro" Margin="0,20,0,0"  TextColor="WHITE"/>
-                    <Label  Grid.Row="5" x:Name="Productname" TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
+                    <Label Grid.Row="4" Text="Product Name" TextTransform="Uppercase" FontAttributes="Bold" FontSize="10" Margin="0,20,0,0"  TextColor="WHITE"/>
+                    <Label  Grid.Row="5" x:Name="Productname" TextTransform="Uppercase" TextColor="WHITE"  FontSize="20"/>
 
-                    <Label Grid.Row="6" Text="Product Price" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="Micro"  TextColor="WHITE"/>
-                    <Label  Grid.Row="7" x:Name="Productprice" TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
+                    <Label Grid.Row="6" Text="Product Price" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="10"  TextColor="WHITE"/>
+                    <Label  Grid.Row="7" x:Name="Productprice" TextTransform="Uppercase" TextColor="WHITE"  FontSize="20"/>
 
-                    <Label Grid.Row="8" Text="Owner of the Product" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="Micro" TextColor="WHITE"/>
-                    <Label  Grid.Row="9" x:Name="SellerShopname"  TextTransform="Uppercase" TextColor="WHITE"  FontSize="Body"/>
+                    <Label Grid.Row="8" Text="Owner of the Product" TextTransform="Uppercase" FontAttributes="Bold"  FontSize="10" TextColor="WHITE"/>
+                    <Label  Grid.Row="9" x:Name="SellerShopname"  TextTransform="Uppercase" TextColor="WHITE"  FontSize="20"/>
                     <Label  Grid.Row="9" x:Name="Emailtxt" TextColor="Transparent"/>
                     <Label  Grid.Row="9" x:Name="reporterEmail" TextColor="Transparent"/>
 
