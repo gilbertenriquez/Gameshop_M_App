@@ -143,7 +143,7 @@ namespace Gameshop_App_Seller.Models
                      string soldtobuyer)
         {
 
-          
+
             var ImageTransaction = await UploadImage(await img2.OpenReadAsync(),
                                                 "TransactionImage",
                                                 img2.FileName);
@@ -1197,13 +1197,13 @@ namespace Gameshop_App_Seller.Models
 
 
 
-       
+
 
         public async Task DeleteDeniedApplicationAsync(string deniedApplicationKey)
         {
             try
             {
-                var deniedApplicationsNode = "Denied Applications"; 
+                var deniedApplicationsNode = "Denied Applications";
 
                 // Reference to the Denied Applications node
                 var deniedApplicationsRef = ClientUsers.Child(deniedApplicationsNode);
@@ -1276,6 +1276,29 @@ namespace Gameshop_App_Seller.Models
 
 
 
+        public async Task<ObservableCollection<Users>> GetUserPurchaseListAsync()
+        {
+            try
+            {
+                // Assuming DeniedApplication is a class representing denied applications
+                var deniedApplications = await ClientUsers
+                    .Child("Confirmation")
+                    .OnceAsync<Users>();
+
+                var deniedApplicationsList = deniedApplications
+                    .Select(item => item.Object)
+                    .ToList();
+
+                return new ObservableCollection<Users>(deniedApplicationsList);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
+            }
+        }
+
 
 
         public async Task<ObservableCollection<Users>> GetUserProductListsAsync(string searchQuery = null)
@@ -1308,6 +1331,78 @@ namespace Gameshop_App_Seller.Models
             return userProductList;
         }
 
+
+
+
+
+
+        public async Task<bool> confirmationSold(
+                                string img1,
+                                string img2,
+                                string soldname,
+                                string soldquantity,
+                                string soldprice,
+                                string soldtime,
+                                string solddate,
+                                string soldtoseller,
+                                string soldtobuyer)
+        {
+
+            // Construct the path to the user's account node
+            var evaluateEmail = (await ClientUsers
+              .Child("Purchase History")
+              .OnceAsync<Users>())
+              .FirstOrDefault(a => a.Object.MAIL == soldtoseller);
+
+            var admin = new Users()
+            {
+                soldName = soldname,
+                soldQuantity = soldquantity,
+                soldPrice = soldprice,
+                soldTime = soldtime,
+                soldDate = solddate,
+                Seller = soldtoseller,
+                Buyer = soldtobuyer,
+                soldImageItem = img1,
+                soldTranscationImage = img2
+            };
+            await ClientUsers
+                      .Child($"Confirmation")
+                      .PostAsync(admin);
+
+            return true;
+        }
+
+
+
+        public async Task<bool> confirmSold(
+                      string img1,
+                      string img2,
+                     string soldname,
+                     string soldquantity,
+                     string soldprice,
+                     string soldtime,
+                     string solddate,
+                     string soldtoseller,
+                     string soldtobuyer)
+        {
+
+
+            
+
+            var ValidIDs = await confirmationSold(
+                                         img1,
+                                         img2,
+                                         soldname,
+                                         soldquantity,
+                                         soldprice,
+                                         soldtime,
+                                         solddate,
+                                         soldtoseller,
+                                         soldtobuyer);
+
+            return true;
+        }
 
 
 

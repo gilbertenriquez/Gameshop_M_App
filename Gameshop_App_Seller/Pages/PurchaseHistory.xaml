@@ -56,39 +56,44 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
                                        HeightRequest="100"
                                        HorizontalOptions="Start" 
                                        Aspect="AspectFit"/>
-                                        <HorizontalStackLayout Grid.Row="2">
+                                        <HorizontalStackLayout Grid.Row="1">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
                                                 <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldName}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout  Grid.Row="3">
+                                        <HorizontalStackLayout  Grid.Row="2">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
                                                 <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldPrice}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout  Grid.Row="4">
+                                        <HorizontalStackLayout  Grid.Row="3">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
                                                 <Label   TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldQuantity}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout Grid.Row="5">
+                                        <HorizontalStackLayout Grid.Row="4">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
                                                 <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldDate}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout  Grid.Row="6">
+                                        <HorizontalStackLayout  Grid.Row="5">
                                             <Grid RowDefinitions="AUTO,AUTO">
 
                                                 <Label  TextTransform="Uppercase" FontSize="Default"  Grid.Row="1" Text="{Binding soldTime}" TextColor="White" HorizontalOptions="Start"  />
                                             </Grid>
+                                        </HorizontalStackLayout>
+
+
+                                        <HorizontalStackLayout  Grid.Row="6" HorizontalOptions="Center" Margin="0,20,0,10" >
+                                            <Button Text="Confirmation" CommandParameter="{Binding .}" x:Name="SellerConfirmation" Clicked="SellerConfirmation_Clicked" HorizontalOptions="Center"  TextColor="White" HeightRequest="40"    BackgroundColor="#d22f3d"/>
                                         </HorizontalStackLayout>
                                     </Grid>
                                 </Frame>

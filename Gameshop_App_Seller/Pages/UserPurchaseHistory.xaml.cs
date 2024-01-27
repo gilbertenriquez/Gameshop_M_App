@@ -22,7 +22,7 @@ public partial class UserPurchaseHistory : ContentPage
 
             string userEmail = App.email.ToLower();
 
-            var deniedApplicationsList = await GetUserPurchaseHistory.GetPurchaseListAsync();
+            var deniedApplicationsList = await GetUserPurchaseHistory.GetUserPurchaseListAsync();
 
             // Filter the list to include only reviews with the user's email
             var userReviews = deniedApplicationsList.Where(app => app.Buyer.Equals(userEmail, StringComparison.OrdinalIgnoreCase)).ToList();
