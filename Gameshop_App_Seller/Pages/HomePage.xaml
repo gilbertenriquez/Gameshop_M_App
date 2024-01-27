@@ -123,7 +123,7 @@
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
-                                            <Image HorizontalOptions="CenterAndExpand" Grid.Row="0" Source="{Binding image1}"  Aspect="AspectFill"  HeightRequest="80" />
+                                            <Image HorizontalOptions="CenterAndExpand" Grid.Row="0" Source="{Binding Imagae_1_link}"  Aspect="AspectFit"  HeightRequest="80" />
 
 
                                             <Label Grid.Row="1" TextColor="WHITE" TextTransform="Uppercase" Margin="0,10,0,0"  FontSize="Default" Text="{Binding ProductName}"  LineBreakMode="TailTruncation" MaxLines="1" />

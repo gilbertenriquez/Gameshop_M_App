@@ -100,6 +100,8 @@
         <Label Text="Forgot password?"
                TextTransform="Uppercase"
                FontSize="10"
+               IsVisible="false"
+               IsEnabled="False"
                        TextColor="WHITE"
                    HorizontalOptions="Center"
                    Margin="0,20,0,20" >

@@ -31,11 +31,11 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
                FontSize="Caption" FontFamily="RobotoLight"  TextColor="White"/>
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry  Placeholder="PRODUCT NAME" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryName"/>
+                    <Entry  Placeholder="ITEM NAME" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryName"/>
                 </Frame>
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry Placeholder="PRODUCT PRICE" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
+                    <Entry Placeholder="ITEM PRICE" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryPrice" TextChanged="entryPrice_TextChanged"/>
                 </Frame>
 
                 <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
@@ -53,10 +53,10 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
 
 
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0" HeightRequest="200">
-                    <Editor Placeholder="PRODUCT DESCRIPTION" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryDescription"/>
+                    <Editor Placeholder="ITEM DESCRIPTION" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryDescription"/>
                 </Frame>
                 <Frame BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                    <Entry Placeholder="PRODUCT QUANTITY" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryQuantity" TextChanged="entryQuantity_TextChanged"/>
+                    <Entry Placeholder="ITEM QUANTITY" PlaceholderColor="#212025" BackgroundColor="White" TextColor="#212025" x:Name="entryQuantity" TextChanged="entryQuantity_TextChanged"/>
                 </Frame>
 
                 <Grid HeightRequest="50" Margin="10" VerticalOptions="CenterAndExpand" WidthRequest="200">

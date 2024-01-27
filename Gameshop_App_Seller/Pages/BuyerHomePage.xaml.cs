@@ -311,6 +311,7 @@ public partial class BuyerHomePage : ContentPage
             string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
             string productDescriptions = selectedProduct.ProductDesc ?? "Unknown Description";
             string productQuantity = selectedProduct.ProductQuantity ?? "Unknown Quantity";
+            string mainImage = selectedProduct.Imagae_1_link ?? string.Empty;
             string image1 = selectedProduct.image1 ?? string.Empty;
             string image2 = selectedProduct.image2 ?? string.Empty;
             string image3 = selectedProduct.image3 ?? string.Empty;
@@ -318,7 +319,7 @@ public partial class BuyerHomePage : ContentPage
             string image5 = selectedProduct.image5 ?? string.Empty;
             string image6 = selectedProduct.image6 ?? string.Empty;
 
-            await Navigation.PushModalAsync(new ViewProductPage(App.key,reporterMail, productemail, productName, productPrice, productDescriptions, productQuantity, image1, image2, image3, image4, image5, image6));
+            await Navigation.PushModalAsync(new ViewProductPage(App.key,reporterMail, productemail, productName, productPrice, productDescriptions, productQuantity, mainImage ,image1, image2, image3, image4, image5, image6));
         }
     }
 

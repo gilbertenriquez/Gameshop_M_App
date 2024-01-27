@@ -24,7 +24,7 @@ public partial class ViewProductPage : ContentPage
     }
 
 
-    public ViewProductPage(string userId,string reporteremail ,string productemail, string productName, string productPrice, string ProductDescrip, string productQuantity, string image1, string image2, string image3, string image4, string image5, string image6)
+    public ViewProductPage(string userId,string reporteremail ,string productemail, string productName, string productPrice, string ProductDescrip, string productQuantity,string mainImage ,string image1, string image2, string image3, string image4, string image5, string image6)
     {
         InitializeComponent();
         this.userId = userId;
@@ -32,7 +32,7 @@ public partial class ViewProductPage : ContentPage
         this.reporter = App.email;
         this.productItemName = productName;
         this.productItemprice = productPrice;
-        this.imageProduct = image1;
+        this.imageProduct = mainImage;
         // Use the passed parameters to set up your ViewProductPage UI
         // For example, you can set the Source of Image controls to the provided image URLs
         // Similarly, set up other UI elements as needed.
@@ -43,6 +43,7 @@ public partial class ViewProductPage : ContentPage
 
         PhotoCarousel.ItemsSource = new List<string>
             {
+                mainImage,
                 image1,
                 image2,
                 image3,

@@ -72,8 +72,8 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
                                   HorizontalOptions="EndAndExpand"
                                   VerticalOptions="CenterAndExpand"
                                   Margin="0">
-                                            <Label Text="This is the main image of your product."
-                                       LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" TextColor="#212025" />
+                                            <Label Text="This is the main image of your Item." TextTransform="Uppercase"
+                                       LineBreakMode="WordWrap" Grid.Row="0" Grid.Column="0" TextColor="White" />
                                             <VerticalStackLayout Grid.Row="1" HorizontalOptions="EndAndExpand"
                                                        VerticalOptions="CenterAndExpand"
                                                        Spacing="10" Margin="5">

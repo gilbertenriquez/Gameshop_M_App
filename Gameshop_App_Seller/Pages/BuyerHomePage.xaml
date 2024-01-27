@@ -164,7 +164,7 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Row="0" Source="{Binding image1}" Aspect="AspectFill" HeightRequest="60">
+                                        <Image Grid.Row="0" Source="{Binding Imagae_1_link}" Aspect="AspectFit" HeightRequest="60">
                                             <Image.Scale>
                                                 <OnIdiom x:TypeArguments="x:Double">
                                                     <OnIdiom.Phone>2.5</OnIdiom.Phone>

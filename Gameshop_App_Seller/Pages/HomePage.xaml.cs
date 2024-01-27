@@ -87,11 +87,8 @@ public partial class HomePage : ContentPage
                 if (userProducts.Any())
                 {
                     listViewProducts.ItemsSource = userProducts;
-                }
-                else
-                {
-                    await DisplayAlert("Warning", "User has no products.", "OK");
-                }
+                    return;
+                }              
             }
             else
             {
