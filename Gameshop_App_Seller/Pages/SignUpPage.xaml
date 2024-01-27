@@ -128,6 +128,12 @@ BackgroundColor="Transparent">
                         </Picker.ItemsSource>
                     </Picker>
                     </Frame>
+
+
+                    <CheckBox Grid.Row="14" x:Name="termsCheckbox" HorizontalOptions="Start" CheckedChanged="termsCheckbox_CheckedChanged" />
+                    <Label Grid.Row="14" Text="I agree to the terms and conditions" Margin="40,10,0,0"  HorizontalOptions="Start" TextColor="White"/>
+
+
                 </Grid>
 
                 <Button Text="Register" 

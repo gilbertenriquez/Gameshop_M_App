@@ -33,7 +33,7 @@ public partial class UserPurchaseHistory : ContentPage
             }
             else
             {
-                await DisplayAlert("Information!", "No Item has been Sold", "OK");
+                await DisplayAlert("Information!", "No item has been purchased recently.", "OK");
             }
         }
         catch (Exception ex)
