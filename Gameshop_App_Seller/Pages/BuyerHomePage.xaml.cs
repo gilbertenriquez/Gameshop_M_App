@@ -32,7 +32,9 @@ public partial class BuyerHomePage : ContentPage
         {
             // Perform the data refreshing logic here
             await LoadDataAsync();
-
+             OnAppearingDenied();
+             OnAppearingVerified();
+             OnAppearing();
             // Stop the refreshing animation
             refreshView.IsRefreshing = false;
         }

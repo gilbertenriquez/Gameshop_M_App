@@ -233,9 +233,11 @@ public partial class HomePage : ContentPage
     {
         try
         {
-           OnAppearing();
+            LoadUserDataAsync();
+            InitializeComponent();
+            OnAppearing();
 
-           // Stop the refreshing animation
+            // Stop the refreshing animation
             refreshView.IsRefreshing = false;
         }
         catch (Exception ex)

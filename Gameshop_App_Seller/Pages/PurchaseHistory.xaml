@@ -4,7 +4,10 @@
              x:Class="Gameshop_App_Seller.Pages.PurchaseHistory"
              Title="PurchaseHistory" BackgroundColor="#212025">
     
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+                      RefreshColor="DimGray"
+                     >
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -17,7 +20,9 @@
                 <ImageButton   Source="backbtnwhite.png" 
 BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
       Clicked="btnBackImg_Clicked"/>
-            </Grid>
+
+                    <Label x:Name="SoldItem" FontSize="Default" TextTransform="Uppercase"  HorizontalOptions="End" VerticalOptions="Start" TextColor="White"/>
+                </Grid>
         </StackLayout>
 
 
@@ -93,7 +98,9 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
 
 
                                         <HorizontalStackLayout  Grid.Row="6" HorizontalOptions="Center" Margin="0,20,0,10" >
-                                            <Button Text="Confirmation" CommandParameter="{Binding .}" x:Name="SellerConfirmation" Clicked="SellerConfirmation_Clicked" HorizontalOptions="Center"  TextColor="White" HeightRequest="40"    BackgroundColor="#d22f3d"/>
+                                            <Button Text="Confirmation" CommandParameter="{Binding .}" Command="{Binding ConfirmTransactionCommand}" 
+                                              IsVisible="{Binding IsConfirmationButtonVisible}" HorizontalOptions="Center" 
+                                              TextColor="White" HeightRequest="40" BackgroundColor="#d22f3d" Clicked="SellerConfirmation_Clicked"/>
                                         </HorizontalStackLayout>
                                     </Grid>
                                 </Frame>
@@ -110,4 +117,5 @@ BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalO
 
         </StackLayout>
     </Grid>
+    </RefreshView>
 </ContentPage>

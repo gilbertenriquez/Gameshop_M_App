@@ -178,15 +178,34 @@ public partial class ViewProductPage : ContentPage
     private async void BuynowBTN_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+
+        try
         {
-            await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
-            // Handle this case as needed, e.g., show an error message to the user
-            return;
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
+                // Handle this case as needed, e.g., show an error message to the user
+                return;
+            }
+            string quantityToBuy = itemQuantity.Text;
+
+            if (int.TryParse(quantityToBuy, out int quantity) && quantity == 0)
+            {
+                await DisplayAlert("Out of Stock", "The product is out of stock.", "OK");
+                return;
+            }
+            await Navigation.PushModalAsync(new BuyNowPage(containMessengerLink.Text, Shopnames.Text, productItemName, reporter, productemail, quantityToBuy, imageProduct, ProductPrice.Text));
         }
-        await Navigation.PushModalAsync(new BuyNowPage(containMessengerLink.Text,Shopnames.Text, productItemName, reporter, productemail, itemQuantity.Text, imageProduct, ProductPrice.Text));
-        progressLoading.IsVisible = false;
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in BuynowBTN_Clicked: {ex.Message}");
+        }
+        finally
+        {
+            progressLoading.IsVisible = false;
+        }
     }
+
 
     private async void viewSellerReview_Tapped(object sender, TappedEventArgs e)
     {

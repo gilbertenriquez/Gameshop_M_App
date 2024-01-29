@@ -89,6 +89,12 @@ namespace Gameshop_App_Seller.Models
         public string soldImageItem { get; set; }
         public string soldTranscationImage { get; set; }
 
+        public bool IsConfirmed { get; set; }
+        public bool IsConfirmationButtonVisible { get; set; }
+
+
+
+
 
 
 
@@ -1194,7 +1200,28 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
+        public async Task<ObservableCollection<Users>> GetQuantityAsync(string userkey, string productkey)
+        {
+            try
+            {
+                // Assuming DeniedApplication is a class representing denied applications
+                var QuantityCheck = await ClientUsers
+                    .Child($"Account/{userkey}/Product/{productkey}")
+                    .OnceAsync<Users>();
 
+                var QuantityList = QuantityCheck
+                    .Select(item => item.Object)
+                    .ToList();
+
+                return new ObservableCollection<Users>(QuantityList);
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error getting denied applications list: {ex.Message}");
+                return new ObservableCollection<Users>();
+            }
+        }
 
 
 
@@ -1388,7 +1415,7 @@ namespace Gameshop_App_Seller.Models
         {
 
 
-            
+
 
             var ValidIDs = await confirmationSold(
                                          img1,
@@ -1405,44 +1432,110 @@ namespace Gameshop_App_Seller.Models
         }
 
 
+        public async Task<bool> UpdateConfirmationStatus(string key, bool isConfirmed)
+        {
+            try
+            {
+                // Construct the path to the item node
+                var itemPath = $"Purchase History/{key}";
 
-        //public async Task<string> ReceiveMessage(string receiverEmail)
-        //{
-        //    try
-        //    {
-        //        // Assuming your structure is like this: Users/Messages
-        //        var user = (await ClientUsers
-        //            .Child($"Users/Messages")
-        //            .OnceAsync<Users>())
-        //            .FirstOrDefault(a => a.Object.MAIL == receiverEmail);
+                // Retrieve the item using the known key directly
+                var selectedItem = await ClientUsers
+                    .Child(itemPath)
+                    .OnceSingleAsync<Users>();
 
-        //        // Check if the user exists and has a message
-        //        if (user != null && !string.IsNullOrEmpty(user.Object.Message))
-        //        {
-        //            return user.Object.Message;
-        //        }
+                if (selectedItem != null)
+                {
+                    Console.WriteLine($"Existing confirmation status: {selectedItem.IsConfirmed}");
+                    selectedItem.IsConfirmed = isConfirmed;
+                    await ClientUsers
+                        .Child(itemPath)
+                        .PatchAsync(new { IsConfirmed = isConfirmed });
 
-        //        return "No messages"; // Return a default message if there are no messages
-        //    }
-        //    catch
-        //    {
-        //        return "Error fetching messages"; // Handle errors appropriately
-        //    }
-        //}
+                    Console.WriteLine("Confirmation status updated successfully!");
+                    return true;
+                }
+                else
+                {
+                    // Item does not exist
+                    Console.WriteLine("Item does not exist.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // An error occurred
+                Console.WriteLine($"Error updating confirmation status: {ex.Message}");
+                return false;
+            }
+        }
 
-        //private void ShowNotification(string title, string description)
-        //{
-        //    var notification = new NotificationRequest
-        //    {
-        //        NotificationId = NotificationIdCounter,
-        //        Title = title,
-        //        Description = description,
-        //        ReturningData = "optional data",
-        //        Schedule = new NotificationRequestSchedule { NotifyTime = DateTime.Now.AddSeconds(5) } // Adjust timing as needed
-        //    };
 
-        //    NotificationCenter.Current.Show(notification);
-        //}
+
+
+        public async Task<bool> SubtractQuantityFromProduct(
+                                   string quantityToSubtract,
+                                   string SellerKey, string ProductKey)
+        {
+            try
+            {
+                // Construct the path to the product node
+                var userProductPath = $"Account/{SellerKey}/Product/{ProductKey}";
+
+                Console.WriteLine($"Subtracting quantity from product at path: {userProductPath}");
+
+                // Retrieve the product using the known key directly
+                var evaluateProduct = await ClientUsers
+                    .Child(userProductPath)
+                    .OnceSingleAsync<Users>();
+
+                if (evaluateProduct != null)
+                {
+                    // Product exists, subtract quantity
+                    Console.WriteLine($"Existing product quantity: {evaluateProduct.ProductQuantity}");
+
+                    // Parse the existing quantity and quantityToSubtract as integers
+                    if (int.TryParse(evaluateProduct.ProductQuantity, out int currentQuantity) &&
+                        int.TryParse(quantityToSubtract, out int subtractQuantity))
+                    {
+                        // Subtract the desired quantity
+                        currentQuantity -= subtractQuantity;
+
+                        // Ensure the quantity does not go below zero
+                        currentQuantity = Math.Max(0, currentQuantity);
+
+                        // Update the product with the new quantity
+                        evaluateProduct.ProductQuantity = currentQuantity.ToString();
+
+                        // Use the product's path as the child node
+                        await ClientUsers
+                            .Child(userProductPath)
+                            .PatchAsync(new { ProductQuantity = currentQuantity.ToString() });
+
+                        Console.WriteLine("Product quantity updated successfully!");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Failed to parse existing product quantity or quantity to subtract as integers.");
+                        return false;
+                    }
+                }
+                else
+                {
+                    // Product does not exist
+                    Console.WriteLine("Product does not exist.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // An error occurred
+                Console.WriteLine($"Error subtracting quantity from product: {ex.Message}");
+                return false;
+            }
+        }
+
 
     }
 }

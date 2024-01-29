@@ -237,6 +237,7 @@ public partial class BuyNowPage : ContentPage
             {
             // Purchase was successful, show alert
             await DisplayAlert("Purchase Confirmed", "Your purchase has been confirmed!", "OK");
+            await Navigation.PushModalAsync(new ReviewSeller(shopemail));
             }
             else
             {
