@@ -54,25 +54,6 @@
                     </StackLayout>
 
 
-                    <Button Text="Upload" 
-                        Grid.Row="3"
-                        VerticalOptions="End"
-                        x:Name="BTNupload"   
-                            TextTransform="Uppercase"
-                        BackgroundColor="#d22f3d"
-                        TextColor="White" 
-                        Clicked="BTNupload_Clicked"
-                        />
-                    <Button Text="Remove" 
-                        Grid.Row="3"
-                        Grid.Column="1"
-                            TextTransform="Uppercase"
-                        VerticalOptions="End"
-                        x:Name="BTNremove"   
-                        BackgroundColor="#d22f3d"
-                        TextColor="White" 
-                        Clicked="BTNremove_Clicked"
-                        />
 
 
 
@@ -82,19 +63,12 @@
                            AbsoluteLayout.LayoutBounds="0,0,1,1"
                            AbsoluteLayout.LayoutFlags="All"
                            BackgroundColor="Transparent">
-                                                   <ActivityIndicator
+                        <ActivityIndicator
                            x:Name="ai"
                            IsRunning="True" IsVisible="True"
                            HorizontalOptions="CenterAndExpand"
                            Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
                     </StackLayout>
-
-
-
-
-                    <HorizontalStackLayout Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="200"  HorizontalOptions="Center">
-                        <Image x:Name="photoITEM" HorizontalOptions="FillAndExpand"  Aspect="AspectFill" />
-                    </HorizontalStackLayout>
 
                     <Label x:Name="ratingLabel" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Grid.ColumnSpan="2" Text="" FontSize="30" TextColor="WHITE"/>
                     <Label Grid.Row="4" Text="Comment" TextTransform="Uppercase" TextColor="WHITE" FontSize="20" Margin="0,20,0,20"/>

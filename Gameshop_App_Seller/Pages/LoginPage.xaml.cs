@@ -10,6 +10,7 @@ using Firebase.Database;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
+using LiteDB;
 
 
 namespace Gameshop_App_Seller.Pages;
@@ -88,7 +89,7 @@ public partial class LoginPage : INotifyPropertyChanged
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
             return;
         }
-        // Check if email and password are empty after trimming white spaces
+
         if (emailEntry == null || string.IsNullOrEmpty(emailEntry.Text?.Trim()) || string.IsNullOrEmpty(passwordEntry.Text))
         {
             await DisplayAlert("Alert!", "Please fill up your Email and Password!", "Got it!");
@@ -101,6 +102,24 @@ public partial class LoginPage : INotifyPropertyChanged
         progressLoading.IsVisible = true;
 
         string userUid = await GetUserKeyByEmail(cleanedEmail);
+      
+
+        string userEmail = emailEntry.Text;
+
+        string banType = await App.FirebaseService.GetBanType(userEmail);
+
+        if (banType.Equals("Temporary ban", StringComparison.OrdinalIgnoreCase))
+        {
+            await DisplayAlert("Temporary Ban", "You have been banned for 3 days.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+        else if (banType.Equals("Permanent ban", StringComparison.OrdinalIgnoreCase))
+        {
+            await DisplayAlert("Permanent Ban", "Your account has been permanently banned.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
 
         if (!string.IsNullOrEmpty(userUid))
         {

@@ -26,7 +26,21 @@ public partial class ProfileDetail : ContentPage
         this.userId = userId; // Store the user ID
     }
 
-   
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            OnAppearing();
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -166,5 +180,31 @@ public partial class ProfileDetail : ContentPage
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopModalAsync();
+    }
+
+    private async void Linkuptosite_Tapped(object sender, TappedEventArgs e)
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        try
+        {
+            progressLoading.IsVisible = true; // Show the loading indicator
+
+            // Open the URI asynchronously
+            await Launcher.OpenAsync(new Uri("https://privacy.gov.ph/data-privacy-act/"));
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions, e.g., if the URI is invalid or the app doesn't have permission to open the URI.
+            Console.WriteLine($"Error opening URI: {ex.Message}");
+        }
+        finally
+        {
+            progressLoading.IsVisible = false; // Hide the loading indicator in both success and failure cases
+        }
     }
 }

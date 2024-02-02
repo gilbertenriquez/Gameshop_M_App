@@ -5,8 +5,7 @@
              Title="PurchaseHistory" BackgroundColor="#212025">
     
     <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
-                      RefreshColor="DimGray"
-                     >
+                      RefreshColor="DimGray">
         <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -15,13 +14,16 @@
         </Grid.RowDefinitions>
         <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="0" BackgroundColor="#5234a7" HeightRequest="50">
             <Grid RowDefinitions="auto" ColumnDefinitions="*,auto" Margin="20">
-                <Label Text="Sales History" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="CenterAndExpand" VerticalOptions="Start" TextColor="White"/>
+                <Label Text="Sales History" FontSize="Medium" TextTransform="Uppercase"  HorizontalOptions="Center" VerticalOptions="Start" TextColor="White"/>
 
                 <ImageButton   Source="backbtnwhite.png" 
 BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" x:Name="btnBackImg"
       Clicked="btnBackImg_Clicked"/>
-
-                    <Label x:Name="SoldItem" FontSize="Default" TextTransform="Uppercase"  HorizontalOptions="End" VerticalOptions="Start" TextColor="White"/>
+                    <HorizontalStackLayout HorizontalOptions="End" VerticalOptions="Start" Spacing="7" Margin="-10,0,0,0">
+                        <Label Text="Solds:" FontSize="13" TextTransform="Uppercase"   TextColor="White"/>
+                        <Label x:Name="SoldItem" FontSize="13" TextTransform="Uppercase"   TextColor="White"/>
+                    </HorizontalStackLayout>
+                   
                 </Grid>
         </StackLayout>
 
@@ -112,10 +114,9 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
         </ScrollView>
 
         <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50" >
-            <ImageButton   Source="backbtnwhite.png" 
+                <ImageButton   Source="backbtnwhite.png" 
 BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
-
-        </StackLayout>
+            </StackLayout>
     </Grid>
     </RefreshView>
 </ContentPage>

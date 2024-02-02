@@ -229,12 +229,11 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private void refreshView_Refreshing(object sender, EventArgs e)
+    private async void refreshView_Refreshing(object sender, EventArgs e)
     {
         try
         {
-            LoadUserDataAsync();
-            InitializeComponent();
+            await LoadUserDataAsync();
             OnAppearing();
 
             // Stop the refreshing animation

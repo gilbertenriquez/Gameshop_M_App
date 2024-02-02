@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gameshop_App_Seller.Models;
 
 namespace Gameshop_App_Seller.Models
 {
@@ -113,6 +114,49 @@ namespace Gameshop_App_Seller.Models
             return userWithKey?.Key;
         }
 
+
+        public async Task<string> GetBanType(string email)
+        {
+            try
+            {
+                var users = await ClientUsers
+                    .Child("Banned Accounts")
+                    .OnceAsync<Users>();
+
+                var bannedUser = users.FirstOrDefault(u => u.Object.MAIL == email);
+
+                if (bannedUser != null)
+                {
+                    // Assuming you have a property in Users class representing the ban type
+                    string banningOption = bannedUser.Object.banningOption;
+
+                    // Return the ban type as a string
+                    return banningOption;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions based on your application's requirements.
+                Console.WriteLine($"Error checking ban type: {ex.Message}");
+            }
+
+            // Default to no ban if an error occurs or if the user is not found in the banned accounts
+            return "None";
+        }
+
+
+
+        public async Task<string> GetUserFullNameByEmail(string email)
+        {
+            var users = await ClientUsers
+                .Child("Account")
+                .OnceAsync<Users>();
+
+            var user = users.FirstOrDefault(u => u.Object.MAIL == email)?.Object;
+
+            return user != null? $"{user.FNAME} {user.LNAME}"
+                : null;
+        }
 
     }
 }

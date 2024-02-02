@@ -30,7 +30,14 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
 
                 <Grid RowDefinitions=" Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="20">
 
-                    <Label Grid.Row="0" Text="First Name" TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="0" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="First Name "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="1"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="First Name"
                           TextColor="#212025"
@@ -39,7 +46,14 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
                        x:Name="FNEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="2" Text="Last Name" TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="2" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Last Name "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="3" BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Last Name"
                       TextColor="#212025"
@@ -48,7 +62,14 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
                        x:Name="LNEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="4" Text="Email" TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="4" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="5" BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Email"
                        TextColor="#212025"
@@ -75,9 +96,16 @@ BackgroundColor="Transparent">
                            TextColor="White"/>
                     </StackLayout>
 
-                    <Label Grid.Row="6" Text="Password" TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="6" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Password " />
+                                <Span Text="(Must be at least 8 characters long.)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="7"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
-                        <Entry Placeholder="Password"
+                        <Entry Placeholder="Create Password"
                         IsPassword="True"
                          TextColor="#212025"
                         BackgroundColor="White"
@@ -85,7 +113,14 @@ BackgroundColor="Transparent">
                         x:Name="passwordEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="8" Text="Home Address" TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="8" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Home Address "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="9"  BackgroundColor="Transparent" BorderColor="White" Padding="0,0">
                         <Entry Placeholder="Address"
                           TextColor="#212025"
@@ -94,10 +129,14 @@ BackgroundColor="Transparent">
                        x:Name="locationEntry"/>
                     </Frame>
 
-                    <Label Grid.Row="10" 
-                       Text="Birthday" 
-                       FontSize="15"  
-                       TextColor="White" Margin="0,0,0,-15"/>
+                    <Label Grid.Row="10" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Birthday "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <Frame Grid.Row="11" Padding="0,0"   BackgroundColor="Transparent">
                     <DatePicker 
                         BackgroundColor="White"
@@ -106,11 +145,14 @@ BackgroundColor="Transparent">
                         Format="MM-dd-yyyy"
                 />
                     </Frame>
-                    <Label Grid.Row="12" 
-                   Text="Gender" 
-                   FontSize="15" 
-                           Margin="0,0,0,-15"
-                   TextColor="White"/>
+                    <Label Grid.Row="12" TextColor="White" Margin="0,0,0,-15">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Gender "/>
+                                <Span Text="(Required)" TextColor="Red" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                     <Frame Grid.Row="13" Padding="0,0"  BackgroundColor="Transparent"> 
                     <Picker  
@@ -131,7 +173,21 @@ BackgroundColor="Transparent">
 
 
                     <CheckBox Grid.Row="14" x:Name="termsCheckbox" HorizontalOptions="Start" CheckedChanged="termsCheckbox_CheckedChanged" />
-                    <Label Grid.Row="14" Text="I agree to the terms and conditions" Margin="40,10,0,0"  HorizontalOptions="Start" TextColor="White"/>
+                    <Label Grid.Row="14" Text="I hereby agree to abide by PixelTrade's terms and conditions and Privacy Policy." Margin="40,10,0,0"  HorizontalOptions="Start" TextColor="White"/>
+
+
+                    <StackLayout Grid.Row="15"  Margin="0,-20,0,20">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="Linkuptosite" Tapped="Linkuptosite_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                        <Label Text="Data Privacy Act of 2012 (Republic Act No. 10173)" TextColor="LightGray" FontSize="10" />
+
+                        <Label Text="Republic of the Philippines. (2012). Republic Act No. 10173. An Act Protecting Individual Personal Information in Information and Communications Systems in the Government and the Private Sector, Creating for this Purpose the National Privacy Commission, and for Other Purposes." 
+                               TextColor="LightGray"  FontSize="8"  />
+
+                    </StackLayout>
+
 
 
                 </Grid>

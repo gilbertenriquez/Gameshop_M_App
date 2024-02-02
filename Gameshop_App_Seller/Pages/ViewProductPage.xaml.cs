@@ -26,21 +26,18 @@ public partial class ViewProductPage : ContentPage
 
     public ViewProductPage(string userId,string reporteremail ,string productemail, string productName, string productPrice, string ProductDescrip, string productQuantity,string mainImage ,string image1, string image2, string image3, string image4, string image5, string image6)
     {
-        InitializeComponent();
+        InitializeComponent();   
         this.userId = userId;
         this.productemail = productemail;
         this.reporter = App.email;
         this.productItemName = productName;
         this.productItemprice = productPrice;
         this.imageProduct = mainImage;
-        // Use the passed parameters to set up your ViewProductPage UI
-        // For example, you can set the Source of Image controls to the provided image URLs
-        // Similarly, set up other UI elements as needed.
         ProductName.Text = productName;
         ProductDescription.Text = ProductDescrip;
         ProductPrice.Text = productPrice;
         itemQuantity.Text = productQuantity;
-
+        OnAppearingSellerSolds();
         PhotoCarousel.ItemsSource = new List<string>
             {
                 mainImage,
@@ -51,6 +48,7 @@ public partial class ViewProductPage : ContentPage
                 image5,
                 image6
             };
+        
     }
 
 
@@ -63,6 +61,69 @@ public partial class ViewProductPage : ContentPage
         var userWithKey = users.FirstOrDefault(u => u.Object.MAIL == email);
 
         return userWithKey?.Key;
+    }
+
+
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here 
+            OnAppearingSellerSolds();
+            OnAppearing();
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
+
+
+    protected  async void OnAppearingSellerSolds()
+    {
+        try
+        {
+            base.OnAppearing();
+
+            string userEmail = productemail.ToLower();
+
+            var deniedApplicationsList = await GetUSERdata.GetPurchaseListAsync();
+
+            if (deniedApplicationsList.Any())
+            {
+                // Order the list by confirmation status, unconfirmed items first
+                var orderedList = deniedApplicationsList.OrderBy(item => item.IsConfirmed).ToList();
+
+                // Calculate and display total sold quantity for each seller
+                var sellerSoldQuantities = orderedList
+                    .GroupBy(item => item.Seller)
+                    .Select(group => new
+                    {
+                        Seller = group.Key,
+                        TotalSoldQuantity = group.Sum(item => Convert.ToInt32(item.soldQuantity))
+                    });
+
+                // Clear previous content
+                shopsolds.Text = "";
+
+                // Display total sold quantities in the label
+                foreach (var sellerSoldQuantity in sellerSoldQuantities)
+                {
+                    shopsolds.Text += $"SOLDS: {sellerSoldQuantity.TotalSoldQuantity}";
+                }
+            }
+            else
+            {
+                // Clear the label if there is no data
+                shopsolds.Text = "No Item has been Sold";
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in OnAppearingSellerSolds: {ex.Message}");
+        }
     }
 
 

@@ -4,7 +4,11 @@
              x:Class="Gameshop_App_Seller.Pages.ShopDetail"
              Title="ShopDetail" BackgroundColor="#212025" >
 
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+              RefreshColor="DimGray">
+
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -30,7 +34,7 @@
 
         <ScrollView Grid.Row="1">
         <VerticalStackLayout Margin="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-            <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
+                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
                RowSpacing="20">
               
                 <Border Grid.Row="1"  HeightRequest="200" WidthRequest="200" Margin="0,50,0,0">
@@ -100,23 +104,35 @@
                     <Entry x:Name="ShopNameEntry" Placeholder="Shop Name"   TextColor="#252525"/>
                 </Frame>
 
-                    <Label Text="Telephone Number" TextColor="White"  Grid.Row="11"/>
+                    <Label Text="Telephone Number" TextColor="White"  Grid.Row="10"/>
                     <Frame  Grid.Row="11" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
                     <Entry x:Name="ShopContactEntry"  Placeholder="Telephone Number"  TextColor="#252525" TextChanged="ShopContactEntry_TextChanged"/>
                 </Frame>
 
                     <Label Text="Fb Messenger Link" TextColor="White"  Grid.Row="12"/>
-                    <Frame  Grid.Row="12" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
+                    <Frame  Grid.Row="13" BackgroundColor="White" BorderColor="#252525" Padding="0,0">
                     <Entry x:Name="ShopMessenger"  Placeholder="Example:m.me/username/"  TextColor="#252525"/>
                 </Frame>
 
-                <CheckBox Grid.Row="13" x:Name="termsCheckbox" HorizontalOptions="Start" CheckedChanged="termsCheckbox_CheckedChanged" />
-                    <Label Grid.Row="13" Text="I agree to the terms and conditions" Margin="40,10,0,0"  HorizontalOptions="Start" TextColor="White"/>
+                <CheckBox Grid.Row="14" x:Name="termsCheckbox" HorizontalOptions="Start" CheckedChanged="termsCheckbox_CheckedChanged" />
+                <Label Grid.Row="14" Text="I agree to the terms and conditions" Margin="40,10,0,0"  HorizontalOptions="Start" TextColor="White"/>
+                        
+                        <StackLayout Grid.Row="15"  Margin="0,-20,0,20">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Linkuptosite" Tapped="Linkuptosite_Tapped"  />
+                            </StackLayout.GestureRecognizers>
+
+                            <Label Text="Data Privacy Act of 2012 (Republic Act No. 10173)" TextColor="LightGray" FontSize="10" />
+
+                            <Label Text="Republic of the Philippines. (2012). Republic Act No. 10173. An Act Protecting Individual Personal Information in Information and Communications Systems in the Government and the Private Sector, Creating for this Purpose the National Privacy Commission, and for Other Purposes." 
+            TextColor="LightGray"  FontSize="8"  />
+
+                        </StackLayout>
 
 
-                <Button Text="Confirm" 
+                        <Button Text="Confirm" 
                         Margin="0,20,0,0"
-                     Grid.Row="14"
+                     Grid.Row="16"
                       x:Name="updateShopBTN"
                          WidthRequest="200"
                       BackgroundColor="#d22f3d"
@@ -134,4 +150,5 @@
 
         </StackLayout>
     </Grid>
+        </RefreshView>
 </ContentPage>

@@ -20,12 +20,7 @@ public partial class ShopDetail : ContentPage
 
     public ShopDetail()
 	{
-        if (!CheckInternetConnection())
-        {
-            // Optionally display an alert or take appropriate action if there's no internet
-            return;
-        }
-
+       
         InitializeComponent();
     }
 
@@ -35,16 +30,21 @@ public partial class ShopDetail : ContentPage
         this.userId = userId; // Store the user ID
     }
 
-    private bool CheckInternetConnection()
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            DisplayAlert("Error", "No internet connection. Please check your network settings.", "OK");
-            return false;
-        }
-        return true;
-    }
 
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            OnAppearing();
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
 
 
     protected override async void OnAppearing()
@@ -309,6 +309,34 @@ public partial class ShopDetail : ContentPage
         }
         progressLoading.IsVisible = false;
     }
+
+
+    private async void Linkuptosite_Tapped(object sender, TappedEventArgs e)
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        try
+        {
+            progressLoading.IsVisible = true; // Show the loading indicator
+
+            // Open the URI asynchronously
+            await Launcher.OpenAsync(new Uri("https://privacy.gov.ph/data-privacy-act/"));
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions, e.g., if the URI is invalid or the app doesn't have permission to open the URI.
+            Console.WriteLine($"Error opening URI: {ex.Message}");
+        }
+        finally
+        {
+            progressLoading.IsVisible = false; // Hide the loading indicator in both success and failure cases
+        }
+    }
+
 
     private void ShopContactEntry_TextChanged(object sender, TextChangedEventArgs e)
     {

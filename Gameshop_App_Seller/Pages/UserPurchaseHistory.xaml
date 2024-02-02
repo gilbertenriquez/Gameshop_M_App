@@ -3,8 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.UserPurchaseHistory"
              Title="UserPurchaseHistory" Background="#212025">
-    
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+                 RefreshColor="DimGray">
+
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -105,4 +108,5 @@ BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalO
 
         </StackLayout>
     </Grid>
+        </RefreshView>
 </ContentPage>

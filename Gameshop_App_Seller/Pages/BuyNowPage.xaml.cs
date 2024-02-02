@@ -42,6 +42,23 @@ public partial class BuyNowPage : ContentPage
 
     }
 
+
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            SetCurrentTimeAndDate();
+            OnAppearing();
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
+
     private void SetCurrentTimeAndDate()
     {
         // Set current time
@@ -207,7 +224,7 @@ public partial class BuyNowPage : ContentPage
 
     private async void ConfirmationBTN_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+   
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
@@ -236,15 +253,17 @@ public partial class BuyNowPage : ContentPage
             if (result)
             {
             // Purchase was successful, show alert
+            progressLoading.IsVisible = true;
             await DisplayAlert("Purchase Confirmed", "Your purchase has been confirmed!", "OK");
             await Navigation.PushModalAsync(new ReviewSeller(shopemail));
+            progressLoading.IsVisible = false;
             }
             else
             {
                 // Purchase failed, show an error alert
                 await DisplayAlert("Purchase Failed", "There was an error processing your purchase. Please try again.", "OK");
             }
-        progressLoading.IsVisible = false;
+        
     }
  
 }

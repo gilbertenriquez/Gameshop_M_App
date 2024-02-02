@@ -44,17 +44,30 @@ public partial class PurchaseHistory : ContentPage
 
             if (deniedApplicationsList.Any())
             {
-                foreach (var application in deniedApplicationsList)
+                // Order the list by confirmation status, unconfirmed items first
+                var orderedList = deniedApplicationsList.OrderBy(item => item.IsConfirmed).ToList();
+
+                foreach (var application in orderedList)
                 {
                     application.IsConfirmationButtonVisible = !application.IsConfirmed;
                 }
 
-                purchaselist.ItemsSource = deniedApplicationsList;
-                // Count the number of confirmed items
-                int confirmedCount = deniedApplicationsList.Count(item => item.IsConfirmed);
+                purchaselist.ItemsSource = orderedList;
 
-                // Display the count in your Label
-                SoldItem.Text = $"Items Sold: {confirmedCount}";
+                // Calculate and display total sold quantity for each seller
+                var sellerSoldQuantities = orderedList
+                    .GroupBy(item => item.Seller)
+                    .Select(group => new
+                    {
+                        Seller = group.Key,
+                        TotalSoldQuantity = group.Sum(item => Convert.ToInt32(item.soldQuantity))
+                    });
+
+                // Display total sold quantities in the label
+                foreach (var sellerSoldQuantity in sellerSoldQuantities)
+                {
+                    SoldItem.Text = $"{sellerSoldQuantity.TotalSoldQuantity}";
+                }
             }
             else
             {
@@ -66,6 +79,8 @@ public partial class PurchaseHistory : ContentPage
             Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
         }
     }
+
+
 
 
 

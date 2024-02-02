@@ -49,10 +49,9 @@ public partial class Valid_IDpage : ContentPage
     }
 
 
-
     private async void btnFontimage_Clicked(object sender, EventArgs e)
     {
-       
+
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -93,13 +92,13 @@ public partial class Valid_IDpage : ContentPage
         App._ValidIDFront = result;
         Frontimage.Source = ImageSource.FromStream(() => stream);
 
-       
+
     }
 
 
     private async void backimage_Clicked(object sender, EventArgs e)
     {
-       
+
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
@@ -140,10 +139,8 @@ public partial class Valid_IDpage : ContentPage
         App._ValidIDBack = result;
         Backimage.Source = ImageSource.FromStream(() => stream);
 
-       
+
     }
-
-
     private async void nextBack_Clicked(object sender, EventArgs e)
     {
         progressLoading.IsVisible = true;

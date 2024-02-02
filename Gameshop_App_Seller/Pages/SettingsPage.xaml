@@ -4,7 +4,10 @@
              x:Class="Gameshop_App_Seller.Pages.SettingsPage"
              Title="SettingsPage" BackgroundColor="#212025">
 
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+                 RefreshColor="DimGray">
+
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -131,4 +134,5 @@
             </Grid>
         </ScrollView>
     </Grid>
+        </RefreshView>
 </ContentPage>

@@ -4,7 +4,10 @@
              x:Class="Gameshop_App_Seller.Pages.ViewProductPage"
              Title="ViewProductPage"  BackgroundColor="#212025">
 
-    <Grid >
+
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+              RefreshColor="DimGray">
+        <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -119,38 +122,50 @@
                     <Label Grid.Row="9" x:Name="itemQuantity" TextTransform="Uppercase" FontSize="20" TextColor="WHITE" />
 
                     <Grid Grid.Row="10" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" HeightRequest="110" Margin="0,30,0,0">
-                        <Grid BackgroundColor="Transparent">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="viewSellerReview" Tapped="viewSellerReview_Tapped"/>
-                            </Grid.GestureRecognizers>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="viewSellerReview" Tapped="viewSellerReview_Tapped"/>
+                        </Grid.GestureRecognizers>
 
-                            <Image x:Name="imgCover" Aspect="AspectFill" HorizontalOptions="FillAndExpand" HeightRequest="150"  VerticalOptions="FillAndExpand"/>
+                        <!-- First row for the image -->
+                        <Grid RowDefinitions="Auto">
+                            <Image x:Name="imgCover" Aspect="AspectFill" HorizontalOptions="FillAndExpand" HeightRequest="150" VerticalOptions="FillAndExpand"/>
+                        </Grid>
 
-                            <!-- Rest of your content inside the Grid -->
+                        <!-- Second row for the content -->
+                        <Grid Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
                             <Border Margin="20,0,0,0" StrokeShape="RoundRectangle 60"
-                              HorizontalOptions="Start"                                              
-                              Grid.Row="1" Grid.Column="0"  
-                              StrokeThickness="3"                            
-                              Stroke="Transparent"                                             
-                              HeightRequest="80" 
-                              WidthRequest="80">
+                HorizontalOptions="Start"
+                Grid.Column="0"
+                StrokeThickness="3"
+                Stroke="Transparent"
+                HeightRequest="80"
+                WidthRequest="80">
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="viewSellerReview_Tapped"/>
                                 </Border.GestureRecognizers>
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>
 
-                            <Frame Grid.Row="1" Grid.Column="1" BorderColor="Transparent" Margin="60,0,0,0"  HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent"  >
+                            <Frame Grid.Column="1" BorderColor="Transparent" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="viewSellerReview_Tapped"/>
                                 </Frame.GestureRecognizers>
-                                <Label VerticalOptions="Center" TextTransform="Uppercase" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
+                                <Grid ColumnSpacing="10" VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" TextTransform="Uppercase" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
+                                    <Label Grid.Column="1" TextTransform="Uppercase" x:Name="shopsolds" FontAttributes="Bold" FontSize="10" TextColor="White" />
+                                </Grid>
                             </Frame>
                         </Grid>
                     </Grid>
-
-
 
                     <Button Text="Buy Now" TextColor="White" Grid.Row="12" 
                         Margin="0,20,0,0" 
@@ -163,4 +178,5 @@
     </VerticalStackLayout>
     </ScrollView>
     </Grid>
+        </RefreshView>
 </ContentPage>

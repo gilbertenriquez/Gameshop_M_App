@@ -9,7 +9,9 @@
     using System.Collections.ObjectModel;
     using System.Reactive.Linq;
     using Firebase.Database.Streaming;
-    
+    using SkiaSharp;
+
+
 
 
 
@@ -92,9 +94,10 @@ namespace Gameshop_App_Seller.Models
         public bool IsConfirmed { get; set; }
         public bool IsConfirmationButtonVisible { get; set; }
 
+        public string banningOption { get; set; }
 
 
-
+        public string Username { get; set; }
 
 
 
@@ -172,7 +175,7 @@ namespace Gameshop_App_Seller.Models
 
 
 
-        public async Task<bool> SellerReviews(string emailreviewer, string date, string rating, string RaterComment, string email, string itemImage)
+        public async Task<bool> SellerReviews(string emailreviewer, string date, string rating, string RaterComment, string email,string username)
         {
             var evaluateEmail = (await ClientUsers
                   .Child("Reviews")
@@ -182,37 +185,32 @@ namespace Gameshop_App_Seller.Models
             var admin = new Users()
             {
                 StarReview = rating,
-                comment = RaterComment,
-                itemShopImage = itemImage,
+                comment = RaterComment,              
                 EmailReviewer = emailreviewer,
+                Username = username,
                 Date = date,
                 MAIL = email,
 
             };
             await ClientUsers
-                      .Child($"Reviews")
+                      .Child("Reviews")
                       .PostAsync(admin);
             return true;
         }
         public async Task<bool> UploadReview(
-                       FileResult img1,
                        string shopRate,
                        string shopComment,
                        string shopEmail,
                        string emailReviewer,
-                       string date)
+                       string date,
+                       string username)
         {
-
-            var ImageReview = await UploadImage(await img1.OpenReadAsync(),
-                                                 "ReviewImages",
-                                                 img1.FileName);
-
             var ValidIDs = await SellerReviews(emailReviewer,
                                     date,
                                     shopRate,
                                     shopComment,
                                     shopEmail,
-                                    ImageReview);
+                                    username);
 
             return true;
         }
@@ -549,16 +547,41 @@ namespace Gameshop_App_Seller.Models
         {
             try
             {
-                var image = await App.firebaseStorage
+                // Convert the image to PNG format using SkiaSharp
+                using (var stream = new SKManagedStream(img))
+                {
+                    using (var originalBitmap = SKBitmap.Decode(stream))
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            originalBitmap.Encode(SKEncodedImageFormat.Png, 100)
+                                .AsStream()
+                                .CopyTo(memoryStream);
+                            img = new MemoryStream(memoryStream.ToArray());
+                        }
+                    }
+                }
+
+                // Set the file type to PNG if it's not already
+                if (!filename.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    filename = Path.ChangeExtension(filename, "png");
+                }
+
+                var uploadedImage = await App.firebaseStorage
                     .Child($"Images/{proname}/{filename}")
                     .PutAsync(img);
-                return image;
+
+                return uploadedImage;
             }
             catch (Exception ex)
             {
                 return "false";
             }
         }
+
+
+
 
 
         //adding product code
@@ -1042,27 +1065,32 @@ namespace Gameshop_App_Seller.Models
 
         //Valid ID submission
         public async Task<bool> addValidID(
-                                    string img1,
-                                    string img2,
-                                    string img3,
-                                    string img4,
-                                    string email,
-                                    string isVerified)
+     string img1,
+     string img2,
+     string img3,
+     string img4,
+     string email,
+     string isVerified)
         {
             try
             {
                 // Construct the path to the user's account node
-                var userAccountPath = $"Request";
+                var userAccountPath = "Request";
 
-                var evaluateEmail = (await ClientUsers
+                var existingUser = (await ClientUsers
                     .Child($"{userAccountPath}")
                     .OnceAsync<Users>())
-                    .FirstOrDefault(a => a.Object.image1 == img1);
+                    .FirstOrDefault(a =>
+                        a.Object.image1 == img1 ||
+                        a.Object.image2 == img2 ||
+                        a.Object.image3 == img3 ||
+                        a.Object.image4 == img4
+                    );
 
-                if (evaluateEmail == null)
+                if (existingUser == null)
                 {
-                    // Product does not exist, add it
-                    var admin = new Users()
+                    // User does not exist, add it
+                    var newUser = new Users()
                     {
                         image1 = img1,
                         image2 = img2,
@@ -1075,7 +1103,7 @@ namespace Gameshop_App_Seller.Models
                     // Use the user's account path as the child node
                     await ClientUsers
                         .Child($"{userAccountPath}/{App.key}")
-                        .PutAsync(admin);
+                        .PutAsync(newUser);
 
                     return true;
                 }
@@ -1089,6 +1117,7 @@ namespace Gameshop_App_Seller.Models
                 return false;
             }
         }
+
 
 
 
@@ -1116,41 +1145,25 @@ namespace Gameshop_App_Seller.Models
         }
 
 
-
         //sending the application for becoming a seller
         public async Task<bool> SaveValid(
-                        FileResult img1,
-                        FileResult img2,
-                        FileResult img3,
-                        FileResult img4,
-                        string email,
-                        string isVerified)
+                     FileResult img1,
+                     FileResult img2,
+                     FileResult img3,
+                     FileResult img4,
+                     string email,
+                     string isVerified)
         {
+            var ValidImg1 = await UploadImage(await img1.OpenReadAsync(), "ValidImg", img1.FileName);
+            var ValidImg2 = await UploadImage(await img2.OpenReadAsync(), "ValidImg", img2.FileName);
+            var ValidImg3 = await UploadImage(await img3.OpenReadAsync(), "ValidImg", img3.FileName);
+            var ValidImg4 = await UploadImage(await img4.OpenReadAsync(), "ValidImg", img4.FileName);
 
-            var ValidImg1 = await UploadImage(await img1.OpenReadAsync(),
-                                                 "ValidImg",
-                                                 img1.FileName);
-
-            var ValidImg2 = await UploadImage(await img2.OpenReadAsync(),
-                                            "ValidImg",
-                                            img2.FileName);
-            var ValidImg3 = await UploadImage(await img3.OpenReadAsync(),
-                                            "ValidImg",
-                                            img3.FileName);
-            var ValidImg4 = await UploadImage(await img4.OpenReadAsync(),
-                                            "ValidImg",
-                                            img4.FileName);
-
-
-            var ValidIDs = await addValidID(ValidImg1,
-                                    ValidImg2,
-                                    ValidImg3,
-                                    ValidImg4,
-                                    email,
-                                    isVerified);
+            var ValidIDs = await addValidID(ValidImg1, ValidImg2, ValidImg3, ValidImg4, email, isVerified);
 
             return true;
         }
+
 
 
         public async Task<ObservableCollection<Users>> GetDeniedApplicationsListAsync()

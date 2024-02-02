@@ -51,19 +51,24 @@ public partial class VerifyingPage : ContentPage
 
     private async void btnFrontimage_Clicked(object sender, EventArgs e)
     {
-       
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
             FileTypes = FilePickerFileType.Images
         });
+
         if (result == null) return;
 
         FileInfo fi = new(result.FullPath);
         var size = fi.Length;
 
-        if (size > 524288)
+        // Set the maximum size limit to 50 MB (in bytes)
+        var maxSizeLimit = 50 * 1024 * 1024; // 50 MB in bytes
+
+        if (size > maxSizeLimit)
         {
+            // Handle the case where the file size exceeds the limit
+            // Display a message or take appropriate action
             var snackbarOptions = new SnackbarOptions
             {
                 BackgroundColor = Color.FromRgb(32, 32, 40),
@@ -73,7 +78,7 @@ public partial class VerifyingPage : ContentPage
                 Font = Font.SystemFontOfSize(10),
                 ActionButtonFont = Font.SystemFontOfSize(10)
             };
-            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+            const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size. Thank you!";
             const string actionButtonText = "Got it!";
             var duration = TimeSpan.FromSeconds(10);
             var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
@@ -81,28 +86,32 @@ public partial class VerifyingPage : ContentPage
             await snackbar.Show(cancellationTokenSource.Token);
             return;
         }
+
         var stream = await result.OpenReadAsync();
         App._ValidIDFrontSelfie = result;
         Frontimage.Source = ImageSource.FromStream(() => stream);
-
-
     }
 
     private async void btnBackimage_Clicked(object sender, EventArgs e)
     {
-        
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Select main image",
             FileTypes = FilePickerFileType.Images
         });
+
         if (result == null) return;
 
         FileInfo fi = new(result.FullPath);
         var size = fi.Length;
 
-        if (size > 524288)
+        // Set the maximum size limit to 50 MB (in bytes)
+        var maxSizeLimit = 50 * 1024 * 1024; // 50 MB in bytes
+
+        if (size > maxSizeLimit)
         {
+            // Handle the case where the file size exceeds the limit
+            // Display a message or take appropriate action
             var snackbarOptions = new SnackbarOptions
             {
                 BackgroundColor = Color.FromRgb(32, 32, 40),
@@ -112,7 +121,7 @@ public partial class VerifyingPage : ContentPage
                 Font = Font.SystemFontOfSize(10),
                 ActionButtonFont = Font.SystemFontOfSize(10)
             };
-            const string text = "The image you have selected is more than 0.50MB please ensure that the size of the image is less than the maximum size. Thank you!";
+            const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size. Thank you!";
             const string actionButtonText = "Got it!";
             var duration = TimeSpan.FromSeconds(10);
             var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
@@ -120,13 +129,12 @@ public partial class VerifyingPage : ContentPage
             await snackbar.Show(cancellationTokenSource.Token);
             return;
         }
+
         var stream = await result.OpenReadAsync();
         App._ValidIDBackSelfie = result;
         backimage.Source = ImageSource.FromStream(() => stream);
-
-
-        
     }
+
 
     private bool isSaveInProgress = false;
 

@@ -4,7 +4,11 @@
              x:Class="Gameshop_App_Seller.Pages.ProfileDetail"
              Title="ProfileDetail"  BackgroundColor="#212025">
 
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+           RefreshColor="DimGray">
+
+
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -22,7 +26,7 @@
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Margin="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
+                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
                   RowSpacing="20">
 
                     <Border Grid.Row="1"  Margin="0,-70,0,0">
@@ -86,7 +90,7 @@
 
                     <Label Text="Address:" TextColor="white"  Grid.Row="12"/>
                     <Frame Grid.Row="13"   BackgroundColor="WHITE" BorderColor="#212025" Padding="0,0">
-                        <Entry x:Name="Addressentry"   TextColor="white"/>
+                            <Entry x:Name="Addressentry"   TextColor="#212025"/>
                     </Frame>
                     <Label Grid.Row="14" 
                             Text="Birthday" 
@@ -114,7 +118,7 @@
                              x:Name="genderPicker" 
                              TitleColor="GhostWhite" 
                              Title="Select Gender"                       
-                             TextColor="white" 
+                             TextColor="#212025" 
                          IsEnabled="True">
 
                         <Picker.ItemsSource  >
@@ -126,8 +130,22 @@
                     </Picker>
                     </Frame>
 
-                    <Button Text="Update Profile" 
-                        Grid.Row="18"
+
+                        <StackLayout Grid.Row="18"  Margin="0,0,0,20">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Linkuptosite" Tapped="Linkuptosite_Tapped"  />
+                            </StackLayout.GestureRecognizers>
+
+                            <Label Text="Data Privacy Act of 2012 (Republic Act No. 10173)" TextColor="LightGray" FontSize="10" />
+
+                            <Label Text="Republic of the Philippines. (2012). Republic Act No. 10173. An Act Protecting Individual Personal Information in Information and Communications Systems in the Government and the Private Sector, Creating for this Purpose the National Privacy Commission, and for Other Purposes." 
+TextColor="LightGray"  FontSize="8"  />
+
+                        </StackLayout>
+
+
+                        <Button Text="Update Profile" 
+                        Grid.Row="19"
                          x:Name="updateProfileBTN"
                          BackgroundColor="#d22f3d"
                          TextColor="White"
@@ -142,4 +160,6 @@
 
         </StackLayout>
     </Grid>
+        </RefreshView>
+
 </ContentPage>

@@ -12,7 +12,20 @@ public partial class UserPurchaseHistory : ContentPage
 
     }
 
-
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            await OnAppearingPurchase();
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
 
     protected async Task OnAppearingPurchase()
     {

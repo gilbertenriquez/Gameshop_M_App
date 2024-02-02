@@ -144,7 +144,33 @@ public partial class SignUpPage : INotifyPropertyChanged
             }
         }
     }
-   
+
+    private async void Linkuptosite_Tapped(object sender, TappedEventArgs e)
+    {
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            return;
+        }
+
+        try
+        {
+            progressLoading.IsVisible = true; // Show the loading indicator
+
+            // Open the URI asynchronously
+            await Launcher.OpenAsync(new Uri("https://privacy.gov.ph/data-privacy-act/"));
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions, e.g., if the URI is invalid or the app doesn't have permission to open the URI.
+            Console.WriteLine($"Error opening URI: {ex.Message}");
+        }
+        finally
+        {
+            progressLoading.IsVisible = false; // Hide the loading indicator in both success and failure cases
+        }
+    }
+
 }
 
 

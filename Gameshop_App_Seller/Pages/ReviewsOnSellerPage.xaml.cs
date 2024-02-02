@@ -1,6 +1,7 @@
 using Firebase.Auth;
 using Gameshop_App_Seller.Models;
 using System.Reflection;
+using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages
 {
@@ -9,6 +10,7 @@ namespace Gameshop_App_Seller.Pages
         private Users reviewseller = new();
         private string userEMAIL;
         private List<Users> userReviews;
+        private string EmailReviewers;
 
 
         public ReviewsOnSellerPage()
@@ -23,6 +25,24 @@ namespace Gameshop_App_Seller.Pages
             App.key = userkey;
         }
 
+
+        private async void refreshView_Refreshing(object sender, EventArgs e)
+        {
+            try
+            {
+                // Perform the data refreshing logic here
+                await OnAppearingReview();
+                OnAppearing();
+
+                // Stop the refreshing animation
+                refreshView.IsRefreshing = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during refresh: {ex.Message}");
+            }
+        }
+
         protected async Task OnAppearingReview()
         {
             try
@@ -34,9 +54,7 @@ namespace Gameshop_App_Seller.Pages
                 var deniedApplicationsList = await reviewseller.GetReviewListAsync();
 
                 // Filter the list to include only reviews with the user's email
-                userReviews = deniedApplicationsList
-     .Where(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase))
-     .ToList();
+                userReviews = deniedApplicationsList.Where(app => app.MAIL.Equals(userEmail, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 if (userReviews.Any())
                 {
@@ -46,6 +64,7 @@ namespace Gameshop_App_Seller.Pages
                     foreach (var review in userReviews)
                     {
                         SetStarRating(review.StarReview);
+                        review.EmailReviewer = EmailReviewers;
                     }
                 }
                 else
@@ -58,7 +77,6 @@ namespace Gameshop_App_Seller.Pages
                 Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
             }
         }
-
 
         private void SetStarRating(string starReview)
         {

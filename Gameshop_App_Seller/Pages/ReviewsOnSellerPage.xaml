@@ -4,7 +4,11 @@
              x:Class="Gameshop_App_Seller.Pages.ReviewsOnSellerPage"
              Title="ReviewsOnSellerPage"  BackgroundColor="#212025">
 
-    <Grid Background="Transparent" BackgroundColor="Transparent">
+
+
+    <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
+                      RefreshColor="DimGray">
+        <Grid Background="Transparent" BackgroundColor="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -48,9 +52,9 @@
                         <DataTemplate>
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <Frame BackgroundColor="#212025" Padding="5" BorderColor="White" Margin="20" VerticalOptions="Start">
-                                    <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
-                                        <Image Grid.Row="0" HorizontalOptions="Start" x:Name="TransactionImage" Source="{Binding itemShopImage}" HeightRequest="200" Aspect="AspectFit"/>
-                                        <Label Grid.Row="2" Text="{Binding comment}" FontSize="Default" TextColor="White" />
+                                        <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" Margin="20" RowSpacing="5">
+                                            <Label Grid.Row="1" Text="{Binding Username}" FontSize="Default" TextColor="White" />
+                                            <Label Grid.Row="2" Text="{Binding comment}" FontSize="Default" TextColor="White" />
                                         <Label Grid.Row="5" x:Name="RateLabel" Text="{Binding StarReview}" FontSize="Default" TextColor="White" />
                                         <Label Grid.Row="4" Text="{Binding Date}" FontSize="Default" TextColor="White" />
                                         <StackLayout Grid.Row="6" HorizontalOptions="Start" Orientation="Horizontal" HeightRequest="30">
@@ -74,4 +78,6 @@
 
         </StackLayout>
     </Grid>
+
+        </RefreshView>
 </ContentPage>

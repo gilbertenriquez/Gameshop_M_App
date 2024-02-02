@@ -27,6 +27,7 @@ namespace Gameshop_App_Seller.Pages
         }
 
 
+
     
 
         private void InitializeStarButtons()
@@ -93,56 +94,7 @@ namespace Gameshop_App_Seller.Pages
             }
         }
 
-        private async void BTNupload_Clicked(object sender, EventArgs e)
-        {
-            progressLoading.IsVisible = true;
-            var result = await FilePicker.PickAsync(new PickOptions
-            {
-                PickerTitle = "Select main image",
-                FileTypes = FilePickerFileType.Images
-            });
-
-            if (result == null)
-                return;
-
-            FileInfo fi = new(result.FullPath);
-            var size = fi.Length;
-
-            // Set the maximum allowed size to 50MB (50 * 1024 * 1024 bytes)
-            var maxSize = 50 * 1024 * 1024;
-
-            if (size > maxSize)
-            {
-                var snackbarOptions = new SnackbarOptions
-                {
-                    BackgroundColor = Color.FromRgb(32, 32, 40),
-                    TextColor = Colors.WhiteSmoke,
-                    ActionButtonTextColor = Colors.White,
-                    CornerRadius = new CornerRadius(10),
-                    Font = Font.SystemFontOfSize(10),
-                    ActionButtonFont = Font.SystemFontOfSize(10)
-                };
-                const string text = "The image you have selected is more than 50MB. Please ensure that the size of the image is less than the maximum size (50MB). Thank you!";
-                const string actionButtonText = "Got it!";
-                var duration = TimeSpan.FromSeconds(10);
-                var snackbar = Snackbar.Make(text, null, actionButtonText, duration, snackbarOptions);
-
-                await snackbar.Show(cancellationTokenSource.Token);
-                return;
-            }
-
-            var stream = await result.OpenReadAsync();
-            App._mainimgResult = result;
-            photoITEM.Source = ImageSource.FromStream(() => stream);
-            progressLoading.IsVisible = false;
-        }
-
-        private void BTNremove_Clicked(object sender, EventArgs e)
-        {
-           
-            photoITEM.Source = null;
-           
-        }
+       
 
        private async void BTNsubmit_Clicked(object sender, EventArgs e)
 {
@@ -153,11 +105,11 @@ namespace Gameshop_App_Seller.Pages
                 await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
                 return;
             }
-
+            string username = await App.FirebaseService.GetUserFullNameByEmail(App.email);
 
             var TodayDate = DateTime.Now.ToString("MM-dd-yyyy");
 
-            var result = await ReviewUser.UploadReview(_mainimgResult, ratingLabel.Text, commentTXT.Text, userEmails,App.email, TodayDate);
+            var result = await ReviewUser.UploadReview(ratingLabel.Text, commentTXT.Text, userEmails,App.email, TodayDate, username);
 
     if (result)
     {

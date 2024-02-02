@@ -23,6 +23,23 @@ public partial class SellerReviews : ContentPage
         OnAppearingReview();
     }
 
+
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            // Perform the data refreshing logic here
+            await OnAppearingReview();
+            OnAppearing();
+
+            // Stop the refreshing animation
+            refreshView.IsRefreshing = false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during refresh: {ex.Message}");
+        }
+    }
     protected async Task OnAppearingReview()
     {
         try
