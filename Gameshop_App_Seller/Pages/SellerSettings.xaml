@@ -45,8 +45,8 @@
                         <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
 
                             <Border StrokeShape="RoundRectangle 60" HorizontalOptions="StartAndExpand"
-                     Grid.Row="1" Margin="20" StrokeThickness="3"
-                     Stroke="Transparent"
+                     Grid.Row="1" Margin="20" StrokeThickness="2"
+                     Stroke="White"
                      HeightRequest="80" WidthRequest="80">
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>

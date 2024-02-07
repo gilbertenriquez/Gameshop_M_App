@@ -84,28 +84,23 @@ public partial class LoginPage : INotifyPropertyChanged
  
     private async void btnLOGIN_Clicked(object sender, EventArgs e)
     {
+        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            progressLoading.IsVisible = false;
             return;
         }
 
         if (emailEntry == null || string.IsNullOrEmpty(emailEntry.Text?.Trim()) || string.IsNullOrEmpty(passwordEntry.Text))
         {
             await DisplayAlert("Alert!", "Please fill up your Email and Password!", "Got it!");
+            progressLoading.IsVisible = false;
             return;
         }
 
-        string cleanedEmail = emailEntry.Text.Trim().ToLower(); // Convert to lowercase
-
-        var result = await ulogin.AdminLogin(cleanedEmail, passwordEntry.Text);
-        progressLoading.IsVisible = true;
-
-        string userUid = await GetUserKeyByEmail(cleanedEmail);
-      
-
+        string cleanedEmail = emailEntry.Text.Trim().ToLower(); // Convert to lowercase     
         string userEmail = emailEntry.Text;
-
         string banType = await App.FirebaseService.GetBanType(userEmail);
 
         if (banType.Equals("Temporary ban", StringComparison.OrdinalIgnoreCase))
@@ -121,6 +116,9 @@ public partial class LoginPage : INotifyPropertyChanged
             return;
         }
 
+        var result = await ulogin.UserLogin(cleanedEmail, passwordEntry.Text);
+        string userUid = await GetUserKeyByEmail(cleanedEmail);
+
         if (!string.IsNullOrEmpty(userUid))
         {
             App.key = userUid;
@@ -128,19 +126,20 @@ public partial class LoginPage : INotifyPropertyChanged
 
             if (result)
             {
-                await DisplayAlert("Information!", "Log In Successfully!", "OK!");
-                emailEntry.Text = "";
-                passwordEntry.Text = "";
+                await DisplayAlert("Information!", "Log In Successfully!", "OK");
                 await Navigation.PushModalAsync(new BuyerHomePage(userUid));
+                progressLoading.IsVisible = false;
             }
             else
             {
-                await DisplayAlert("Information!", "Log In Failed!", "OK!");
+                await DisplayAlert("Information!", "Log In Failed!", "OK");
+                progressLoading.IsVisible = false;
             }
         }
         else
         {
-            await DisplayAlert("Information!", "Invalid Email or Password", "OK!");
+            await DisplayAlert("Information!", "Invalid Email or Password", "OK");
+            progressLoading.IsVisible = false;
         }
 
         progressLoading.IsVisible = false;

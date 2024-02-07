@@ -3,6 +3,10 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
 using Gameshop_App_Seller.Models;
 using static Gameshop_App_Seller.App;
+using Firebase.Auth;
+using System;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Gameshop_App_Seller.Pages;
 
@@ -11,6 +15,7 @@ public partial class ProfileDetail : ContentPage
     CancellationTokenSource cancellationTokenSource = new();
     private string userId;
     private Users updateProfile = new();
+    private Users userSnapshot;
     public ProfileDetail()
 	{
         
@@ -22,8 +27,9 @@ public partial class ProfileDetail : ContentPage
     public ProfileDetail(string userId)
     {
         InitializeComponent();
+        this.userId = userId;
         OnAppearing();
-        this.userId = userId; // Store the user ID
+      // Store the user ID
     }
 
     private async void refreshView_Refreshing(object sender, EventArgs e)
@@ -54,7 +60,7 @@ public partial class ProfileDetail : ContentPage
             var userAccountPath = $"Account/{userId}";
 
             // Retrieve the user data from the database
-            var userSnapshot = await ClientUsers
+            userSnapshot = await ClientUsers
                 .Child(userAccountPath)
                 .OnceSingleAsync<Users>();
 
@@ -70,20 +76,15 @@ public partial class ProfileDetail : ContentPage
                         CacheValidity = TimeSpan.FromDays(1)
                     }
                     : "account.png";
-
+         
+                Passwordentry.Text = userSnapshot.PASSWORD;
                 fnameEntry.Text = userSnapshot.FNAME;
                 lnameEntry.Text = userSnapshot.LNAME;
                 Emailentry.Text = userSnapshot.MAIL;
-                Passwordentry.Text = userSnapshot.PASSWORD;
                 Addressentry.Text = userSnapshot.Haddress;
-                birthdayPicker.Date = DateTime.Parse(userSnapshot.BIRTHDAY);                
+                birthdayPicker.Date = DateTime.Parse(userSnapshot.BIRTHDAY);
                 genderPicker.SelectedItem = userSnapshot.GENDER;
-            }
-            else
-            {
-                // Handle the case where user data is not found
-                // You might want to display an error message or handle it accordingly
-            }
+            }          
         }
         catch (Exception ex)
         {
@@ -91,6 +92,12 @@ public partial class ProfileDetail : ContentPage
             Console.WriteLine($"Error: {ex.Message}");
         }
     }
+
+  
+
+
+
+
 
 
     private async void UploadProfileImage_Clicked(object sender, EventArgs e)
@@ -141,34 +148,63 @@ public partial class ProfileDetail : ContentPage
     {
         progressLoading.IsVisible = true;
 
-
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
+            progressLoading.IsVisible = false;
             return;
         }
+
+        string profilePictureSource = null;
+
+        if (_mainimgResult != null)
+        {
+            // If _mainimgResult is not null, use its FullPath
+            profilePictureSource = _mainimgResult.FullPath;
+            progressLoading.IsVisible = false;
+        }
+        else if (!string.IsNullOrEmpty(userSnapshot.ProfilePicture))
+        {
+            // If _mainimgResult is null, use the existing ProfilePicture from userSnapshot
+            profilePictureSource = userSnapshot.ProfilePicture;
+            progressLoading.IsVisible = false;
+        }
+        else
+        {
+            // If both _mainimgResult and userSnapshot.ProfilePicture are null, use a default image
+            profilePictureSource = "account.png";
+            progressLoading.IsVisible = false;
+        }
+
         // Assuming _mainimgResult is an instance of FileResult obtained from a file picker
+        progressLoading.IsVisible = true;
         var result = await updateProfile.Update(
-            _mainimgResult, // Assuming you want to pass the file path or null if _mainimgResult is null
+            _mainimgResult, // Pass the FileResult directly
+            userSnapshot,
             Emailentry.Text,
-            birthdayPicker.Date.ToString("dd-MM-yyyy"), // Use Date property to get the selected date
+            birthdayPicker.Date.ToString("dd-MM-yyyy"),
             fnameEntry.Text,
             lnameEntry.Text,
-            genderPicker.SelectedItem?.ToString(), // Use SelectedItem property to get the selected item or null if nothing is selected
+            genderPicker.SelectedItem?.ToString(),
             Addressentry.Text,
-            Passwordentry.Text
-        );
+            // Pass null if Passwordentry.Text is empty or null
+            string.IsNullOrEmpty(Passwordentry.Text) ? null : Passwordentry.Text);
 
         if (result)
         {
+            progressLoading.IsVisible = true;
             await DisplayAlert("Message", "Update Successfully", "OK");
+            progressLoading.IsVisible = false;
         }
         else
         {
             await DisplayAlert("Message", "Update Not Successfully", "OK");
+            progressLoading.IsVisible = false;
         }
+        // Update the ProfilePictureUser.Source based on the condition above
         progressLoading.IsVisible = false;
     }
+
 
     private void RemoveIMGbtn_Clicked(object sender, EventArgs e)
     {

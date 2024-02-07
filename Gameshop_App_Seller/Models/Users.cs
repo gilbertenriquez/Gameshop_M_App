@@ -17,6 +17,7 @@
 
 
 
+
 namespace Gameshop_App_Seller.Models
 {
     public class Users
@@ -235,22 +236,35 @@ namespace Gameshop_App_Seller.Models
         //}
 
         //login code
-        public async Task<bool> AdminLogin(string email, string password)
+        public async Task<bool> UserLogin(string email, string password)
         {
             try
             {
-                var evaluateEmail = (await ClientUsers
+                var user = (await ClientUsers
                     .Child("Account")
                     .OnceAsync<Users>())
-                    .FirstOrDefault(a => a.Object.MAIL == email && a.Object.PASSWORD == password);
+                    .FirstOrDefault(a => a.Object.MAIL == email);
 
-                return evaluateEmail != null;
+                if (user != null)
+                {
+                    // Retrieve the hashed password from the user object
+                    string hashedPassword = user.Object.PASSWORD;
+
+                    // Verify the provided password against the stored hashed password using BCrypt
+                    bool passwordMatch = BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+
+                    return passwordMatch;
+                }
+
+                return false; // User not found
             }
             catch
             {
                 return false;
             }
         }
+
+
 
         public async Task<string> UploadProfilePicture(Stream img, string imgProfile, string filename)
         {
@@ -268,14 +282,15 @@ namespace Gameshop_App_Seller.Models
         }
 
         public async Task<bool> UpdateUserData(
-                                string ProfilePic,
-                                string email,
-                                string birthday,
-                                string fName,
-                                string lName,
-                                string gender,
-                                string hAddress,
-                                string password)
+    string ProfilePic,
+    string snapShot,
+    string email,
+    string birthday,
+    string fName,
+    string lName,
+    string gender,
+    string hAddress,
+    string newPassword) // Include the new password parameter
         {
             try
             {
@@ -308,13 +323,29 @@ namespace Gameshop_App_Seller.Models
                     if (!string.IsNullOrEmpty(hAddress))
                         existingUser.Haddress = hAddress;
 
-                    if (!string.IsNullOrEmpty(password))
-                        existingUser.PASSWORD = password;
+                    // Check if a new password is provided
+                    if (!string.IsNullOrEmpty(newPassword))
+                    {
+                        // Hash the new password
+                        string hashedNewPassword = BCrypt.Net.BCrypt.HashPassword(newPassword, BCrypt.Net.BCrypt.GenerateSalt());
 
-                    existingUser.ProfilePicture = ProfilePic;
+                        // Verify if the new password is different from the existing hashed password
+                        if (newPassword != snapShot)
+                        {
+                            // New password is different from the existing hashed password, update it
+                            existingUser.PASSWORD = hashedNewPassword;
+                        }
+                        else
+                        {
+                            // If the new password is the same as the existing hashed password, no need to update
+                            // Set the new hashed password
+                            existingUser.PASSWORD = snapShot;
+                        }
 
-                    // Ensure the Product property remains unchanged
-                    //existingUser.Product = existingUser.Product;
+                    }
+
+                    if (!string.IsNullOrEmpty(ProfilePic))
+                        existingUser.ProfilePicture = ProfilePic;
 
                     // Use the user's account path as the child node
                     await ClientUsers
@@ -336,25 +367,36 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
+
+
+
         public async Task<bool> Update(FileResult ProfilePic,
-                                           string email,
-                                           string birthday,
-                                           string fname,
-                                           string lname,
-                                           string address,
-                                           string gender,
-                                           string password)
+                                 Users userSnapshot,
+                                 string email,
+                                 string birthday,
+                                 string fname,
+                                 string lname,
+                                 string address,
+                                 string gender,
+                                 string password)
         {
-            var _mainimg = await UploadProfilePicture(await ProfilePic.OpenReadAsync(),
-                                             "ProfilePictureUser",
-                                             ProfilePic.FileName);
+            string profilePicturePath = null;
 
-
-
-            var _main1 = await UpdateUserData(_mainimg, email, birthday, fname, lname, address, gender, password);
-
+            if (ProfilePic != null)
+            {
+                // If ProfilePic is not null, upload the new profile picture
+                profilePicturePath = await UploadImage(await ProfilePic.OpenReadAsync(),
+                                                                "ProfilePictureUser",
+                                                                ProfilePic.FileName);
+            }
+            else if (!string.IsNullOrEmpty(userSnapshot.ProfilePicture))
+            {
+                profilePicturePath = userSnapshot.ProfilePicture;
+            }
+               var _main1 = await UpdateUserData(profilePicturePath, userSnapshot.PASSWORD, email, birthday, fname, lname, address, gender, password);
             return true;
         }
+
 
         //shop area
 
@@ -423,25 +465,46 @@ namespace Gameshop_App_Seller.Models
 
 
         public async Task<bool> UpdateShop(FileResult ShopProfilePic,
-                                           FileResult ShopCover,
-                                           string Shopname,
-                                           string ShopContactNumber,
-                                           string messengerLink)
+                                    FileResult ShopCover,
+                                    Users userSnapshot, // Pass userSnapshot as a parameter
+                                    string Shopname,
+                                    string ShopContactNumber,
+                                    string messengerLink)
         {
-            var ShopProfile = await UploadProfilePicture(await ShopProfilePic.OpenReadAsync(),
-                                             "ProfilePictureShop",
-                                             ShopProfilePic.FileName);
+            string shopProfilePath = null;
+            string shopCoverPath = null;
 
-            var ShopCoverPic = await UploadProfilePicture(await ShopCover.OpenReadAsync(),
-                                            "CoverPictureShop",
-                                            ShopProfilePic.FileName);
+            if (ShopProfilePic != null)
+            {
+                // If ShopProfilePic is not null, upload the new shop profile picture
+                shopProfilePath = await UploadProfilePicture(await ShopProfilePic.OpenReadAsync(),
+                                                             "ProfilePictureShop",
+                                                             ShopProfilePic.FileName);
+            }
+            else if (!string.IsNullOrEmpty(userSnapshot?.ShopProfile))
+            {
+                // If ShopProfilePic is null, but userSnapshot has an existing shop profile picture, use it
+                shopProfilePath = userSnapshot.ShopProfile;
+            }
 
+            if (ShopCover != null)
+            {
+                // If ShopCover is not null, upload the new shop cover picture
+                shopCoverPath = await UploadProfilePicture(await ShopCover.OpenReadAsync(),
+                                                           "CoverPictureShop",
+                                                           ShopCover.FileName);
+            }
+            else if (!string.IsNullOrEmpty(userSnapshot?.ShopCoverImg))
+            {
+                // If ShopCover is null, but userSnapshot has an existing shop cover picture, use it
+                shopCoverPath = userSnapshot.ShopCoverImg;
+            }
 
-
-            var ShopUpdates = await UpdateUserShop(ShopProfile, ShopCoverPic, Shopname, ShopContactNumber, messengerLink);
+            var shopUpdates = await UpdateUserShop(shopProfilePath, shopCoverPath, Shopname, ShopContactNumber, messengerLink);
 
             return true;
         }
+
 
 
         //shop area
@@ -507,12 +570,15 @@ namespace Gameshop_App_Seller.Models
 
                 if (user == null)
                 {
+                    // Hash the password using BCrypt
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt());
+
                     var newUser = new Users()
                     {
                         MAIL = email,
                         FNAME = name,
                         LNAME = lname,
-                        PASSWORD = password,
+                        PASSWORD = hashedPassword,
                         Haddress = address,
                         BIRTHDAY = birthday,
                         GENDER = gender
@@ -527,11 +593,14 @@ namespace Gameshop_App_Seller.Models
                     return RegistrationResult.EmailExists;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Exception during user registration: {ex}");
                 return RegistrationResult.Error;
             }
         }
+
+
 
         public enum RegistrationResult
         {

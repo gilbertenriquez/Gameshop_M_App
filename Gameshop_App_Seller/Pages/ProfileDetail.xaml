@@ -24,12 +24,12 @@
             </Grid>
         </StackLayout>
 
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Margin="40" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+        <ScrollView Grid.Row="1" Margin="40">
+            <VerticalStackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
                 <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO"                           
                   RowSpacing="20">
 
-                    <Border Grid.Row="1"  Margin="0,-70,0,0">
+                    <Border Grid.Row="1">
                         <Image  Source="account.png" x:Name="ProfilePictureUser" Aspect="AspectFit" HeightRequest="300" />
                     </Border>
                     <Label Grid.Row="2" Text="Upload Your Profile Picture" HorizontalOptions="Center" TextColor="#252525"/>
@@ -59,26 +59,11 @@
                     </Frame>
 
                     <Label Text="Last Name:" TextColor="WHITE"  Grid.Row="6"/>
-                    <Frame  Grid.Row="7"  BackgroundColor="WHITE" BorderColor="white" Padding="0,0">
-                        <Entry x:Name="lnameEntry" IsReadOnly="True"  TextColor="#212025"/>
-                    </Frame>
+                        <Frame  Grid.Row="7"  BackgroundColor="WHITE" BorderColor="white" Padding="0,0">
+                            <Entry x:Name="lnameEntry" IsReadOnly="True"  TextColor="#212025"/>
+                        </Frame>
 
-
-                    <StackLayout Grid.Row="5" VerticalOptions="CenterAndExpand"
-                        x:Name="progressLoading"
-                        IsVisible="False"
-                        AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        AbsoluteLayout.LayoutFlags="All"
-                        BackgroundColor="Transparent">
-                                                <ActivityIndicator
-                        x:Name="ai"
-                        IsRunning="True" IsVisible="True"
-                        HorizontalOptions="CenterAndExpand"
-                        Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
-                    </StackLayout>
-
-
-                    <Label Text="Email:" TextColor="white"  Grid.Row="8"/>
+                        <Label Text="Email:" TextColor="white"  Grid.Row="8"/>
                     <Frame  Grid.Row="9"  BackgroundColor="WHITE" BorderColor="white" Padding="0,0">
                         <Entry x:Name="Emailentry" IsReadOnly="True"  TextColor="#212025"/>
                     </Frame>
@@ -140,6 +125,21 @@
 
                             <Label Text="Republic of the Philippines. (2012). Republic Act No. 10173. An Act Protecting Individual Personal Information in Information and Communications Systems in the Government and the Private Sector, Creating for this Purpose the National Privacy Commission, and for Other Purposes." 
 TextColor="LightGray"  FontSize="8"  />
+
+
+
+                            <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="18"
+        x:Name="progressLoading"
+        IsVisible="False"
+        AbsoluteLayout.LayoutBounds="0,0,1,1"
+        AbsoluteLayout.LayoutFlags="All"
+        BackgroundColor="Transparent">
+                                <ActivityIndicator
+        x:Name="ai"
+        IsRunning="False" IsVisible="False"
+        HorizontalOptions="CenterAndExpand"
+        Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
+                            </StackLayout>
 
                         </StackLayout>
 

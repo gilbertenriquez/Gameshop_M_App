@@ -168,6 +168,22 @@ public partial class Valid_IDpage : ContentPage
             return;
         }
 
+        if (_ValidIDFront == null)
+        {
+            await DisplayAlert("Information", "Please upload the front ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+
+        }
+
+
+        if (_ValidIDBack == null)
+        {
+            await DisplayAlert("Information", "Please upload the back ID image.", "OK");
+            progressLoading.IsVisible = false;
+            return;
+        }
+
         // Continue with navigation if both images are uploaded
         await Navigation.PushModalAsync(new VerifyingPage(UserKey));
         progressLoading.IsVisible = false;
