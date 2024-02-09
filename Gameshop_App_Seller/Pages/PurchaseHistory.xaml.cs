@@ -44,29 +44,40 @@ public partial class PurchaseHistory : ContentPage
 
             if (deniedApplicationsList.Any())
             {
-                // Order the list by confirmation status, unconfirmed items first
-                var orderedList = deniedApplicationsList.OrderBy(item => item.IsConfirmed).ToList();
+                // Filter the list to include only items with matching userEmail
+                var filteredList = deniedApplicationsList.Where(item => item.Seller.ToLower() == userEmail).ToList();
 
-                foreach (var application in orderedList)
+                if (filteredList.Any())
                 {
-                    application.IsConfirmationButtonVisible = !application.IsConfirmed;
-                }
+                    // Order the filtered list by confirmation status, unconfirmed items first
+                    var orderedList = filteredList.OrderBy(item => item.IsConfirmed).ToList();
 
-                purchaselist.ItemsSource = orderedList;
-
-                // Calculate and display total sold quantity for each seller
-                var sellerSoldQuantities = orderedList
-                    .GroupBy(item => item.Seller)
-                    .Select(group => new
+                    foreach (var application in orderedList)
                     {
-                        Seller = group.Key,
-                        TotalSoldQuantity = group.Sum(item => Convert.ToInt32(item.soldQuantity))
-                    });
+                        application.IsConfirmationButtonVisible = !application.IsConfirmed;
+                    }
 
-                // Display total sold quantities in the label
-                foreach (var sellerSoldQuantity in sellerSoldQuantities)
+                    purchaselist.ItemsSource = orderedList;
+
+                    // Calculate and display total sold quantity for each seller
+                    var sellerSoldQuantities = orderedList
+                        .Where(item => item.IsConfirmed) // Only include confirmed items
+                        .GroupBy(item => item.Seller)
+                        .Select(group => new
+                        {
+                            Seller = group.Key,
+                            TotalSoldQuantity = group.Sum(item => Convert.ToInt32(item.soldQuantity))
+                        });
+
+                    // Display total sold quantities in the label
+                    foreach (var sellerSoldQuantity in sellerSoldQuantities)
+                    {
+                        SoldItem.Text = $"{sellerSoldQuantity.TotalSoldQuantity}";
+                    }
+                }
+                else
                 {
-                    SoldItem.Text = $"{sellerSoldQuantity.TotalSoldQuantity}";
+                    await DisplayAlert("Information!", "No Item has been Sold for this User", "OK");
                 }
             }
             else
@@ -79,14 +90,6 @@ public partial class PurchaseHistory : ContentPage
             Console.WriteLine($"Error in OnAppearingDenied: {ex.Message}");
         }
     }
-
-
-
-
-
-
-
-
 
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gameshop_App_Seller.Pages.LoginPage"
-             Title="LoginPage" BackgroundColor="#212025">
+             Title="LoginPage" BackgroundColor="#212025"
+             xmlns:ads="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob">
 
 
 
@@ -17,6 +18,8 @@
         <ScrollView Grid.Row="1" Grid.RowSpan="1">
             <VerticalStackLayout Spacing="10" Margin="40" VerticalOptions="FillAndExpand">
 
+
+                <ads:MTAdView x:Name="AdView" HeightRequest="{OnIdiom Phone=50,Tablet=90,Desktop=120}"/>
                 <Image Source="iconapp.png"  Aspect="AspectFit" Margin="0,0,0,-70"/>
                 <StackLayout VerticalOptions="CenterAndExpand"
                x:Name="progressLoading"

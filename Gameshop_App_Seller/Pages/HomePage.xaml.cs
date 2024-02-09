@@ -39,7 +39,7 @@ public partial class HomePage : ContentPage
                     || string.IsNullOrEmpty(userSnapshot.ShopMessengerLink))
                 {
                     // If any of the properties is empty or null, show an alert or take appropriate action
-                    await DisplayAlert("Error", "Shop details are incomplete. Please update your shop details.", "OK");
+                    await DisplayAlert("Information", "Shop details are incomplete. Please update your shop details.", "OK");
                     await Navigation.PushModalAsync(new ShopDetail(App.key));
                     return;
                 }

@@ -78,7 +78,7 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
 
                                 <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                     <Image 
-                                       x:Name="Frontimage" Source="pluswhite.png" Aspect="AspectFit"                                   
+                                       x:Name="Frontimage" Source="frontid.png" Aspect="AspectFit"                                   
                                         />
                                 </Grid>
                             </Border>
@@ -109,7 +109,7 @@ BackgroundColor="Transparent"  Margin="0,0,0,0"  HeightRequest="20" HorizontalOp
 
                                 <Grid>
                                     <Image Grid.Row="0" 
-                                       x:Name="Backimage"  Source="pluswhite.png"
+                                       x:Name="Backimage"  Source="backid.png"
                                        Aspect="AspectFit" />
                                 </Grid>
                             </Border>

@@ -24,7 +24,6 @@ namespace Gameshop_App_Seller.Models
     {
         private static int NotificationIdCounter = 0;
         public string webAPIKey = "AIzaSyDkunRqHTm1yzzAy59rU_1m9GSxOZkzpoA";
-        FirebaseAuthProvider authProvider;
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public string MAIL { get; set; }
@@ -547,11 +546,7 @@ namespace Gameshop_App_Seller.Models
         //}
 
         //not yet
-        public async Task<bool> ResetPassword(string email)
-        {
-            await authProvider.SendPasswordResetEmailAsync(email);
-            return true;
-        }
+
 
         //public async Task<string> ChangePassword(string token, string password)
         //{
@@ -1055,6 +1050,7 @@ namespace Gameshop_App_Seller.Models
                          FileResult img4,
                          FileResult img5,
                          FileResult img6,
+                         Users ItemMages,
                          string productname,
                          string productDescript,
                          string productprice,
@@ -1063,38 +1059,106 @@ namespace Gameshop_App_Seller.Models
         {
             try
             {
-                var MainImageItem = await UploadImage(await maninimg.OpenReadAsync(),
-                                                     "ProductImg",
-                                                     maninimg.FileName);
 
-                var ITEM1 = await UploadImage(await img1.OpenReadAsync(),
+                string mainItem = null;
+                string image1 = null;
+                string image2 = null;
+                string image3 = null;
+                string image4 = null;
+                string image5 = null;
+                string image6 = null;
+
+                if (mainItem != null)
+                {
+                       var MainImageItem = await UploadImage(await maninimg.OpenReadAsync(),
+                                                     "ProductImg",
+                                                     maninimg.FileName);                 
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.Imagae_1_link))
+                {                  
+                    mainItem = ItemMages.Imagae_1_link;
+                }
+
+                //image1
+                if (image1 != null)
+                {
+                    var ITEM1 = await UploadImage(await img1.OpenReadAsync(),
                                               "ProductImg",
                                               img1.FileName);
-                var ITEM2 = await UploadImage(await img2.OpenReadAsync(),
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image1))
+                {
+                    image1 = ItemMages.image1;
+                }
+
+                //image2
+                if (image2 != null)
+                {
+                    var ITEM2 = await UploadImage(await img2.OpenReadAsync(),
                                               "ProductImg",
                                               img2.FileName);
-                var ITEM3 = await UploadImage(await img3.OpenReadAsync(),
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image2))
+                {
+                    image2 = ItemMages.image2;
+                }
+
+                //image3
+                if (image3 != null)
+                {
+                    var ITEM3 = await UploadImage(await img3.OpenReadAsync(),
                                               "ProductImg",
                                               img3.FileName);
-                var ITEM4 = await UploadImage(await img4.OpenReadAsync(),
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image3))
+                {
+                    image3 = ItemMages.image3;
+                }
+
+                //image4
+                if (image4 != null)
+                {
+                    var ITEM4 = await UploadImage(await img4.OpenReadAsync(),
                                               "ProductImg",
                                               img4.FileName);
-                var ITEM5 = await UploadImage(await img5.OpenReadAsync(),
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image4))
+                {
+                    image4 = ItemMages.image4;
+                }
+
+                //image5
+                if (image5 != null)
+                {
+                    var ITEM5 = await UploadImage(await img5.OpenReadAsync(),
                                               "ProductImg",
                                               img5.FileName);
-                var ITEM6 = await UploadImage(await img6.OpenReadAsync(),
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image5))
+                {
+                    image5 = ItemMages.image5;
+                }
+                //image6
+                if (image6 != null)
+                {
+                    var ITEM6 = await UploadImage(await img6.OpenReadAsync(),
                                               "ProductImg",
                                               img6.FileName);
+                }
+                else if (!string.IsNullOrEmpty(ItemMages.image6))
+                {
+                    image6 = ItemMages.image6;
+                }
 
                 // Pass the productpath parameter to UpdateProductData
                 var isUpdated = await UpdateProductData(
-                                      MainImageItem,
-                                      ITEM1,
-                                      ITEM2,
-                                      ITEM3,
-                                      ITEM4,
-                                      ITEM5,
-                                      ITEM6,
+                                      mainItem,
+                                      image1,
+                                      image2,
+                                      image3,
+                                      image4,
+                                      image5,
+                                      image6,
                                       productname,
                                       productDescript,
                                       productprice,

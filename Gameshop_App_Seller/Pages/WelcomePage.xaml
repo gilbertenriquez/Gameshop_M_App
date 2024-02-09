@@ -32,9 +32,9 @@
                            Color="{StaticResource ButtonColor}" Margin="0,0,0,0" />
                 </StackLayout>
             
-                <Label FontSize="20" 
+                <Label FontSize="19" 
                    Grid.Row="1" 
-                   Margin="0,0,0,0"
+                   Margin="0"
                    Text="Welcome to PixelTrade!" 
                        TextTransform="Uppercase"
                    FontAttributes="Bold"

@@ -1,6 +1,4 @@
-using Firebase.Auth;
 using Gameshop_App_Seller.Models;
-using System.Collections.ObjectModel;
 using static Gameshop_App_Seller.App;
 
 namespace Gameshop_App_Seller.Pages;

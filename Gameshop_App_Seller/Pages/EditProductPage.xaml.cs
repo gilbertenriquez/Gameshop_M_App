@@ -15,6 +15,14 @@ public partial class EditProductPage : ContentPage
     private Users updateProduct = new Users();
     private string productpath;
     private string productemail;
+    private string image1;
+    private string image2;
+    private string image3;
+    private string image4;
+    private string image5;
+    private string image6;
+    private Users ItemMages;
+
     public EditProductPage()
     {
 
@@ -71,8 +79,25 @@ public partial class EditProductPage : ContentPage
         mage6.Source = images6;
         this.productpath = productpath;
         this.productemail = productemail;
+        image1 = images1;
+        image2 = images2;
+        image3 = images3;
+        image4 = images4;
+        image5 = images5;
+        image6 = images6;
+        OnAppearing();       
     }
-
+     protected override async void OnAppearing()
+    {
+        ItemMages = await ClientUsers.Child(productpath).OnceSingleAsync<Users>();
+        ItemMages.Imagae_1_link = mainImageItem;
+        ItemMages.image1 = image1;
+        ItemMages.image2 = image2;
+        ItemMages.image3 = image3;
+        ItemMages.image4 = image4;
+        ItemMages.image5 = image5;
+        ItemMages.image6 = image6;
+    }
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
@@ -217,19 +242,113 @@ public partial class EditProductPage : ContentPage
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
             return;
         }
+   
 
-        // Check if any of the image results is empty or null
-        if (_mainimgResult == null &&
-            _img1Result == null &&
-            _img2Result == null &&
-            _img3Result == null &&
-            _img4Result == null &&
-            _img5Result == null &&
-            _img6Result == null)
-        {        
-            await DisplayAlert("Alert!", "Please upload a new image for all fields to proceed.", "OK");
-            return;
+        string mainItem = null;
+
+        if (_mainimgResult != null)
+        {
+            mainItem = _mainimgResult.FullPath;
         }
+        else if (!string.IsNullOrEmpty(mainImageItem))
+        {
+            mainItem = mainImageItem;
+        }
+        else
+        {
+            mainItem = "account.png";
+        }
+
+        string Itemimage1 = null;
+        if (_img1Result != null)
+
+        {
+            Itemimage1 = _img1Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image1))
+        {
+            Itemimage1 = image1;
+        }
+        else
+        {
+            Itemimage1 = "account.png";
+        }
+
+        string Itemimage2 = null;
+        if (_img2Result != null)
+
+        {
+            Itemimage2 = _img2Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image2))
+        {
+            Itemimage2 = image2;
+        }
+        else
+        {
+            Itemimage2 = "account.png";
+        }
+
+        string Itemimage3 = null;
+        if (_img3Result != null)
+
+        {
+            Itemimage3 = _img3Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image3))
+        {
+            Itemimage3 = image3;
+        }
+        else
+        {
+            Itemimage3 = "account.png";
+        }
+
+        string Itemimage4 = null;
+        if (_img4Result != null)
+
+        {
+            Itemimage4 = _img4Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image4))
+        {
+            Itemimage4 = image4;
+        }
+        else
+        {
+            Itemimage4 = "account.png";
+        }
+
+        string Itemimage5 = null;
+        if (_img5Result != null)
+
+        {
+            Itemimage5 = _img5Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image5))
+        {
+            Itemimage5 = image5;
+        }
+        else
+        {
+            Itemimage5 = "account.png";
+        }
+
+        string Itemimage6 = null;
+        if (_img6Result != null)
+
+        {
+            Itemimage6 = _img6Result.FullPath;
+        }
+        else if (!string.IsNullOrEmpty(image6))
+        {
+            Itemimage6 = image6;
+        }
+        else
+        {
+            Itemimage6 = "account.png";
+        }
+
 
         var result = await updateProduct.UpdateProductUser(
             _mainimgResult,
@@ -239,6 +358,7 @@ public partial class EditProductPage : ContentPage
             _img4Result,
             _img5Result,
             _img6Result,
+            ItemMages,
             itemName.Text,
             itemDescription.Text,
             itemPrice.Text,

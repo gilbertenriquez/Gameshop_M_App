@@ -16,11 +16,11 @@
         <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-80,-5,0" BackgroundColor="#272829"
-            StrokeThickness="0"
-            StrokeShape="RoundRectangle 60">
+ Margin="-5,-40,-5,0" BackgroundColor="#272829"
+ StrokeThickness="0"
+ StrokeShape="RoundRectangle 40">
                 <Grid>
-                    <Image x:Name="imgcover" HorizontalOptions="Fill"  Aspect="AspectFill"/>
+                    <Image x:Name="imgcover" HorizontalOptions="Fill"  Aspect="AspectFit"/>
                     <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -37,7 +37,7 @@
                            FontSize="30" />
                             <HorizontalStackLayout Grid.Column="0" Spacing="10"
                                            HorizontalOptions="Start"  
-                                           Margin="10,80,0,20">
+                                           Margin="10,20,0,0">
                                 <ImageButton x:Name="BTNbackImg" BackgroundColor="Transparent" HeightRequest="20" Source="backbtnwhite.png" Clicked="BTNbackImg_Clicked"/>
 
                             </HorizontalStackLayout>
@@ -50,7 +50,7 @@
                             <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
                                         Grid.Row="1" Margin="10,-5" StrokeThickness="2"
                                         Stroke="White"
-                                        HeightRequest="80" WidthRequest="80">
+                                        HeightRequest="70" WidthRequest="70">
 
                                 <Image x:Name="imglogo" HorizontalOptions="Fill" Aspect="AspectFill"/>
                             </Border>

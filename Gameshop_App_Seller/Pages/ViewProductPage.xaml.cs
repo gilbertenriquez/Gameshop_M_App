@@ -81,7 +81,7 @@ public partial class ViewProductPage : ContentPage
     }
 
 
-    protected  async void OnAppearingSellerSolds()
+    protected async void OnAppearingSellerSolds()
     {
         try
         {
@@ -93,25 +93,26 @@ public partial class ViewProductPage : ContentPage
 
             if (deniedApplicationsList.Any())
             {
-                // Order the list by confirmation status, unconfirmed items first
-                var orderedList = deniedApplicationsList.OrderBy(item => item.IsConfirmed).ToList();
+                // Filter the list to include only items with matching userEmail
+                var filteredList = deniedApplicationsList.Where(item => item.Seller.ToLower() == userEmail).ToList();
 
-                // Calculate and display total sold quantity for each seller
-                var sellerSoldQuantities = orderedList
-                    .GroupBy(item => item.Seller)
-                    .Select(group => new
-                    {
-                        Seller = group.Key,
-                        TotalSoldQuantity = group.Sum(item => Convert.ToInt32(item.soldQuantity))
-                    });
-
-                // Clear previous content
-                shopsolds.Text = "";
-
-                // Display total sold quantities in the label
-                foreach (var sellerSoldQuantity in sellerSoldQuantities)
+                if (filteredList.Any())
                 {
-                    shopsolds.Text += $"SOLDS: {sellerSoldQuantity.TotalSoldQuantity}";
+                    // Order the filtered list by confirmation status, unconfirmed items first
+                    var orderedList = filteredList.OrderBy(item => item.IsConfirmed).ToList();
+
+                    // Calculate and display total sold quantity for each seller
+                    var totalSoldQuantity = orderedList
+                        .Where(item => item.IsConfirmed) // Only include confirmed items
+                        .Sum(item => Convert.ToInt32(item.soldQuantity));
+
+                    // Display total sold quantities in the label
+                    shopsolds.Text = $"SOLDS: {totalSoldQuantity}\n";
+                }
+                else
+                {
+                    // Clear the label if there is no data for the user
+                    shopsolds.Text = "No Item has been Sold for this User";
                 }
             }
             else
@@ -125,6 +126,8 @@ public partial class ViewProductPage : ContentPage
             Console.WriteLine($"Error in OnAppearingSellerSolds: {ex.Message}");
         }
     }
+
+
 
 
     protected override async void OnAppearing()

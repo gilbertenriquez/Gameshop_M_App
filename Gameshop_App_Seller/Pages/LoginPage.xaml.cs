@@ -1,13 +1,7 @@
 using Gameshop_App_Seller.Models;
-using Firebase.Auth;
 using static Gameshop_App_Seller.App;
-using Gameshop_App_Seller.Pages;
 using Plugin.Connectivity;
-using System.Windows.Input;
-using Newtonsoft.Json;
 using System.ComponentModel;
-using Firebase.Database;
-using System.Text.RegularExpressions;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using LiteDB;
@@ -25,15 +19,13 @@ public partial class LoginPage : INotifyPropertyChanged
     {
         Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         InitializeComponent();
-        bool hasKey = Preferences.ContainsKey("token");
-        //if (hasKey)
-        //{
-        //    string token = Preferences.Get("token", "");
-        //    if (!string.IsNullOrEmpty(token))
-        //    {
-        //        Navigation.PushAsync(new HomePage());
-        //    }
-        //}
+        SetBannerId();
+    }
+
+
+    private void SetBannerId()
+    {
+     AdView.AdsId="ca-app-pub-4244621911746003/7849675012";
     }
 
 

@@ -6,9 +6,9 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#212025">
 
+
     <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
-                      RefreshColor="DimGray"
-                     >
+                    RefreshColor="DimGray">
 
 
         <Grid Background="Transparent" BackgroundColor="Transparent">
@@ -25,7 +25,7 @@
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
                     <Grid>
-                        <Image x:Name="imgcover" HorizontalOptions="FillAndExpand"  Aspect="AspectFill"/>
+                        <Image x:Name="imgcover" HorizontalOptions="FillAndExpand"  Aspect="AspectFit"/>
                         <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -90,7 +90,6 @@
                     </Grid>
                 </HorizontalStackLayout>
             </Grid>
-
 
             <ScrollView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="10,-80,0,10">
                 <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
