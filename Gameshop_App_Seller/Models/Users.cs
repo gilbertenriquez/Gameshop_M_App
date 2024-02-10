@@ -8,7 +8,6 @@
     using Firebase.Database;
     using System.Collections.ObjectModel;
     using System.Reactive.Linq;
-    using Firebase.Database.Streaming;
     using SkiaSharp;
 
 
@@ -604,8 +603,6 @@ namespace Gameshop_App_Seller.Models
             Error
         }
 
-
-
         //upload photos of product
         public async Task<string> UploadImage(Stream img, string proname, string filename)
         {
@@ -646,8 +643,6 @@ namespace Gameshop_App_Seller.Models
 
 
 
-
-
         //adding product code
         public async Task<bool> addDesc(string imglink,
                                  string img1,
@@ -660,8 +655,7 @@ namespace Gameshop_App_Seller.Models
                                  string ProdDesc,
                                  string ProdPrice,
                                  string ProdQuan,
-                                 string email)
-        {
+                                 string email){
 
 
             try
@@ -1175,12 +1169,6 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
-
-
-        //not yet
-
-
-        //path and upload a photo to validate
         public async Task<string> UploadValid(Stream img, string proname, string filename)
         {
             try
@@ -1253,7 +1241,6 @@ namespace Gameshop_App_Seller.Models
 
 
 
-
         public async Task<bool> ReportedProduct(string images, string productName, string productPrice, string email, string reportedreason, string reporterEmails)
         {
             var evaluateEmail = (await ClientUsers
@@ -1277,7 +1264,6 @@ namespace Gameshop_App_Seller.Models
             return true;
         }
 
-
         //sending the application for becoming a seller
         public async Task<bool> SaveValid(
                      FileResult img1,
@@ -1291,6 +1277,7 @@ namespace Gameshop_App_Seller.Models
             var ValidImg2 = await UploadImage(await img2.OpenReadAsync(), "ValidImg", img2.FileName);
             var ValidImg3 = await UploadImage(await img3.OpenReadAsync(), "ValidImg", img3.FileName);
             var ValidImg4 = await UploadImage(await img4.OpenReadAsync(), "ValidImg", img4.FileName);
+
 
             var ValidIDs = await addValidID(ValidImg1, ValidImg2, ValidImg3, ValidImg4, email, isVerified);
 

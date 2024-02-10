@@ -183,9 +183,9 @@ public partial class BuyNowPage : ContentPage
 
     private void removeBTN_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
+
         Prooftransraction.Source = null;
-        progressLoading.IsVisible = false;
+
     }
 
     private async void MessengerLink_Clicked(object sender, EventArgs e)
@@ -237,6 +237,11 @@ public partial class BuyNowPage : ContentPage
             return;
         }
 
+        if (Prooftransraction.Source == null)
+        {
+            await DisplayAlert("Information!", "Please Upload your Transaction Image or Screenshot", "OK");
+            return;
+        }
 
         var result = await reciept.PurchaseH(
                 ItemImageSold,
