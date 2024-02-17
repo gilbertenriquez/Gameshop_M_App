@@ -1,7 +1,7 @@
 ﻿using Gameshop_App_Seller.Models;
 using System.Collections.ObjectModel;
 using static Gameshop_App_Seller.App;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 namespace Gameshop_App_Seller.Pages;
@@ -9,12 +9,16 @@ namespace Gameshop_App_Seller.Pages;
 public partial class HomePage : ContentPage
 {
     private Users dusers = new Users();
+    private object lastSelectedItem;
+    private string userkey;
+
     public HomePage()
     {
         LoadUserDataAsync();
         InitializeComponent();
-        OnAppearing();
+        OnAppearing();    
     }
+
 
 
     private async Task LoadUserDataAsync()
@@ -66,9 +70,7 @@ public partial class HomePage : ContentPage
         }
     }
 
-
-
-
+   
     protected override async void OnAppearing()
     {
         try
@@ -77,12 +79,12 @@ public partial class HomePage : ContentPage
             string userEmail = App.email;
 
             // Use the App.FirebaseService.GetUserKeyByEmail method to get the user key
-            string userKey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
+            userkey = await App.FirebaseService.GetUserKeyByEmail(userEmail);
 
-            if (!string.IsNullOrEmpty(userKey))
+            if (!string.IsNullOrEmpty(userkey))
             {
                 // Retrieve and display the user's products
-                var userProducts = await dusers.GetUserProducts(userKey);
+                var userProducts = await dusers.GetUserProducts(userkey);
 
                 if (userProducts.Any())
                 {
@@ -150,6 +152,7 @@ public partial class HomePage : ContentPage
     }
 
 
+
     private async void listproducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -175,6 +178,8 @@ public partial class HomePage : ContentPage
 
                 // Load user data to update UI
 
+                // Update lastSelectedItem
+                lastSelectedItem = selectedUser;
             }
             else
             {
@@ -183,8 +188,6 @@ public partial class HomePage : ContentPage
             }
         }
     }
-
-   
 
     private async void sellerReview_Clicked(object sender, EventArgs e)
     {
@@ -216,17 +219,6 @@ public partial class HomePage : ContentPage
             return;
         }
         await Navigation.PushModalAsync(new SettingsPage(App.key));
-    }
-
-    private void tobeUNSELECTED_Tapped(object sender, TappedEventArgs e)
-    {
-        var selectedUser = ((Frame)sender).BindingContext as Users;
-
-        if (selectedUser != null)
-        {
-            // Toggle the selection
-            listViewProducts.SelectedItem = (listViewProducts.SelectedItem == selectedUser) ? null : selectedUser;
-        }
     }
 
     private async void refreshView_Refreshing(object sender, EventArgs e)
@@ -292,5 +284,33 @@ public partial class HomePage : ContentPage
         }
 
         return false;
+    }
+
+    private async void PreviewTheItem_Tapped(object sender, TappedEventArgs e)
+    {
+
+        var selectedProduct = e.Parameter as Users; // Replace Users with your actual type
+
+        if (selectedProduct != null)
+        {
+            //App.productname = selectedProduct.ProductName?.ToLower();
+            //App.productprice = await vans.GetUserKey(App.productname);
+
+            // Check for null or empty values before passing them to the constructor
+            string productemail = selectedProduct.MAIL ?? string.Empty;
+            string productName = selectedProduct.ProductName ?? "Unknown Product";
+            string productPrice = selectedProduct.ProductPrice ?? "Unknown Price";
+            string productDescriptions = selectedProduct.ProductDesc ?? "Unknown Description";
+            string productQuantity = selectedProduct.ProductQuantity ?? "Unknown Quantity";
+            string mainImage = selectedProduct.Imagae_1_link ?? string.Empty;
+            string image1 = selectedProduct.image1 ?? string.Empty;
+            string image2 = selectedProduct.image2 ?? string.Empty;
+            string image3 = selectedProduct.image3 ?? string.Empty;
+            string image4 = selectedProduct.image4 ?? string.Empty;
+            string image5 = selectedProduct.image5 ?? string.Empty;
+            string image6 = selectedProduct.image6 ?? string.Empty;
+
+            await Navigation.PushModalAsync(new PreviewItem(productemail, productName, productPrice, productDescriptions, productQuantity, mainImage, image1, image2, image3, image4, image5, image6));
+        }
     }
 }

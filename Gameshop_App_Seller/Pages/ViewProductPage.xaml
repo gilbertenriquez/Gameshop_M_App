@@ -51,7 +51,7 @@
         <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
 
 
-                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="10" Background="#212025" Padding="5" >
+                <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO,AUTO" RowSpacing="10" Background="#212025" Padding="5" >
 
 
                 <VerticalStackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -160,14 +160,15 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" TextTransform="Uppercase" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
-                                    <Label Grid.Column="1" TextTransform="Uppercase" x:Name="shopsolds" FontAttributes="Bold" FontSize="10" TextColor="White" />
-                                </Grid>
+                                        <Label Grid.Column="0" TextTransform="Uppercase" x:Name="Shopnames" FontAttributes="Bold" FontSize="Title" TextColor="White" />
+                                    </Grid>
                             </Frame>
                         </Grid>
                     </Grid>
 
-                    <Button Text="Buy Now" TextColor="White" Grid.Row="12" 
+                        <Label Grid.Row="12" Margin="0,-40,0,0" TextTransform="Uppercase" x:Name="shopsolds" FontAttributes="Bold" FontSize="15" VerticalOptions="Center" TextColor="White"/>
+                    
+                        <Button Text="Buy Now" TextColor="White" Grid.Row="13" 
                         Margin="0,20,0,0" 
                         x:Name="BuynowBTN"
                             TextTransform="Uppercase"

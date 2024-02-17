@@ -36,7 +36,15 @@ public partial class ViewProductPage : ContentPage
         ProductName.Text = productName;
         ProductDescription.Text = ProductDescrip;
         ProductPrice.Text = productPrice;
-        itemQuantity.Text = productQuantity;
+        if (productQuantity == "0")
+        {
+            itemQuantity.Text = "Sold Out";
+        }
+        else
+        {
+            itemQuantity.Text = productQuantity;
+        }
+
         OnAppearingSellerSolds();
         PhotoCarousel.ItemsSource = new List<string>
             {
@@ -173,7 +181,6 @@ public partial class ViewProductPage : ContentPage
 
     private async void btnBackImg_Clicked(object sender, EventArgs e)
     {
-        progressLoading.IsVisible = true;
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("No internet connection.", "Please check your network settings.", "OK");
@@ -181,8 +188,8 @@ public partial class ViewProductPage : ContentPage
             return;
         }
         // Navigate back to BuyerHomePage with the userId parameter
-        await Navigation.PushModalAsync(new BuyerHomePage(userId));
-        progressLoading.IsVisible = false;
+        await Navigation.PopModalAsync();
+
     }
 
     private async void ReviewBTN_Clicked(object sender, EventArgs e)

@@ -10,21 +10,22 @@ using static Gameshop_App_Seller.App;
 namespace Gameshop_App_Seller.Pages;
 
 
-public partial class BuyNowPage : ContentPage   
+public partial class BuyNowPage : ContentPage
 {
     CancellationTokenSource cancellationTokenSource = new();
     private string buyer { get; set; }
     private Users reciept = new Users();
-    private string FBMessengerLink {  get; set; }
-    private string ItemImageSold {get; set;}
+    private string FBMessengerLink { get; set; }
+    private string ItemImageSold { get; set; }
     private string shopemail { get; set; }
+    private string QuantityItem { get; set; }
     public BuyNowPage()
     {
         InitializeComponent();
         SetCurrentTimeAndDate();
     }
 
-    public BuyNowPage(string Mlink, string shopnames, string productItemName, string buyermail, string productemail, string itemquantity, string imageProduct,string price)
+    public BuyNowPage(string Mlink, string shopnames, string productItemName, string buyermail, string productemail, string itemquantity, string imageProduct, string price)
     {
         InitializeComponent();
         GetTime.Text = DateTime.Now.ToString("h:mm tt");
@@ -35,6 +36,7 @@ public partial class BuyNowPage : ContentPage
         SellerName.Text = shopnames;
         ItemImage.Source = imageProduct;
         QuantityLabel.Text = itemquantity;
+        QuantityItem = itemquantity;
         this.FBMessengerLink = Mlink;
         ItemImageSold = imageProduct;
         itemPRICE.Text = price;
@@ -224,7 +226,7 @@ public partial class BuyNowPage : ContentPage
 
     private async void ConfirmationBTN_Clicked(object sender, EventArgs e)
     {
-   
+
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
             await DisplayAlert("Alert!", "No internet connection. Please check your network settings.", "OK");
@@ -243,6 +245,24 @@ public partial class BuyNowPage : ContentPage
             return;
         }
 
+
+        int remainingQuantity = GetRemainingQuantity();
+
+        // Parse the quantity label to an integer
+        if (int.TryParse(QuantityLabel.Text, out int quantityToPurchase))
+        {
+            if (quantityToPurchase > remainingQuantity)
+            {
+                await DisplayAlert("Information!", "Insufficient quantity available for purchase.", "OK");
+                return;
+            }
+        }
+        else
+        {
+            await DisplayAlert("Information!", "Invalid quantity.", "OK");
+            return;
+        }
+
         var result = await reciept.PurchaseH(
                 ItemImageSold,
                 TransactionImage,
@@ -255,20 +275,35 @@ public partial class BuyNowPage : ContentPage
                 buyer
             );
 
-            if (result)
-            {
+        if (result)
+        {
             // Purchase was successful, show alert
             progressLoading.IsVisible = true;
             await DisplayAlert("Purchase Confirmed", "Your purchase has been confirmed!", "OK");
             await Navigation.PushModalAsync(new ReviewSeller(shopemail));
             progressLoading.IsVisible = false;
-            }
-            else
-            {
-                // Purchase failed, show an error alert
-                await DisplayAlert("Purchase Failed", "There was an error processing your purchase. Please try again.", "OK");
-            }
-        
+        }
+        else
+        {
+            // Purchase failed, show an error alert
+            await DisplayAlert("Purchase Failed", "There was an error processing your purchase. Please try again.", "OK");
+        }
+
     }
- 
+
+    private int GetRemainingQuantity()
+    {
+        // Logic to retrieve remaining quantity from your data source
+        // Replace this with your actual logic to fetch remaining quantity
+        if (int.TryParse(QuantityItem, out int remainingQuantity))
+        {
+            return remainingQuantity;
+        }
+        else
+        {
+            // Handle the case where QuantityItem cannot be parsed to an integer
+            // For example, return 0 or show an error message
+            return 0;
+        }
+    }
 }

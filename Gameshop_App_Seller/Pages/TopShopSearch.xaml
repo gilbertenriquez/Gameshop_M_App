@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.BuyerHomePage"
-             Title="Home"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#212025">
-
-
+             x:Class="Gameshop_App_Seller.Pages.TopShopSearch"
+             Title="TopShopSearch"  BackgroundColor="#212025">
     <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
                          RefreshColor="DimGray"
                         >
@@ -20,7 +16,7 @@
             <Grid RowDefinitions="AUTO,AUTO,AUTO,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0">
                 <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-100,-5,20" BackgroundColor="#5234a7"
+            Margin="-5,-80,-5,20" BackgroundColor="#5234a7"
             StrokeThickness="0"
             StrokeShape="RoundRectangle ">
                     <Grid>
@@ -41,16 +37,14 @@
                   RowSpacing="1"
                   HorizontalOptions="FillAndExpand"
                   Margin="5" Padding="5">
-
+                           
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
                       HorizontalOptions="FillAndExpand">
 
-                                <Label Grid.Column="0" Text=""
-                           TextColor="#007AFF"
-                           FontFamily="RobotoLight" Margin="40" HorizontalOptions="Start"
-                           FontSize="30" />
+                                <ImageButton Grid.Column="0" HeightRequest="20" Source="backbtnwhite.png" Clicked="ImageButton_Clicked" BackgroundColor="Transparent"  Margin="10,0,0,20" VerticalOptions="End" HorizontalOptions="Start"
+                            />
                                 <HorizontalStackLayout Grid.Column="1" 
-                                           HorizontalOptions="End" Margin="0,100,40,0"
+                                           HorizontalOptions="End" Margin="10,100,40,0"
                                            WidthRequest="30">
                                     <Image Source="verified.png" HeightRequest="30" x:Name="VerifiedImage" Aspect="AspectFit" IsVisible="False"/>
                                     <Image Source="denied.png" HeightRequest="30" x:Name="DeniedImage" Aspect="AspectFit" IsVisible="False"/>
@@ -119,7 +113,7 @@
                        Grid.Column="0"                           
                        HorizontalOptions="FillAndExpand">
                             <SearchBar                                    
-                            Placeholder="Search....." 
+                            Placeholder="Search Shop" 
                            HorizontalOptions="FillAndExpand"
                             BackgroundColor="White" 
                             TextColor="#212025"
@@ -135,13 +129,10 @@
 
 
             <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1" Margin="10">
-                <CollectionView x:Name ="datalist" VerticalOptions="FillAndExpand">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
-                    </CollectionView.ItemsLayout>
+                <CollectionView x:Name ="shopRanking" VerticalOptions="FillAndExpand">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" >
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10" >
                                 <Frame
                                        BorderColor="White"                                      
                                        BackgroundColor="#212025" 
@@ -151,48 +142,45 @@
 
 
                                     <ContentView.GestureRecognizers>
-                                        <TapGestureRecognizer x:Name="ViewProductBTN" Tapped="ViewProductBTN_Tapped_1" CommandParameter="{Binding .}"/>
+                                        <TapGestureRecognizer x:Name="ViewShopBTN" Tapped="ViewShopBTN_Tapped" CommandParameter="{Binding .}"/>
                                     </ContentView.GestureRecognizers>
 
 
-                                    <Grid RowSpacing="20">
+                                    <Grid RowSpacing="10" ColumnSpacing="10">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
+
                                         </Grid.RowDefinitions>
 
-                                        <Image Grid.Row="0" Source="{Binding Imagae_1_link}" Aspect="AspectFit" HeightRequest="80"/>
-                                        <Label Grid.Row="1" TextColor="White" TextTransform="Uppercase" FontSize="Default" Margin="0,10,0,-10" Text="{Binding ProductName}" LineBreakMode="TailTruncation" MaxLines="1" />
-                                        <Label Grid.Row="2" TextTransform="Uppercase" FontSize="Default" Text="{Binding ProductPrice, StringFormat='{0:N2}'}" TextColor="#d22f3d" />
-                                    </Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                            <ColumnDefinition Width="AUTO"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Frame CornerRadius="60" BorderColor="Transparent" Grid.Row="0" Grid.Column="1" Padding="0">
+                                            <Image Source="{Binding ShopProfile}" HorizontalOptions="FillAndExpand" Aspect="AspectFill" HeightRequest="80"/>
+                                        </Frame>
+                                        <Label Grid.Row="0" Grid.Column="1" TextColor="White" VerticalOptions="Center" TextTransform="Uppercase" FontSize="Default" Text=""/>
+                                        <Label Grid.Row="0" Grid.Column="2" TextColor="White" VerticalOptions="Center" TextTransform="Uppercase" FontSize="Default" Text="{Binding ShopName}"/>
+                                        <Label  IsVisible="false" TextTransform="Uppercase" FontSize="Default" Text="{Binding StarReview}" TextColor="#d22f3d"  />
+                                        <Image Grid.Row="0" Grid.Column="3" Source="filledstar.png" Aspect="AspectFit" HeightRequest="18" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <Label Grid.Row="0" Grid.Column="3" Margin="20,0,0,0" TextTransform="Uppercase" VerticalOptions="Center" HorizontalOptions="Start"  FontSize="Default" Text="{Binding AggregatedRating}" TextColor="#d22f3d" />
+                                        <Label IsVisible="false"  FontSize="Default"  Text="{Binding MAIL}" TextColor="#d22f3d" />
+                                    </Grid> 
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50">
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
 
-            <StackLayout  Grid.Row="3"  BackgroundColor="#5234a7">
-                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" ColumnDefinitions="auto,auto,auto,auto"  ColumnSpacing="40" Margin="10,10,20,10" >
-                    <ImageButton HorizontalOptions="Start" Grid.Row="0" Grid.Column="0"                                     
-       Source="circlearround.png" HeightRequest="25"
-             Clicked="ShopBTN_Clicked" BackgroundColor="Transparent"/>
-
-                    <ImageButton Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"                                        
-      Source="paymenthistory.png" HeightRequest="25" BackgroundColor="Transparent"
-            Clicked="ImageButton_Clicked"/>
-
-                    <ImageButton  Grid.Row="0" HeightRequest="25" Grid.Column="3" HorizontalOptions="End"                                        
-       Source="setting.png" BackgroundColor="Transparent"
-      Clicked="SettingsBTN_Clicked"/>
-
-                    <ImageButton Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"                                        
-Source="onlineshop.png" HeightRequest="25" BackgroundColor="Transparent" x:Name="SearchShop"
-      Clicked="SearchShop_Clicked"/>
-                </Grid>
             </StackLayout>
-
         </Grid>
     </RefreshView>
 </ContentPage>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Gameshop_App_Seller.Pages.HomePage"
-             xmlns:behavior="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"    
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#212025">
-
-
+             x:Class="Gameshop_App_Seller.Pages.ShopProduct"
+             Title="ShopProduct" BackgroundColor="#212025">
     <RefreshView x:Name="refreshView" Grid.Row="0" Refreshing="refreshView_Refreshing"
                     RefreshColor="DimGray">
 
@@ -21,11 +17,11 @@
             <Grid RowDefinitions="150,150,AUTO,AUTO"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Border Grid.Row="0"
             Padding="0"
-            Margin="-5,-40,-5,0" BackgroundColor="#272829"
+            Margin="-5,-30,-5,0" BackgroundColor="#272829"
             StrokeThickness="0"
             StrokeShape="RoundRectangle 40">
                     <Grid>
-                        <Image x:Name="imgcover" HorizontalOptions="FillAndExpand"  Aspect="AspectFit"/>
+                        <Image x:Name="imgcover" HorizontalOptions="FillAndExpand"  Aspect="AspectFill"/>
                         <Grid ColumnSpacing="20"
                   RowDefinitions="Auto, Auto, Auto"
                   VerticalOptions="Start"
@@ -35,18 +31,12 @@
 
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *"
                       HorizontalOptions="FillAndExpand">
-
-                                <Label Grid.Column="0" Text=""
-                           TextColor="#007AFF"
-                           FontFamily="RobotoLight" Margin="30" HorizontalOptions="Start"
-                           FontSize="30" />
-
+                                <ImageButton Grid.Column="0" Clicked="ImageButton_Clicked"  HeightRequest="20" Source="backbtnwhite.png" BackgroundColor="Transparent"  Margin="20,40,0,20" VerticalOptions="End" HorizontalOptions="Start"/>
                             </Grid>
-
                             <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
-
+ 
                                 <Border StrokeShape="RoundRectangle 40" HorizontalOptions="StartAndExpand"
-                            Grid.Row="1" Margin="10,-5" StrokeThickness="2"
+                            Grid.Row="1" Margin="10,10,10,0" StrokeThickness="2"
                             Stroke="White"
                             HeightRequest="70" WidthRequest="70">
 
@@ -54,7 +44,7 @@
                                 </Border>
 
                                 <Grid Grid.Column="1">
-                                    <Label Text="Shop Name" TextTransform="Uppercase"  VerticalOptions="Center" x:Name="lblcompanyname"
+                                    <Label Text="Shop Name" TextTransform="Uppercase"  VerticalOptions="CenterAndExpand" x:Name="lblcompanyname"
                                TextColor="White"
                               FontSize="25"
                                FontFamily="RobotoCondensed" />
@@ -64,35 +54,29 @@
                     </Grid>
                 </Border>
 
-                <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand" Margin="5">
-                    <Grid ColumnDefinitions="220,auto,auto"  ColumnSpacing="5" HorizontalOptions="CenterAndExpand">
-                        <Button Text="Add" Grid.Column="2" x:Name="AddProductsBTN"   VerticalOptions="Start" HorizontalOptions="Center"
-                        HeightRequest="50"
-                                TextTransform="Uppercase"
-                       Clicked="AddProdsBTN_Clicked"
-                      TextColor="White" BackgroundColor="#d22f3d"/>
-                        <Button Text="EDIT" Grid.Column="1"  VerticalOptions="Start" HorizontalOptions="Center"
-                                               HeightRequest="50"
-                                
-                                               TextTransform="Uppercase"
-                                              Clicked="EditProdsBTN_Clicked"
-                                             TextColor="White" BackgroundColor="#d22f3d"/>
-                        <Frame Padding="0" Grid.Column="0"  VerticalOptions="Start" HorizontalOptions="Center" >
-                            <SearchBar                           
-                             Placeholder="Search....." 
-                             HorizontalOptions="CenterAndExpand"
-                             BackgroundColor="White" 
-                             TextColor="#212025"
-                             TextChanged="searchBar_TextChanged"
-                             PlaceholderColor="#212025"
-                             x:Name="searchBar"/>
+                <StackLayout  Grid.Row="1" Margin="10">
+                    <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  ColumnSpacing="7" >
+                        <Frame  Margin="0"
+         Padding="0"                              
+        Grid.Row="0"                        
+       Grid.Column="0"                           
+       HorizontalOptions="FillAndExpand">
+                            <SearchBar                                    
+            Placeholder="Search Shop Item" 
+           HorizontalOptions="FillAndExpand"
+            BackgroundColor="White" 
+            TextColor="#212025"
+            PlaceholderColor="#212025"
+            x:Name="searchBar"                          
+            TextChanged="searchBar_TextChanged" />
                         </Frame>
                     </Grid>
-                </HorizontalStackLayout>
+                </StackLayout>
+
             </Grid>
 
             <ScrollView Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="10,-80,0,10">
-                <CollectionView x:Name="listViewProducts"  SelectionMode="Single" SelectionChanged="listproducts_SelectionChanged">
+                <CollectionView x:Name="listViewProducts">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
@@ -110,9 +94,11 @@
                                           CornerRadius="0"
                                            VerticalOptions="Start">
 
+
                                         <ContentView.GestureRecognizers>
-                                            <TapGestureRecognizer x:Name="PreviewTheItem" Tapped="PreviewTheItem_Tapped" CommandParameter="{Binding .}"/>
+                                            <TapGestureRecognizer x:Name="BuyItem" Tapped="BuyItem_Tapped" CommandParameter="{Binding .}"/>
                                         </ContentView.GestureRecognizers>
+                                        
                                         <Grid  RowSpacing="10">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
@@ -143,15 +129,10 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </ScrollView>
-            <StackLayout Grid.Row="2" BackgroundColor="#5234a7">
-                <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"  ColumnSpacing="100" Margin="20,10,20,10" >
-                    <ImageButton HeightRequest="25"  HorizontalOptions="Start" x:Name="sellerReview"
-     Source="rated.png"  Clicked="sellerReview_Clicked" BackgroundColor="Transparent"/>
-                    <ImageButton HeightRequest="25" HorizontalOptions="Center" x:Name="sellerHistory"
-     Source="purchasehistorywhite.png"  Clicked="sellerHistory_Clicked" BackgroundColor="Transparent"/>
-                    <ImageButton HeightRequest="25" HorizontalOptions="End" x:Name="sellerSettings"
-     Source="setting.png"  Clicked="sellerSettings_Clicked" BackgroundColor="Transparent"/>
-                </Grid>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" BackgroundColor="#5234a7" HeightRequest="50">
+                <ImageButton   Source="backbtnwhite.png" 
+BackgroundColor="Transparent" Margin="20,20,0,20" HeightRequest="20" HorizontalOptions="Start" VerticalOptions="Start" IsVisible="false"/>
+
             </StackLayout>
         </Grid>
     </RefreshView>

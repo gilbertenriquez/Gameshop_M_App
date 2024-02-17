@@ -39,7 +39,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -56,37 +55,26 @@
 	  <None Remove="Resources\Fonts\Metropolis-Medium.otf" />
 	  <None Remove="Resources\Fonts\Metropolis-Regular.otf" />
 	  <None Remove="Resources\Images\account.png" />
-	  <None Remove="Resources\Images\back.png" />
-	  <None Remove="Resources\Images\backbtn.png" />
 	  <None Remove="Resources\Images\backbtnwhite.png" />
 	  <None Remove="Resources\Images\backid.png" />
-	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\circlearround.png" />
-	  <None Remove="Resources\Images\contacts.png" />
 	  <None Remove="Resources\Images\denied.png" />
 	  <None Remove="Resources\Images\editwhite.png" />
 	  <None Remove="Resources\Images\filledStar.png" />
 	  <None Remove="Resources\Images\flag.png" />
-	  <None Remove="Resources\Images\forward.png" />
 	  <None Remove="Resources\Images\frontid.png" />
-	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\iconapp.png" />
 	  <None Remove="Resources\Images\iconapp2.png" />
 	  <None Remove="Resources\Images\idwithuser.jpg" />
-	  <None Remove="Resources\Images\messages.png" />
 	  <None Remove="Resources\Images\minuswhite.png" />
-	  <None Remove="Resources\Images\Nextblue.png" />
 	  <None Remove="Resources\Images\notification.png" />
+	  <None Remove="Resources\Images\onlineshop.png" />
 	  <None Remove="Resources\Images\paymenthistory.png" />
 	  <None Remove="Resources\Images\pluswhite.png" />
 	  <None Remove="Resources\Images\purchasehistorywhite.png" />
 	  <None Remove="Resources\Images\rated.png" />
-	  <None Remove="Resources\Images\record.png" />
 	  <None Remove="Resources\Images\reviewseller.png" />
-	  <None Remove="Resources\Images\search.png" />
-	  <None Remove="Resources\Images\sent.png" />
 	  <None Remove="Resources\Images\shop.png" />
-	  <None Remove="Resources\Images\splashscreen.gif" />
 	  <None Remove="Resources\Images\unfilledStar.png" />
 	  <None Remove="Resources\Images\verified.png" />
 	  <None Remove="Resources\Raw\games.json" />
@@ -141,6 +129,9 @@
 	  <MauiXaml Update="Pages\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\PreviewItem.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PrivacyPolicyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -171,10 +162,16 @@
 	  <MauiXaml Update="Pages\ShopDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\ShopProduct.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\TermsAndConditionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\TopShopSearch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\UserPurchaseHistory.xaml">

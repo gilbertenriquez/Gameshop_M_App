@@ -97,6 +97,7 @@ namespace Gameshop_App_Seller.Models
 
 
         public string Username { get; set; }
+        public int AggregatedRating { get; set; }
 
 
 
@@ -174,7 +175,7 @@ namespace Gameshop_App_Seller.Models
 
 
 
-        public async Task<bool> SellerReviews(string emailreviewer, string date, string rating, string RaterComment, string email,string username)
+        public async Task<bool> SellerReviews(string emailreviewer, string date, string rating, string RaterComment, string email, string username)
         {
             var evaluateEmail = (await ClientUsers
                   .Child("Reviews")
@@ -184,7 +185,7 @@ namespace Gameshop_App_Seller.Models
             var admin = new Users()
             {
                 StarReview = rating,
-                comment = RaterComment,              
+                comment = RaterComment,
                 EmailReviewer = emailreviewer,
                 Username = username,
                 Date = date,
@@ -391,7 +392,7 @@ namespace Gameshop_App_Seller.Models
             {
                 profilePicturePath = userSnapshot.ProfilePicture;
             }
-               var _main1 = await UpdateUserData(profilePicturePath, userSnapshot.PASSWORD, email, birthday, fname, lname, address, gender, password);
+            var _main1 = await UpdateUserData(profilePicturePath, userSnapshot.PASSWORD, email, birthday, fname, lname, address, gender, password);
             return true;
         }
 
@@ -655,7 +656,8 @@ namespace Gameshop_App_Seller.Models
                                  string ProdDesc,
                                  string ProdPrice,
                                  string ProdQuan,
-                                 string email){
+                                 string email)
+        {
 
 
             try
@@ -1064,12 +1066,12 @@ namespace Gameshop_App_Seller.Models
 
                 if (mainItem != null)
                 {
-                       var MainImageItem = await UploadImage(await maninimg.OpenReadAsync(),
-                                                     "ProductImg",
-                                                     maninimg.FileName);                 
+                    var MainImageItem = await UploadImage(await maninimg.OpenReadAsync(),
+                                                  "ProductImg",
+                                                  maninimg.FileName);
                 }
                 else if (!string.IsNullOrEmpty(ItemMages.Imagae_1_link))
-                {                  
+                {
                     mainItem = ItemMages.Imagae_1_link;
                 }
 
@@ -1669,6 +1671,58 @@ namespace Gameshop_App_Seller.Models
             }
         }
 
+        public async Task<List<(string ShopProfile, string ShopName, string StarReview, string MAIL)>> GetAllShopProfileAndFilteredReviewsAsync()
+        {
+            var allShopProfileAndFilteredReviews = new List<(string ShopProfile, string ShopName, string StarReview, string MAIL)>();
 
+            // HashSet to store unique shop names encountered
+            var uniqueShopNames = new HashSet<string>();
+
+            // Fetch all accounts from Firebase
+            var accountsSnapshot = await ClientUsers
+                .Child("Account")
+                .OnceAsync<Users>(); // Assuming you have an Account class representing the structure of data in Firebase
+
+            // Loop through each account
+            foreach (var accountSnapshot in accountsSnapshot)
+            {
+                var account = accountSnapshot.Object;
+
+                // Get the shop profile and shop name from the account data
+                var shopProfile = account.ShopProfile;
+                var shopName = account.ShopName;
+                var mail = account.MAIL; // Get the email associated with the shop
+
+                // Check if the shop name is not null or empty and if it hasn't been encountered before
+                if (!string.IsNullOrEmpty(shopName) && uniqueShopNames.Add(shopName))
+                {
+                    // Fetch reviews from Firebase for this account
+                    var reviewsSnapshot = await ClientUsers
+                        .Child("Reviews")
+                        .OnceAsync<Users>(); // Assuming you have a Review class representing the structure of data in Firebase
+
+                    // Initialize a variable to hold all reviews for this shop
+                    var allReviews = new List<string>();
+
+                    // Aggregate all reviews for this shop
+                    foreach (var reviewSnapshot in reviewsSnapshot)
+                    {
+                        var review = reviewSnapshot.Object;
+                        if (review.MAIL == account.MAIL) // Assuming MAIL is the property in your Review class
+                        {
+                            allReviews.Add(review.StarReview);
+                        }
+                    }
+
+                    // Concatenate all reviews into a single string separated by commas
+                    var aggregatedReviews = string.Join(", ", allReviews);
+
+                    // Add the shop profile, shop name, email, and aggregated reviews to the list
+                    allShopProfileAndFilteredReviews.Add((shopProfile, shopName, aggregatedReviews, mail));
+                }
+            }
+
+            return allShopProfileAndFilteredReviews;
+        }
     }
 }

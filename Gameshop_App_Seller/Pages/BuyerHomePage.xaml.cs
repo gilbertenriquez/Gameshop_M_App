@@ -391,6 +391,12 @@ public partial class BuyerHomePage : ContentPage
     {
         await Navigation.PushModalAsync(new UserPurchaseHistory());
     }
+
+    private async void SearchShop_Clicked(object sender, EventArgs e)
+    {
+        string userKey = await InitializeAsync(UserKey);
+        await Navigation.PushModalAsync(new TopShopSearch(userKey));
+    }
 }
 
 
