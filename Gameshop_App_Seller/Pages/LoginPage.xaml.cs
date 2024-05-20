@@ -93,20 +93,15 @@ public partial class LoginPage : INotifyPropertyChanged
 
         string cleanedEmail = emailEntry.Text.Trim().ToLower(); // Convert to lowercase     
         string userEmail = emailEntry.Text;
-        string banType = await App.FirebaseService.GetBanType(userEmail);
+        bool isBanned = await App.FirebaseService.IsEmailBanned(userEmail);
 
-        if (banType.Equals("Temporary ban", StringComparison.OrdinalIgnoreCase))
+        if (isBanned)
         {
-            await DisplayAlert("Temporary Ban", "You have been banned for 3 days.", "OK");
+            await DisplayAlert("Account Banned", "Your account has been banned. If you have questions, contact us at gameshop@gmail.com.", "OK");
             progressLoading.IsVisible = false;
             return;
         }
-        else if (banType.Equals("Permanent ban", StringComparison.OrdinalIgnoreCase))
-        {
-            await DisplayAlert("Permanent Ban", "Your account has been permanently banned.", "OK");
-            progressLoading.IsVisible = false;
-            return;
-        }
+
 
         var result = await ulogin.UserLogin(cleanedEmail, passwordEntry.Text);
         string userUid = await GetUserKeyByEmail(cleanedEmail);

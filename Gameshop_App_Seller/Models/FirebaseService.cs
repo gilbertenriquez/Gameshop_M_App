@@ -114,8 +114,7 @@ namespace Gameshop_App_Seller.Models
             return userWithKey?.Key;
         }
 
-
-        public async Task<string> GetBanType(string email)
+        public async Task<bool> IsEmailBanned(string email)
         {
             try
             {
@@ -125,25 +124,17 @@ namespace Gameshop_App_Seller.Models
 
                 var bannedUser = users.FirstOrDefault(u => u.Object.MAIL == email);
 
-                if (bannedUser != null)
-                {
-                    // Assuming you have a property in Users class representing the ban type
-                    string banningOption = bannedUser.Object.banningOption;
-
-                    // Return the ban type as a string
-                    return banningOption;
-                }
+                return bannedUser != null;
             }
             catch (Exception ex)
             {
                 // Handle exceptions based on your application's requirements.
-                Console.WriteLine($"Error checking ban type: {ex.Message}");
+                Console.WriteLine($"Error checking ban status: {ex.Message}");
             }
 
-            // Default to no ban if an error occurs or if the user is not found in the banned accounts
-            return "None";
+            // Return false if no ban is found or an error occurs
+            return false;
         }
-
 
 
         public async Task<string> GetUserFullNameByEmail(string email)
